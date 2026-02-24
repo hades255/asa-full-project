@@ -1,0 +1,348 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String                   @id @default(uuid())
+  first_name          String?
+  last_name           String?
+  phone               String?
+  email               String                   @unique
+  password            String
+  confirmed_at        DateTime?
+  stripe_customer_id  String?
+  stripe_payment_id   String?
+  clerk_user_id       String?
+  roles               Role[]                   @default([VENDOR])
+  status              Status                   @default(ACTIVE)
+  refresh_token       String                   @default("")
+  eco_score           Int                      @default(0)
+  created_at          DateTime                 @default(now())
+  updated_at          DateTime                 @updatedAt
+  parent_id           String?
+  customerBookings    Booking[]                @relation("CustomerBookings")
+  bookings            Booking[]
+  notifications       Notification[]
+  profile             Profile?
+  reviews             Review[]
+  SavedSearch         SavedSearch[]
+  parent              User?                    @relation("UserToChildren", fields: [parent_id], references: [id])
+  children            User[]                   @relation("UserToChildren")
+  categoryPreferences UserCategoryPreference[]
+  wishlists           Wishlist[]
+  preferences         UserPreference[]
+}
+
+model UserCategoryPreference {
+  id         String   @id @default(uuid())
+  userId     String
+  categoryId String
+  createdAt  DateTime @default(now())
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, categoryId])
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  userId    String
+  profileId String?
+  bookingId String
+  rating    Int?     @default(0)
+  comment   String?  @default("")
+  createdAt DateTime @default(now())
+  booking   Booking  @relation(fields: [bookingId], references: [id])
+  profile   Profile? @relation(fields: [profileId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, profileId, bookingId])
+}
+
+model Booking {
+  id                 String           @id @default(uuid())
+  userId             String
+  customerId         String?
+  profileId          String?
+  check_in           DateTime
+  no_of_guests       Int              @default(0)
+  status             BookingStatus    @default(PENDING)
+  spend              Float            @default(0.0)
+  payment_status     PaymentStatus    @default(PENDING)
+  amount             Float            @default(0.0)
+  notes              String?
+  lat                Float?
+  lng                Float?
+  address            String?
+  duration           Int?             @default(0)
+  time               String?
+  isReviewed         Boolean          @default(false)
+  cancellationReason String?
+  created_at         DateTime         @default(now())
+  updated_at         DateTime         @updatedAt
+  customer           User?            @relation("CustomerBookings", fields: [customerId], references: [id])
+  profile            Profile?         @relation(fields: [profileId], references: [id])
+  user               User             @relation(fields: [userId], references: [id])
+  bookingServices    BookingService[]
+  reviews            Review[]
+}
+
+model Notification {
+  id           String   @id @default(uuid())
+  userId       String
+  message      String
+  isRead       Boolean  @default(false)
+  resourceType String?
+  resourceId   String?
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id              String                   @id @default(uuid())
+  title           String
+  image           String?
+  mobileImage     String?
+  type            CategoryType             @default(WORKSPACE)
+  orderIndex      Int                      @default(0)
+  isActive        Boolean                  @default(true)
+  parentId        String?
+  parent          Category?                @relation("CategoryToSubcategories", fields: [parentId], references: [id])
+  subcategories   Category[]               @relation("CategoryToSubcategories")
+  services        Service[]
+  userPreferences UserCategoryPreference[]
+}
+
+model Profile {
+  id             String        @id @default(uuid())
+  accor_id       String?
+  name           String
+  description    String?
+  email          String?
+  lat            Float?
+  lng            Float?
+  address        String?
+  coverMedia     String?
+  source         ProfileSource @default(SPACE)
+  status         ProfileStatus @default(INACTIVE)
+  price          Float         @default(0.0)
+  oneStarCount   Int?          @default(0)
+  twoStarCount   Int?          @default(0)
+  threeStarCount Int?          @default(0)
+  fourStarCount  Int?          @default(0)
+  fiveStarCount  Int?          @default(0)
+  totalReviews   Int?          @default(0)
+  eco_score      Int           @default(0)
+  averageRating  Float?        @default(0.0)
+  userId         String        @unique
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  bookings       Booking[]
+  facilities     Facility[]
+  medias         Media[]       @relation("ProfileMedia")
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reviews        Review[]
+  services       Service[]
+  wishlists      Wishlist[]
+}
+
+model Facility {
+  id        String   @id @default(uuid())
+  name      String
+  profileId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model Media {
+  id        String   @id @default(uuid())
+  filePath  String
+  fileType  FileType
+  profileId String?
+  serviceId String?  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  profile   Profile? @relation("ProfileMedia", fields: [profileId], references: [id], onDelete: Cascade)
+  service   Service? @relation("ServiceMedia", fields: [serviceId], references: [id])
+}
+
+model Service {
+  id              String           @id @default(uuid())
+  name            String
+  description     String?
+  minSpend        Float?           @default(0.0)
+  categoryId      String?
+  profileId       String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  bookingServices BookingService[]
+  media           Media?           @relation("ServiceMedia")
+  category        Category?        @relation(fields: [categoryId], references: [id])
+  profile         Profile?         @relation(fields: [profileId], references: [id])
+}
+
+model BookingService {
+  id        String   @id @default(uuid())
+  bookingId String
+  serviceId String
+  price     Float    @default(0.0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  booking   Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  service   Service  @relation(fields: [serviceId], references: [id])
+}
+
+model Wishlist {
+  id        String   @id @default(uuid())
+  userId    String
+  profileId String
+  createdAt DateTime @default(now())
+  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model FAQ {
+  id        String   @id @default(uuid())
+  question  String
+  answer    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactUs {
+  id        String          @id @default(uuid())
+  name      String?
+  email     String?
+  subject   String
+  message   String
+  status    ContactUsStatus @default(PENDING)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+model ServiceDuration {
+  id         String   @id @default(uuid())
+  label      String
+  multiplier Float
+  unit       String?
+  createdAt  DateTime @default(now())
+}
+
+model SavedSearch {
+  id        String   @id @default(uuid())
+  userId    String
+  name      String
+  filters   Json
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Preference {
+  id              String           @id @default(uuid())
+  title           String
+  icon            String?
+  orderIndex      Int              @default(0)
+  parentId        String?
+  parent          Preference?      @relation("PreferenceToSubPreferences", fields: [parentId], references: [id])
+  subPreferences  Preference[]     @relation("PreferenceToSubPreferences")
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  userPreferences UserPreference[]
+}
+
+model UserPreference {
+  id           String     @id @default(uuid())
+  userId       String
+  preferenceId String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  preference   Preference @relation(fields: [preferenceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, preferenceId])
+}
+
+model TermsAndConditions {
+  id        String   @id @default("singleton")
+  content   String   @db.Text
+  version   String?  @default("1.0")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("termsAndConditions")
+}
+
+model PrivacyPolicy {
+  id        String   @id @default("singleton")
+  content   String   @db.Text
+  version   String?  @default("1.0")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("privacyPolicies")
+}
+
+enum Role {
+  USER
+  VENDOR
+  EMPLOYEE
+  ADMIN
+}
+
+enum Status {
+  ACTIVE
+  BLOCKED
+}
+
+enum BookingStatus {
+  PENDING
+  APPROVED
+  CANCELLED
+  COMPLETED
+  IN_PROGRESS
+}
+
+enum PaymentStatus {
+  PENDING
+  FAILED
+  COMPLETED
+}
+
+enum ProfileStatus {
+  INACTIVE
+  PUBLISHED
+}
+
+enum ProfileSource {
+  SPACE
+  ACCOR
+}
+
+enum FileType {
+  JPG
+  PNG
+  SVG
+  MP4
+}
+
+enum ContactUsStatus {
+  PENDING
+  RESOLVED
+}
+
+enum CategoryType {
+  WORKSPACE
+  RELAXATION
+  DINING
+  SLEEP
+  TRAVEL
+  POLICIES
+  SPECIAL_OFFERS
+  BEACH_CLUB
+}

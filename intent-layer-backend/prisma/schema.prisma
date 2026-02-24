@@ -1,0 +1,109 @@
+// Intent Layer - Search module schema
+// Compatible with allspaces-backend for easy integration.
+// Can use same DATABASE_URL to share DB, or separate for standalone.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String    @id @default(uuid())
+  first_name String?
+  last_name  String?
+  email      String    @unique
+  password   String
+  status     Status    @default(ACTIVE)
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  profile    Profile?
+}
+
+model Category {
+  id         String         @id @default(uuid())
+  title      String
+  image      String?
+  mobileImage String?
+  type       CategoryType   @default(WORKSPACE)
+  orderIndex Int            @default(0)
+  isActive   Boolean        @default(true)
+  parentId   String?
+  parent     Category?      @relation("CategoryToSubcategories", fields: [parentId], references: [id])
+  subcategories Category[]  @relation("CategoryToSubcategories")
+  services   Service[]
+}
+
+model Profile {
+  id             String        @id @default(uuid())
+  accor_id       String?
+  name           String
+  description    String?
+  email          String?
+  lat            Float?
+  lng            Float?
+  address        String?
+  coverMedia     String?
+  source         ProfileSource @default(SPACE)
+  status         ProfileStatus @default(INACTIVE)
+  price          Float         @default(0.0)
+  totalReviews   Int?          @default(0)
+  averageRating  Float?        @default(0.0)
+  userId         String        @unique
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  facilities     Facility[]
+  services       Service[]
+}
+
+model Facility {
+  id        String   @id @default(uuid())
+  name      String
+  profileId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+}
+
+model Service {
+  id          String     @id @default(uuid())
+  name        String
+  description String?
+  minSpend    Float?     @default(0.0)
+  categoryId  String?
+  profileId   String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  category    Category?  @relation(fields: [categoryId], references: [id])
+  profile     Profile?   @relation(fields: [profileId], references: [id])
+}
+
+enum Status {
+  ACTIVE
+  BLOCKED
+}
+
+enum ProfileStatus {
+  INACTIVE
+  PUBLISHED
+}
+
+enum ProfileSource {
+  SPACE
+  ACCOR
+}
+
+enum CategoryType {
+  WORKSPACE
+  RELAXATION
+  DINING
+  SLEEP
+  TRAVEL
+  POLICIES
+  SPECIAL_OFFERS
+  BEACH_CLUB
+}

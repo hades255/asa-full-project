@@ -1,0 +1,79 @@
+import { StyleSheet } from "react-native-unistyles";
+
+export const styles = StyleSheet.create((theme) => ({
+  mainContainer: {
+    borderRadius: theme.units[4],
+    boxShadow: "3px 3px 12px 4px rgba(0,0,0,0.08)",
+  },
+  fullWidth: {
+    width: "100%",
+    height: 200,
+    borderTopLeftRadius: theme.units[4],
+    borderTopRightRadius: theme.units[4],
+    overflow: "hidden",
+  },
+  fullWidthImageStyle: {
+    width: "100%",
+    height: 200,
+  },
+  fullContentContainer: {
+    width: "100%",
+    padding: theme.units[3],
+    rowGap: theme.units[1],
+  },
+  statusContainer: {
+    height: 42,
+    borderRadius: 24,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: theme.units[3],
+    position: "absolute",
+    bottom: theme.units[3],
+    right: theme.units[3],
+    zIndex: 2,
+  },
+  contentHeadRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    columnGap: theme.units[2],
+  },
+  rightAlignRow: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    columnGap: theme.units[1],
+  },
+  leftAlignRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    columnGap: theme.units[1],
+  },
+  iconsContainer: {
+    position: "absolute",
+    top: theme.units[3],
+    right: theme.units[3],
+    columnGap: theme.units[3],
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    zIndex: 2,
+  },
+  blurEcoContainer: {
+    height: 42,
+    paddingHorizontal: theme.units[3],
+    borderRadius: 100,
+    overflow: "hidden",
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: theme.units[2],
+    backgroundColor: "rgba(255,255,255,0.25)",
+  },
+  fullLinearGrad: {
+    width: "100%",
+    height: 200,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: 1,
+  },
+}));

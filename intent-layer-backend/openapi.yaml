@@ -1,0 +1,378 @@
+openapi: 3.0.3
+info:
+  title: Intent Layer API
+  description: |
+    Intent Layer backend (MVP 1.5). Parse natural-language prompts to structured SearchIntent,
+    fetch candidate spaces from DB, and return LLM-ranked recommendations.
+    - **Parse** — prompt → SearchIntent JSON
+    - **Search** — intent JSON → ranked results
+    - **Search by prompt** — prompt → intent + ranked results (all-in-one)
+  version: 1.0.0
+  contact:
+    name: Intent Layer API
+
+servers:
+  - url: http://localhost:3001
+    description: Development server
+
+paths:
+  /api/intent/parse:
+    post:
+      tags:
+        - Intent
+      summary: Parse prompt to structured intent
+      description: Accepts a natural-language or typed prompt and returns a structured SearchIntent (date, duration, noOfGuests, location, categoryIds).
+      operationId: parseIntent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParseRequest'
+      responses:
+        '200':
+          description: Structured intent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseResponse'
+        '400':
+          description: Bad request (e.g. missing prompt)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Intent extraction failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorWithDetails'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/intent/search:
+    post:
+      tags:
+        - Search
+      summary: Search by intent
+      description: Input intent JSON. Fetches candidates from DB and returns LLM-ranked recommendations with scores and reasons.
+      operationId: searchByIntent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Ranked recommendations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: Missing intent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Search failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/intent/search-by-prompt:
+    post:
+      tags:
+        - Search
+      summary: Search by prompt (all-in-one)
+      description: Input raw prompt. Runs parse → fetch candidates → LLM rank. Returns intent, repair, and ranked recommendations.
+      operationId: searchByPrompt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchByPromptRequest'
+      responses:
+        '200':
+          description: Intent + ranked recommendations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchByPromptResponse'
+        '400':
+          description: Missing prompt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Intent extraction failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorWithDetails'
+        '500':
+          description: Search failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health check
+      description: Returns service status.
+      operationId: health
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  service:
+                    type: string
+                    example: intent-layer-backend
+
+components:
+  schemas:
+    ParseRequest:
+      type: object
+      required:
+        - prompt
+      properties:
+        prompt:
+          type: string
+          description: User's typed or spoken text
+          example: "Breakfast for 2 in London next Tuesday 10am for 2 hours"
+        context:
+          type: object
+          properties:
+            timezone:
+              type: string
+              example: "Europe/London"
+            lastLocation:
+              type: object
+              properties:
+                lat:
+                  type: number
+                  example: 51.576525
+                lng:
+                  type: number
+                  example: -0.153765
+                address:
+                  type: string
+                  example: "14 Grange Road, London N6 4DG"
+
+    ParseResponse:
+      type: object
+      required:
+        - intent
+      properties:
+        intent:
+          $ref: '#/components/schemas/SearchIntent'
+        repair:
+          type: object
+          properties:
+            applied:
+              type: boolean
+            changes:
+              type: array
+              items:
+                type: string
+
+    SearchRequest:
+      type: object
+      required:
+        - intent
+      properties:
+        intent:
+          $ref: '#/components/schemas/SearchIntent'
+        sessionId:
+          type: string
+          description: Clerk session ID (forwarded when using allspaces HTTP fallback)
+        categoryIds:
+          type: array
+          items:
+            type: string
+          description: Optional category UUIDs to filter
+
+    SearchResponse:
+      type: object
+      properties:
+        intent:
+          $ref: '#/components/schemas/SearchIntent'
+        summary:
+          type: string
+          example: "3 Italian restaurants in Manhattan for your Friday dinner."
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recommendation'
+        candidatesCount:
+          type: integer
+          description: Total candidates found before ranking
+        noMatchMessage:
+          type: string
+          nullable: true
+          description: Message when no suitable candidates
+
+    SearchByPromptRequest:
+      type: object
+      required:
+        - prompt
+      properties:
+        prompt:
+          type: string
+          example: "Italian restaurant in Manhattan for 4 people this Friday at 7pm"
+        context:
+          type: object
+          properties:
+            timezone:
+              type: string
+            lastLocation:
+              type: object
+              properties:
+                lat:
+                  type: number
+                lng:
+                  type: number
+                address:
+                  type: string
+        sessionId:
+          type: string
+
+    SearchByPromptResponse:
+      type: object
+      properties:
+        intent:
+          $ref: '#/components/schemas/SearchIntent'
+        repair:
+          type: object
+          properties:
+            applied:
+              type: boolean
+            changes:
+              type: array
+              items:
+                type: string
+        summary:
+          type: string
+        recommendations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recommendation'
+        candidatesCount:
+          type: integer
+        noMatchMessage:
+          type: string
+          nullable: true
+
+    SearchIntent:
+      type: object
+      required:
+        - date
+        - duration
+        - noOfGuests
+        - location
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: When the user wants the space
+        duration:
+          type: integer
+          minimum: 1
+          description: Duration in hours
+        noOfGuests:
+          type: integer
+          minimum: 0
+          description: Number of guests
+        location:
+          type: object
+          required:
+            - address
+          properties:
+            address:
+              type: string
+              description: Target location
+            lat:
+              type: number
+            lng:
+              type: number
+        userLocation:
+          type: object
+          description: User's current/last known location
+          properties:
+            address:
+              type: string
+            lat:
+              type: number
+            lng:
+              type: number
+        categoryIds:
+          type: array
+          items:
+            type: string
+          description: Semantic IDs e.g. cat-dining-001
+        rawQuery:
+          type: string
+          description: Original user message
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+        inferredDescription:
+          type: string
+          description: What was inferred when not explicitly stated
+
+    Recommendation:
+      type: object
+      properties:
+        rank:
+          type: integer
+          description: 1-based rank
+        profileId:
+          type: string
+          format: uuid
+        profileName:
+          type: string
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Match score 0-1
+        reasons:
+          type: array
+          items:
+            type: string
+          description: Why this space was recommended
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+
+    ErrorWithDetails:
+      type: object
+      properties:
+        message:
+          type: string
+        details:
+          type: string

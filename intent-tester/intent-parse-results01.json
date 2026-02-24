@@ -1,0 +1,998 @@
+[
+  {
+    "prompt": "Italian restaurant in Manhattan for 4 people this Friday at 7pm",
+    "result": {
+      "intent": {
+        "date": "2026-02-20T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 4,
+        "location": {
+          "address": "Manhattan, New York, USA"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Italian restaurant in Manhattan for 4 people this Friday at 7pm",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 1
+  },
+  {
+    "prompt": "I’d like to book a hotel in Chicago downtown from March 12 for 3 nights.",
+    "result": {
+      "intent": {
+        "date": "2026-03-12T00:00:00.000Z",
+        "duration": 72,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Chicago downtown"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "I’d like to book a hotel in Chicago downtown from March 12 for 3 nights.",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 2
+  },
+  {
+    "prompt": "Private dining room in Brooklyn for birthday party Saturday evening",
+    "result": {
+      "intent": {
+        "date": "2026-02-21T18:00:00.000Z",
+        "duration": 5,
+        "noOfGuests": 10,
+        "location": {
+          "address": "Brooklyn, NY, USA"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Private dining room in Brooklyn for birthday party Saturday evening",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 3
+  },
+  {
+    "prompt": "Looking for a conference room in San Francisco next Monday morning for about 4 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-23T09:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 1,
+        "location": {
+          "address": "San Francisco"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Looking for a conference room in San Francisco next Monday morning for about 4 hours",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 4
+  },
+  {
+    "prompt": "Rooftop restaurant in Miami tomorrow night for 2",
+    "result": {
+      "intent": {
+        "date": "2026-02-20T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Miami"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Rooftop restaurant in Miami tomorrow night for 2",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 5
+  },
+  {
+    "prompt": "We need a wedding venue in Dallas for around 120 guests in June.",
+    "result": {
+      "intent": {
+        "date": "2026-06-01T00:00:00.000Z",
+        "duration": 6,
+        "noOfGuests": 120,
+        "location": {
+          "address": "Dallas, Texas, USA"
+        },
+        "categoryIds": [],
+        "rawQuery": "We need a wedding venue in Dallas for around 120 guests in June.",
+        "confidence": 0.8,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 6
+  },
+  {
+    "prompt": "Boutique hotel near Central Park next weekend",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T14:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Central Park, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Boutique hotel near Central Park next weekend",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 7
+  },
+  {
+    "prompt": "Event space in Los Angeles for baby shower April 20 afternoon",
+    "result": {
+      "intent": {
+        "date": "2026-04-20T13:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 20,
+        "location": {
+          "address": "Los Angeles"
+        },
+        "categoryIds": [],
+        "rawQuery": "Event space in Los Angeles for baby shower April 20 afternoon",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 8
+  },
+  {
+    "prompt": "Can I reserve a table in Boston for Thursday at 8pm?",
+    "result": {
+      "intent": {
+        "date": "2026-02-26T20:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Boston"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Can I reserve a table in Boston for Thursday at 8pm?",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 9
+  },
+  {
+    "prompt": "Beachfront hotel in San Diego for family trip July 5 to July 10",
+    "result": {
+      "intent": {
+        "date": "2026-07-05T00:00:00.000Z",
+        "duration": 120,
+        "noOfGuests": 4,
+        "location": {
+          "address": "San Diego"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Beachfront hotel in San Diego for family trip July 5 to July 10",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 10
+  },
+  {
+    "prompt": "Meeting room near Times Square tomorrow at 1pm",
+    "result": {
+      "intent": {
+        "date": "2026-02-20T13:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 5,
+        "location": {
+          "address": "Times Square, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Meeting room near Times Square tomorrow at 1pm",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 11
+  },
+  {
+    "prompt": "I’m planning a graduation party next Saturday evening and need a banquet hall in Atlanta.",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T18:00:00.000Z",
+        "duration": 5,
+        "noOfGuests": 50,
+        "location": {
+          "address": "Atlanta, GA, USA"
+        },
+        "categoryIds": [
+          "cat-event-003"
+        ],
+        "rawQuery": "I’m planning a graduation party next Saturday evening and need a banquet hall in Atlanta.",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 12
+  },
+  {
+    "prompt": "Hotel near LAX for tonight",
+    "result": {
+      "intent": {
+        "date": "2026-02-19T23:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "LAX"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Hotel near LAX for tonight",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 13
+  },
+  {
+    "prompt": "Private rooftop venue in Austin for engagement party May 18 for 5 hours",
+    "result": {
+      "intent": {
+        "date": "2026-05-18T00:00:00.000Z",
+        "duration": 5,
+        "noOfGuests": 50,
+        "location": {
+          "address": "Austin"
+        },
+        "categoryIds": [
+          "cat-event-003"
+        ],
+        "rawQuery": "Private rooftop venue in Austin for engagement party May 18 for 5 hours",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 14
+  },
+  {
+    "prompt": "Restaurant with outdoor seating in Denver Sunday brunch",
+    "result": {
+      "intent": {
+        "date": "2026-02-22T11:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 3,
+        "location": {
+          "address": "Denver"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Restaurant with outdoor seating in Denver Sunday brunch",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 15
+  },
+  {
+    "prompt": "Conference hall in Seattle for corporate event next month full day",
+    "result": {
+      "intent": {
+        "date": "2026-03-01T09:00:00.000Z",
+        "duration": 8,
+        "noOfGuests": 50,
+        "location": {
+          "address": "Seattle"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Conference hall in Seattle for corporate event next month full day",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 16
+  },
+  {
+    "prompt": "Romantic dinner spot in Paris for 2 next Tuesday",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Paris, France"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Romantic dinner spot in Paris for 2 next Tuesday",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 17
+  },
+  {
+    "prompt": "Small meeting space in Houston Friday morning for 3 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-20T09:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 3,
+        "location": {
+          "address": "Houston"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Small meeting space in Houston Friday morning for 3 hours",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 18
+  },
+  {
+    "prompt": "Luxury hotel in Las Vegas for New Year’s Eve",
+    "result": {
+      "intent": {
+        "date": "2026-12-31T15:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Las Vegas"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Luxury hotel in Las Vegas for New Year’s Eve",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 19
+  },
+  {
+    "prompt": "Need a private event room in Orlando December 10 from 6pm to 10pm for 15 people",
+    "result": {
+      "intent": {
+        "date": "2026-12-10T18:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 15,
+        "location": {
+          "address": "Orlando"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Need a private event room in Orlando December 10 from 6pm to 10pm for 15 people",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 20
+  },
+  {
+    "prompt": "Is there any availability for dinner in Brooklyn this Saturday?",
+    "result": {
+      "intent": {
+        "date": "2026-02-21T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Brooklyn, New York, USA"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Is there any availability for dinner in Brooklyn this Saturday?",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 21
+  },
+  {
+    "prompt": "Hotel in Miami for 3 adults starting this Friday",
+    "result": {
+      "intent": {
+        "date": "2026-02-20T00:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 3,
+        "location": {
+          "address": "Miami"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Hotel in Miami for 3 adults starting this Friday",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 22
+  },
+  {
+    "prompt": "Looking to book a quiet cafe space for a meeting tomorrow afternoon",
+    "result": {
+      "intent": {
+        "date": "2026-02-20T14:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 4,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Looking to book a quiet cafe space for a meeting tomorrow afternoon",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 23
+  },
+  {
+    "prompt": "Birthday dinner in Chicago for about 10 people next weekend",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 10,
+        "location": {
+          "address": "Chicago"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Birthday dinner in Chicago for about 10 people next weekend",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 24
+  },
+  {
+    "prompt": "I need a place to stay in Boston for a couple of nights next month.",
+    "result": {
+      "intent": {
+        "date": "2026-03-01T12:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Boston"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "I need a place to stay in Boston for a couple of nights next month.",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 25
+  },
+  {
+    "prompt": "Hi, I’d like to book a table for 3 next Tuesday around 11am.",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T11:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 3,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Hi, I’d like to book a table for 3 next Tuesday around 11am.",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 26
+  },
+  {
+    "prompt": "Do you have a room available for two this Friday night in downtown Chicago?",
+    "result": {
+      "intent": {
+        "date": "2026-02-20T18:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 2,
+        "location": {
+          "address": "downtown Chicago"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Do you have a room available for two this Friday night in downtown Chicago?",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 27
+  },
+  {
+    "prompt": "I’m looking to reserve a table for dinner tomorrow at 7pm.",
+    "result": {
+      "intent": {
+        "date": "2026-02-20T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "I’m looking to reserve a table for dinner tomorrow at 7pm.",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 28
+  },
+  {
+    "prompt": "Can I book a small meeting room for about 4 hours next Monday morning?",
+    "result": {
+      "intent": {
+        "date": "2026-02-23T09:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 1,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Can I book a small meeting room for about 4 hours next Monday morning?",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 29
+  },
+  {
+    "prompt": "I need a hotel room near Times Square from March 12 for two nights.",
+    "result": {
+      "intent": {
+        "date": "2026-03-12T00:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Times Square, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "I need a hotel room near Times Square from March 12 for two nights.",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 30
+  },
+  {
+    "prompt": "Is it possible to reserve a table for 5 this Sunday around lunchtime?",
+    "result": {
+      "intent": {
+        "date": "2026-02-22T12:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 5,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Is it possible to reserve a table for 5 this Sunday around lunchtime?",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 31
+  },
+  {
+    "prompt": "I’d like to book a spa appointment at 6pm if you have availability.",
+    "result": {
+      "intent": {
+        "date": "2026-02-19T18:56:40.762Z",
+        "duration": 1,
+        "noOfGuests": 1,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "I’d like to book a spa appointment at 6pm if you have availability.",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": true,
+        "changes": [
+          "date repaired to current time (was in the past)"
+        ]
+      }
+    },
+    "index": 32
+  },
+  {
+    "prompt": "Can I get a rooftop table this Saturday evening for about 2 hours?",
+    "result": {
+      "intent": {
+        "date": "2026-02-21T18:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Can I get a rooftop table this Saturday evening for about 2 hours?",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 33
+  },
+  {
+    "prompt": "I’m planning a birthday dinner for 10 people next weekend.",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 10,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "I’m planning a birthday dinner for 10 people next weekend.",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 34
+  },
+  {
+    "prompt": "Do you have any rooms left for tonight? It’s just for one person.",
+    "result": {
+      "intent": {
+        "date": "2026-02-19T18:56:47.372Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Do you have any rooms left for tonight? It’s just for one person.",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": true,
+        "changes": [
+          "date repaired to current time (was in the past)"
+        ]
+      }
+    },
+    "index": 35
+  }
+]
