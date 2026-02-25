@@ -43,6 +43,7 @@ export async function fetchDbCandidates(intent, options = {}) {
       });
       lastResult = result;
       if (result.candidates.length > 0) {
+        console.log(`[DB] Search: fetched ${result.candidates.length} profiles from PostgreSQL`);
         return {
           candidates: result.candidates,
           total: result.total,
@@ -51,6 +52,7 @@ export async function fetchDbCandidates(intent, options = {}) {
         };
       }
     }
+    console.log("[DB] Search: 0 profiles from PostgreSQL (after expand retries)");
     return {
       candidates: lastResult.candidates,
       total: lastResult.total,

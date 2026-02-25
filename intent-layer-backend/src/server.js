@@ -7,6 +7,7 @@ import { dirname, join } from "path";
 import { parse as parseYaml } from "yaml";
 import intentRoutes from "./routes/intentRoutes.js";
 import { config } from "./config/env.js";
+import { getPrisma, logDbConnectionStatus } from "./lib/db.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 let spec;
@@ -31,10 +32,13 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok", service: "intent-layer-backend" });
 });
 
-app.listen(config.port, () => {
+app.listen(config.port, async () => {
   console.log(`Intent Layer backend running on http://localhost:${config.port}`);
   console.log(`  POST /api/intent/parse          — parse prompt → SearchIntent`);
   console.log(`  POST /api/intent/search         — intent JSON → ranked results`);
   console.log(`  POST /api/intent/search-by-prompt — prompt → intent + ranked results`);
   console.log(`  GET  /api-docs — OpenAPI Swagger UI`);
+  if (getPrisma()) {
+    await logDbConnectionStatus();
+  }
 });

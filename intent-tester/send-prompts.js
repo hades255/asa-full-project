@@ -2,77 +2,42 @@ const fs = require("fs");
 const path = require("path");
 
 const prompts = [
-  // --- RELAXATION / SPA / WELLNESS ---
-  "Spa day pass in Manhattan for 2 this Friday at 3pm for 3 hours",
-  "Deep tissue massage in London for 1 next Tuesday at 6pm",
-  "Couples massage near Central Park this Saturday at 5pm for 2 hours",
-  "Hydrating facial in Paris tomorrow at 2pm for 90 minutes",
-  "Sauna and steam room access in Berlin this Sunday at 11am for 2 hours",
-  "Pool access in Dubai this Friday at 1pm for 4 hours",
-  "Yoga class in Amsterdam next Monday at 7am",
-  "Gym access near Times Square today at 6pm for 2 hours",
-  "Spa + indoor pool in Barcelona for 2 next weekend around noon",
-  "Relaxation retreat in Rome for 1 this Saturday afternoon for 3 hours",
-
-  // --- DINING ---
-  "Breakfast buffet in London near Westminster next Wednesday at 10am for 2 hours for 3 people",
-  "Afternoon tea in Paris for 2 this Friday at 4pm",
-  "Dinner tasting menu in Manhattan for 4 this Friday at 7pm for 2 hours",
-  "Cocktails at a bar in Tokyo tonight at 9pm for 2",
-  "Lunch set menu in Berlin tomorrow at 1pm for 2 people",
-  "Dinner in Amsterdam for 6 next Saturday at 8pm",
-  "Breakfast in Barcelona for 2 tomorrow at 9am",
-  "Romantic dinner in Paris for 2 next Tuesday at 7pm",
-  "Private dinner vibe in Brooklyn for 10 people next weekend at 7pm",
-  "Late-night bar in Los Angeles for 3 tonight at 11pm",
-
-  // --- SLEEP / HOTEL STAY ---
-  "Boutique wellness hotel in London for 2 adults starting this Friday for 2 nights",
-  "Hotel & spa in Manhattan for 2 next weekend for 3 nights",
-  "Luxury wellness hotel in Paris for 1 from March 12 for 2 nights",
-  "Quiet hotel in Berlin near city center for tonight",
-  "Hotel with indoor pool in Dubai for family trip July 5 to July 10",
-  "Suite in Rome for 2 next Friday for 1 night",
-  "Hotel in Tokyo for 3 adults starting next Monday for 4 nights",
-  "Wellness retreat stay in Barcelona from April 20 for 2 nights",
-  "Hotel near Central Park for 2 this weekend",
-  "Room available for tonight in Amsterdam for one person",
-
-  // --- WORKSPACE / MEETINGS ---
-  "Meeting room in London tomorrow at 10am for 4 hours for 6 people",
-  "Conference room in Manhattan next Monday morning for about 3 hours",
-  "Coworking desk in Berlin today from 1pm for 6 hours",
-  "Small meeting room in Amsterdam next Tuesday at 2pm for 2 hours",
-  "Meeting room near Times Square tomorrow at 1pm for 2 hours",
-  "Conference room in Los Angeles for 10 people next Friday at 9am for 5 hours",
-  "Quiet coworking space in Paris tomorrow afternoon for 4 hours",
-  "Business center workspace in Dubai this Monday at 8am for 3 hours",
-  "Meeting room in Tokyo next Wednesday at 11am for 2 hours",
-  "Coworking desk in Barcelona next Monday for the day",
-
-  // --- FACILITY-DRIVEN QUERIES (maps nicely to Facility.name) ---
-  "Spa hotel with free Wi-Fi and parking in London for 2 next weekend",
-  "Wellness hotel with EV charging in Berlin for 2 starting Friday for 2 nights",
-  "Hotel with indoor pool and sauna in Paris for 2 tomorrow night",
-  "Spa resort with massage rooms and concierge in Manhattan this Saturday",
-  "Place with wheelchair accessible spa and elevator in Amsterdam for 1 next Tuesday at 5pm",
-  "Pet friendly hotel & spa in Los Angeles for tonight",
-  "Non-smoking rooms with room service in Dubai for 2 next week",
-  "Family friendly resort with outdoor pool in Barcelona for July 5 to July 10",
-  "Boutique hotel with bar and restaurant in Rome for 2 this weekend",
-  "Hotel with airport shuttle and laundry service in Tokyo for 1 starting next Monday for 3 nights",
-
-  // --- AMBIGUOUS / NEEDS REPAIR (good for testing repair/clarification) ---
-  "Spa in Manhattan tomorrow evening for a couple hours",
-  "Somewhere relaxing in London for 2 next weekend",
-  "I need a massage late tonight near Times Square",
-  "Book a hotel in Paris next month for a few nights",
-  "Looking for breakfast near Central Park around 10ish for 3",
-  "Conference space in Berlin for a team meeting sometime next week",
-  "Pool and sauna access in Dubai for tomorrow",
-  "Dinner in Manhattan for 4 this Friday",
-  "Coworking in Amsterdam tomorrow",
-  "A quiet hotel in Rome with good reviews for this weekend",
+  "Breakfast for 3 in London near London eye next Tuesday 11am for 4 hours",
+  "Italian restaurant in Manhattan for 4 people this Friday at 7pm",
+  "I’d like to book a hotel in Chicago downtown from March 12 for 3 nights.",
+  "Private dining room in Brooklyn for birthday party Saturday evening",
+  "Looking for a conference room in San Francisco next Monday morning for about 4 hours",
+  "Rooftop restaurant in Miami tomorrow night for 2",
+  "We need a wedding venue in Dallas for around 120 guests in June.",
+  "Boutique hotel near Central Park next weekend",
+  "Event space in Los Angeles for baby shower April 20 afternoon",
+  "Can I reserve a table in Boston for Thursday at 8pm?",
+  "Beachfront hotel in San Diego for family trip July 5 to July 10",
+  "Meeting room near Times Square tomorrow at 1pm",
+  "I’m planning a graduation party next Saturday evening and need a banquet hall in Atlanta.",
+  "Hotel near LAX for tonight",
+  "Private rooftop venue in Austin for engagement party May 18 for 5 hours",
+  "Restaurant with outdoor seating in Denver Sunday brunch",
+  "Conference hall in Seattle for corporate event next month full day",
+  "Romantic dinner spot in Paris for 2 next Tuesday",
+  "Small meeting space in Houston Friday morning for 3 hours",
+  "Luxury hotel in Las Vegas for New Year’s Eve",
+  "Need a private event room in Orlando December 10 from 6pm to 10pm for 15 people",
+  "Is there any availability for dinner in Brooklyn this Saturday?",
+  "Hotel in Miami for 3 adults starting this Friday",
+  "Looking to book a quiet cafe space for a meeting tomorrow afternoon",
+  "Birthday dinner in Chicago for about 10 people next weekend",
+  "I need a place to stay in Boston for a couple of nights next month.",
+  "Hi, I’d like to book a table for 3 next Tuesday around 11am.",
+  "Do you have a room available for two this Friday night in downtown Chicago?",
+  "I’m looking to reserve a table for dinner tomorrow at 7pm.",
+  "Can I book a small meeting room for about 4 hours next Monday morning?",
+  "I need a hotel room near Times Square from March 12 for two nights.",
+  "Is it possible to reserve a table for 5 this Sunday around lunchtime?",
+  "I’d like to book a spa appointment at 6pm if you have availability.",
+  "Can I get a rooftop table this Saturday evening for about 2 hours?",
+  "I’m planning a birthday dinner for 10 people next weekend.",
+  "Do you have any rooms left for tonight? It’s just for one person.",
 ];
 
 const API_URL = "http://localhost:3001/api/intent/parse";
@@ -112,7 +77,7 @@ async function main() {
   for (let i = 0; i < prompts.length; i++) {
     const prompt = prompts[i];
     console.log(
-      `[${i + 1}/${prompts.length}] Sending: "${prompt.slice(0, 50)}..."`,
+      `[${i + 1}/${prompts.length}] Sending: "${prompt.slice(0, 50)}..."`
     );
 
     try {
