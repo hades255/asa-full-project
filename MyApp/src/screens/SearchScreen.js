@@ -330,8 +330,9 @@ export default function SearchScreen({ navigation }) {
         err.response?.data?.details ||
         err.message ||
         "Search failed";
+      const url = err.apiUrl || "";
       setLastResponse({ error: msg });
-      Alert.alert("Search failed", msg);
+      Alert.alert("Search failed", url ? `${msg}\n\nURL: ${url}` : msg);
     }
     setParsing(false);
     setIsProcessingVoice(false);

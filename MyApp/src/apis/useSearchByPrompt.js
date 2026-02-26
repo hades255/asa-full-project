@@ -18,21 +18,25 @@ export async function searchByPrompt({ prompt, context = {} }) {
     sessionId = (await SecureStore.getItemAsync(SESSION_KEY)) || "";
   } catch (_) {}
 
-  const res = await axios.post(
-    url,
-    {
-      prompt: String(prompt || "").trim(),
-      context: {
-        timezone: context.timezone || "Europe/London",
-        lastLocation: context.lastLocation || null,
+  try {
+    const res = await axios.post(
+      url,
+      {
+        prompt: String(prompt || "").trim(),
+        context: {
+          timezone: context.timezone || "Europe/London",
+          lastLocation: context.lastLocation || null,
+        },
+        ...(sessionId ? { sessionId } : {}),
       },
-      ...(sessionId ? { sessionId } : {}),
-    },
-    {
-      headers: { "Content-Type": "application/json" },
-      timeout: 30000,
-    }
-  );
-
-  return res.data;
+      {
+        headers: { "Content-Type": "application/json" },
+        timeout: 30000,
+      }
+    );
+    return res.data;
+  } catch (err) {
+    err.apiUrl = url;
+    throw err;
+  }
 }
