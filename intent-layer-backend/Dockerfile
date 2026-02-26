@@ -14,6 +14,9 @@ RUN npm ci --omit=dev || npm install --omit=dev
 # Copy prisma schema and seed
 COPY prisma ./prisma/
 
+# Copy mock DB bundle used by seed
+COPY db ./db/
+
 # Copy application source
 COPY src ./src
 COPY openapi.yaml ./
