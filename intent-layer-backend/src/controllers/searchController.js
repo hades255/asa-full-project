@@ -160,6 +160,60 @@ export async function searchByIntent(req, res) {
 }
 
 /**
+ * Build SearchIntent from manual filters.
+ * @param {object} filters - { date?, duration?, noOfGuests?, location?, categoryIds? }
+ * @param {object} lastLocation - { address, lat?, lng? }
+ */
+function intentFromFilters(filters, lastLocation) {
+  const loc = filters?.location || lastLocation;
+  return {
+    date: filters?.date ? String(new Date(filters.date).toISOString()).slice(0, 24) : new Date().toISOString().slice(0, 24),
+    duration: Math.max(1, parseInt(filters?.duration, 10) || 1),
+    noOfGuests: Math.max(0, parseInt(filters?.noOfGuests, 10) || 0),
+    location: {
+      address: loc?.address || "Unknown",
+      ...(loc?.lat != null && { lat: Number(loc.lat) }),
+      ...(loc?.lng != null && { lng: Number(loc.lng) }),
+    },
+    userLocation: lastLocation?.address
+      ? { address: lastLocation.address, ...(lastLocation.lat != null && { lat: Number(lastLocation.lat) }), ...(lastLocation.lng != null && { lng: Number(lastLocation.lng) }) }
+      : null,
+    categoryIds: Array.isArray(filters?.categoryIds) ? filters.categoryIds : [],
+    rawQuery: "",
+    confidence: 1,
+  };
+}
+
+/**
+ * POST /api/intent/search-with-filters
+ * Input: { filters: { date?, duration?, noOfGuests?, location?, categoryIds? }, lastLocation?, sessionId? }
+ * Uses manual filters (no LLM). Output: intent + ranked recommendations.
+ */
+export async function searchWithFilters(req, res) {
+  try {
+    const { filters = {}, lastLocation, sessionId } = req.body || {};
+    const session = sessionId || req.headers["session-id"];
+
+    const intent = intentFromFilters(filters, lastLocation);
+    const result = await runSearchFlow(intent, {
+      sessionId: session,
+      categoryIds: intent.categoryIds?.length ? intent.categoryIds : undefined,
+    });
+
+    return res.status(200).json({
+      ...result,
+      repair: { applied: false, changes: [] },
+    });
+  } catch (err) {
+    console.error("Search with filters error:", err);
+    return res.status(500).json({
+      message: "Search failed",
+      details: err.message || "Server error",
+    });
+  }
+}
+
+/**
  * POST /api/intent/search-by-prompt
  * Input: { prompt, context?, sessionId? }
  * Does: parse prompt → intent → fetch candidates → LLM rank.

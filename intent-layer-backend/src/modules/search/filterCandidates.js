@@ -29,9 +29,11 @@ function getSearchLocation(intent) {
   return DEFAULT_LOCATION;
 }
 
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 /**
  * Resolve categoryIds from intent to DB UUIDs.
- * If categoryIdMap provided, use it. Else map semantic IDs to types and find matching categories.
+ * If categoryIdMap provided, use it. If IDs are UUIDs, pass through. Else map semantic IDs to types.
  */
 async function resolveCategoryIds(prisma, intentCategoryIds, categoryIdMap) {
   if (!intentCategoryIds || intentCategoryIds.length === 0) return [];
@@ -41,6 +43,9 @@ async function resolveCategoryIds(prisma, intentCategoryIds, categoryIdMap) {
       .map((id) => categoryIdMap[id])
       .filter(Boolean);
   }
+
+  const uuidIds = intentCategoryIds.filter((id) => UUID_REGEX.test(String(id)));
+  if (uuidIds.length > 0) return uuidIds;
 
   const types = intentCategoryIds
     .map((id) => SEMANTIC_TO_TYPE[id])

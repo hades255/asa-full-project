@@ -4,6 +4,8 @@ const initialState = {
   searchData: null,
   googlePlaceData: null,
   selectedFilters: [],
+  /** Intent-layer search-by-prompt result: { recommendations, summary, intent, noMatchMessage } */
+  intentSearchResult: null,
 };
 
 export const appSlice = createSlice({
@@ -12,6 +14,9 @@ export const appSlice = createSlice({
   reducers: {
     actionSetSearchData: (state, action) => {
       state.searchData = action.payload;
+    },
+    actionSetIntentSearchResult: (state, action) => {
+      state.intentSearchResult = action.payload;
     },
     actionSetGooglePlaceData: (state, action) => {
       state.googlePlaceData = action.payload;
@@ -26,6 +31,7 @@ export const {
   actionSetSearchData,
   actionSetGooglePlaceData,
   actionSetSelectedFilters,
+  actionSetIntentSearchResult,
 } = appSlice.actions;
 
 export default appSlice.reducer;

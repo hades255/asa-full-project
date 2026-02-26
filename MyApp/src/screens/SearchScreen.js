@@ -44,8 +44,10 @@ import DateTimePicker from "../components/DateTimePicker";
 import DropdownPicker from "../components/DropdownPicker";
 import LocationInput from "../components/LocationInput";
 import AppFilters from "../components/AppFilters";
-import { envConfig } from "../config/env";
-import axios from "axios";
+import SpaceCard from "../components/SpaceCard";
+import { actionSetIntentSearchResult } from "../redux/appSlice";
+import { searchByPrompt } from "../apis/useSearchByPrompt";
+import { searchWithFilters } from "../apis/useSearchWithFilters";
 
 const schema = yup.object({
   when: yup.mixed().required("When is required"),
@@ -91,9 +93,7 @@ function VoiceRecordingModal({ visible, isRecording, onPressIn, onPressOut }) {
           <Text style={modalStyles.title}>
             {isRecording ? "Recording…" : "Hold to record"}
           </Text>
-          <Text style={modalStyles.hint}>
-            Release to stop and transcribe
-          </Text>
+          <Text style={modalStyles.hint}>Release to stop and transcribe</Text>
         </View>
       </Pressable>
     </Modal>
@@ -132,9 +132,7 @@ export default function SearchScreen({ navigation }) {
   const googlePlaceData = useSelector(
     (state) => state.appSlice.googlePlaceData
   );
-  const [prompt, setPrompt] = useState(
-    "Breakfast for 3 in London near London eye next Tuesday 11am for 4 hours"
-  );
+  const [prompt, setPrompt] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [parsing, setParsing] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -183,7 +181,9 @@ export default function SearchScreen({ navigation }) {
           });
           address =
             rev?.street && rev?.city
-              ? `${rev.street}, ${rev.city}${rev.country ? `, ${rev.country}` : ""}`
+              ? `${rev.street}, ${rev.city}${
+                  rev.country ? `, ${rev.country}` : ""
+                }`
               : rev?.city || rev?.region || address;
         } catch (_) {}
         setLastLocation({ lat: latitude, lng: longitude, address });
@@ -248,7 +248,8 @@ export default function SearchScreen({ navigation }) {
       return;
     }
     try {
-      const result = await ExpoSpeechRecognitionModule.requestPermissionsAsync();
+      const result =
+        await ExpoSpeechRecognitionModule.requestPermissionsAsync();
       if (!result.granted) {
         Alert.alert(
           "Microphone access",
@@ -258,7 +259,10 @@ export default function SearchScreen({ navigation }) {
       }
       const available = ExpoSpeechRecognitionModule.isRecognitionAvailable?.();
       if (available === false) {
-        Alert.alert("Voice not available", "Speech recognition is not available on this device.");
+        Alert.alert(
+          "Voice not available",
+          "Speech recognition is not available on this device."
+        );
         return;
       }
       transcriptRef.current = [];
@@ -275,7 +279,8 @@ export default function SearchScreen({ navigation }) {
       lang: "en-US",
       interimResults: true,
       continuous: true,
-      requiresOnDeviceRecognition: ExpoSpeechRecognitionModule.supportsOnDeviceRecognition?.() ?? false,
+      requiresOnDeviceRecognition:
+        ExpoSpeechRecognitionModule.supportsOnDeviceRecognition?.() ?? false,
     });
   };
 
@@ -294,10 +299,7 @@ export default function SearchScreen({ navigation }) {
 
     setParsing(true);
     setLastResponse(null);
-    console.log("lastLocation", lastLocation);
-    console.log("googlePlaceData", googlePlaceData);
     try {
-      const baseUrl = envConfig.EXPO_PUBLIC_INTENT_API_BASE_URL;
       const context = {
         timezone,
         lastLocation:
@@ -311,60 +313,15 @@ export default function SearchScreen({ navigation }) {
             : undefined),
       };
 
-      console.log("context", context);
-
-      const res = await axios.post(`${baseUrl}/intent/parse`, {
-        prompt: trimmed,
-        context,
-      });
-
-      setLastResponse(res.data);
-
-      const { intent, repair } = res.data;
-
-      // Don't use location when it was enriched from user's current location (vague prompt)
-      const wasEnriched =
-        repair?.changes?.some?.((c) =>
-          typeof c === "string" && c.toLowerCase().includes("location enriched from user location")
-        );
-
-      if (!intent?.location || wasEnriched) {
-        if (wasEnriched) {
-          Alert.alert(
-            "Location needed",
-            "Please specify a location in your search (e.g. 'London', 'Manhattan') or use filters below."
-          );
-        } else {
-          Alert.alert(
-            "Error",
-            "Could not extract location from your prompt. Try using filters instead."
-          );
-        }
-        setParsing(false);
-        setIsProcessingVoice(false);
-        return;
-      }
-
-      const loc = intent.location;
-
-      dispatch(
-        actionSetGooglePlaceData({
-          formatted_address: context.lastLocation?.address || "Unknown",
-          geometry: { location: { lat: context.lastLocation?.lat ?? 0, lng: context.lastLocation?.lng ?? 0 } },
-        })
-      );
-      dispatch(
-        actionSetSearchData({
-          date: intent.date || new Date().toISOString(),
-          noOfGuests: intent.noOfGuests ?? 1,
-          duration: intent.duration ?? 1,
-          filters: intent.categoryIds || [],
-          location: loc.address || "Unknown",
-        })
-      );
+      const result = await searchByPrompt({ prompt: trimmed, context });
+      setLastResponse(result);
+      dispatch(actionSetIntentSearchResult(result));
     } catch (err) {
       const msg =
-        err.response?.data?.message || err.message || "Intent parse failed";
+        err.response?.data?.message ||
+        err.response?.data?.details ||
+        err.message ||
+        "Search failed";
       setLastResponse({ error: msg });
       Alert.alert("Search failed", msg);
     }
@@ -374,25 +331,72 @@ export default function SearchScreen({ navigation }) {
 
   submitPromptWithTextRef.current = onPromptSubmit;
 
-  const onViewResults = () => {
-    navigation.navigate("SearchResult");
+  const MOCK_LOCATION = {
+    formatted_address: "London, UK",
+    geometry: { location: { lat: 51.5074, lng: -0.1278 } },
+  };
+  const mockLocationData = {
+    address: "London, UK",
+    lat: 51.5074,
+    lng: -0.1278,
   };
 
-  const onContinue = (formData) => {
-    if (!googlePlaceData?.geometry?.location) return;
-    dispatch(
-      actionSetSearchData({
-        date: new Date(formData.when).toISOString(),
-        noOfGuests: Number(formData.guests),
-        duration: Number(formData.duration),
-        filters: selectedCategories,
-        location: googlePlaceData.formatted_address,
-      })
-    );
-    navigation.navigate("SearchResult");
+  const onFilterSubmit = async (formData) => {
+    const placeData = googlePlaceData?.geometry?.location
+      ? googlePlaceData
+      : __DEV__
+        ? MOCK_LOCATION
+        : null;
+    if (!placeData?.geometry?.location) {
+      Alert.alert("Location needed", "Please select a location using the Where field or Use my location.");
+      return;
+    }
+    setParsing(true);
+    setLastResponse(null);
+    try {
+      const when = formData.when ? new Date(formData.when) : new Date();
+      const loc = {
+        address: placeData.formatted_address || "Unknown",
+        lat: placeData.geometry.location.lat,
+        lng: placeData.geometry.location.lng,
+      };
+      const lastLoc =
+        lastLocation ||
+        (placeData?.geometry?.location
+          ? {
+              address: placeData.formatted_address,
+              lat: placeData.geometry.location.lat,
+              lng: placeData.geometry.location.lng,
+            }
+          : mockLocationData);
+
+      const result = await searchWithFilters({
+        filters: {
+          date: when.toISOString(),
+          duration: Number(formData.duration) || 1,
+          noOfGuests: Number(formData.guests) || 1,
+          location: loc,
+          categoryIds: selectedCategories?.length ? selectedCategories : undefined,
+        },
+        lastLocation: lastLoc,
+      });
+
+      setLastResponse(result);
+      dispatch(actionSetIntentSearchResult(result));
+    } catch (err) {
+      const msg =
+        err.response?.data?.message ||
+        err.response?.data?.details ||
+        err.message ||
+        "Search failed";
+      setLastResponse({ error: msg });
+      Alert.alert("Search failed", msg);
+    }
+    setParsing(false);
   };
 
-  const canSubmitPrompt = prompt?.trim().length > 0 && !parsing && !isProcessingVoice;
+  const canSubmitPrompt =
+    prompt?.trim().length > 0 && !parsing && !isProcessingVoice;
   const isSubmitting = parsing || isProcessingVoice;
 
   return (
@@ -414,7 +418,8 @@ export default function SearchScreen({ navigation }) {
             onPress={onVoicePress}
             style={[
               styles.voiceButton,
-              (voiceModalVisible || isRecording || isProcessingVoice) && styles.voiceDisabled,
+              (voiceModalVisible || isRecording || isProcessingVoice) &&
+                styles.voiceDisabled,
             ]}
             disabled={voiceModalVisible || isRecording || isProcessingVoice}
             accessibilityLabel="Voice input"
@@ -441,7 +446,11 @@ export default function SearchScreen({ navigation }) {
           >
             {isSubmitting ? (
               <View style={styles.submitContent}>
-                <ActivityIndicator size="small" color="#fff" style={styles.submitSpinner} />
+                <ActivityIndicator
+                  size="small"
+                  color="#fff"
+                  style={styles.submitSpinner}
+                />
                 <Text style={styles.submitText}>Submitting</Text>
               </View>
             ) : (
@@ -452,7 +461,7 @@ export default function SearchScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        {/* Show / Hide filters toggle */}
+        {/* Filters - directly below search input, above response */}
         <TouchableOpacity
           onPress={() => setShowFilters((v) => !v)}
           style={styles.filterToggle}
@@ -461,34 +470,6 @@ export default function SearchScreen({ navigation }) {
             {showFilters ? "Hide filters" : "Show filters"}
           </Text>
         </TouchableOpacity>
-
-        {/* JSON viewer - raw intent parse result */}
-        {lastResponse && (
-          <View style={styles.jsonViewer}>
-            <Text style={styles.jsonViewerTitle}>Intent Parse Result</Text>
-            <ScrollView
-              showsVerticalScrollIndicator={true}
-              style={styles.jsonScroll}
-              contentContainerStyle={styles.jsonScrollContent}
-            >
-              <Text style={styles.jsonText} selectable>
-                {typeof lastResponse === "object"
-                  ? JSON.stringify(lastResponse, null, 2)
-                  : String(lastResponse)}
-              </Text>
-            </ScrollView>
-            {lastResponse?.intent?.location && (
-              <TouchableOpacity
-                onPress={onViewResults}
-                style={styles.viewResultsButton}
-              >
-                <Text style={styles.viewResultsText}>View search results</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-        )}
-
-        {/* Original filters (collapsible) */}
         {showFilters && (
           <ScrollView
             style={styles.filtersScroll}
@@ -526,11 +507,46 @@ export default function SearchScreen({ navigation }) {
             />
             <View style={styles.footer}>
               <AppButton
-                title="Continue"
-                onPress={handleSubmit(onContinue)}
-                disabled={!isValid || !googlePlaceData}
+                title="Search"
+                onPress={handleSubmit(onFilterSubmit)}
+                // disabled={!isValid || !googlePlaceData || parsing}
+                disabled={!isValid || parsing}
               />
             </View>
+          </ScrollView>
+        )}
+
+        {/* Search results - below filters */}
+        {lastResponse?.error && (
+          <View style={styles.resultBox}>
+            <Text style={styles.errorText}>{lastResponse.error}</Text>
+          </View>
+        )}
+        {lastResponse && !lastResponse.error && (
+          <ScrollView style={styles.resultBox} contentContainerStyle={styles.resultScrollContent} showsVerticalScrollIndicator={false}>
+            {lastResponse.summary ? (
+              <View style={styles.summaryBox}>
+                <Text style={styles.summaryText}>{lastResponse.summary}</Text>
+              </View>
+            ) : null}
+            {lastResponse.noMatchMessage && (!lastResponse.recommendations || lastResponse.recommendations.length === 0) ? (
+              <Text style={styles.noMatchText}>{lastResponse.noMatchMessage}</Text>
+            ) : lastResponse.recommendations?.length > 0 ? (
+              lastResponse.recommendations.map((item) => (
+                <View key={item?.profileId || item?.profile?.id} style={styles.cardWrap}>
+                  {item.score != null && (
+                    <View style={styles.matchBadge}>
+                      <Text style={styles.matchText}>Match {(item.score * 100).toFixed(0)}%</Text>
+                    </View>
+                  )}
+                  <SpaceCard
+                    space={item.profile}
+                    fullWidth
+                    onPress={() => navigation.navigate("SpaceDetail", { profile: item.profile })}
+                  />
+                </View>
+              ))
+            ) : null}
           </ScrollView>
         )}
       </KeyboardAvoidingView>
@@ -611,40 +627,51 @@ const styles = StyleSheet.create({
     color: "#1a1a2e",
     fontWeight: "600",
   },
-  jsonViewer: {
+  resultBox: {
     marginTop: 20,
-    padding: 12,
-    backgroundColor: "#1e1e2e",
-    borderRadius: 8,
+    flex: 1,
   },
-  jsonViewerTitle: {
-    fontSize: 14,
+  resultScrollContent: {
+    paddingBottom: 24,
+  },
+  summaryBox: {
+    backgroundColor: "#f0f4ff",
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 16,
+    borderLeftWidth: 4,
+    borderLeftColor: "#1a1a2e",
+  },
+  summaryText: {
+    fontSize: 15,
+    color: "#333",
+    lineHeight: 22,
+  },
+  noMatchText: {
+    fontSize: 15,
+    color: "#666",
+    paddingVertical: 16,
+  },
+  errorText: {
+    fontSize: 15,
+    color: "#c00",
+    paddingVertical: 16,
+  },
+  cardWrap: {
+    marginBottom: 16,
+  },
+  matchBadge: {
+    alignSelf: "flex-start",
+    backgroundColor: "#1a1a2e",
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 6,
+    marginBottom: 8,
+  },
+  matchText: {
+    fontSize: 12,
     fontWeight: "600",
     color: "#fff",
-    marginBottom: 10,
-  },
-  jsonScroll: {
-    maxHeight: 280,
-  },
-  jsonScrollContent: {
-    paddingRight: 16,
-  },
-  jsonText: {
-    fontFamily: Platform.OS === "ios" ? "Menlo" : "monospace",
-    fontSize: 12,
-    color: "#a6e3a1",
-  },
-  viewResultsButton: {
-    marginTop: 12,
-    paddingVertical: 10,
-    backgroundColor: "#313244",
-    borderRadius: 8,
-    alignItems: "center",
-  },
-  viewResultsText: {
-    color: "#89b4fa",
-    fontSize: 14,
-    fontWeight: "600",
   },
   filtersScroll: {
     flex: 1,

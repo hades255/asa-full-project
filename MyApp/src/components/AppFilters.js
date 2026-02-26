@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
-import { useGetProfileFiltersAPI } from "../apis/useGetProfileFilters";
+import { useGetIntentCategories } from "../apis/useGetIntentCategories";
 
 export default function AppFilters({
   selectedCategories,
   setSelectedCategories,
 }) {
-  const { data, isLoading } = useGetProfileFiltersAPI();
+  const { data, isLoading } = useGetIntentCategories();
 
   const onSubCategoryPress = (subCat) => {
     const found = selectedCategories.find((id) => id === subCat.id);

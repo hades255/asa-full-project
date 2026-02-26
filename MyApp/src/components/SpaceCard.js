@@ -21,7 +21,8 @@ export default function SpaceCard({ space, onPress, fullWidth }) {
     >
       <View style={[styles.imageContainer, fullWidth && styles.imageFullWidth]}>
         <Image
-          source={{ uri: space.coverMedia || "https://via.placeholder.com/400x200" }}
+          // source={{ uri: space.coverMedia || "https://hips.hearstapps.com/hmg-prod/images/copy-of-del-social-index-image-69-66996ead71585.png?crop=0.8888888888888888xw:1xh;0,0" }}
+          source={{ uri: "https://hips.hearstapps.com/hmg-prod/images/copy-of-del-social-index-image-69-66996ead71585.png?crop=0.8888888888888888xw:1xh;0,0" }}
           style={styles.image}
           resizeMode="cover"
         />
