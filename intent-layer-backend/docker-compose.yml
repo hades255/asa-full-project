@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: intent-layer-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: intent_user
+      POSTGRES_PASSWORD: intent_password
+      POSTGRES_DB: intent_layer
+    ports:
+      - "5433:5432"
+    volumes:
+      - intent_layer_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U intent_user -d intent_layer"]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: intent-layer-backend
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: 20001
+      DATABASE_URL: postgresql://intent_user:intent_password@postgres:5432/intent_layer
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: intent_user
+      CANDIDATE_SOURCE: db
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o}
+      INTENT_EXTRACTION_ENABLED: ${INTENT_EXTRACTION_ENABLED:-true}
+      DEFAULT_TIMEZONE: ${DEFAULT_TIMEZONE:-Europe/London}
+    ports:
+      - "20001:20001"
+
+volumes:
+  intent_layer_pgdata:
