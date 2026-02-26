@@ -6,7 +6,7 @@ export default function AppFilters({
   selectedCategories,
   setSelectedCategories,
 }) {
-  const { data, isLoading } = useGetIntentCategories();
+  const { data, isLoading, isError } = useGetIntentCategories();
 
   const onSubCategoryPress = (subCat) => {
     const found = selectedCategories.find((id) => id === subCat.id);
@@ -21,7 +21,9 @@ export default function AppFilters({
     return (
       <View style={styles.container}>
         <Text style={styles.label}>Categories</Text>
-        <Text style={styles.loading}>Loading filters...</Text>
+        <Text style={styles.loading}>
+          {isError ? "Could not load categories" : "Loading filters..."}
+        </Text>
       </View>
     );
   }
