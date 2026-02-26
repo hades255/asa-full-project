@@ -3,12 +3,13 @@ services:
     image: postgres:16-alpine
     container_name: intent-layer-postgres
     restart: unless-stopped
+    command: postgres -c listen_addresses='*'
     environment:
       POSTGRES_USER: intent_user
       POSTGRES_PASSWORD: intent_password
       POSTGRES_DB: intent_layer
     ports:
-      - "5433:5432"
+      - "0.0.0.0:5433:5432"
     volumes:
       - intent_layer_pgdata:/var/lib/postgresql/data
     healthcheck:
