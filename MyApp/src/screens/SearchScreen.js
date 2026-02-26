@@ -157,7 +157,7 @@ export default function SearchScreen({ navigation }) {
     const FALLBACK_LOCATION = {
       lat: 51.5074,
       lng: -0.1278,
-      address: "London, UK (emulator fallback)",
+      address: "14 Grange Road, London, N6 4DG, United Kingdom",
     };
 
     (async () => {
@@ -300,17 +300,25 @@ export default function SearchScreen({ navigation }) {
     setParsing(true);
     setLastResponse(null);
     try {
+      // const context = {
+      //   timezone,
+      //   lastLocation:
+      //     lastLocation ||
+      //     (googlePlaceData?.geometry?.location
+      //       ? {
+      //           lat: googlePlaceData.geometry.location.lat,
+      //           lng: googlePlaceData.geometry.location.lng,
+      //           address: googlePlaceData.formatted_address,
+      //         }
+      //       : undefined),
+      // };
       const context = {
-        timezone,
-        lastLocation:
-          lastLocation ||
-          (googlePlaceData?.geometry?.location
-            ? {
-                lat: googlePlaceData.geometry.location.lat,
-                lng: googlePlaceData.geometry.location.lng,
-                address: googlePlaceData.formatted_address,
-              }
-            : undefined),
+        timezone: "Europe/London",
+        lastLocation: {
+          lat: 51.5074,
+          lng: -0.1278,
+          address: "14 Grange Road, London, N6 4DG, United Kingdom",
+        },
       };
 
       const result = await searchByPrompt({ prompt: trimmed, context });
@@ -345,20 +353,28 @@ export default function SearchScreen({ navigation }) {
     const placeData = googlePlaceData?.geometry?.location
       ? googlePlaceData
       : __DEV__
-        ? MOCK_LOCATION
-        : null;
-    if (!placeData?.geometry?.location) {
-      Alert.alert("Location needed", "Please select a location using the Where field or Use my location.");
-      return;
-    }
+      ? MOCK_LOCATION
+      : null;
+    // if (!placeData?.geometry?.location) {
+    //   Alert.alert(
+    //     "Location needed",
+    //     "Please select a location using the Where field or Use my location."
+    //   );
+    //   return;
+    // }
     setParsing(true);
     setLastResponse(null);
     try {
       const when = formData.when ? new Date(formData.when) : new Date();
+      // const loc = {
+      //   address: placeData.formatted_address || "Unknown",
+      //   lat: placeData.geometry.location.lat,
+      //   lng: placeData.geometry.location.lng,
+      // };
       const loc = {
-        address: placeData.formatted_address || "Unknown",
-        lat: placeData.geometry.location.lat,
-        lng: placeData.geometry.location.lng,
+        address: "14 Grange Road, London, N6 4DG, United Kingdom",
+        lat: 51.5074,
+        lng: -0.1278,
       };
       const lastLoc =
         lastLocation ||
@@ -376,7 +392,9 @@ export default function SearchScreen({ navigation }) {
           duration: Number(formData.duration) || 1,
           noOfGuests: Number(formData.guests) || 1,
           location: loc,
-          categoryIds: selectedCategories?.length ? selectedCategories : undefined,
+          categoryIds: selectedCategories?.length
+            ? selectedCategories
+            : undefined,
         },
         lastLocation: lastLoc,
       });
@@ -523,26 +541,43 @@ export default function SearchScreen({ navigation }) {
           </View>
         )}
         {lastResponse && !lastResponse.error && (
-          <ScrollView style={styles.resultBox} contentContainerStyle={styles.resultScrollContent} showsVerticalScrollIndicator={false}>
+          <ScrollView
+            style={styles.resultBox}
+            contentContainerStyle={styles.resultScrollContent}
+            showsVerticalScrollIndicator={false}
+          >
             {lastResponse.summary ? (
               <View style={styles.summaryBox}>
                 <Text style={styles.summaryText}>{lastResponse.summary}</Text>
               </View>
             ) : null}
-            {lastResponse.noMatchMessage && (!lastResponse.recommendations || lastResponse.recommendations.length === 0) ? (
-              <Text style={styles.noMatchText}>{lastResponse.noMatchMessage}</Text>
+            {lastResponse.noMatchMessage &&
+            (!lastResponse.recommendations ||
+              lastResponse.recommendations.length === 0) ? (
+              <Text style={styles.noMatchText}>
+                {lastResponse.noMatchMessage}
+              </Text>
             ) : lastResponse.recommendations?.length > 0 ? (
               lastResponse.recommendations.map((item) => (
-                <View key={item?.profileId || item?.profile?.id} style={styles.cardWrap}>
+                <View
+                  key={item?.profileId || item?.profile?.id}
+                  style={styles.cardWrap}
+                >
                   {item.score != null && (
                     <View style={styles.matchBadge}>
-                      <Text style={styles.matchText}>Match {(item.score * 100).toFixed(0)}%</Text>
+                      <Text style={styles.matchText}>
+                        Match {(item.score * 100).toFixed(0)}%
+                      </Text>
                     </View>
                   )}
                   <SpaceCard
                     space={item.profile}
                     fullWidth
-                    onPress={() => navigation.navigate("SpaceDetail", { profile: item.profile })}
+                    onPress={() =>
+                      navigation.navigate("SpaceDetail", {
+                        profile: item.profile,
+                      })
+                    }
                   />
                 </View>
               ))
