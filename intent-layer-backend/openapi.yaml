@@ -12,8 +12,10 @@ info:
     name: Intent Layer API
 
 servers:
-  - url: http://144.172.91.222:20001
+  - url: http://localhost:3001
     description: Development server
+  - url: http://144.172.91.222:20001
+    description: Test server
 
 paths:
   /api/intent/parse:
