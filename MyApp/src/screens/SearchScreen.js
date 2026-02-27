@@ -144,6 +144,8 @@ export default function SearchScreen({ navigation }) {
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessingVoice, setIsProcessingVoice] = useState(false);
   const transcriptRef = useRef([]);
+  const latestInterimTranscriptRef = useRef("");
+  const speechSessionActiveRef = useRef(false);
 
   useEffect(() => {
     // Device timezone
@@ -211,17 +213,53 @@ export default function SearchScreen({ navigation }) {
     },
   });
 
+  const extractTranscriptFromResultEvent = (event) => {
+    const results = Array.isArray(event?.results) ? event.results : [];
+    const finalSegments = [];
+
+    for (const item of results) {
+      if (!item) continue;
+      const transcript = typeof item.transcript === "string" ? item.transcript.trim() : "";
+      if (!transcript) continue;
+
+      if (item.isFinal) {
+        finalSegments.push(transcript);
+      } else {
+        latestInterimTranscriptRef.current = transcript;
+      }
+    }
+
+    if (finalSegments.length) {
+      transcriptRef.current.push(finalSegments.join(" "));
+      latestInterimTranscriptRef.current = "";
+      return;
+    }
+
+    const legacyTranscript = typeof results?.[0]?.transcript === "string" ? results[0].transcript.trim() : "";
+    if (event?.isFinal && legacyTranscript) {
+      transcriptRef.current.push(legacyTranscript);
+      latestInterimTranscriptRef.current = "";
+    } else if (legacyTranscript) {
+      latestInterimTranscriptRef.current = legacyTranscript;
+    }
+  };
+
   // STT events - accumulate transcripts and handle completion
   useSpeechRecognitionEvent("result", (event) => {
-    const t = event.results?.[0]?.transcript;
-    if (event.isFinal && t?.trim()) {
-      transcriptRef.current.push(t.trim());
-    }
+    extractTranscriptFromResultEvent(event);
   });
 
   useSpeechRecognitionEvent("end", () => {
-    const full = transcriptRef.current.join(" ");
+    const finalTranscript = transcriptRef.current.join(" ").trim();
+    const fallbackInterim = latestInterimTranscriptRef.current.trim();
+    const full = finalTranscript || fallbackInterim;
+
     transcriptRef.current = [];
+    latestInterimTranscriptRef.current = "";
+    speechSessionActiveRef.current = false;
+    setIsRecording(false);
+    setVoiceModalVisible(false);
+
     if (full) {
       setPrompt(full);
       submitPromptWithTextRef.current?.(full);
@@ -232,6 +270,10 @@ export default function SearchScreen({ navigation }) {
 
   useSpeechRecognitionEvent("error", (event) => {
     transcriptRef.current = [];
+    latestInterimTranscriptRef.current = "";
+    speechSessionActiveRef.current = false;
+    setIsRecording(false);
+    setVoiceModalVisible(false);
     setIsProcessingVoice(false);
     if (event.error !== "aborted" && event.error !== "no-speech") {
       Alert.alert("Voice error", event.message || "Speech recognition failed.");
@@ -258,7 +300,7 @@ export default function SearchScreen({ navigation }) {
         );
         return;
       }
-      const available = ExpoSpeechRecognitionModule.isRecognitionAvailable?.();
+      const available = await ExpoSpeechRecognitionModule.isRecognitionAvailable?.();
       if (available === false) {
         Alert.alert(
           "Voice not available",
@@ -267,31 +309,63 @@ export default function SearchScreen({ navigation }) {
         return;
       }
       transcriptRef.current = [];
+      latestInterimTranscriptRef.current = "";
       setVoiceModalVisible(true);
     } catch (e) {
       Alert.alert("Voice error", e.message || "Could not start voice input.");
     }
   };
 
-  const onVoiceModalPressIn = () => {
-    if (!ExpoSpeechRecognitionModule) return;
-    setIsRecording(true);
-    ExpoSpeechRecognitionModule.start({
-      lang: "en-US",
-      interimResults: true,
-      continuous: true,
-      requiresOnDeviceRecognition:
-        ExpoSpeechRecognitionModule.supportsOnDeviceRecognition?.() ?? false,
-    });
+  const onVoiceModalPressIn = async () => {
+    if (!ExpoSpeechRecognitionModule || speechSessionActiveRef.current) return;
+
+    try {
+      transcriptRef.current = [];
+      latestInterimTranscriptRef.current = "";
+      speechSessionActiveRef.current = true;
+      setIsProcessingVoice(false);
+      setIsRecording(true);
+
+      await ExpoSpeechRecognitionModule.start({
+        lang: "en-US",
+        interimResults: true,
+        maxAlternatives: 1,
+        continuous: true,
+        requiresOnDeviceRecognition:
+          ExpoSpeechRecognitionModule.supportsOnDeviceRecognition?.() ?? false,
+      });
+    } catch (e) {
+      speechSessionActiveRef.current = false;
+      setIsRecording(false);
+      setVoiceModalVisible(false);
+      Alert.alert("Voice error", e.message || "Could not start recording.");
+    }
   };
 
-  const onVoiceModalPressOut = () => {
-    if (!isRecording || !ExpoSpeechRecognitionModule) return;
-    setIsRecording(false);
+  const onVoiceModalPressOut = async () => {
     setVoiceModalVisible(false);
-    setIsProcessingVoice(true);
-    ExpoSpeechRecognitionModule.stop();
+
+    if (!speechSessionActiveRef.current || !ExpoSpeechRecognitionModule) return;
+
+    try {
+      setIsRecording(false);
+      setIsProcessingVoice(true);
+      await ExpoSpeechRecognitionModule.stop();
+    } catch (e) {
+      speechSessionActiveRef.current = false;
+      setIsProcessingVoice(false);
+      Alert.alert("Voice error", e.message || "Could not stop recording.");
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      if (!ExpoSpeechRecognitionModule) return;
+      try {
+        ExpoSpeechRecognitionModule.abort?.();
+      } catch (_) {}
+    };
+  }, []);
 
   const onPromptSubmit = async (overridePrompt) => {
     const trimmed = (overridePrompt ?? prompt)?.trim();
@@ -479,6 +553,23 @@ export default function SearchScreen({ navigation }) {
             )}
           </TouchableOpacity>
         </View>
+        {(isRecording || isProcessingVoice) && (
+          <View style={styles.voiceStatusRow}>
+            <Ionicons
+              name={isRecording ? "mic" : "sync-outline"}
+              size={14}
+              color={isRecording ? "#0a7f3f" : "#1a1a2e"}
+            />
+            <Text
+              style={[
+                styles.voiceStatusText,
+                isRecording && styles.voiceStatusTextActive,
+              ]}
+            >
+              {isRecording ? "Listening..." : "Processing voice..."}
+            </Text>
+          </View>
+        )}
 
         {/* Filters - directly below search input, above response */}
         <TouchableOpacity
@@ -651,6 +742,20 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingVertical: 10,
     alignItems: "center",
+  },
+  voiceStatusRow: {
+    marginTop: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 6,
+  },
+  voiceStatusText: {
+    fontSize: 13,
+    color: "#1a1a2e",
+    fontWeight: "500",
+  },
+  voiceStatusTextActive: {
+    color: "#0a7f3f",
   },
   filterToggleText: {
     fontSize: 14,
