@@ -4,7 +4,7 @@
       "expo-speech-recognition",
       ["expo-build-properties", { "android": { "usesCleartextTraffic": true } }]
     ],
-    "name": "MyApp",
+    "name": "All Space 1.5",
     "slug": "expo-template-blank",
     "version": "1.0.0",
     "orientation": "portrait",
