@@ -76,6 +76,9 @@ const guestOptions = [
   { label: "5", value: "5" },
 ];
 
+const MIN_SEARCH_INPUT_HEIGHT = 44;
+const MAX_SEARCH_INPUT_HEIGHT = 108;
+
 function VoiceRecordingModal({ visible, isRecording, onPressIn, onPressOut }) {
   return (
     <Modal
@@ -143,6 +146,9 @@ export default function SearchScreen({ navigation }) {
   const [voiceModalVisible, setVoiceModalVisible] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessingVoice, setIsProcessingVoice] = useState(false);
+  const [searchInputHeight, setSearchInputHeight] = useState(
+    MIN_SEARCH_INPUT_HEIGHT
+  );
   const transcriptRef = useRef([]);
   const latestInterimTranscriptRef = useRef("");
   const speechSessionActiveRef = useRef(false);
@@ -521,16 +527,29 @@ export default function SearchScreen({ navigation }) {
             <Ionicons name="mic-outline" size={22} color="#1a1a2e" />
           </TouchableOpacity>
           <TextInput
-            style={styles.searchInput}
+            style={[styles.searchInput, { height: searchInputHeight }]}
             placeholder="Search ..."
             placeholderTextColor="#999"
             value={prompt}
-            onChangeText={setPrompt}
+            onChangeText={(text) => {
+              setPrompt(text);
+              if (!text) setSearchInputHeight(MIN_SEARCH_INPUT_HEIGHT);
+            }}
             multiline
-            numberOfLines={4}
+            numberOfLines={1}
             maxLength={2000}
-            scrollEnabled
+            scrollEnabled={searchInputHeight >= MAX_SEARCH_INPUT_HEIGHT}
             textAlignVertical="top"
+            onContentSizeChange={(event) => {
+              const contentHeight = event.nativeEvent.contentSize.height;
+              const nextHeight = Math.max(
+                MIN_SEARCH_INPUT_HEIGHT,
+                Math.min(MAX_SEARCH_INPUT_HEIGHT, contentHeight)
+              );
+              if (Math.abs(nextHeight - searchInputHeight) > 1) {
+                setSearchInputHeight(nextHeight);
+              }
+            }}
             returnKeyType="search"
             onSubmitEditing={onPromptSubmit}
           />
@@ -715,8 +734,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     fontSize: 16,
     lineHeight: 22,
-    minHeight: 44,
-    maxHeight: 108,
     color: "#333",
   },
   submitButton: {
