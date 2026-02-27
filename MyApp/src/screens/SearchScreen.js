@@ -452,7 +452,11 @@ export default function SearchScreen({ navigation }) {
             placeholderTextColor="#999"
             value={prompt}
             onChangeText={setPrompt}
-            multiline={false}
+            multiline
+            numberOfLines={4}
+            maxLength={2000}
+            scrollEnabled
+            textAlignVertical="top"
             returnKeyType="search"
             onSubmitEditing={onPromptSubmit}
           />
@@ -594,7 +598,7 @@ const styles = StyleSheet.create({
   },
   searchRow: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
     borderWidth: 1,
     borderColor: "#ddd",
     borderRadius: 12,
@@ -614,9 +618,12 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    paddingVertical: 14,
+    paddingVertical: 10,
     paddingHorizontal: 12,
     fontSize: 16,
+    lineHeight: 22,
+    minHeight: 44,
+    maxHeight: 108,
     color: "#333",
   },
   submitButton: {
