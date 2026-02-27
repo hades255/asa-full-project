@@ -572,14 +572,16 @@ export default function SearchScreen({ navigation }) {
         )}
 
         {/* Filters - directly below search input, above response */}
-        <TouchableOpacity
-          onPress={() => setShowFilters((v) => !v)}
-          style={styles.filterToggle}
-        >
-          <Text style={styles.filterToggleText}>
-            {showFilters ? "Hide filters" : "Show filters"}
-          </Text>
-        </TouchableOpacity>
+        <View style={styles.filterToggle}>
+          <TouchableOpacity
+            onPress={() => setShowFilters((v) => !v)}
+            style={styles.filterToggleButton}
+          >
+            <Text style={styles.filterToggleText}>
+              {showFilters ? "Hide filters" : "Show filters"}
+            </Text>
+          </TouchableOpacity>
+        </View>
         {showFilters && (
           <ScrollView
             style={styles.filtersScroll}
@@ -740,8 +742,11 @@ const styles = StyleSheet.create({
   },
   filterToggle: {
     marginTop: 16,
-    paddingVertical: 10,
     alignItems: "center",
+  },
+  filterToggleButton: {
+    paddingVertical: 10,
+    alignSelf: "center",
   },
   voiceStatusRow: {
     marginTop: 8,
