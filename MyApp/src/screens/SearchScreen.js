@@ -532,12 +532,12 @@ export default function SearchScreen({ navigation }) {
         )}
 
         {/* Search results - below filters */}
-        {lastResponse?.error && (
+        {!showFilters && lastResponse?.error && (
           <View style={styles.resultBox}>
             <Text style={styles.errorText}>{lastResponse.error}</Text>
           </View>
         )}
-        {lastResponse && !lastResponse.error && (
+        {!showFilters && lastResponse && !lastResponse.error && (
           <ScrollView
             style={styles.resultBox}
             contentContainerStyle={styles.resultScrollContent}
@@ -701,6 +701,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   filtersContent: {
+    flexGrow: 1,
     paddingBottom: 24,
   },
   divider: {
