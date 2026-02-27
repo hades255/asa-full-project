@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import * as Location from "expo-location";
 import Constants from "expo-constants";
+import { Ionicons } from "@expo/vector-icons";
 
 // expo-speech-recognition requires a dev build; not available in Expo Go
 const isExpoGo = Constants.appOwnership === "expo";
@@ -443,7 +444,7 @@ export default function SearchScreen({ navigation }) {
             disabled={voiceModalVisible || isRecording || isProcessingVoice}
             accessibilityLabel="Voice input"
           >
-            <Text style={styles.voiceIcon}>🎤</Text>
+            <Ionicons name="mic-outline" size={22} color="#1a1a2e" />
           </TouchableOpacity>
           <TextInput
             style={styles.searchInput}
@@ -465,16 +466,11 @@ export default function SearchScreen({ navigation }) {
           >
             {isSubmitting ? (
               <View style={styles.submitContent}>
-                <ActivityIndicator
-                  size="small"
-                  color="#fff"
-                  style={styles.submitSpinner}
-                />
-                <Text style={styles.submitText}>Submitting</Text>
+                <ActivityIndicator size="small" color="#fff" />
               </View>
             ) : (
               <View style={styles.submitContent}>
-                <Text style={styles.submitIcon}>🔎</Text>
+                <Ionicons name="search-outline" size={18} color="#fff" />
               </View>
             )}
           </TouchableOpacity>
@@ -643,15 +639,6 @@ const styles = StyleSheet.create({
   },
   submitIcon: {
     fontSize: 18,
-  },
-  submitSpinner: {
-    marginRight: 6,
-  },
-  submitText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "700",
-    letterSpacing: 0.5,
   },
   filterToggle: {
     marginTop: 16,

@@ -19,6 +19,7 @@ export async function searchByPrompt({ prompt, context = {} }) {
   } catch (_) {}
 
   try {
+    console.log("url", url);
     const res = await axios.post(
       url,
       {

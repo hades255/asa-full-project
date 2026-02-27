@@ -1,7 +1,8 @@
 {
   "expo": {
     "plugins": [
-      "expo-speech-recognition"
+      "expo-speech-recognition",
+      ["expo-build-properties", { "android": { "usesCleartextTraffic": true } }]
     ],
     "name": "MyApp",
     "slug": "expo-template-blank",
@@ -29,9 +30,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "permissions": [
-        "android.permission.RECORD_AUDIO"
-      ],
+      "permissions": ["android.permission.RECORD_AUDIO"],
       "package": "com.anonymous.expotemplateblank"
     },
     "web": {
