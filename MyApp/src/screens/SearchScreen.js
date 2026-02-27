@@ -314,6 +314,21 @@ export default function SearchScreen({ navigation }) {
         );
         return;
       }
+      if (Platform.OS === "android") {
+        const services =
+          (await ExpoSpeechRecognitionModule.getSpeechRecognitionServices?.()) || [];
+        const defaultService =
+          (await ExpoSpeechRecognitionModule.getDefaultRecognitionService?.())
+            ?.packageName || "";
+
+        if (!services.length || !defaultService) {
+          Alert.alert(
+            "Voice service missing",
+            "No Android speech recognition service is available. Install/enable Google app voice typing, then try again."
+          );
+          return;
+        }
+      }
       transcriptRef.current = [];
       latestInterimTranscriptRef.current = "";
       setVoiceModalVisible(true);
@@ -332,13 +347,27 @@ export default function SearchScreen({ navigation }) {
       setIsProcessingVoice(false);
       setIsRecording(true);
 
+      const shouldUseOnDeviceRecognition =
+        Platform.OS === "ios"
+          ? ExpoSpeechRecognitionModule.supportsOnDeviceRecognition?.() ?? false
+          : false;
+
       await ExpoSpeechRecognitionModule.start({
         lang: "en-US",
         interimResults: true,
         maxAlternatives: 1,
-        continuous: true,
-        requiresOnDeviceRecognition:
-          ExpoSpeechRecognitionModule.supportsOnDeviceRecognition?.() ?? false,
+        // Android segmented sessions are more stable with continuous=false.
+        continuous: Platform.OS === "ios",
+        requiresOnDeviceRecognition: shouldUseOnDeviceRecognition,
+        ...(Platform.OS === "android"
+          ? {
+              androidIntentOptions: {
+                EXTRA_LANGUAGE_MODEL: "free_form",
+                EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 1200,
+                EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 1200,
+              },
+            }
+          : {}),
       });
     } catch (e) {
       speechSessionActiveRef.current = false;
