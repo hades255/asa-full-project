@@ -24,15 +24,13 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "config": {
-        "usesNonExemptEncryption": false
-      },
       "supportsTablet": true,
       "infoPlist": {
         "NSSpeechRecognitionUsageDescription": "Allow $(PRODUCT_NAME) to use speech recognition.",
-        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to use the microphone."
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to use the microphone.",
+        "ITSAppUsesNonExemptEncryption": false
       },
-      "bundleIdentifier": "com.allspacesai.myapp"
+      "bundleIdentifier": "com.anonymous.expotemplateblank"
     },
     "android": {
       "adaptiveIcon": {

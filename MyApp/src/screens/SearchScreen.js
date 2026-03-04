@@ -268,10 +268,8 @@ export default function SearchScreen({ navigation }) {
 
     if (full) {
       setPrompt(full);
-      submitPromptWithTextRef.current?.(full);
-    } else {
-      setIsProcessingVoice(false);
     }
+    setIsProcessingVoice(false);
   });
 
   useSpeechRecognitionEvent("error", (event) => {
@@ -286,7 +284,45 @@ export default function SearchScreen({ navigation }) {
     }
   });
 
-  const submitPromptWithTextRef = useRef(null);
+  const startVoiceRecording = async () => {
+    if (!ExpoSpeechRecognitionModule || speechSessionActiveRef.current) return;
+
+    try {
+      transcriptRef.current = [];
+      latestInterimTranscriptRef.current = "";
+      speechSessionActiveRef.current = true;
+      setIsProcessingVoice(false);
+      setIsRecording(true);
+
+      const shouldUseOnDeviceRecognition =
+        Platform.OS === "ios"
+          ? ExpoSpeechRecognitionModule.supportsOnDeviceRecognition?.() ?? false
+          : false;
+
+      await ExpoSpeechRecognitionModule.start({
+        lang: "en-US",
+        interimResults: true,
+        maxAlternatives: 1,
+        // Android segmented sessions are more stable with continuous=false.
+        continuous: Platform.OS === "ios",
+        requiresOnDeviceRecognition: shouldUseOnDeviceRecognition,
+        ...(Platform.OS === "android"
+          ? {
+              androidIntentOptions: {
+                EXTRA_LANGUAGE_MODEL: "free_form",
+                EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 1200,
+                EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 1200,
+              },
+            }
+          : {}),
+      });
+    } catch (e) {
+      speechSessionActiveRef.current = false;
+      setIsRecording(false);
+      setVoiceModalVisible(false);
+      Alert.alert("Voice error", e.message || "Could not start recording.");
+    }
+  };
 
   const onVoicePress = async () => {
     if (!ExpoSpeechRecognitionModule) {
@@ -338,42 +374,8 @@ export default function SearchScreen({ navigation }) {
   };
 
   const onVoiceModalPressIn = async () => {
-    if (!ExpoSpeechRecognitionModule || speechSessionActiveRef.current) return;
-
-    try {
-      transcriptRef.current = [];
-      latestInterimTranscriptRef.current = "";
-      speechSessionActiveRef.current = true;
-      setIsProcessingVoice(false);
-      setIsRecording(true);
-
-      const shouldUseOnDeviceRecognition =
-        Platform.OS === "ios"
-          ? ExpoSpeechRecognitionModule.supportsOnDeviceRecognition?.() ?? false
-          : false;
-
-      await ExpoSpeechRecognitionModule.start({
-        lang: "en-US",
-        interimResults: true,
-        maxAlternatives: 1,
-        // Android segmented sessions are more stable with continuous=false.
-        continuous: Platform.OS === "ios",
-        requiresOnDeviceRecognition: shouldUseOnDeviceRecognition,
-        ...(Platform.OS === "android"
-          ? {
-              androidIntentOptions: {
-                EXTRA_LANGUAGE_MODEL: "free_form",
-                EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 1200,
-                EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 1200,
-              },
-            }
-          : {}),
-      });
-    } catch (e) {
-      speechSessionActiveRef.current = false;
-      setIsRecording(false);
-      setVoiceModalVisible(false);
-      Alert.alert("Voice error", e.message || "Could not start recording.");
+    if (!speechSessionActiveRef.current) {
+      await startVoiceRecording();
     }
   };
 
@@ -447,8 +449,6 @@ export default function SearchScreen({ navigation }) {
     setParsing(false);
     setIsProcessingVoice(false);
   };
-
-  submitPromptWithTextRef.current = onPromptSubmit;
 
   const MOCK_LOCATION = {
     formatted_address: "London, UK",

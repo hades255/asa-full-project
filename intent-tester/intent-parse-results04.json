@@ -1,0 +1,1743 @@
+[
+  {
+    "prompt": "Spa day pass in Manhattan for 2 this Friday at 3pm for 3 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T15:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Manhattan"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Spa day pass in Manhattan for 2 this Friday at 3pm for 3 hours",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 1
+  },
+  {
+    "prompt": "Deep tissue massage in London for 1 next Tuesday at 6pm",
+    "result": {
+      "intent": {
+        "date": "2026-03-03T18:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 1,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Deep tissue massage in London for 1 next Tuesday at 6pm",
+        "confidence": 0.95,
+        "inferredDescription": "Duration ~1h for a typical massage.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": true,
+        "changes": [
+          "location enriched from user location (target was vague or missing)"
+        ]
+      }
+    },
+    "index": 2
+  },
+  {
+    "prompt": "Couples massage near Central Park this Saturday at 5pm for 2 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T17:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Central Park"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Couples massage near Central Park this Saturday at 5pm for 2 hours",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 3
+  },
+  {
+    "prompt": "Hydrating facial in Paris tomorrow at 2pm for 90 minutes",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T14:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Paris"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Hydrating facial in Paris tomorrow at 2pm for 90 minutes",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 4
+  },
+  {
+    "prompt": "Sauna and steam room access in Berlin this Sunday at 11am for 2 hours",
+    "result": {
+      "intent": {
+        "date": "2026-03-01T11:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Berlin"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Sauna and steam room access in Berlin this Sunday at 11am for 2 hours",
+        "confidence": 0.95,
+        "inferredDescription": "Duration set to 2 hours for sauna and steam room access.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 5
+  },
+  {
+    "prompt": "Pool access in Dubai this Friday at 1pm for 4 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T13:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Dubai"
+        },
+        "categoryIds": [],
+        "rawQuery": "Pool access in Dubai this Friday at 1pm for 4 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests assumed to be 1 as not specified. Category not clearly defined.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 6
+  },
+  {
+    "prompt": "Yoga class in Amsterdam next Monday at 7am",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T07:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Amsterdam"
+        },
+        "categoryIds": [],
+        "rawQuery": "Yoga class in Amsterdam next Monday at 7am",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~1h for a typical yoga class.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 7
+  },
+  {
+    "prompt": "Gym access near Times Square today at 6pm for 2 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T18:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Times Square, New York, NY, USA"
+        },
+        "categoryIds": [],
+        "rawQuery": "Gym access near Times Square today at 6pm for 2 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests assumed to be 1 for gym access. Category not specified, so left empty.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 8
+  },
+  {
+    "prompt": "Spa + indoor pool in Barcelona for 2 next weekend around noon",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T12:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Barcelona"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Spa + indoor pool in Barcelona for 2 next weekend around noon",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~1h for a typical spa session.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 9
+  },
+  {
+    "prompt": "Relaxation retreat in Rome for 1 this Saturday afternoon for 3 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T14:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Rome, Italy"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Relaxation retreat in Rome for 1 this Saturday afternoon for 3 hours",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 10
+  },
+  {
+    "prompt": "Breakfast buffet in London near Westminster next Wednesday at 10am for 2 hours for 3 people",
+    "result": {
+      "intent": {
+        "date": "2026-03-04T10:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 3,
+        "location": {
+          "address": "London near Westminster"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Breakfast buffet in London near Westminster next Wednesday at 10am for 2 hours for 3 people",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 11
+  },
+  {
+    "prompt": "Afternoon tea in Paris for 2 this Friday at 4pm",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T16:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Paris"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Afternoon tea in Paris for 2 this Friday at 4pm",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical afternoon tea.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 12
+  },
+  {
+    "prompt": "Dinner tasting menu in Manhattan for 4 this Friday at 7pm for 2 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 4,
+        "location": {
+          "address": "Manhattan"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Dinner tasting menu in Manhattan for 4 this Friday at 7pm for 2 hours",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 13
+  },
+  {
+    "prompt": "Cocktails at a bar in Tokyo tonight at 9pm for 2",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T21:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Tokyo, Japan"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Cocktails at a bar in Tokyo tonight at 9pm for 2",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical bar visit.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 14
+  },
+  {
+    "prompt": "Lunch set menu in Berlin tomorrow at 1pm for 2 people",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T13:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Berlin"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Lunch set menu in Berlin tomorrow at 1pm for 2 people",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical lunch.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 15
+  },
+  {
+    "prompt": "Dinner in Amsterdam for 6 next Saturday at 8pm",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T20:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 6,
+        "location": {
+          "address": "Amsterdam"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Dinner in Amsterdam for 6 next Saturday at 8pm",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 16
+  },
+  {
+    "prompt": "Breakfast in Barcelona for 2 tomorrow at 9am",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T09:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Barcelona"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Breakfast in Barcelona for 2 tomorrow at 9am",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical breakfast.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 17
+  },
+  {
+    "prompt": "Romantic dinner in Paris for 2 next Tuesday at 7pm",
+    "result": {
+      "intent": {
+        "date": "2026-03-03T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Paris, France"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Romantic dinner in Paris for 2 next Tuesday at 7pm",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 18
+  },
+  {
+    "prompt": "Private dinner vibe in Brooklyn for 10 people next weekend at 7pm",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 10,
+        "location": {
+          "address": "Brooklyn, New York, USA"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Private dinner vibe in Brooklyn for 10 people next weekend at 7pm",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 19
+  },
+  {
+    "prompt": "Late-night bar in Los Angeles for 3 tonight at 11pm",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T23:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 3,
+        "location": {
+          "address": "Los Angeles"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Late-night bar in Los Angeles for 3 tonight at 11pm",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical bar visit.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 20
+  },
+  {
+    "prompt": "Boutique wellness hotel in London for 2 adults starting this Friday for 2 nights",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T14:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 2,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Boutique wellness hotel in London for 2 adults starting this Friday for 2 nights",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": true,
+        "changes": [
+          "location enriched from user location (target was vague or missing)"
+        ]
+      }
+    },
+    "index": 21
+  },
+  {
+    "prompt": "Hotel & spa in Manhattan for 2 next weekend for 3 nights",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T00:00:00.000Z",
+        "duration": 72,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Manhattan, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-sleep-001",
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Hotel & spa in Manhattan for 2 next weekend for 3 nights",
+        "confidence": 0.9,
+        "inferredDescription": "Duration set to 72h for a 3-night stay. Date inferred as next weekend starting Friday. Category includes hotel and spa.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 22
+  },
+  {
+    "prompt": "Luxury wellness hotel in Paris for 1 from March 12 for 2 nights",
+    "result": {
+      "intent": {
+        "date": "2026-03-12T00:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Paris, France"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Luxury wellness hotel in Paris for 1 from March 12 for 2 nights",
+        "confidence": 0.95,
+        "inferredDescription": "Duration set to 48h for a 2-night stay.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 23
+  },
+  {
+    "prompt": "Quiet hotel in Berlin near city center for tonight",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T18:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Berlin city center"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Quiet hotel in Berlin near city center for tonight",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 24h for an overnight stay. NoOfGuests assumed to be 1 for a single hotel room.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 24
+  },
+  {
+    "prompt": "Hotel with indoor pool in Dubai for family trip July 5 to July 10",
+    "result": {
+      "intent": {
+        "date": "2026-07-05T00:00:00.000Z",
+        "duration": 120,
+        "noOfGuests": 4,
+        "location": {
+          "address": "Dubai"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Hotel with indoor pool in Dubai for family trip July 5 to July 10",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 5 nights for a hotel stay. NoOfGuests inferred as 4 for a family trip.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 25
+  },
+  {
+    "prompt": "Suite in Rome for 2 next Friday for 1 night",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T00:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Rome, Italy"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Suite in Rome for 2 next Friday for 1 night",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 26
+  },
+  {
+    "prompt": "Hotel in Tokyo for 3 adults starting next Monday for 4 nights",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T00:00:00.000Z",
+        "duration": 96,
+        "noOfGuests": 3,
+        "location": {
+          "address": "Tokyo, Japan"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Hotel in Tokyo for 3 adults starting next Monday for 4 nights",
+        "confidence": 0.9,
+        "inferredDescription": "Duration set to 96h for a 4-night hotel stay.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 27
+  },
+  {
+    "prompt": "Wellness retreat stay in Barcelona from April 20 for 2 nights",
+    "result": {
+      "intent": {
+        "date": "2026-04-20T00:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Barcelona, Spain"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Wellness retreat stay in Barcelona from April 20 for 2 nights",
+        "confidence": 0.9,
+        "inferredDescription": "Duration set to 48h for a 2-night stay. NoOfGuests assumed to be 1 as not specified.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 28
+  },
+  {
+    "prompt": "Hotel near Central Park for 2 this weekend",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T14:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Central Park, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Hotel near Central Park for 2 this weekend",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 48h for a weekend hotel stay. Date set to upcoming weekend. Location specified as Central Park.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 29
+  },
+  {
+    "prompt": "Room available for tonight in Amsterdam for one person",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T23:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Amsterdam"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Room available for tonight in Amsterdam for one person",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 24h for an overnight stay.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 30
+  },
+  {
+    "prompt": "Meeting room in London tomorrow at 10am for 4 hours for 6 people",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T10:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 6,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Meeting room in London tomorrow at 10am for 4 hours for 6 people",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": true,
+        "changes": [
+          "location enriched from user location (target was vague or missing)"
+        ]
+      }
+    },
+    "index": 31
+  },
+  {
+    "prompt": "Conference room in Manhattan next Monday morning for about 3 hours",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T09:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Manhattan, New York, USA"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Conference room in Manhattan next Monday morning for about 3 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests set to 1 as not specified. Category inferred as meeting space.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 32
+  },
+  {
+    "prompt": "Coworking desk in Berlin today from 1pm for 6 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T13:00:00.000Z",
+        "duration": 6,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Berlin"
+        },
+        "categoryIds": [],
+        "rawQuery": "Coworking desk in Berlin today from 1pm for 6 hours",
+        "confidence": 0.95,
+        "inferredDescription": "NoOfGuests assumed to be 1 for a coworking desk.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 33
+  },
+  {
+    "prompt": "Small meeting room in Amsterdam next Tuesday at 2pm for 2 hours",
+    "result": {
+      "intent": {
+        "date": "2026-03-03T14:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Amsterdam"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Small meeting room in Amsterdam next Tuesday at 2pm for 2 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests defaulted to 1 for a small meeting room.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 34
+  },
+  {
+    "prompt": "Meeting room near Times Square tomorrow at 1pm for 2 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T13:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Times Square, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Meeting room near Times Square tomorrow at 1pm for 2 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests set to 1 as it was not specified.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 35
+  },
+  {
+    "prompt": "Conference room in Los Angeles for 10 people next Friday at 9am for 5 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T09:00:00.000Z",
+        "duration": 5,
+        "noOfGuests": 10,
+        "location": {
+          "address": "Los Angeles"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Conference room in Los Angeles for 10 people next Friday at 9am for 5 hours",
+        "confidence": 0.95,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 36
+  },
+  {
+    "prompt": "Quiet coworking space in Paris tomorrow afternoon for 4 hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T13:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Paris, France"
+        },
+        "categoryIds": [],
+        "rawQuery": "Quiet coworking space in Paris tomorrow afternoon for 4 hours",
+        "confidence": 0.9,
+        "inferredDescription": "Duration set to 4 hours as specified. Location set to Paris as specified. NoOfGuests assumed to be 1 for individual coworking.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 37
+  },
+  {
+    "prompt": "Business center workspace in Dubai this Monday at 8am for 3 hours",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T08:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Dubai"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Business center workspace in Dubai this Monday at 8am for 3 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests set to 1 for individual workspace booking.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 38
+  },
+  {
+    "prompt": "Meeting room in Tokyo next Wednesday at 11am for 2 hours",
+    "result": {
+      "intent": {
+        "date": "2026-03-04T11:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Tokyo"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Meeting room in Tokyo next Wednesday at 11am for 2 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests set to 1 as it was not specified.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 39
+  },
+  {
+    "prompt": "Coworking desk in Barcelona next Monday for the day",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T09:00:00.000Z",
+        "duration": 8,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Barcelona"
+        },
+        "categoryIds": [],
+        "rawQuery": "Coworking desk in Barcelona next Monday for the day",
+        "confidence": 0.9,
+        "inferredDescription": "Duration set to 8h for a typical coworking day.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 40
+  },
+  {
+    "prompt": "Spa hotel with free Wi-Fi and parking in London for 2 next weekend",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T14:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 2,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-sleep-001",
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Spa hotel with free Wi-Fi and parking in London for 2 next weekend",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 48h for a 2-night stay at a spa hotel. Date set to next weekend. Location specified as London.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": true,
+        "changes": [
+          "location enriched from user location (target was vague or missing)"
+        ]
+      }
+    },
+    "index": 41
+  },
+  {
+    "prompt": "Wellness hotel with EV charging in Berlin for 2 starting Friday for 2 nights",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T00:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Berlin, Germany"
+        },
+        "categoryIds": [
+          "cat-sleep-001",
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Wellness hotel with EV charging in Berlin for 2 starting Friday for 2 nights",
+        "confidence": 0.95,
+        "inferredDescription": "Duration set to 48h for a 2-night stay. Category includes sleep and relaxation for a wellness hotel.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 42
+  },
+  {
+    "prompt": "Hotel with indoor pool and sauna in Paris for 2 tomorrow night",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T00:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Paris"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Hotel with indoor pool and sauna in Paris for 2 tomorrow night",
+        "confidence": 0.95,
+        "inferredDescription": "Duration set to 24h for an overnight hotel stay.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 43
+  },
+  {
+    "prompt": "Spa resort with massage rooms and concierge in Manhattan this Saturday",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T00:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Manhattan, New York, USA"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Spa resort with massage rooms and concierge in Manhattan this Saturday",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~1h for a typical spa session.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 44
+  },
+  {
+    "prompt": "Place with wheelchair accessible spa and elevator in Amsterdam for 1 next Tuesday at 5pm",
+    "result": {
+      "intent": {
+        "date": "2026-03-03T17:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Amsterdam"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Place with wheelchair accessible spa and elevator in Amsterdam for 1 next Tuesday at 5pm",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~1h for a typical spa session.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 45
+  },
+  {
+    "prompt": "Pet friendly hotel & spa in Los Angeles for tonight",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T23:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Los Angeles"
+        },
+        "categoryIds": [
+          "cat-sleep-001",
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Pet friendly hotel & spa in Los Angeles for tonight",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 24h for an overnight stay. NoOfGuests set to 1 as default. Date set to tonight in Los Angeles time.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 46
+  },
+  {
+    "prompt": "Non-smoking rooms with room service in Dubai for 2 next week",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T12:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Dubai"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Non-smoking rooms with room service in Dubai for 2 next week",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 24h for an overnight stay. Date set to next Monday. Location specified as Dubai.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 47
+  },
+  {
+    "prompt": "Family friendly resort with outdoor pool in Barcelona for July 5 to July 10",
+    "result": {
+      "intent": {
+        "date": "2026-07-05T00:00:00.000Z",
+        "duration": 120,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Barcelona, Spain"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Family friendly resort with outdoor pool in Barcelona for July 5 to July 10",
+        "confidence": 0.9,
+        "inferredDescription": "Duration set to 5 nights for a resort stay. Location specified as Barcelona.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 48
+  },
+  {
+    "prompt": "Boutique hotel with bar and restaurant in Rome for 2 this weekend",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T14:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Rome, Italy"
+        },
+        "categoryIds": [
+          "cat-sleep-001",
+          "cat-dining-001"
+        ],
+        "rawQuery": "Boutique hotel with bar and restaurant in Rome for 2 this weekend",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 48h for a weekend stay. Date set to Saturday, 28th February. Location specified as Rome.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 49
+  },
+  {
+    "prompt": "Hotel with airport shuttle and laundry service in Tokyo for 1 starting next Monday for 3 nights",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T00:00:00.000Z",
+        "duration": 72,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Tokyo"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Hotel with airport shuttle and laundry service in Tokyo for 1 starting next Monday for 3 nights",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 72h for a 3-night hotel stay.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 50
+  },
+  {
+    "prompt": "Spa in Manhattan tomorrow evening for a couple hours",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T18:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Manhattan, New York, USA"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Spa in Manhattan tomorrow evening for a couple hours",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical spa session.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 51
+  },
+  {
+    "prompt": "Somewhere relaxing in London for 2 next weekend",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T00:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 2,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Somewhere relaxing in London for 2 next weekend",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~1h for a typical relaxation activity.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": true,
+        "changes": [
+          "location enriched from user location (target was vague or missing)"
+        ]
+      }
+    },
+    "index": 52
+  },
+  {
+    "prompt": "I need a massage late tonight near Times Square",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T22:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Times Square, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "I need a massage late tonight near Times Square",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~1h for a typical massage.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 53
+  },
+  {
+    "prompt": "Book a hotel in Paris next month for a few nights",
+    "result": {
+      "intent": {
+        "date": "2026-03-01T00:00:00.000Z",
+        "duration": 72,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Paris, France"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Book a hotel in Paris next month for a few nights",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 72h for a few nights stay. Date set to start of next month.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 54
+  },
+  {
+    "prompt": "Looking for breakfast near Central Park around 10ish for 3",
+    "result": {
+      "intent": {
+        "date": "2026-02-24T10:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 3,
+        "location": {
+          "address": "Central Park"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Looking for breakfast near Central Park around 10ish for 3",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~1h for a typical breakfast.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 55
+  },
+  {
+    "prompt": "Conference space in Berlin for a team meeting sometime next week",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T09:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 10,
+        "location": {
+          "address": "Berlin, Germany"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Conference space in Berlin for a team meeting sometime next week",
+        "confidence": 0.8,
+        "inferredDescription": "Date set to next Monday for a typical start of the week meeting. Duration ~3h for a team meeting. Number of guests inferred as 10 for a team meeting.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 56
+  },
+  {
+    "prompt": "Pool and sauna access in Dubai for tomorrow",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T11:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Dubai"
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "Pool and sauna access in Dubai for tomorrow",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for pool and sauna access. NoOfGuests assumed to be 1 as not specified.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 57
+  },
+  {
+    "prompt": "Dinner in Manhattan for 4 this Friday",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 4,
+        "location": {
+          "address": "Manhattan, New York, USA"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Dinner in Manhattan for 4 this Friday",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 58
+  },
+  {
+    "prompt": "Coworking in Amsterdam tomorrow",
+    "result": {
+      "intent": {
+        "date": "2026-02-25T09:00:00.000Z",
+        "duration": 8,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Amsterdam"
+        },
+        "categoryIds": [],
+        "rawQuery": "Coworking in Amsterdam tomorrow",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~8h for a typical co-working day.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 59
+  },
+  {
+    "prompt": "A quiet hotel in Rome with good reviews for this weekend",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T14:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Rome, Italy"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "A quiet hotel in Rome with good reviews for this weekend",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 48h for a weekend hotel stay. Location set to Rome, Italy.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 60
+  }
+]

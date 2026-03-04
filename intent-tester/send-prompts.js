@@ -40,7 +40,8 @@ const prompts = [
   "Do you have any rooms left for tonight? It’s just for one person.",
 ];
 
-const API_URL = "http://localhost:3001/api/intent/parse";
+// const API_URL = "http://localhost:3001/api/intent/search-by-prompt";
+const API_URL = "http://144.172.91.222:20001/api/intent/search-by-prompt";
 const OUTPUT_FILE = path.join(__dirname, "intent-parse-results.json");
 
 const defaultContext = {
