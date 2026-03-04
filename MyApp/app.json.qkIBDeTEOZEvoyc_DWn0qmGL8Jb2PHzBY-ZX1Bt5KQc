@@ -12,7 +12,7 @@
       ]
     ],
     "name": "ASA Intent Preview",
-    "slug": "intent-layer",
+    "slug": "expo-template-blank",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -50,7 +50,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "313191be-7f9a-43cb-9776-3da920888f44"
+        "projectId": "b2d886ae-cd9b-41e7-b89d-946ad4cf74c1"
       }
     }
   }

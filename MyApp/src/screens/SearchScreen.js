@@ -39,6 +39,7 @@ import {
   actionSetGooglePlaceData,
 } from "../redux/appSlice";
 import ScreenWrapper from "../components/ScreenWrapper";
+import VoiceLoader from "../components/VoiceLoader";
 import Header2 from "../components/Header2";
 import AppButton from "../components/AppButton";
 import DateTimePicker from "../components/DateTimePicker";
@@ -76,30 +77,23 @@ const guestOptions = [
   { label: "5", value: "5" },
 ];
 
-const MIN_SEARCH_INPUT_HEIGHT = 44;
-const MAX_SEARCH_INPUT_HEIGHT = 108;
-
-function VoiceRecordingModal({ visible, isRecording, onPressIn, onPressOut }) {
+function VoiceRecordingOverlay({ visible, isRecording, onRelease }) {
   return (
     <Modal
       transparent
       visible={visible}
       animationType="fade"
-      onRequestClose={onPressOut}
+      onRequestClose={onRelease}
     >
-      <Pressable
-        style={modalStyles.overlay}
-        onPressIn={onPressIn}
-        onPressOut={onPressOut}
-      >
-        <View style={modalStyles.center}>
-          <Text style={modalStyles.icon}>🎤</Text>
+      <View style={modalStyles.overlay} pointerEvents="none">
+        <View style={modalStyles.center} pointerEvents="none">
+          <VoiceLoader color="#1a1a2e" size={1.5} />
           <Text style={modalStyles.title}>
-            {isRecording ? "Recording…" : "Hold to record"}
+            {isRecording ? "Listening…" : "Starting…"}
           </Text>
-          <Text style={modalStyles.hint}>Release to stop and transcribe</Text>
+          <Text style={modalStyles.hint}>Release finger to stop</Text>
         </View>
-      </Pressable>
+      </View>
     </Modal>
   );
 }
@@ -107,7 +101,7 @@ function VoiceRecordingModal({ visible, isRecording, onPressIn, onPressOut }) {
 const modalStyles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.6)",
+    backgroundColor: "rgba(255,255,255,0.9)",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -115,18 +109,15 @@ const modalStyles = StyleSheet.create({
     alignItems: "center",
     padding: 32,
   },
-  icon: {
-    fontSize: 48,
-    marginBottom: 16,
-  },
   title: {
     fontSize: 22,
     fontWeight: "600",
-    color: "#fff",
+    color: "#1a1a2e",
+    marginTop: 20,
   },
   hint: {
     fontSize: 14,
-    color: "rgba(255,255,255,0.8)",
+    color: "#666",
     marginTop: 8,
   },
 });
@@ -146,12 +137,10 @@ export default function SearchScreen({ navigation }) {
   const [voiceModalVisible, setVoiceModalVisible] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessingVoice, setIsProcessingVoice] = useState(false);
-  const [searchInputHeight, setSearchInputHeight] = useState(
-    MIN_SEARCH_INPUT_HEIGHT
-  );
   const transcriptRef = useRef([]);
   const latestInterimTranscriptRef = useRef("");
   const speechSessionActiveRef = useRef(false);
+  const submitPromptWithTextRef = useRef(null);
 
   useEffect(() => {
     // Device timezone
@@ -225,7 +214,8 @@ export default function SearchScreen({ navigation }) {
 
     for (const item of results) {
       if (!item) continue;
-      const transcript = typeof item.transcript === "string" ? item.transcript.trim() : "";
+      const transcript =
+        typeof item.transcript === "string" ? item.transcript.trim() : "";
       if (!transcript) continue;
 
       if (item.isFinal) {
@@ -241,7 +231,10 @@ export default function SearchScreen({ navigation }) {
       return;
     }
 
-    const legacyTranscript = typeof results?.[0]?.transcript === "string" ? results[0].transcript.trim() : "";
+    const legacyTranscript =
+      typeof results?.[0]?.transcript === "string"
+        ? results[0].transcript.trim()
+        : "";
     if (event?.isFinal && legacyTranscript) {
       transcriptRef.current.push(legacyTranscript);
       latestInterimTranscriptRef.current = "";
@@ -268,8 +261,10 @@ export default function SearchScreen({ navigation }) {
 
     if (full) {
       setPrompt(full);
+      submitPromptWithTextRef.current?.(full);
+    } else {
+      setIsProcessingVoice(false);
     }
-    setIsProcessingVoice(false);
   });
 
   useSpeechRecognitionEvent("error", (event) => {
@@ -324,13 +319,13 @@ export default function SearchScreen({ navigation }) {
     }
   };
 
-  const onVoicePress = async () => {
+  const ensureVoicePermissions = async () => {
     if (!ExpoSpeechRecognitionModule) {
       Alert.alert(
         "Voice input",
         "Voice input requires a development build. Run: npx expo run:android (or run:ios)"
       );
-      return;
+      return false;
     }
     try {
       const result =
@@ -340,19 +335,21 @@ export default function SearchScreen({ navigation }) {
           "Microphone access",
           "Please allow microphone access to use voice input."
         );
-        return;
+        return false;
       }
-      const available = await ExpoSpeechRecognitionModule.isRecognitionAvailable?.();
+      const available =
+        await ExpoSpeechRecognitionModule.isRecognitionAvailable?.();
       if (available === false) {
         Alert.alert(
           "Voice not available",
           "Speech recognition is not available on this device."
         );
-        return;
+        return false;
       }
       if (Platform.OS === "android") {
         const services =
-          (await ExpoSpeechRecognitionModule.getSpeechRecognitionServices?.()) || [];
+          (await ExpoSpeechRecognitionModule.getSpeechRecognitionServices?.()) ||
+          [];
         const defaultService =
           (await ExpoSpeechRecognitionModule.getDefaultRecognitionService?.())
             ?.packageName || "";
@@ -362,37 +359,51 @@ export default function SearchScreen({ navigation }) {
             "Voice service missing",
             "No Android speech recognition service is available. Install/enable Google app voice typing, then try again."
           );
-          return;
+          return false;
         }
       }
-      transcriptRef.current = [];
-      latestInterimTranscriptRef.current = "";
-      setVoiceModalVisible(true);
+      return true;
     } catch (e) {
       Alert.alert("Voice error", e.message || "Could not start voice input.");
+      return false;
     }
   };
 
-  const onVoiceModalPressIn = async () => {
-    if (!speechSessionActiveRef.current) {
-      await startVoiceRecording();
+  const onVoicePressStart = async () => {
+    if (voiceModalVisible || isRecording || isProcessingVoice) return;
+    const ok = await ensureVoicePermissions();
+    if (!ok) return;
+    transcriptRef.current = [];
+    latestInterimTranscriptRef.current = "";
+    setVoiceModalVisible(true);
+    await startVoiceRecording();
+  };
+
+  const onVoiceButtonPressIn = () => {
+    if (prompt.trim().length > 0) return;
+    onVoicePressStart();
+  };
+
+  const onVoiceButtonPressOut = () => {
+    if (voiceModalVisible && (isRecording || speechSessionActiveRef.current)) {
+      (async () => {
+        setVoiceModalVisible(false);
+        if (!ExpoSpeechRecognitionModule) return;
+        try {
+          setIsRecording(false);
+          setIsProcessingVoice(true);
+          await ExpoSpeechRecognitionModule.stop();
+        } catch (e) {
+          speechSessionActiveRef.current = false;
+          setIsProcessingVoice(false);
+          Alert.alert("Voice error", e.message || "Could not stop recording.");
+        }
+      })();
     }
   };
 
-  const onVoiceModalPressOut = async () => {
-    setVoiceModalVisible(false);
-
-    if (!speechSessionActiveRef.current || !ExpoSpeechRecognitionModule) return;
-
-    try {
-      setIsRecording(false);
-      setIsProcessingVoice(true);
-      await ExpoSpeechRecognitionModule.stop();
-    } catch (e) {
-      speechSessionActiveRef.current = false;
-      setIsProcessingVoice(false);
-      Alert.alert("Voice error", e.message || "Could not stop recording.");
-    }
+  const onVoiceOverlayRelease = () => {
+    onVoiceButtonPressOut();
   };
 
   useEffect(() => {
@@ -449,6 +460,10 @@ export default function SearchScreen({ navigation }) {
     setParsing(false);
     setIsProcessingVoice(false);
   };
+
+  useEffect(() => {
+    submitPromptWithTextRef.current = (text) => onPromptSubmit(text);
+  });
 
   const MOCK_LOCATION = {
     formatted_address: "London, UK",
@@ -528,78 +543,63 @@ export default function SearchScreen({ navigation }) {
     prompt?.trim().length > 0 && !parsing && !isProcessingVoice;
   const isSubmitting = parsing || isProcessingVoice;
 
+  const hasPrompt = prompt.trim().length > 0;
+  const showVoiceButton = !hasPrompt;
+
   return (
     <ScreenWrapper withoutBottomPadding>
-      <VoiceRecordingModal
-        visible={voiceModalVisible}
-        isRecording={isRecording}
-        onPressIn={onVoiceModalPressIn}
-        onPressOut={onVoiceModalPressOut}
-      />
       <Header2 title="Search" showBack={false} />
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-        {/* Search bar: Voice | Input | Submit */}
         <View style={styles.searchRow}>
-          <TouchableOpacity
-            onPress={onVoicePress}
-            style={[
-              styles.voiceButton,
-              (voiceModalVisible || isRecording || isProcessingVoice) &&
-                styles.voiceDisabled,
-            ]}
-            disabled={voiceModalVisible || isRecording || isProcessingVoice}
-            accessibilityLabel="Voice input"
-          >
-            <Ionicons name="mic-outline" size={22} color="#1a1a2e" />
-          </TouchableOpacity>
           <TextInput
-            style={[styles.searchInput, { height: searchInputHeight }]}
-            placeholder="Search ..."
+            style={styles.searchInput}
+            placeholder="Search"
             placeholderTextColor="#999"
             value={prompt}
-            onChangeText={(text) => {
-              setPrompt(text);
-              if (!text) setSearchInputHeight(MIN_SEARCH_INPUT_HEIGHT);
-            }}
-            multiline
-            numberOfLines={1}
+            onChangeText={setPrompt}
             maxLength={2000}
-            scrollEnabled={searchInputHeight >= MAX_SEARCH_INPUT_HEIGHT}
-            textAlignVertical="top"
-            onContentSizeChange={(event) => {
-              const contentHeight = event.nativeEvent.contentSize.height;
-              const nextHeight = Math.max(
-                MIN_SEARCH_INPUT_HEIGHT,
-                Math.min(MAX_SEARCH_INPUT_HEIGHT, contentHeight)
-              );
-              if (Math.abs(nextHeight - searchInputHeight) > 1) {
-                setSearchInputHeight(nextHeight);
-              }
-            }}
             returnKeyType="search"
-            onSubmitEditing={onPromptSubmit}
+            onSubmitEditing={() => onPromptSubmit()}
           />
-          <TouchableOpacity
-            onPress={() => onPromptSubmit()}
-            disabled={!canSubmitPrompt}
-            style={[
-              styles.submitButton,
-              !canSubmitPrompt && styles.submitDisabled,
-            ]}
-          >
-            {isSubmitting ? (
-              <View style={styles.submitContent}>
-                <ActivityIndicator size="small" color="#fff" />
-              </View>
-            ) : (
-              <View style={styles.submitContent}>
-                <Ionicons name="search-outline" size={18} color="#fff" />
-              </View>
-            )}
-          </TouchableOpacity>
+          {showVoiceButton ? (
+            <Pressable
+              onPressIn={onVoiceButtonPressIn}
+              onPressOut={onVoiceButtonPressOut}
+              style={[
+                styles.actionButton,
+                styles.voiceActionButton,
+                (voiceModalVisible || isRecording || isProcessingVoice) &&
+                  styles.actionButtonDisabled,
+              ]}
+              disabled={voiceModalVisible || isRecording || isProcessingVoice}
+              accessibilityLabel="Long press for voice input"
+            >
+              {isSubmitting ? (
+                <ActivityIndicator size="small" color="#1a1a2e" />
+              ) : (
+                <Ionicons name="mic-outline" size={18} color="#1a1a2e" />
+              )}
+            </Pressable>
+          ) : (
+            <TouchableOpacity
+              onPress={() => onPromptSubmit()}
+              disabled={!canSubmitPrompt}
+              style={[
+                styles.actionButton,
+                styles.submitActionButton,
+                !canSubmitPrompt && styles.submitDisabled,
+              ]}
+            >
+              {isSubmitting ? (
+                <ActivityIndicator size="small" color="#1a1a2e" />
+              ) : (
+                <Ionicons name="arrow-up-outline" size={18} color="#1a1a2e" />
+              )}
+            </TouchableOpacity>
+          )}
         </View>
         {(isRecording || isProcessingVoice) && (
           <View style={styles.voiceStatusRow}>
@@ -727,6 +727,11 @@ export default function SearchScreen({ navigation }) {
           </ScrollView>
         )}
       </KeyboardAvoidingView>
+      <VoiceRecordingOverlay
+        visible={voiceModalVisible}
+        isRecording={isRecording}
+        onRelease={onVoiceOverlayRelease}
+      />
     </ScreenWrapper>
   );
 }
@@ -739,52 +744,40 @@ const styles = StyleSheet.create({
   },
   searchRow: {
     flexDirection: "row",
-    alignItems: "flex-end",
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 12,
-    overflow: "hidden",
-    backgroundColor: "#f9f9f9",
-  },
-  voiceButton: {
-    padding: 14,
-    justifyContent: "center",
     alignItems: "center",
-  },
-  voiceDisabled: {
-    opacity: 0.5,
-  },
-  voiceIcon: {
-    fontSize: 22,
+    borderWidth: 1,
+    borderColor: "#e8e8e8",
+    borderRadius: 10,
+    overflow: "hidden",
+    backgroundColor: "#fff",
   },
   searchInput: {
     flex: 1,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    height: 48,
+    paddingHorizontal: 16,
     fontSize: 16,
-    lineHeight: 22,
-    color: "#333",
+    color: "#1a1a2e",
   },
-  submitButton: {
+  actionButton: {
     alignItems: "center",
     justifyContent: "center",
-    minWidth: 40,
-    paddingHorizontal: 12,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: "#1a1a2e",
-    margin: 6,
+    width: 36,
+    height: 36,
+    margin: 4,
+  },
+  voiceActionButton: {
+    backgroundColor: "transparent",
+  },
+  submitActionButton: {
+    borderRadius: 18,
+    backgroundColor: "#e8e8e8",
+  },
+  actionButtonDisabled: {
+    opacity: 0.5,
   },
   submitDisabled: {
-    backgroundColor: "#bbb",
-    shadowOpacity: 0,
-  },
-  submitContent: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  submitIcon: {
-    fontSize: 18,
+    backgroundColor: "#e8e8e8",
+    opacity: 0.4,
   },
   filterToggle: {
     marginTop: 16,
