@@ -447,6 +447,7 @@ export default function SearchScreen({ navigation }) {
       const result = await searchByPrompt({ prompt: trimmed, context });
       setLastResponse(result);
       dispatch(actionSetIntentSearchResult(result));
+      setPrompt("");
     } catch (err) {
       const msg =
         err.response?.data?.message ||
