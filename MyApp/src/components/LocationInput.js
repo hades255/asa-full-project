@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { actionSetGooglePlaceData } from "../redux/appSlice";
 import * as Location from "expo-location";
@@ -62,7 +63,7 @@ export default function LocationInput({ label, placeholder }) {
     <View style={styles.container}>
       {label && <Text style={styles.label}>{label}</Text>}
       <View style={styles.inputRow}>
-        <Text style={styles.placeholderIcon}>📍</Text>
+        <Ionicons name="location-outline" size={18} color="#999" style={styles.placeholderIcon} />
         <TextInput
           style={styles.input}
           value={address}
@@ -106,7 +107,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   placeholderIcon: {
-    fontSize: 18,
     marginRight: 8,
   },
   input: {

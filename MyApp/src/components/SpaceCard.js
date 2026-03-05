@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function SpaceCard({ space, onPress, fullWidth }) {
   const minSpend =
@@ -45,8 +46,9 @@ export default function SpaceCard({ space, onPress, fullWidth }) {
           </View>
         </View>
         <View style={styles.addressRow}>
+          <Ionicons name="location-outline" size={14} color="#666" style={{ marginRight: 4 }} />
           <Text style={styles.address} numberOfLines={1}>
-            📍 {space.address || space.location || "Address not available"}
+            {space.address || space.location || "Address not available"}
           </Text>
         </View>
         {minSpend ? (
@@ -117,9 +119,12 @@ const styles = StyleSheet.create({
     color: "#666",
   },
   addressRow: {
+    flexDirection: "row",
+    alignItems: "center",
     marginBottom: 4,
   },
   address: {
+    flex: 1,
     fontSize: 13,
     color: "#666",
   },
