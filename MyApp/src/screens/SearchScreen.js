@@ -549,7 +549,7 @@ export default function SearchScreen({ navigation }) {
 
   return (
     <ScreenWrapper withoutBottomPadding>
-      <Header2 title="Search" showBack={false} />
+      <Header2 title="ASA Intent Preview" showBack={false} />
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -557,7 +557,7 @@ export default function SearchScreen({ navigation }) {
         <View style={styles.searchRow}>
           <TextInput
             style={styles.searchInput}
-            placeholder="Search"
+            placeholder="Tell me what you need…"
             placeholderTextColor="#999"
             value={prompt}
             onChangeText={setPrompt}
