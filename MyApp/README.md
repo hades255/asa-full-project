@@ -1,10 +1,7 @@
-# MyApp - Search Flow (AllSpaces MVP 1.5)
-
-Standalone search flow copied from `allspaces-mobile-app`. Same APIs and frontend design.
-
 ## Setup
 
 1. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -13,9 +10,7 @@ Standalone search flow copied from `allspaces-mobile-app`. Same APIs and fronten
    ```bash
    cp .env.example .env
    ```
-   Set `EXPO_PUBLIC_API_BASE_URL` to your AllSpaces backend URL (e.g. `http://localhost:8080/api`).
-
-3. For authenticated search, ensure your backend accepts the request. The app sends `session-id` from SecureStore when available. You may need to log in via the main AllSpaces app first and have session stored.
+   Set `EXPO_PUBLIC_INTENT_API_BASE_URL` to your AllSpaces backend URL (e.g. `http://localhost:8080/api`).
 
 ## Run
 

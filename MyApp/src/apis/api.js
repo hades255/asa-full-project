@@ -5,7 +5,7 @@ import * as SecureStore from "expo-secure-store";
 const SESSION_KEY = "all_spaces_session_id";
 
 export const apiClient = axios.create({
-  baseURL: envConfig.EXPO_PUBLIC_API_BASE_URL,
+  baseURL: envConfig.EXPO_PUBLIC_INTENT_API_BASE_URL,
   timeout: 10000,
   headers: {
     key: envConfig.EXPO_PUBLIC_API_KEY || "",

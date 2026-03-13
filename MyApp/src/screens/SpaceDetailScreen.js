@@ -20,9 +20,6 @@ export default function SpaceDetailScreen({ route }) {
 
   const heroImage =
     "https://hips.hearstapps.com/hmg-prod/images/copy-of-del-social-index-image-69-66996ead71585.png?crop=0.8888888888888888xw:1xh;0,0";
-  // profile?.coverMedia ||
-  // profile?.media?.[0]?.url ||
-  // "https://hips.hearstapps.com/hmg-prod/images/copy-of-del-social-index-image-69-66996ead71585.png?crop=0.8888888888888888xw:1xh;0,0";
   const rating =
     typeof profile.averageRating === "number"
       ? profile.averageRating.toFixed(1)

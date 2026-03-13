@@ -17,7 +17,6 @@ import * as Location from "expo-location";
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
 
-// expo-speech-recognition requires a dev build; not available in Expo Go
 const isExpoGo = Constants.appOwnership === "expo";
 let ExpoSpeechRecognitionModule = null;
 let useSpeechRecognitionEvent = () => {};
@@ -143,7 +142,6 @@ export default function SearchScreen({ navigation }) {
   const submitPromptWithTextRef = useRef(null);
 
   useEffect(() => {
-    // Device timezone
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
       if (tz) setTimezone(tz);
@@ -151,7 +149,6 @@ export default function SearchScreen({ navigation }) {
       console.warn("Timezone error:", e.message);
     }
 
-    // Device location (fallback for emulators where GPS is unavailable)
     const FALLBACK_LOCATION = {
       lat: 51.5074,
       lng: -0.1278,
@@ -243,7 +240,6 @@ export default function SearchScreen({ navigation }) {
     }
   };
 
-  // STT events - accumulate transcripts and handle completion
   useSpeechRecognitionEvent("result", (event) => {
     extractTranscriptFromResultEvent(event);
   });
@@ -298,7 +294,6 @@ export default function SearchScreen({ navigation }) {
         lang: "en-US",
         interimResults: true,
         maxAlternatives: 1,
-        // Android segmented sessions are more stable with continuous=false.
         continuous: Platform.OS === "ios",
         requiresOnDeviceRecognition: shouldUseOnDeviceRecognition,
         ...(Platform.OS === "android"
@@ -423,25 +418,17 @@ export default function SearchScreen({ navigation }) {
     setParsing(true);
     setLastResponse(null);
     try {
-      // const context = {
-      //   timezone,
-      //   lastLocation:
-      //     lastLocation ||
-      //     (googlePlaceData?.geometry?.location
-      //       ? {
-      //           lat: googlePlaceData.geometry.location.lat,
-      //           lng: googlePlaceData.geometry.location.lng,
-      //           address: googlePlaceData.formatted_address,
-      //         }
-      //       : undefined),
-      // };
       const context = {
-        timezone: "Europe/London",
-        lastLocation: {
-          lat: 51.5074,
-          lng: -0.1278,
-          address: "14 Grange Road, London, N6 4DG, United Kingdom",
-        },
+        timezone,
+        lastLocation:
+          lastLocation ||
+          (googlePlaceData?.geometry?.location
+            ? {
+                lat: googlePlaceData.geometry.location.lat,
+                lng: googlePlaceData.geometry.location.lng,
+                address: googlePlaceData.formatted_address,
+              }
+            : undefined),
       };
 
       const result = await searchByPrompt({ prompt: trimmed, context });
@@ -493,15 +480,10 @@ export default function SearchScreen({ navigation }) {
     setLastResponse(null);
     try {
       const when = formData.when ? new Date(formData.when) : new Date();
-      // const loc = {
-      //   address: placeData.formatted_address || "Unknown",
-      //   lat: placeData.geometry.location.lat,
-      //   lng: placeData.geometry.location.lng,
-      // };
       const loc = {
-        address: "14 Grange Road, London, N6 4DG, United Kingdom",
-        lat: 51.5074,
-        lng: -0.1278,
+        address: placeData.formatted_address || "Unknown",
+        lat: placeData.geometry.location.lat,
+        lng: placeData.geometry.location.lng,
       };
       const lastLoc =
         lastLocation ||
@@ -670,7 +652,6 @@ export default function SearchScreen({ navigation }) {
               <AppButton
                 title="Search"
                 onPress={handleSubmit(onFilterSubmit)}
-                // disabled={!isValid || !googlePlaceData || parsing}
                 disabled={!isValid || parsing}
               />
             </View>

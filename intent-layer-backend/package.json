@@ -9,7 +9,8 @@
     "dev": "nodemon src/server.js",
     "db:push": "prisma db push",
     "db:seed": "node prisma/seed.js",
-    "db:setup": "prisma generate && prisma db push && node prisma/seed.js"
+    "db:setup": "prisma generate && prisma db push && node prisma/seed.js",
+    "db:generate-mock": "node db/generate-more-mock-data.js"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

@@ -4,7 +4,6 @@ const initialState = {
   searchData: null,
   googlePlaceData: null,
   selectedFilters: [],
-  /** Intent-layer search-by-prompt result: { recommendations, summary, intent, noMatchMessage } */
   intentSearchResult: null,
 };
 

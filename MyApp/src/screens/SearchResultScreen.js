@@ -11,10 +11,6 @@ import ScreenWrapper from "../components/ScreenWrapper";
 import Header2 from "../components/Header2";
 import SpaceCard from "../components/SpaceCard";
 
-/**
- * Maps intent-layer recommendation to profile for SpaceCard.
- * rec.profile has: id, name, address, coverMedia, averageRating, totalReviews, services
- */
 function recommendationToProfile(rec) {
   const p = rec?.profile;
   if (!p) return null;
@@ -25,15 +21,15 @@ function recommendationToProfile(rec) {
 }
 
 export default function SearchResultScreen({ navigation }) {
-  const intentSearchResult = useSelector((state) => state.appSlice.intentSearchResult);
+  const intentSearchResult = useSelector(
+    (state) => state.appSlice.intentSearchResult
+  );
 
   const recommendations = intentSearchResult?.recommendations ?? [];
   const summary = intentSearchResult?.summary ?? "";
   const noMatchMessage = intentSearchResult?.noMatchMessage;
 
-  const profiles = recommendations
-    .map(recommendationToProfile)
-    .filter(Boolean);
+  const profiles = recommendations.map(recommendationToProfile).filter(Boolean);
 
   const renderItem = ({ item, index }) => {
     const rec = recommendations[index];
@@ -73,9 +69,7 @@ export default function SearchResultScreen({ navigation }) {
       <ScreenWrapper>
         <Header2 title="Search Results" showBack />
         <View style={styles.center}>
-          <Text style={styles.message}>
-            Run a search first to see results.
-          </Text>
+          <Text style={styles.message}>Run a search first to see results.</Text>
           <TouchableOpacity
             style={styles.backButton}
             onPress={() => navigation.goBack()}
