@@ -2,20 +2,14 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Install PostgreSQL client for healthcheck/readiness
-RUN apk add --no-cache postgresql-client
-
 # Copy package files first for better layer caching
 COPY package.json package-lock.json* ./
 
 # Install dependencies
 RUN npm ci --omit=dev || npm install --omit=dev
 
-# Copy prisma schema and seed
+# Copy prisma schema
 COPY prisma ./prisma/
-
-# Copy mock DB bundle used by seed
-COPY db ./db/
 
 # Copy application source
 COPY src ./src
