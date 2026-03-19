@@ -5,3 +5,5 @@ allspaces-mobile-app1.5
 allspaces-mobile-app1.5/*
 
 # https://s3.eu-north-1.amazonaws.com/allspaces-testing/1772550143259-fjgosjns4u.jpg
+
+intent-layer-backend/db/extra
