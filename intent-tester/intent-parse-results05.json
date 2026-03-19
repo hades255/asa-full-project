@@ -1,0 +1,4646 @@
+[
+  {
+    "prompt": "Breakfast for 3 in London near London eye next Tuesday 11am for 4 hours",
+    "result": {
+      "intent": {
+        "date": "2026-03-03T11:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 3,
+        "location": {
+          "address": "London near London eye"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Breakfast for 3 in London near London eye next Tuesday 11am for 4 hours",
+        "confidence": 0.9,
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "3 breakfast options in London near the London Eye for your Tuesday morning gathering.",
+      "recommendations": [
+        {
+          "rank": 1,
+          "profileId": "c3fb199c-490f-44d9-abab-035455832898",
+          "profileName": "Skyline Wellness Retreat",
+          "score": 0.92,
+          "reasons": [
+            "Located near the London Eye, matching your location preference.",
+            "Offers a breakfast buffet, aligning with your breakfast request.",
+            "Highly rated with a 4.6 average rating from 733 reviews."
+          ],
+          "profile": {
+            "id": "c3fb199c-490f-44d9-abab-035455832898",
+            "name": "Skyline Wellness Retreat",
+            "description": "Skyline Wellness Retreat is a luxury destination in London, United Kingdom. Guests love the heated pool and the private treatment suites. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "950 Damrak, London, UK",
+            "lat": 51.520173,
+            "lng": -0.11531,
+            "coverMedia": "https://images.example.com/profiles/c3fb199c-490f-44d9-abab-035455832898/cover.jpg",
+            "price": 388.95,
+            "averageRating": 4.6,
+            "totalReviews": 733,
+            "facilities": [
+              {
+                "id": "3cb6067d-79b5-4831-b0dc-f74b0334557d",
+                "name": "24‑hour Reception"
+              },
+              {
+                "id": "9ad3c09d-d5cc-4ff2-8d0d-f43752876dca",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "d150eddc-90ce-4c8c-9425-e39c48c1ce91",
+                "name": "Hot Tub"
+              },
+              {
+                "id": "27502a76-7d80-4ea4-a162-bff2698d2d9f",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "e0aab116-4baa-4212-b1db-06c236a61c3f",
+                "name": "Parking"
+              },
+              {
+                "id": "2ebd667d-ad3f-4f90-86e1-24d4205e3a33",
+                "name": "Pet Friendly"
+              },
+              {
+                "id": "a62e4c9c-3627-4f38-a48c-b1df33ec7f1c",
+                "name": "Restaurant"
+              },
+              {
+                "id": "f9a58ba4-9a51-47ae-9872-b7116f0ccbb7",
+                "name": "Sauna"
+              },
+              {
+                "id": "443a1a2c-eb6c-46d1-8b05-07a7cf1299ef",
+                "name": "Spa"
+              },
+              {
+                "id": "be4968dd-57e3-46e1-855a-14b707afcd1b",
+                "name": "Steam Room"
+              }
+            ],
+            "services": [
+              {
+                "id": "cd6db9b3-6801-4a6d-babb-4eb91fed3c4e",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Skyline Wellness Retreat. Walk-ins welcome.",
+                "minSpend": 43.93,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "833a3466-5e8d-4bec-8443-c1f098acd301",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Skyline Wellness Retreat. Popular choice.",
+                "minSpend": 62.57,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "ed4e0e05-ab94-44d5-99e8-01a57090b503",
+                "name": "Couples Massage",
+                "description": "Couples Massage at Skyline Wellness Retreat. By appointment.",
+                "minSpend": 160.54,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "dbef11d2-1b66-4580-ba9f-3d06008cfb25",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Skyline Wellness Retreat. Popular choice.",
+                "minSpend": 33.92,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "99a1b541-95a8-477a-bfdb-23b91f727cec",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Skyline Wellness Retreat. Limited availability.",
+                "minSpend": 43.84,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "ad500af6-f13b-4c03-9978-ed2c9f7e0fb1",
+                "name": "Standard Room",
+                "description": "Standard Room at Skyline Wellness Retreat. Limited availability.",
+                "minSpend": 141.12,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "662a08bf-131b-4750-b4e3-9c5b62028517",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Skyline Wellness Retreat. By appointment.",
+                "minSpend": 665.79,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "c6495076-bc74-47ab-9de6-9a16cb92f820",
+                "name": "Meeting Room (2h)",
+                "description": "Meeting Room (2h) at Skyline Wellness Retreat. Walk-ins welcome.",
+                "minSpend": 398.1,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 2,
+          "profileId": "476a386d-d262-4e20-b3f8-358b2ae403ab",
+          "profileName": "Heritage Retreat",
+          "score": 0.88,
+          "reasons": [
+            "Offers a breakfast buffet, which fits your breakfast requirement.",
+            "High average rating of 5 from 2094 reviews, indicating excellent service.",
+            "Located in London, though slightly further from the London Eye."
+          ],
+          "profile": {
+            "id": "476a386d-d262-4e20-b3f8-358b2ae403ab",
+            "name": "Heritage Retreat",
+            "description": "Heritage Retreat is a luxury destination in London, United Kingdom. Guests love the private treatment suites and the skyline views. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "433 Rue de Rivoli, London, UK",
+            "lat": 51.536395,
+            "lng": -0.073878,
+            "coverMedia": "https://images.example.com/profiles/476a386d-d262-4e20-b3f8-358b2ae403ab/cover.jpg",
+            "price": 387.32,
+            "averageRating": 5,
+            "totalReviews": 2094,
+            "facilities": [
+              {
+                "id": "4abfc0e0-6209-4ddc-a309-8c9a77f1db44",
+                "name": "Air Conditioning"
+              },
+              {
+                "id": "5a861360-656c-42de-aa28-8394fc677812",
+                "name": "Concierge"
+              },
+              {
+                "id": "b13c4c83-029d-48dc-8afa-c62dfaf89795",
+                "name": "EV Charging"
+              },
+              {
+                "id": "fa7dba16-44b3-4933-a8f0-cc1403cb35df",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "0e02e1e6-0f7e-49bc-80a1-c3bc17a2e33b",
+                "name": "Garden"
+              },
+              {
+                "id": "5194f4f8-1d0e-4ba9-9788-3a3eedbdffd7",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "a0552ce9-5f47-4ece-a27f-3149c083b54c",
+                "name": "Parking"
+              },
+              {
+                "id": "4b4445da-fc3e-4571-bd35-7805482bd9bb",
+                "name": "Restaurant"
+              },
+              {
+                "id": "350d39fb-da7f-44ca-9dc8-48e656b099be",
+                "name": "Spa"
+              },
+              {
+                "id": "4949ea93-bcee-460b-af27-3cb633381c83",
+                "name": "Valet Parking"
+              },
+              {
+                "id": "fde69483-e8ea-4adc-8d2c-ea73f511d57d",
+                "name": "Wheelchair Accessible"
+              }
+            ],
+            "services": [
+              {
+                "id": "299225b7-1419-4bd9-aeaa-55bcbb9f138f",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 115.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "41e9b715-4d00-4d14-a2ae-4019060da8de",
+                "name": "Gym Access",
+                "description": "Gym Access at Heritage Retreat. Limited availability.",
+                "minSpend": 31.85,
+                "category": {
+                  "id": "cf092c54-0789-47b3-a57b-84ea222afe73",
+                  "title": "Gym",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "6b646aa0-3961-4b5b-80b3-17b0d1d68029",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 45.87,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "9fbe9a27-8e0c-4da8-bd7a-459f9be7cf64",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Heritage Retreat. By appointment.",
+                "minSpend": 66.35,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "3d9f2583-56a7-4435-8017-a971d1968893",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 38.03,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "03c05c11-87c8-4707-bd22-15687b8ffa3b",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Heritage Retreat. Popular choice.",
+                "minSpend": 911.88,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "d38b05b5-1c15-4553-9a7b-355f46ce7a1c",
+                "name": "Standard Room",
+                "description": "Standard Room at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 292.81,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 3,
+          "profileId": "596079dd-4ad5-42db-83e2-14f53d60fd8f",
+          "profileName": "Harbor Hotel & Spa",
+          "score": 0.85,
+          "reasons": [
+            "Offers a breakfast buffet, suitable for your breakfast meeting.",
+            "Located in London, relatively close to the London Eye.",
+            "Good average rating of 4.5 from 243 reviews."
+          ],
+          "profile": {
+            "id": "596079dd-4ad5-42db-83e2-14f53d60fd8f",
+            "name": "Harbor Hotel & Spa",
+            "description": "Harbor Hotel & Spa is a business-ready destination in London, United Kingdom. Guests love the signature spa treatments and the fitness studio. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "851 Broadway, London, UK",
+            "lat": 51.507634,
+            "lng": -0.071948,
+            "coverMedia": "https://images.example.com/profiles/596079dd-4ad5-42db-83e2-14f53d60fd8f/cover.jpg",
+            "price": 374.15,
+            "averageRating": 4.5,
+            "totalReviews": 243,
+            "facilities": [
+              {
+                "id": "cc64bdfb-9372-45d2-8f8e-ff47ae24d9ce",
+                "name": "Bar"
+              },
+              {
+                "id": "d88b3dc9-8b23-4789-a045-2dc66ada7534",
+                "name": "Business Center"
+              },
+              {
+                "id": "d70a8af9-0639-472a-8212-06f82d25cd8f",
+                "name": "Conference Rooms"
+              },
+              {
+                "id": "cb0f517f-a627-4dc5-a909-2bbd2398ebb7",
+                "name": "EV Charging"
+              },
+              {
+                "id": "e3d80ff8-ce51-4f96-9146-8418149cc426",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "6d9d1468-6c52-444c-bb45-1ef4c83bb461",
+                "name": "Gym / Fitness Center"
+              },
+              {
+                "id": "8f1670f7-6c24-4eb9-93fa-da24654231cc",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "7e0171c6-d967-498f-8254-fc64810ee95e",
+                "name": "Parking"
+              },
+              {
+                "id": "534f210d-b94c-4462-99a0-ce72c653ee03",
+                "name": "Sauna"
+              },
+              {
+                "id": "72cbd3a8-9716-4021-b6d4-43e80316c29d",
+                "name": "Spa"
+              },
+              {
+                "id": "382b36c4-d759-4d5e-8536-37ae1c15c69f",
+                "name": "Steam Room"
+              }
+            ],
+            "services": [
+              {
+                "id": "ebc500cf-0357-4375-b1b8-2acda23bf21c",
+                "name": "Swedish Massage",
+                "description": "Swedish Massage at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 83.86,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "93c47efc-7583-4c8a-968d-5692a2dcfcc7",
+                "name": "Anti-Aging Facial",
+                "description": "Anti-Aging Facial at Harbor Hotel & Spa. By appointment.",
+                "minSpend": 245.87,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "e14300f2-ba1b-45ab-a39d-4737bfc06934",
+                "name": "Aromatherapy Massage",
+                "description": "Aromatherapy Massage at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 195.5,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "75fe977d-16ce-4ecb-a746-65cce1701579",
+                "name": "Yoga Class",
+                "description": "Yoga Class at Harbor Hotel & Spa. By appointment.",
+                "minSpend": 43.22,
+                "category": {
+                  "id": "8e4b5e1e-8c06-49af-9f85-24d7301cb30f",
+                  "title": "Yoga",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "75b9645d-ea24-4d02-a71c-e13ddcc4ae3a",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 47.07,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "f1dc531d-0ae2-4471-a4bc-621197da3e71",
+                "name": "Cocktails at the Bar",
+                "description": "Cocktails at the Bar at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 34.95,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "d1bd5238-2796-424d-8c27-55fb422e4298",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 41.38,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "f5bedcd5-17f1-40b4-bd7b-25d9bafa37d3",
+                "name": "Coworking Desk (day)",
+                "description": "Coworking Desk (day) at Harbor Hotel & Spa. By appointment.",
+                "minSpend": 32.04,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "candidatesCount": 20,
+      "noMatchMessage": null,
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 1
+  },
+  {
+    "prompt": "Italian restaurant in Manhattan for 4 people this Friday at 7pm",
+    "result": {
+      "intent": {
+        "date": "2026-03-06T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 4,
+        "location": {
+          "address": "Manhattan, New York, USA"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Italian restaurant in Manhattan for 4 people this Friday at 7pm",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No Italian restaurants in Manhattan found for your Friday dinner.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no Italian restaurants in Manhattan available for your requested date and time. Please try adjusting your search criteria.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 2
+  },
+  {
+    "prompt": "I’d like to book a hotel in Chicago downtown from March 12 for 3 nights.",
+    "result": {
+      "intent": {
+        "date": "2026-03-12T00:00:00.000Z",
+        "duration": 72,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Chicago downtown"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "I’d like to book a hotel in Chicago downtown from March 12 for 3 nights.",
+        "confidence": 0.95,
+        "inferredDescription": "Duration set to 72h for a 3-night hotel stay. NoOfGuests defaulted to 1 as not specified.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No hotels in Chicago downtown match your request for March 12 for 3 nights.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available hotels in Chicago downtown matching your criteria. Please try adjusting your search parameters or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 3
+  },
+  {
+    "prompt": "Private dining room in Brooklyn for birthday party Saturday evening",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T19:00:00.000Z",
+        "duration": 5,
+        "noOfGuests": 10,
+        "location": {
+          "address": "Brooklyn"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Private dining room in Brooklyn for birthday party Saturday evening",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~5h for a typical birthday party. Number of guests inferred as 10 for a small party.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No private dining rooms in Brooklyn for your Saturday evening birthday party.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, we couldn't find any private dining rooms in Brooklyn that match your request for a birthday party on Saturday evening. Please try adjusting your search criteria or check back later for more options.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 4
+  },
+  {
+    "prompt": "Looking for a conference room in San Francisco next Monday morning for about 4 hours",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T09:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 1,
+        "location": {
+          "address": "San Francisco"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Looking for a conference room in San Francisco next Monday morning for about 4 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests set to 1 as it was not specified. Category inferred as meeting space.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No conference rooms in San Francisco available for your Monday morning meeting.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available conference rooms in San Francisco for your specified date and time. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 5
+  },
+  {
+    "prompt": "Rooftop restaurant in Miami tomorrow night for 2",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Miami"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Rooftop restaurant in Miami tomorrow night for 2",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No rooftop restaurants in Miami available for your dinner tomorrow night.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no rooftop restaurants in Miami available for your dinner tomorrow night. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 6
+  },
+  {
+    "prompt": "We need a wedding venue in Dallas for around 120 guests in June.",
+    "result": {
+      "intent": {
+        "date": "2026-06-01T00:00:00.000Z",
+        "duration": 6,
+        "noOfGuests": 120,
+        "location": {
+          "address": "Dallas, Texas, USA"
+        },
+        "categoryIds": [],
+        "rawQuery": "We need a wedding venue in Dallas for around 120 guests in June.",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~6h for a typical wedding reception.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No wedding venues in Dallas for your June event.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available wedding venues in Dallas, Texas that match your criteria. Please try adjusting your search parameters or check back later for new listings.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 7
+  },
+  {
+    "prompt": "Boutique hotel near Central Park next weekend",
+    "result": {
+      "intent": {
+        "date": "2026-03-07T14:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Central Park, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Boutique hotel near Central Park next weekend",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 24h for an overnight stay. Date set to next weekend. Location specified as Central Park.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No boutique hotels near Central Park, New York for your overnight stay next weekend.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no boutique hotels available near Central Park, New York for the specified date and duration. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 8
+  },
+  {
+    "prompt": "Event space in Los Angeles for baby shower April 20 afternoon",
+    "result": {
+      "intent": {
+        "date": "2026-04-20T13:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 20,
+        "location": {
+          "address": "Los Angeles"
+        },
+        "categoryIds": [],
+        "rawQuery": "Event space in Los Angeles for baby shower April 20 afternoon",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~4h for a typical baby shower event. NoOfGuests inferred as 20 for a baby shower.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No event spaces in Los Angeles match your baby shower request for April 20 afternoon.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available event spaces in Los Angeles that fit your criteria for a baby shower on April 20. Please try adjusting your search parameters or check back later for new listings.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 9
+  },
+  {
+    "prompt": "Can I reserve a table in Boston for Thursday at 8pm?",
+    "result": {
+      "intent": {
+        "date": "2026-03-05T20:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Boston"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Can I reserve a table in Boston for Thursday at 8pm?",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner. NoOfGuests assumed to be 2 for a table reservation.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No dining options in Boston found for your Thursday dinner.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no dining options available in Boston that match your request for a table reservation on Thursday at 8pm. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 10
+  },
+  {
+    "prompt": "Beachfront hotel in San Diego for family trip July 5 to July 10",
+    "result": {
+      "intent": {
+        "date": "2026-07-05T00:00:00.000Z",
+        "duration": 120,
+        "noOfGuests": 4,
+        "location": {
+          "address": "San Diego"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Beachfront hotel in San Diego for family trip July 5 to July 10",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 5 nights for a family trip. Inferred 4 guests for a family trip.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No beachfront hotels in San Diego found for your family trip from July 5 to July 10.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no beachfront hotels in San Diego available for your specified dates and requirements. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 11
+  },
+  {
+    "prompt": "Meeting room near Times Square tomorrow at 1pm",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T13:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Times Square, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Meeting room near Times Square tomorrow at 1pm",
+        "confidence": 0.95,
+        "inferredDescription": "Duration ~3h for a typical meeting. NoOfGuests set to 1 as not specified.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No meeting rooms near Times Square, New York, NY, USA for your meeting tomorrow at 1pm.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no meeting rooms available near Times Square, New York, NY, USA for your specified date and time. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 12
+  },
+  {
+    "prompt": "I’m planning a graduation party next Saturday evening and need a banquet hall in Atlanta.",
+    "result": {
+      "intent": {
+        "date": "2026-03-07T18:00:00.000Z",
+        "duration": 5,
+        "noOfGuests": 50,
+        "location": {
+          "address": "Atlanta"
+        },
+        "categoryIds": [],
+        "rawQuery": "I’m planning a graduation party next Saturday evening and need a banquet hall in Atlanta.",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~5h for a typical graduation party. NoOfGuests inferred as 50 for a graduation party.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No banquet halls in Atlanta found for your graduation party next Saturday evening.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, we couldn't find any banquet halls in Atlanta that match your requirements. Please try adjusting your search criteria or check back later for more options.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 13
+  },
+  {
+    "prompt": "Hotel near LAX for tonight",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T23:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "LAX"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Hotel near LAX for tonight",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 24h for an overnight stay. NoOfGuests assumed to be 1 for a typical hotel booking.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No hotels near LAX found for your overnight stay request.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, we couldn't find any hotels near LAX for your requested overnight stay. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 14
+  },
+  {
+    "prompt": "Private rooftop venue in Austin for engagement party May 18 for 5 hours",
+    "result": {
+      "intent": {
+        "date": "2026-05-18T00:00:00.000Z",
+        "duration": 5,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Austin"
+        },
+        "categoryIds": [],
+        "rawQuery": "Private rooftop venue in Austin for engagement party May 18 for 5 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests defaulted to 1 as it was not specified. Category not specified, so left empty.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No venues in Austin match your request for a private rooftop venue for an engagement party on May 18.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available venues in Austin that match your request for a private rooftop venue for an engagement party on May 18. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 15
+  },
+  {
+    "prompt": "Restaurant with outdoor seating in Denver Sunday brunch",
+    "result": {
+      "intent": {
+        "date": "2026-03-01T11:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Denver"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Restaurant with outdoor seating in Denver Sunday brunch",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical brunch.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No restaurants with outdoor seating in Denver for your Sunday brunch.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available restaurants with outdoor seating in Denver that match your request for a Sunday brunch. Please try adjusting your search criteria.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 16
+  },
+  {
+    "prompt": "Conference hall in Seattle for corporate event next month full day",
+    "result": {
+      "intent": {
+        "date": "2026-03-27T09:00:00.000Z",
+        "duration": 8,
+        "noOfGuests": 50,
+        "location": {
+          "address": "Seattle"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Conference hall in Seattle for corporate event next month full day",
+        "confidence": 0.9,
+        "inferredDescription": "Duration set to 8h for a full-day corporate event. Location specified as Seattle. Date inferred as next month from today's date.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No conference halls in Seattle found for your corporate event on March 27, 2026.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, we couldn't find any conference halls in Seattle that match your criteria. Please try adjusting your search parameters or check back later for new listings.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 17
+  },
+  {
+    "prompt": "Romantic dinner spot in Paris for 2 next Tuesday",
+    "result": {
+      "intent": {
+        "date": "2026-03-03T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Paris, France"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Romantic dinner spot in Paris for 2 next Tuesday",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No romantic dinner spots in Paris found for your request.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available romantic dinner spots in Paris for your specified date and time. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 18
+  },
+  {
+    "prompt": "Small meeting space in Houston Friday morning for 3 hours",
+    "result": {
+      "intent": {
+        "date": "2026-03-06T09:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Houston"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Small meeting space in Houston Friday morning for 3 hours",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests defaulted to 1 for a small meeting. Date inferred as next Friday morning.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No meeting spaces in Houston found for your Friday morning meeting.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available meeting spaces in Houston for your specified date and time. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 19
+  },
+  {
+    "prompt": "Luxury hotel in Las Vegas for New Year’s Eve",
+    "result": {
+      "intent": {
+        "date": "2026-12-31T00:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Las Vegas"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Luxury hotel in Las Vegas for New Year’s Eve",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 24h for an overnight stay. NoOfGuests set to 1 as default for hotel booking.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No luxury hotels in Las Vegas found for your New Year’s Eve stay.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, we couldn't find any luxury hotels in Las Vegas for your New Year’s Eve stay. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 20
+  },
+  {
+    "prompt": "Need a private event room in Orlando December 10 from 6pm to 10pm for 15 people",
+    "result": {
+      "intent": {
+        "date": "2026-12-10T18:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 15,
+        "location": {
+          "address": "Orlando"
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Need a private event room in Orlando December 10 from 6pm to 10pm for 15 people",
+        "confidence": 0.95,
+        "inferredDescription": "Duration set to 4 hours for an event. Category set to meeting/event space.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No event spaces in Orlando match your criteria for December 10.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, we couldn't find any event spaces in Orlando that match your request for a private event room on December 10th for 15 people. Please try adjusting your search criteria or check back later for more options.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 21
+  },
+  {
+    "prompt": "Is there any availability for dinner in Brooklyn this Saturday?",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 2,
+        "location": {
+          "address": "Brooklyn, New York, USA"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Is there any availability for dinner in Brooklyn this Saturday?",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner. NoOfGuests inferred as 2 for a typical dinner reservation.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No dining options in Brooklyn available for your Saturday dinner.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no dining options available in Brooklyn for the specified date and time. Please try adjusting your search criteria or explore other locations.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 22
+  },
+  {
+    "prompt": "Hotel in Miami for 3 adults starting this Friday",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T12:57:14.942Z",
+        "duration": 72,
+        "noOfGuests": 3,
+        "location": {
+          "address": "Miami"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Hotel in Miami for 3 adults starting this Friday",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 72h for a 3-night hotel stay.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No hotels in Miami match your request for a 3-night stay for 3 adults starting this Friday.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no hotels available in Miami that match your criteria. Please try adjusting your search parameters or check back later.",
+      "repair": {
+        "applied": true,
+        "changes": [
+          "date repaired to current time (was in the past)"
+        ]
+      }
+    },
+    "index": 23
+  },
+  {
+    "prompt": "Looking to book a quiet cafe space for a meeting tomorrow afternoon",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T14:00:00.000Z",
+        "duration": 3,
+        "noOfGuests": 4,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Looking to book a quiet cafe space for a meeting tomorrow afternoon",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~3h for a typical meeting. Location set from user's current position.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "3 quiet spaces in London for your meeting tomorrow afternoon.",
+      "recommendations": [
+        {
+          "rank": 1,
+          "profileId": "79abb361-a87e-4a66-a0de-bdad73d0e0a1",
+          "profileName": "Urban Spa Resort",
+          "score": 0.92,
+          "reasons": [
+            "Location is very close to the user's specified address.",
+            "Described as a quiet destination, suitable for meetings.",
+            "Offers workspace services like Steam Room Session and Afternoon Tea."
+          ],
+          "profile": {
+            "id": "79abb361-a87e-4a66-a0de-bdad73d0e0a1",
+            "name": "Urban Spa Resort",
+            "description": "Urban Spa Resort is a quiet destination in London, United Kingdom. Guests love the skyline views and the concierge service. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "68 Park Ave, London, UK",
+            "lat": 51.547953,
+            "lng": -0.131724,
+            "coverMedia": "https://images.example.com/profiles/79abb361-a87e-4a66-a0de-bdad73d0e0a1/cover.jpg",
+            "price": 255.18,
+            "averageRating": 4.7,
+            "totalReviews": 909,
+            "facilities": [
+              {
+                "id": "51d7362d-934c-4a0a-9e46-dc5cea3effa4",
+                "name": "24‑hour Reception"
+              },
+              {
+                "id": "38bcabbb-e3ee-41f8-b0af-ab2a7d3ea04c",
+                "name": "Concierge"
+              },
+              {
+                "id": "b0a25c8a-8aed-4467-80aa-c4d324c52505",
+                "name": "EV Charging"
+              },
+              {
+                "id": "ea98d0c2-0907-401b-b9f5-90723e35c029",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "9d213130-86ed-4caf-8a3c-ba5e80c0a21a",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "f1e92909-4b58-44fc-bbbc-a96cfdd48ffd",
+                "name": "Non‑Smoking Rooms"
+              },
+              {
+                "id": "4a8db0f8-091e-4517-943b-157c83fd3f62",
+                "name": "Room Service"
+              },
+              {
+                "id": "d34724a3-23be-487e-bd16-1160030051f4",
+                "name": "Spa"
+              },
+              {
+                "id": "75d90b28-7b87-4863-9e14-ca7e08ba411c",
+                "name": "Valet Parking"
+              }
+            ],
+            "services": [
+              {
+                "id": "9894cb09-5874-4cfc-b11a-d084529b8e02",
+                "name": "Pool Access",
+                "description": "Pool Access at Urban Spa Resort. Limited availability.",
+                "minSpend": 55.39,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "0d048b36-cd68-46f4-8d5b-bd4c24a5c634",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Urban Spa Resort. Walk-ins welcome.",
+                "minSpend": 50.02,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "f024720a-3b37-4d49-af3c-c25465d6fe6b",
+                "name": "Yoga Class",
+                "description": "Yoga Class at Urban Spa Resort. Limited availability.",
+                "minSpend": 29.71,
+                "category": {
+                  "id": "8e4b5e1e-8c06-49af-9f85-24d7301cb30f",
+                  "title": "Yoga",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "a4b387d9-6fda-497e-8cac-53124a6fb944",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Urban Spa Resort. Popular choice.",
+                "minSpend": 164.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "74074edb-0e68-43a4-afe9-a8c21a415a50",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Urban Spa Resort. Limited availability.",
+                "minSpend": 77.11,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "88366eca-4b9c-4a3d-bac7-16e7174af2de",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Urban Spa Resort. Walk-ins welcome.",
+                "minSpend": 54.19,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 2,
+          "profileId": "7bffedc2-d58b-4846-ab77-02ec9b9db93c",
+          "profileName": "Riverside Suites",
+          "score": 0.89,
+          "reasons": [
+            "Located in London, matching the user's location preference.",
+            "Described as a quiet destination, ideal for meetings.",
+            "Offers workspace services like Steam Room Session and Sauna Session."
+          ],
+          "profile": {
+            "id": "7bffedc2-d58b-4846-ab77-02ec9b9db93c",
+            "name": "Riverside Suites",
+            "description": "Riverside Suites is a quiet destination in London, United Kingdom. Guests love the award-winning dining and the sauna & steam rooms. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "421 Broadway, London, UK",
+            "lat": 51.485936,
+            "lng": -0.146803,
+            "coverMedia": "https://images.example.com/profiles/7bffedc2-d58b-4846-ab77-02ec9b9db93c/cover.jpg",
+            "price": 419.66,
+            "averageRating": 4.5,
+            "totalReviews": 2073,
+            "facilities": [
+              {
+                "id": "ee032e1d-1b4b-41c1-a2c3-afdc6ba34ae6",
+                "name": "24‑hour Reception"
+              },
+              {
+                "id": "f68282f6-71d6-4ad4-9186-d948e7210fea",
+                "name": "Air Conditioning"
+              },
+              {
+                "id": "96b74c6e-114e-4dc5-b11b-b3428226b1db",
+                "name": "Bar"
+              },
+              {
+                "id": "ff47ef96-cfb5-4827-b92e-22a31c2b8d87",
+                "name": "Concierge"
+              },
+              {
+                "id": "ef6ad180-1ba8-4bf8-bd39-7c534ddf186a",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "c72038f8-1104-4305-884e-1514746f94e5",
+                "name": "Garden"
+              },
+              {
+                "id": "1df8123c-0e76-4fd9-8a0a-91b886f86c63",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "de2e7ad3-6d52-4d6a-a0ef-f61b60906d12",
+                "name": "Outdoor Pool"
+              },
+              {
+                "id": "d556088e-8c78-4a53-b396-ca4fc2525d09",
+                "name": "Pet Friendly"
+              },
+              {
+                "id": "eb65a754-2602-4d5b-8c29-c1ca60dc1f88",
+                "name": "Spa"
+              },
+              {
+                "id": "380bc1f1-544a-4573-b53b-83740b040b6f",
+                "name": "Steam Room"
+              }
+            ],
+            "services": [
+              {
+                "id": "96d65760-94a1-49c5-b2e9-cab953c13dc5",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Riverside Suites. Walk-ins welcome.",
+                "minSpend": 23.99,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "c0c58988-add8-43f7-919c-8ae13a677320",
+                "name": "Gym Access",
+                "description": "Gym Access at Riverside Suites. Popular choice.",
+                "minSpend": 16.21,
+                "category": {
+                  "id": "cf092c54-0789-47b3-a57b-84ea222afe73",
+                  "title": "Gym",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "f52f7bdd-1620-4049-81df-79f0af4aa88c",
+                "name": "Aromatherapy Massage",
+                "description": "Aromatherapy Massage at Riverside Suites. Popular choice.",
+                "minSpend": 170.46,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "55d88f0b-284e-4238-bdec-2c51a21e54e8",
+                "name": "Swedish Massage",
+                "description": "Swedish Massage at Riverside Suites. Popular choice.",
+                "minSpend": 175.61,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "5593c4ca-0ab7-487b-b7ec-9a04656b2ec5",
+                "name": "Sauna Session",
+                "description": "Sauna Session at Riverside Suites. Limited availability.",
+                "minSpend": 20,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "3fbe2990-a91f-4b99-ae36-8ae35ea9c542",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Riverside Suites. Walk-ins welcome.",
+                "minSpend": 74.71,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 3,
+          "profileId": "4c6779d6-385f-431e-bde4-0a17ba956b39",
+          "profileName": "Riverside Boutique Hotel",
+          "score": 0.87,
+          "reasons": [
+            "Located in London, matching the user's location preference.",
+            "Described as a quiet destination, suitable for meetings.",
+            "Offers workspace services like Steam Room Session and Meeting Room (2h)."
+          ],
+          "profile": {
+            "id": "4c6779d6-385f-431e-bde4-0a17ba956b39",
+            "name": "Riverside Boutique Hotel",
+            "description": "Riverside Boutique Hotel is a quiet destination in London, United Kingdom. Guests love the award-winning dining and the fitness studio. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "963 Park Ave, London, UK",
+            "lat": 51.496201,
+            "lng": -0.098797,
+            "coverMedia": "https://images.example.com/profiles/4c6779d6-385f-431e-bde4-0a17ba956b39/cover.jpg",
+            "price": 341.69,
+            "averageRating": 4.5,
+            "totalReviews": 1949,
+            "facilities": [
+              {
+                "id": "036aa273-f16c-4285-8e20-6ef3a8ee5a2a",
+                "name": "Business Center"
+              },
+              {
+                "id": "aecedc70-4928-4977-851d-50d827381101",
+                "name": "EV Charging"
+              },
+              {
+                "id": "28682880-187b-44e4-b755-fb45de5b8827",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "265a5ad9-d74d-492a-9c11-8d915659ae8e",
+                "name": "Garden"
+              },
+              {
+                "id": "4dbdb1c8-6a73-4861-874d-add360277466",
+                "name": "Hot Tub"
+              },
+              {
+                "id": "49ef90f0-c2cf-4e94-9660-914c00bc25b5",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "9c21bdcb-9240-4e96-88cc-e0be53b3bda8",
+                "name": "Room Service"
+              },
+              {
+                "id": "85d5a13c-aa86-4fbd-a359-cf43efcbabbe",
+                "name": "Spa"
+              }
+            ],
+            "services": [
+              {
+                "id": "70fc36ab-eac5-4971-b790-1ed236c9021a",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Riverside Boutique Hotel. Popular choice.",
+                "minSpend": 53.22,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "f37c6a76-2f3d-4aa4-8931-b20405dc9b72",
+                "name": "Sauna Session",
+                "description": "Sauna Session at Riverside Boutique Hotel. Walk-ins welcome.",
+                "minSpend": 41.95,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "177cac72-5258-4adf-be0a-a3a02f395bbd",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Riverside Boutique Hotel. Walk-ins welcome.",
+                "minSpend": 76.5,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "dda5f73d-4a45-4312-a198-fe614a65eae1",
+                "name": "Anti-Aging Facial",
+                "description": "Anti-Aging Facial at Riverside Boutique Hotel. Walk-ins welcome.",
+                "minSpend": 149.04,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "801f7232-5d38-4248-bac3-c8f34e44590f",
+                "name": "Pool Access",
+                "description": "Pool Access at Riverside Boutique Hotel. Limited availability.",
+                "minSpend": 36.36,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "75b440a4-fc14-45be-91d8-a474f9b95342",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Riverside Boutique Hotel. By appointment.",
+                "minSpend": 43.93,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "4946f011-d2a5-4385-8064-786317f857d6",
+                "name": "Meeting Room (2h)",
+                "description": "Meeting Room (2h) at Riverside Boutique Hotel. Popular choice.",
+                "minSpend": 320.93,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "candidatesCount": 20,
+      "noMatchMessage": null,
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 24
+  },
+  {
+    "prompt": "Birthday dinner in Chicago for about 10 people next weekend",
+    "result": {
+      "intent": {
+        "date": "2026-03-07T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 10,
+        "location": {
+          "address": "Chicago"
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Birthday dinner in Chicago for about 10 people next weekend",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No dining spaces in Chicago for your birthday dinner next weekend.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, we couldn't find any dining spaces in Chicago that match your request for a birthday dinner for about 10 people next weekend. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 25
+  },
+  {
+    "prompt": "I need a place to stay in Boston for a couple of nights next month.",
+    "result": {
+      "intent": {
+        "date": "2026-03-01T00:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Boston"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "I need a place to stay in Boston for a couple of nights next month.",
+        "confidence": 0.9,
+        "inferredDescription": "Duration set to 48h for a couple of nights stay. NoOfGuests assumed as 1. Date inferred as early next month.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No matching accommodations found in Boston for your stay in March.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available accommodations in Boston for your requested stay. Please try adjusting your search criteria or check back later for new listings.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 26
+  },
+  {
+    "prompt": "Hi, I’d like to book a table for 3 next Tuesday around 11am.",
+    "result": {
+      "intent": {
+        "date": "2026-03-03T11:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 3,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Hi, I’d like to book a table for 3 next Tuesday around 11am.",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dining experience.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No dining venues found for your request in London.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no dining venues available that match your request for a table for 3 next Tuesday around 11am in London. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 27
+  },
+  {
+    "prompt": "Do you have a room available for two this Friday night in downtown Chicago?",
+    "result": {
+      "intent": {
+        "date": "2026-03-06T18:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 2,
+        "location": {
+          "address": "downtown Chicago"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Do you have a room available for two this Friday night in downtown Chicago?",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 24h for an overnight stay.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No available rooms in downtown Chicago for your Friday night stay.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available rooms in downtown Chicago for your specified date and requirements. Please try adjusting your search criteria or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 28
+  },
+  {
+    "prompt": "I’m looking to reserve a table for dinner tomorrow at 7pm.",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "I’m looking to reserve a table for dinner tomorrow at 7pm.",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner. Location set from user's current position.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "1 dining option in London for your dinner reservation tomorrow at 7pm.",
+      "recommendations": [
+        {
+          "rank": 1,
+          "profileId": "7928bf99-7678-412c-8c0b-988e7c1e013c",
+          "profileName": "Luxe Retreat",
+          "score": 0.92,
+          "reasons": [
+            "Offers a Dinner Tasting Menu, matching the dining category.",
+            "Located in London, close to your specified location.",
+            "High average rating of 5 with 1354 reviews, indicating excellent service."
+          ],
+          "profile": {
+            "id": "7928bf99-7678-412c-8c0b-988e7c1e013c",
+            "name": "Luxe Retreat",
+            "description": "Luxe Retreat is a modern destination in London, United Kingdom. Guests love the fitness studio and the heated pool. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "730 Oxford St, London, UK",
+            "lat": 51.491489,
+            "lng": -0.183266,
+            "coverMedia": "https://images.example.com/profiles/7928bf99-7678-412c-8c0b-988e7c1e013c/cover.jpg",
+            "price": 261.67,
+            "averageRating": 5,
+            "totalReviews": 1354,
+            "facilities": [
+              {
+                "id": "c167ed74-85d6-472d-82bf-90b51058ca0d",
+                "name": "Concierge"
+              },
+              {
+                "id": "1293da8f-6131-4d59-8457-e2495f43ef3d",
+                "name": "Conference Rooms"
+              },
+              {
+                "id": "31b05025-611d-410c-9e69-64e8ddffaf49",
+                "name": "Family Friendly"
+              },
+              {
+                "id": "b8381f74-2c10-4c57-8b6d-22c6b5641af1",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "f0c1b142-c12f-4b9c-9314-44126cc601ef",
+                "name": "Garden"
+              },
+              {
+                "id": "a3abe32c-9e6a-4ae8-8f55-025a48bb42a6",
+                "name": "Hot Tub"
+              },
+              {
+                "id": "e7b98bcd-c1bc-4d2b-803d-7479fd10fff7",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "2e5eaa9f-1287-4538-b88e-072c52771638",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "eb616fa0-08fb-47a0-ab1e-da645aa66370",
+                "name": "Parking"
+              },
+              {
+                "id": "bb5b5d2f-0711-4e8d-a7fb-d2c7c7c68a7d",
+                "name": "Room Service"
+              },
+              {
+                "id": "14105f43-5b83-4ea7-b67a-dff04d7b7cf1",
+                "name": "Sauna"
+              },
+              {
+                "id": "0482aa05-c340-4c89-96c6-9ccdc72fdd0d",
+                "name": "Spa"
+              },
+              {
+                "id": "d5a115b1-2bdb-43d8-858d-4006b0197704",
+                "name": "Valet Parking"
+              },
+              {
+                "id": "0da3bb01-df74-44ff-afb9-8ca33eca9182",
+                "name": "Wheelchair Accessible"
+              }
+            ],
+            "services": [
+              {
+                "id": "b896cd15-944f-4831-b3a7-bc3805d18a4b",
+                "name": "Couples Massage",
+                "description": "Couples Massage at Luxe Retreat. Popular choice.",
+                "minSpend": 342.61,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "7e0db54a-f71d-4c9f-8bfb-d49cd39d33d2",
+                "name": "Sauna Session",
+                "description": "Sauna Session at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 53.13,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "7e211baf-4c36-4b6c-be2d-6f147fec41c2",
+                "name": "Aromatherapy Massage",
+                "description": "Aromatherapy Massage at Luxe Retreat. By appointment.",
+                "minSpend": 146.04,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "5eff164a-97bb-4c07-bcc5-75505939029a",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Luxe Retreat. Popular choice.",
+                "minSpend": 169.48,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "88ef3eeb-82a7-4384-969e-e817093297bf",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 61.93,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "8f01409a-9a2b-418c-84f6-d9b52cc3a6c8",
+                "name": "Dinner Tasting Menu",
+                "description": "Dinner Tasting Menu at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 115.36,
+                "category": {
+                  "id": "8f039c18-65af-4f8e-8ab0-9cbf1b560fe2",
+                  "title": "Dinner",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "943d91a5-a6bf-4e4a-9a1c-9598662b2262",
+                "name": "Standard Room",
+                "description": "Standard Room at Luxe Retreat. Popular choice.",
+                "minSpend": 132.35,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "1e098ccb-8853-44ea-849a-c5b6522fae88",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Luxe Retreat. By appointment.",
+                "minSpend": 871.63,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "0a12af3c-b92d-498f-a37f-c552817b7f56",
+                "name": "Coworking Desk (day)",
+                "description": "Coworking Desk (day) at Luxe Retreat. Popular choice.",
+                "minSpend": 22.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "candidatesCount": 20,
+      "noMatchMessage": null,
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 29
+  },
+  {
+    "prompt": "Can I book a small meeting room for about 4 hours next Monday morning?",
+    "result": {
+      "intent": {
+        "date": "2026-03-02T09:00:00.000Z",
+        "duration": 4,
+        "noOfGuests": 1,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-meeting-002"
+        ],
+        "rawQuery": "Can I book a small meeting room for about 4 hours next Monday morning?",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests set to 1 as not specified. Location set from user's current position.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "3 meeting spaces in London for your Monday morning meeting.",
+      "recommendations": [
+        {
+          "rank": 1,
+          "profileId": "c3fb199c-490f-44d9-abab-035455832898",
+          "profileName": "Skyline Wellness Retreat",
+          "score": 0.92,
+          "reasons": [
+            "Offers a meeting room service matching the category 'Workspace'.",
+            "Located relatively close to the user's specified location.",
+            "High average rating of 4.6 with 733 reviews."
+          ],
+          "profile": {
+            "id": "c3fb199c-490f-44d9-abab-035455832898",
+            "name": "Skyline Wellness Retreat",
+            "description": "Skyline Wellness Retreat is a luxury destination in London, United Kingdom. Guests love the heated pool and the private treatment suites. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "950 Damrak, London, UK",
+            "lat": 51.520173,
+            "lng": -0.11531,
+            "coverMedia": "https://images.example.com/profiles/c3fb199c-490f-44d9-abab-035455832898/cover.jpg",
+            "price": 388.95,
+            "averageRating": 4.6,
+            "totalReviews": 733,
+            "facilities": [
+              {
+                "id": "3cb6067d-79b5-4831-b0dc-f74b0334557d",
+                "name": "24‑hour Reception"
+              },
+              {
+                "id": "9ad3c09d-d5cc-4ff2-8d0d-f43752876dca",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "d150eddc-90ce-4c8c-9425-e39c48c1ce91",
+                "name": "Hot Tub"
+              },
+              {
+                "id": "27502a76-7d80-4ea4-a162-bff2698d2d9f",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "e0aab116-4baa-4212-b1db-06c236a61c3f",
+                "name": "Parking"
+              },
+              {
+                "id": "2ebd667d-ad3f-4f90-86e1-24d4205e3a33",
+                "name": "Pet Friendly"
+              },
+              {
+                "id": "a62e4c9c-3627-4f38-a48c-b1df33ec7f1c",
+                "name": "Restaurant"
+              },
+              {
+                "id": "f9a58ba4-9a51-47ae-9872-b7116f0ccbb7",
+                "name": "Sauna"
+              },
+              {
+                "id": "443a1a2c-eb6c-46d1-8b05-07a7cf1299ef",
+                "name": "Spa"
+              },
+              {
+                "id": "be4968dd-57e3-46e1-855a-14b707afcd1b",
+                "name": "Steam Room"
+              }
+            ],
+            "services": [
+              {
+                "id": "cd6db9b3-6801-4a6d-babb-4eb91fed3c4e",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Skyline Wellness Retreat. Walk-ins welcome.",
+                "minSpend": 43.93,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "833a3466-5e8d-4bec-8443-c1f098acd301",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Skyline Wellness Retreat. Popular choice.",
+                "minSpend": 62.57,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "ed4e0e05-ab94-44d5-99e8-01a57090b503",
+                "name": "Couples Massage",
+                "description": "Couples Massage at Skyline Wellness Retreat. By appointment.",
+                "minSpend": 160.54,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "dbef11d2-1b66-4580-ba9f-3d06008cfb25",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Skyline Wellness Retreat. Popular choice.",
+                "minSpend": 33.92,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "99a1b541-95a8-477a-bfdb-23b91f727cec",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Skyline Wellness Retreat. Limited availability.",
+                "minSpend": 43.84,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "ad500af6-f13b-4c03-9978-ed2c9f7e0fb1",
+                "name": "Standard Room",
+                "description": "Standard Room at Skyline Wellness Retreat. Limited availability.",
+                "minSpend": 141.12,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "662a08bf-131b-4750-b4e3-9c5b62028517",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Skyline Wellness Retreat. By appointment.",
+                "minSpend": 665.79,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "c6495076-bc74-47ab-9de6-9a16cb92f820",
+                "name": "Meeting Room (2h)",
+                "description": "Meeting Room (2h) at Skyline Wellness Retreat. Walk-ins welcome.",
+                "minSpend": 398.1,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 2,
+          "profileId": "4c6779d6-385f-431e-bde4-0a17ba956b39",
+          "profileName": "Riverside Boutique Hotel",
+          "score": 0.89,
+          "reasons": [
+            "Provides a meeting room service under the 'Workspace' category.",
+            "Moderately close to the user's location.",
+            "Good average rating of 4.5 with a high number of reviews (1949)."
+          ],
+          "profile": {
+            "id": "4c6779d6-385f-431e-bde4-0a17ba956b39",
+            "name": "Riverside Boutique Hotel",
+            "description": "Riverside Boutique Hotel is a quiet destination in London, United Kingdom. Guests love the award-winning dining and the fitness studio. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "963 Park Ave, London, UK",
+            "lat": 51.496201,
+            "lng": -0.098797,
+            "coverMedia": "https://images.example.com/profiles/4c6779d6-385f-431e-bde4-0a17ba956b39/cover.jpg",
+            "price": 341.69,
+            "averageRating": 4.5,
+            "totalReviews": 1949,
+            "facilities": [
+              {
+                "id": "036aa273-f16c-4285-8e20-6ef3a8ee5a2a",
+                "name": "Business Center"
+              },
+              {
+                "id": "aecedc70-4928-4977-851d-50d827381101",
+                "name": "EV Charging"
+              },
+              {
+                "id": "28682880-187b-44e4-b755-fb45de5b8827",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "265a5ad9-d74d-492a-9c11-8d915659ae8e",
+                "name": "Garden"
+              },
+              {
+                "id": "4dbdb1c8-6a73-4861-874d-add360277466",
+                "name": "Hot Tub"
+              },
+              {
+                "id": "49ef90f0-c2cf-4e94-9660-914c00bc25b5",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "9c21bdcb-9240-4e96-88cc-e0be53b3bda8",
+                "name": "Room Service"
+              },
+              {
+                "id": "85d5a13c-aa86-4fbd-a359-cf43efcbabbe",
+                "name": "Spa"
+              }
+            ],
+            "services": [
+              {
+                "id": "70fc36ab-eac5-4971-b790-1ed236c9021a",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Riverside Boutique Hotel. Popular choice.",
+                "minSpend": 53.22,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "f37c6a76-2f3d-4aa4-8931-b20405dc9b72",
+                "name": "Sauna Session",
+                "description": "Sauna Session at Riverside Boutique Hotel. Walk-ins welcome.",
+                "minSpend": 41.95,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "177cac72-5258-4adf-be0a-a3a02f395bbd",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Riverside Boutique Hotel. Walk-ins welcome.",
+                "minSpend": 76.5,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "dda5f73d-4a45-4312-a198-fe614a65eae1",
+                "name": "Anti-Aging Facial",
+                "description": "Anti-Aging Facial at Riverside Boutique Hotel. Walk-ins welcome.",
+                "minSpend": 149.04,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "801f7232-5d38-4248-bac3-c8f34e44590f",
+                "name": "Pool Access",
+                "description": "Pool Access at Riverside Boutique Hotel. Limited availability.",
+                "minSpend": 36.36,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "75b440a4-fc14-45be-91d8-a474f9b95342",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Riverside Boutique Hotel. By appointment.",
+                "minSpend": 43.93,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "4946f011-d2a5-4385-8064-786317f857d6",
+                "name": "Meeting Room (2h)",
+                "description": "Meeting Room (2h) at Riverside Boutique Hotel. Popular choice.",
+                "minSpend": 320.93,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 3,
+          "profileId": "596079dd-4ad5-42db-83e2-14f53d60fd8f",
+          "profileName": "Harbor Hotel & Spa",
+          "score": 0.87,
+          "reasons": [
+            "Includes coworking and workspace services suitable for meetings.",
+            "Located in London, aligning with the user's location preference.",
+            "Decent average rating of 4.5 with 243 reviews."
+          ],
+          "profile": {
+            "id": "596079dd-4ad5-42db-83e2-14f53d60fd8f",
+            "name": "Harbor Hotel & Spa",
+            "description": "Harbor Hotel & Spa is a business-ready destination in London, United Kingdom. Guests love the signature spa treatments and the fitness studio. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "851 Broadway, London, UK",
+            "lat": 51.507634,
+            "lng": -0.071948,
+            "coverMedia": "https://images.example.com/profiles/596079dd-4ad5-42db-83e2-14f53d60fd8f/cover.jpg",
+            "price": 374.15,
+            "averageRating": 4.5,
+            "totalReviews": 243,
+            "facilities": [
+              {
+                "id": "cc64bdfb-9372-45d2-8f8e-ff47ae24d9ce",
+                "name": "Bar"
+              },
+              {
+                "id": "d88b3dc9-8b23-4789-a045-2dc66ada7534",
+                "name": "Business Center"
+              },
+              {
+                "id": "d70a8af9-0639-472a-8212-06f82d25cd8f",
+                "name": "Conference Rooms"
+              },
+              {
+                "id": "cb0f517f-a627-4dc5-a909-2bbd2398ebb7",
+                "name": "EV Charging"
+              },
+              {
+                "id": "e3d80ff8-ce51-4f96-9146-8418149cc426",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "6d9d1468-6c52-444c-bb45-1ef4c83bb461",
+                "name": "Gym / Fitness Center"
+              },
+              {
+                "id": "8f1670f7-6c24-4eb9-93fa-da24654231cc",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "7e0171c6-d967-498f-8254-fc64810ee95e",
+                "name": "Parking"
+              },
+              {
+                "id": "534f210d-b94c-4462-99a0-ce72c653ee03",
+                "name": "Sauna"
+              },
+              {
+                "id": "72cbd3a8-9716-4021-b6d4-43e80316c29d",
+                "name": "Spa"
+              },
+              {
+                "id": "382b36c4-d759-4d5e-8536-37ae1c15c69f",
+                "name": "Steam Room"
+              }
+            ],
+            "services": [
+              {
+                "id": "ebc500cf-0357-4375-b1b8-2acda23bf21c",
+                "name": "Swedish Massage",
+                "description": "Swedish Massage at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 83.86,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "93c47efc-7583-4c8a-968d-5692a2dcfcc7",
+                "name": "Anti-Aging Facial",
+                "description": "Anti-Aging Facial at Harbor Hotel & Spa. By appointment.",
+                "minSpend": 245.87,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "e14300f2-ba1b-45ab-a39d-4737bfc06934",
+                "name": "Aromatherapy Massage",
+                "description": "Aromatherapy Massage at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 195.5,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "75fe977d-16ce-4ecb-a746-65cce1701579",
+                "name": "Yoga Class",
+                "description": "Yoga Class at Harbor Hotel & Spa. By appointment.",
+                "minSpend": 43.22,
+                "category": {
+                  "id": "8e4b5e1e-8c06-49af-9f85-24d7301cb30f",
+                  "title": "Yoga",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "75b9645d-ea24-4d02-a71c-e13ddcc4ae3a",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 47.07,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "f1dc531d-0ae2-4471-a4bc-621197da3e71",
+                "name": "Cocktails at the Bar",
+                "description": "Cocktails at the Bar at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 34.95,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "d1bd5238-2796-424d-8c27-55fb422e4298",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Harbor Hotel & Spa. Limited availability.",
+                "minSpend": 41.38,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "f5bedcd5-17f1-40b4-bd7b-25d9bafa37d3",
+                "name": "Coworking Desk (day)",
+                "description": "Coworking Desk (day) at Harbor Hotel & Spa. By appointment.",
+                "minSpend": 32.04,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "candidatesCount": 20,
+      "noMatchMessage": null,
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 30
+  },
+  {
+    "prompt": "I need a hotel room near Times Square from March 12 for two nights.",
+    "result": {
+      "intent": {
+        "date": "2026-03-12T00:00:00.000Z",
+        "duration": 48,
+        "noOfGuests": 1,
+        "location": {
+          "address": "Times Square, New York, NY, USA"
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "I need a hotel room near Times Square from March 12 for two nights.",
+        "confidence": 0.95,
+        "inferredDescription": "Duration set to 48h for a two-night hotel stay. NoOfGuests assumed to be 1 as not specified.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No hotel rooms near Times Square, New York, for your two-night stay on March 12.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, there are no available hotel rooms near Times Square, New York, matching your criteria. Please try adjusting your search parameters or check back later.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 31
+  },
+  {
+    "prompt": "Is it possible to reserve a table for 5 this Sunday around lunchtime?",
+    "result": {
+      "intent": {
+        "date": "2026-03-01T12:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 5,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Is it possible to reserve a table for 5 this Sunday around lunchtime?",
+        "confidence": 0.95,
+        "inferredDescription": "Duration ~2h for a typical lunch. Location set from user's current position.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "3 dining options in London for your Sunday lunch.",
+      "recommendations": [
+        {
+          "rank": 1,
+          "profileId": "79abb361-a87e-4a66-a0de-bdad73d0e0a1",
+          "profileName": "Urban Spa Resort",
+          "score": 0.92,
+          "reasons": [
+            "Close proximity to the user's location.",
+            "Offers a Lunch Set Menu suitable for the user's request.",
+            "High average rating of 4.7 with 909 reviews."
+          ],
+          "profile": {
+            "id": "79abb361-a87e-4a66-a0de-bdad73d0e0a1",
+            "name": "Urban Spa Resort",
+            "description": "Urban Spa Resort is a quiet destination in London, United Kingdom. Guests love the skyline views and the concierge service. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "68 Park Ave, London, UK",
+            "lat": 51.547953,
+            "lng": -0.131724,
+            "coverMedia": "https://images.example.com/profiles/79abb361-a87e-4a66-a0de-bdad73d0e0a1/cover.jpg",
+            "price": 255.18,
+            "averageRating": 4.7,
+            "totalReviews": 909,
+            "facilities": [
+              {
+                "id": "51d7362d-934c-4a0a-9e46-dc5cea3effa4",
+                "name": "24‑hour Reception"
+              },
+              {
+                "id": "38bcabbb-e3ee-41f8-b0af-ab2a7d3ea04c",
+                "name": "Concierge"
+              },
+              {
+                "id": "b0a25c8a-8aed-4467-80aa-c4d324c52505",
+                "name": "EV Charging"
+              },
+              {
+                "id": "ea98d0c2-0907-401b-b9f5-90723e35c029",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "9d213130-86ed-4caf-8a3c-ba5e80c0a21a",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "f1e92909-4b58-44fc-bbbc-a96cfdd48ffd",
+                "name": "Non‑Smoking Rooms"
+              },
+              {
+                "id": "4a8db0f8-091e-4517-943b-157c83fd3f62",
+                "name": "Room Service"
+              },
+              {
+                "id": "d34724a3-23be-487e-bd16-1160030051f4",
+                "name": "Spa"
+              },
+              {
+                "id": "75d90b28-7b87-4863-9e14-ca7e08ba411c",
+                "name": "Valet Parking"
+              }
+            ],
+            "services": [
+              {
+                "id": "9894cb09-5874-4cfc-b11a-d084529b8e02",
+                "name": "Pool Access",
+                "description": "Pool Access at Urban Spa Resort. Limited availability.",
+                "minSpend": 55.39,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "0d048b36-cd68-46f4-8d5b-bd4c24a5c634",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Urban Spa Resort. Walk-ins welcome.",
+                "minSpend": 50.02,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "f024720a-3b37-4d49-af3c-c25465d6fe6b",
+                "name": "Yoga Class",
+                "description": "Yoga Class at Urban Spa Resort. Limited availability.",
+                "minSpend": 29.71,
+                "category": {
+                  "id": "8e4b5e1e-8c06-49af-9f85-24d7301cb30f",
+                  "title": "Yoga",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "a4b387d9-6fda-497e-8cac-53124a6fb944",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Urban Spa Resort. Popular choice.",
+                "minSpend": 164.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "74074edb-0e68-43a4-afe9-a8c21a415a50",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Urban Spa Resort. Limited availability.",
+                "minSpend": 77.11,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "88366eca-4b9c-4a3d-bac7-16e7174af2de",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Urban Spa Resort. Walk-ins welcome.",
+                "minSpend": 54.19,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 2,
+          "profileId": "476a386d-d262-4e20-b3f8-358b2ae403ab",
+          "profileName": "Heritage Retreat",
+          "score": 0.89,
+          "reasons": [
+            "Offers a Lunch Set Menu that fits the user's dining category.",
+            "High average rating of 5 with 2094 reviews.",
+            "Includes a restaurant facility, enhancing the dining experience."
+          ],
+          "profile": {
+            "id": "476a386d-d262-4e20-b3f8-358b2ae403ab",
+            "name": "Heritage Retreat",
+            "description": "Heritage Retreat is a luxury destination in London, United Kingdom. Guests love the private treatment suites and the skyline views. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "433 Rue de Rivoli, London, UK",
+            "lat": 51.536395,
+            "lng": -0.073878,
+            "coverMedia": "https://images.example.com/profiles/476a386d-d262-4e20-b3f8-358b2ae403ab/cover.jpg",
+            "price": 387.32,
+            "averageRating": 5,
+            "totalReviews": 2094,
+            "facilities": [
+              {
+                "id": "4abfc0e0-6209-4ddc-a309-8c9a77f1db44",
+                "name": "Air Conditioning"
+              },
+              {
+                "id": "5a861360-656c-42de-aa28-8394fc677812",
+                "name": "Concierge"
+              },
+              {
+                "id": "b13c4c83-029d-48dc-8afa-c62dfaf89795",
+                "name": "EV Charging"
+              },
+              {
+                "id": "fa7dba16-44b3-4933-a8f0-cc1403cb35df",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "0e02e1e6-0f7e-49bc-80a1-c3bc17a2e33b",
+                "name": "Garden"
+              },
+              {
+                "id": "5194f4f8-1d0e-4ba9-9788-3a3eedbdffd7",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "a0552ce9-5f47-4ece-a27f-3149c083b54c",
+                "name": "Parking"
+              },
+              {
+                "id": "4b4445da-fc3e-4571-bd35-7805482bd9bb",
+                "name": "Restaurant"
+              },
+              {
+                "id": "350d39fb-da7f-44ca-9dc8-48e656b099be",
+                "name": "Spa"
+              },
+              {
+                "id": "4949ea93-bcee-460b-af27-3cb633381c83",
+                "name": "Valet Parking"
+              },
+              {
+                "id": "fde69483-e8ea-4adc-8d2c-ea73f511d57d",
+                "name": "Wheelchair Accessible"
+              }
+            ],
+            "services": [
+              {
+                "id": "299225b7-1419-4bd9-aeaa-55bcbb9f138f",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 115.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "41e9b715-4d00-4d14-a2ae-4019060da8de",
+                "name": "Gym Access",
+                "description": "Gym Access at Heritage Retreat. Limited availability.",
+                "minSpend": 31.85,
+                "category": {
+                  "id": "cf092c54-0789-47b3-a57b-84ea222afe73",
+                  "title": "Gym",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "6b646aa0-3961-4b5b-80b3-17b0d1d68029",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 45.87,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "9fbe9a27-8e0c-4da8-bd7a-459f9be7cf64",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Heritage Retreat. By appointment.",
+                "minSpend": 66.35,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "3d9f2583-56a7-4435-8017-a971d1968893",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 38.03,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "03c05c11-87c8-4707-bd22-15687b8ffa3b",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Heritage Retreat. Popular choice.",
+                "minSpend": 911.88,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "d38b05b5-1c15-4553-9a7b-355f46ce7a1c",
+                "name": "Standard Room",
+                "description": "Standard Room at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 292.81,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 3,
+          "profileId": "7928bf99-7678-412c-8c0b-988e7c1e013c",
+          "profileName": "Luxe Retreat",
+          "score": 0.85,
+          "reasons": [
+            "Offers a Lunch Set Menu, matching the user's dining request.",
+            "High average rating of 5 with 1354 reviews.",
+            "Located in London, aligning with the user's location preference."
+          ],
+          "profile": {
+            "id": "7928bf99-7678-412c-8c0b-988e7c1e013c",
+            "name": "Luxe Retreat",
+            "description": "Luxe Retreat is a modern destination in London, United Kingdom. Guests love the fitness studio and the heated pool. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "730 Oxford St, London, UK",
+            "lat": 51.491489,
+            "lng": -0.183266,
+            "coverMedia": "https://images.example.com/profiles/7928bf99-7678-412c-8c0b-988e7c1e013c/cover.jpg",
+            "price": 261.67,
+            "averageRating": 5,
+            "totalReviews": 1354,
+            "facilities": [
+              {
+                "id": "c167ed74-85d6-472d-82bf-90b51058ca0d",
+                "name": "Concierge"
+              },
+              {
+                "id": "1293da8f-6131-4d59-8457-e2495f43ef3d",
+                "name": "Conference Rooms"
+              },
+              {
+                "id": "31b05025-611d-410c-9e69-64e8ddffaf49",
+                "name": "Family Friendly"
+              },
+              {
+                "id": "b8381f74-2c10-4c57-8b6d-22c6b5641af1",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "f0c1b142-c12f-4b9c-9314-44126cc601ef",
+                "name": "Garden"
+              },
+              {
+                "id": "a3abe32c-9e6a-4ae8-8f55-025a48bb42a6",
+                "name": "Hot Tub"
+              },
+              {
+                "id": "e7b98bcd-c1bc-4d2b-803d-7479fd10fff7",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "2e5eaa9f-1287-4538-b88e-072c52771638",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "eb616fa0-08fb-47a0-ab1e-da645aa66370",
+                "name": "Parking"
+              },
+              {
+                "id": "bb5b5d2f-0711-4e8d-a7fb-d2c7c7c68a7d",
+                "name": "Room Service"
+              },
+              {
+                "id": "14105f43-5b83-4ea7-b67a-dff04d7b7cf1",
+                "name": "Sauna"
+              },
+              {
+                "id": "0482aa05-c340-4c89-96c6-9ccdc72fdd0d",
+                "name": "Spa"
+              },
+              {
+                "id": "d5a115b1-2bdb-43d8-858d-4006b0197704",
+                "name": "Valet Parking"
+              },
+              {
+                "id": "0da3bb01-df74-44ff-afb9-8ca33eca9182",
+                "name": "Wheelchair Accessible"
+              }
+            ],
+            "services": [
+              {
+                "id": "b896cd15-944f-4831-b3a7-bc3805d18a4b",
+                "name": "Couples Massage",
+                "description": "Couples Massage at Luxe Retreat. Popular choice.",
+                "minSpend": 342.61,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "7e0db54a-f71d-4c9f-8bfb-d49cd39d33d2",
+                "name": "Sauna Session",
+                "description": "Sauna Session at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 53.13,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "7e211baf-4c36-4b6c-be2d-6f147fec41c2",
+                "name": "Aromatherapy Massage",
+                "description": "Aromatherapy Massage at Luxe Retreat. By appointment.",
+                "minSpend": 146.04,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "5eff164a-97bb-4c07-bcc5-75505939029a",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Luxe Retreat. Popular choice.",
+                "minSpend": 169.48,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "88ef3eeb-82a7-4384-969e-e817093297bf",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 61.93,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "8f01409a-9a2b-418c-84f6-d9b52cc3a6c8",
+                "name": "Dinner Tasting Menu",
+                "description": "Dinner Tasting Menu at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 115.36,
+                "category": {
+                  "id": "8f039c18-65af-4f8e-8ab0-9cbf1b560fe2",
+                  "title": "Dinner",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "943d91a5-a6bf-4e4a-9a1c-9598662b2262",
+                "name": "Standard Room",
+                "description": "Standard Room at Luxe Retreat. Popular choice.",
+                "minSpend": 132.35,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "1e098ccb-8853-44ea-849a-c5b6522fae88",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Luxe Retreat. By appointment.",
+                "minSpend": 871.63,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "0a12af3c-b92d-498f-a37f-c552817b7f56",
+                "name": "Coworking Desk (day)",
+                "description": "Coworking Desk (day) at Luxe Retreat. Popular choice.",
+                "minSpend": 22.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "candidatesCount": 20,
+      "noMatchMessage": null,
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 32
+  },
+  {
+    "prompt": "I’d like to book a spa appointment at 6pm if you have availability.",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T18:00:00.000Z",
+        "duration": 1,
+        "noOfGuests": 1,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-relaxation-001"
+        ],
+        "rawQuery": "I’d like to book a spa appointment at 6pm if you have availability.",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~1h for a typical spa appointment. Location set from user's current position.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "5 spa retreats in London for your 6pm appointment.",
+      "recommendations": [
+        {
+          "rank": 1,
+          "profileId": "79abb361-a87e-4a66-a0de-bdad73d0e0a1",
+          "profileName": "Urban Spa Resort",
+          "score": 0.92,
+          "reasons": [
+            "Closest location to user's address",
+            "Offers a Spa Day Pass, matching the relaxation category",
+            "High average rating of 4.7 with 909 reviews",
+            "Spa facilities available, aligning with user's spa appointment request"
+          ],
+          "profile": {
+            "id": "79abb361-a87e-4a66-a0de-bdad73d0e0a1",
+            "name": "Urban Spa Resort",
+            "description": "Urban Spa Resort is a quiet destination in London, United Kingdom. Guests love the skyline views and the concierge service. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "68 Park Ave, London, UK",
+            "lat": 51.547953,
+            "lng": -0.131724,
+            "coverMedia": "https://images.example.com/profiles/79abb361-a87e-4a66-a0de-bdad73d0e0a1/cover.jpg",
+            "price": 255.18,
+            "averageRating": 4.7,
+            "totalReviews": 909,
+            "facilities": [
+              {
+                "id": "51d7362d-934c-4a0a-9e46-dc5cea3effa4",
+                "name": "24‑hour Reception"
+              },
+              {
+                "id": "38bcabbb-e3ee-41f8-b0af-ab2a7d3ea04c",
+                "name": "Concierge"
+              },
+              {
+                "id": "b0a25c8a-8aed-4467-80aa-c4d324c52505",
+                "name": "EV Charging"
+              },
+              {
+                "id": "ea98d0c2-0907-401b-b9f5-90723e35c029",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "9d213130-86ed-4caf-8a3c-ba5e80c0a21a",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "f1e92909-4b58-44fc-bbbc-a96cfdd48ffd",
+                "name": "Non‑Smoking Rooms"
+              },
+              {
+                "id": "4a8db0f8-091e-4517-943b-157c83fd3f62",
+                "name": "Room Service"
+              },
+              {
+                "id": "d34724a3-23be-487e-bd16-1160030051f4",
+                "name": "Spa"
+              },
+              {
+                "id": "75d90b28-7b87-4863-9e14-ca7e08ba411c",
+                "name": "Valet Parking"
+              }
+            ],
+            "services": [
+              {
+                "id": "9894cb09-5874-4cfc-b11a-d084529b8e02",
+                "name": "Pool Access",
+                "description": "Pool Access at Urban Spa Resort. Limited availability.",
+                "minSpend": 55.39,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "0d048b36-cd68-46f4-8d5b-bd4c24a5c634",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Urban Spa Resort. Walk-ins welcome.",
+                "minSpend": 50.02,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "f024720a-3b37-4d49-af3c-c25465d6fe6b",
+                "name": "Yoga Class",
+                "description": "Yoga Class at Urban Spa Resort. Limited availability.",
+                "minSpend": 29.71,
+                "category": {
+                  "id": "8e4b5e1e-8c06-49af-9f85-24d7301cb30f",
+                  "title": "Yoga",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "a4b387d9-6fda-497e-8cac-53124a6fb944",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Urban Spa Resort. Popular choice.",
+                "minSpend": 164.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "74074edb-0e68-43a4-afe9-a8c21a415a50",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Urban Spa Resort. Limited availability.",
+                "minSpend": 77.11,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "88366eca-4b9c-4a3d-bac7-16e7174af2de",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Urban Spa Resort. Walk-ins welcome.",
+                "minSpend": 54.19,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 2,
+          "profileId": "476a386d-d262-4e20-b3f8-358b2ae403ab",
+          "profileName": "Heritage Retreat",
+          "score": 0.89,
+          "reasons": [
+            "Offers Spa Day Pass, suitable for relaxation",
+            "High average rating of 5 with 2094 reviews",
+            "Spa facilities available, matching user's request",
+            "Located in London, though slightly further from user's address"
+          ],
+          "profile": {
+            "id": "476a386d-d262-4e20-b3f8-358b2ae403ab",
+            "name": "Heritage Retreat",
+            "description": "Heritage Retreat is a luxury destination in London, United Kingdom. Guests love the private treatment suites and the skyline views. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "433 Rue de Rivoli, London, UK",
+            "lat": 51.536395,
+            "lng": -0.073878,
+            "coverMedia": "https://images.example.com/profiles/476a386d-d262-4e20-b3f8-358b2ae403ab/cover.jpg",
+            "price": 387.32,
+            "averageRating": 5,
+            "totalReviews": 2094,
+            "facilities": [
+              {
+                "id": "4abfc0e0-6209-4ddc-a309-8c9a77f1db44",
+                "name": "Air Conditioning"
+              },
+              {
+                "id": "5a861360-656c-42de-aa28-8394fc677812",
+                "name": "Concierge"
+              },
+              {
+                "id": "b13c4c83-029d-48dc-8afa-c62dfaf89795",
+                "name": "EV Charging"
+              },
+              {
+                "id": "fa7dba16-44b3-4933-a8f0-cc1403cb35df",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "0e02e1e6-0f7e-49bc-80a1-c3bc17a2e33b",
+                "name": "Garden"
+              },
+              {
+                "id": "5194f4f8-1d0e-4ba9-9788-3a3eedbdffd7",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "a0552ce9-5f47-4ece-a27f-3149c083b54c",
+                "name": "Parking"
+              },
+              {
+                "id": "4b4445da-fc3e-4571-bd35-7805482bd9bb",
+                "name": "Restaurant"
+              },
+              {
+                "id": "350d39fb-da7f-44ca-9dc8-48e656b099be",
+                "name": "Spa"
+              },
+              {
+                "id": "4949ea93-bcee-460b-af27-3cb633381c83",
+                "name": "Valet Parking"
+              },
+              {
+                "id": "fde69483-e8ea-4adc-8d2c-ea73f511d57d",
+                "name": "Wheelchair Accessible"
+              }
+            ],
+            "services": [
+              {
+                "id": "299225b7-1419-4bd9-aeaa-55bcbb9f138f",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 115.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "41e9b715-4d00-4d14-a2ae-4019060da8de",
+                "name": "Gym Access",
+                "description": "Gym Access at Heritage Retreat. Limited availability.",
+                "minSpend": 31.85,
+                "category": {
+                  "id": "cf092c54-0789-47b3-a57b-84ea222afe73",
+                  "title": "Gym",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "6b646aa0-3961-4b5b-80b3-17b0d1d68029",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 45.87,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "9fbe9a27-8e0c-4da8-bd7a-459f9be7cf64",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Heritage Retreat. By appointment.",
+                "minSpend": 66.35,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "3d9f2583-56a7-4435-8017-a971d1968893",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 38.03,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "03c05c11-87c8-4707-bd22-15687b8ffa3b",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Heritage Retreat. Popular choice.",
+                "minSpend": 911.88,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "d38b05b5-1c15-4553-9a7b-355f46ce7a1c",
+                "name": "Standard Room",
+                "description": "Standard Room at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 292.81,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 3,
+          "profileId": "7928bf99-7678-412c-8c0b-988e7c1e013c",
+          "profileName": "Luxe Retreat",
+          "score": 0.87,
+          "reasons": [
+            "Offers Aromatherapy Massage, fitting the relaxation category",
+            "High average rating of 5 with 1354 reviews",
+            "Spa facilities available, aligning with user's request",
+            "Located in London, though further from user's address"
+          ],
+          "profile": {
+            "id": "7928bf99-7678-412c-8c0b-988e7c1e013c",
+            "name": "Luxe Retreat",
+            "description": "Luxe Retreat is a modern destination in London, United Kingdom. Guests love the fitness studio and the heated pool. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "730 Oxford St, London, UK",
+            "lat": 51.491489,
+            "lng": -0.183266,
+            "coverMedia": "https://images.example.com/profiles/7928bf99-7678-412c-8c0b-988e7c1e013c/cover.jpg",
+            "price": 261.67,
+            "averageRating": 5,
+            "totalReviews": 1354,
+            "facilities": [
+              {
+                "id": "c167ed74-85d6-472d-82bf-90b51058ca0d",
+                "name": "Concierge"
+              },
+              {
+                "id": "1293da8f-6131-4d59-8457-e2495f43ef3d",
+                "name": "Conference Rooms"
+              },
+              {
+                "id": "31b05025-611d-410c-9e69-64e8ddffaf49",
+                "name": "Family Friendly"
+              },
+              {
+                "id": "b8381f74-2c10-4c57-8b6d-22c6b5641af1",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "f0c1b142-c12f-4b9c-9314-44126cc601ef",
+                "name": "Garden"
+              },
+              {
+                "id": "a3abe32c-9e6a-4ae8-8f55-025a48bb42a6",
+                "name": "Hot Tub"
+              },
+              {
+                "id": "e7b98bcd-c1bc-4d2b-803d-7479fd10fff7",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "2e5eaa9f-1287-4538-b88e-072c52771638",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "eb616fa0-08fb-47a0-ab1e-da645aa66370",
+                "name": "Parking"
+              },
+              {
+                "id": "bb5b5d2f-0711-4e8d-a7fb-d2c7c7c68a7d",
+                "name": "Room Service"
+              },
+              {
+                "id": "14105f43-5b83-4ea7-b67a-dff04d7b7cf1",
+                "name": "Sauna"
+              },
+              {
+                "id": "0482aa05-c340-4c89-96c6-9ccdc72fdd0d",
+                "name": "Spa"
+              },
+              {
+                "id": "d5a115b1-2bdb-43d8-858d-4006b0197704",
+                "name": "Valet Parking"
+              },
+              {
+                "id": "0da3bb01-df74-44ff-afb9-8ca33eca9182",
+                "name": "Wheelchair Accessible"
+              }
+            ],
+            "services": [
+              {
+                "id": "b896cd15-944f-4831-b3a7-bc3805d18a4b",
+                "name": "Couples Massage",
+                "description": "Couples Massage at Luxe Retreat. Popular choice.",
+                "minSpend": 342.61,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "7e0db54a-f71d-4c9f-8bfb-d49cd39d33d2",
+                "name": "Sauna Session",
+                "description": "Sauna Session at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 53.13,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "7e211baf-4c36-4b6c-be2d-6f147fec41c2",
+                "name": "Aromatherapy Massage",
+                "description": "Aromatherapy Massage at Luxe Retreat. By appointment.",
+                "minSpend": 146.04,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "5eff164a-97bb-4c07-bcc5-75505939029a",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Luxe Retreat. Popular choice.",
+                "minSpend": 169.48,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "88ef3eeb-82a7-4384-969e-e817093297bf",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 61.93,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "8f01409a-9a2b-418c-84f6-d9b52cc3a6c8",
+                "name": "Dinner Tasting Menu",
+                "description": "Dinner Tasting Menu at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 115.36,
+                "category": {
+                  "id": "8f039c18-65af-4f8e-8ab0-9cbf1b560fe2",
+                  "title": "Dinner",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "943d91a5-a6bf-4e4a-9a1c-9598662b2262",
+                "name": "Standard Room",
+                "description": "Standard Room at Luxe Retreat. Popular choice.",
+                "minSpend": 132.35,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "1e098ccb-8853-44ea-849a-c5b6522fae88",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Luxe Retreat. By appointment.",
+                "minSpend": 871.63,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "0a12af3c-b92d-498f-a37f-c552817b7f56",
+                "name": "Coworking Desk (day)",
+                "description": "Coworking Desk (day) at Luxe Retreat. Popular choice.",
+                "minSpend": 22.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 4,
+          "profileId": "885bccd3-fc77-4a7a-949a-7558d0f614e3",
+          "profileName": "Heritage Resort",
+          "score": 0.85,
+          "reasons": [
+            "Offers Spa Day Pass, suitable for relaxation",
+            "High average rating of 4.9 with 615 reviews",
+            "Spa facilities available, matching user's request",
+            "Located in London, though further from user's address"
+          ],
+          "profile": {
+            "id": "885bccd3-fc77-4a7a-949a-7558d0f614e3",
+            "name": "Heritage Resort",
+            "description": "Heritage Resort is a central destination in London, United Kingdom. Guests love the skyline views and the skyline views. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "395 Rue de Rivoli, London, UK",
+            "lat": 51.514497,
+            "lng": -0.160991,
+            "coverMedia": "https://images.example.com/profiles/885bccd3-fc77-4a7a-949a-7558d0f614e3/cover.jpg",
+            "price": 403.62,
+            "averageRating": 4.9,
+            "totalReviews": 615,
+            "facilities": [
+              {
+                "id": "ae75c303-0ffc-4dc3-be70-503c2f668cdc",
+                "name": "Air Conditioning"
+              },
+              {
+                "id": "fe374ded-1881-4a0c-8d85-ed17324ab870",
+                "name": "EV Charging"
+              },
+              {
+                "id": "8c983290-17c7-4f9d-bc1c-65d20022eaa0",
+                "name": "Family Friendly"
+              },
+              {
+                "id": "6aaaaee3-5a44-4ec0-8f37-6c0b594866b0",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "81368004-4f50-424f-b232-682cd4c2bbe0",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "e698bb64-14d5-49cf-9b49-4110f84c94b3",
+                "name": "Outdoor Pool"
+              },
+              {
+                "id": "c1ccd3b1-19b6-412e-95b4-c36b8fb885b0",
+                "name": "Room Service"
+              },
+              {
+                "id": "430a89f9-8660-4d55-b188-7167b4104fc2",
+                "name": "Sauna"
+              },
+              {
+                "id": "3d62493a-0dd7-425a-869f-386ff85939de",
+                "name": "Spa"
+              },
+              {
+                "id": "d6f224de-2eea-4a39-b385-52552d271b17",
+                "name": "Steam Room"
+              },
+              {
+                "id": "eaf3fdca-0597-477e-bf33-177a1bb97bec",
+                "name": "Valet Parking"
+              }
+            ],
+            "services": [
+              {
+                "id": "8edef8d3-f845-48ad-8b92-0646f5d47f13",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Heritage Resort. By appointment.",
+                "minSpend": 35.45,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "a69086ae-d68c-43f3-a0bb-7cff31a7701e",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Heritage Resort. By appointment.",
+                "minSpend": 88.47,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "dd9f05d1-f4a2-44d2-a360-61ed95ffbe9e",
+                "name": "Aromatherapy Massage",
+                "description": "Aromatherapy Massage at Heritage Resort. Walk-ins welcome.",
+                "minSpend": 201.57,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "acc4dcc5-9fa5-4243-ac25-907db9fda49f",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Heritage Resort. Limited availability.",
+                "minSpend": 178.16,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "aa118725-e8e5-4dfd-a25e-70c54e55e71e",
+                "name": "Anti-Aging Facial",
+                "description": "Anti-Aging Facial at Heritage Resort. Limited availability.",
+                "minSpend": 140.29,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "5156a698-1731-454c-96fa-806bf939de02",
+                "name": "Meeting Room (2h)",
+                "description": "Meeting Room (2h) at Heritage Resort. By appointment.",
+                "minSpend": 550.75,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 5,
+          "profileId": "8f732f9a-84e4-4671-abd5-aa8e9f99299f",
+          "profileName": "Grand Wellness Hotel",
+          "score": 0.84,
+          "reasons": [
+            "Offers Hydrating Facial, fitting the relaxation category",
+            "High average rating of 4.9 with 2365 reviews",
+            "Spa facilities available, aligning with user's request",
+            "Located in London, though further from user's address"
+          ],
+          "profile": {
+            "id": "8f732f9a-84e4-4671-abd5-aa8e9f99299f",
+            "name": "Grand Wellness Hotel",
+            "description": "Grand Wellness Hotel is a luxury destination in London, United Kingdom. Guests love the award-winning dining and the skyline views. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "701 Rue de Rivoli, London, UK",
+            "lat": 51.507401,
+            "lng": -0.065444,
+            "coverMedia": "https://images.example.com/profiles/8f732f9a-84e4-4671-abd5-aa8e9f99299f/cover.jpg",
+            "price": 110.87,
+            "averageRating": 4.9,
+            "totalReviews": 2365,
+            "facilities": [
+              {
+                "id": "aa47a3d2-9ef5-41ad-861c-d93d1a25a29f",
+                "name": "Airport Shuttle"
+              },
+              {
+                "id": "ddc42e48-b334-46a4-af03-09a39a07e808",
+                "name": "Bar"
+              },
+              {
+                "id": "c68375ab-4b9b-4ada-8f93-052d231245c0",
+                "name": "Concierge"
+              },
+              {
+                "id": "f87dd35f-6246-4eed-b894-02853db06076",
+                "name": "EV Charging"
+              },
+              {
+                "id": "42e05a60-cdf8-4934-9637-1f451c2dccf0",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "270bc173-4091-4a0a-a508-2b2b023b5f84",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "7a552e70-8532-4108-a80f-024e3728d015",
+                "name": "Laundry Service"
+              },
+              {
+                "id": "e89c9034-6a78-4aa6-9bbe-1d842f042ec1",
+                "name": "Sauna"
+              },
+              {
+                "id": "6df68dda-b20f-469a-9f1a-953039bfb13e",
+                "name": "Spa"
+              },
+              {
+                "id": "70ceab81-5d8f-48e0-935b-06bf80a18e5b",
+                "name": "Steam Room"
+              },
+              {
+                "id": "bc417fa3-9662-4d90-9a45-416e0226ac02",
+                "name": "Terrace"
+              }
+            ],
+            "services": [
+              {
+                "id": "59c7c6cf-d61b-4abf-b71b-4116bd306dc2",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Grand Wellness Hotel. Popular choice.",
+                "minSpend": 111.89,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "a04c15ae-4db5-42ac-8596-21e009ae8207",
+                "name": "Gym Access",
+                "description": "Gym Access at Grand Wellness Hotel. Walk-ins welcome.",
+                "minSpend": 36.1,
+                "category": {
+                  "id": "cf092c54-0789-47b3-a57b-84ea222afe73",
+                  "title": "Gym",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "8972e147-a553-41c0-860c-95117ff58c2a",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Grand Wellness Hotel. Popular choice.",
+                "minSpend": 913.89,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "74910528-266b-406c-a5a9-84bf30687349",
+                "name": "Standard Room",
+                "description": "Standard Room at Grand Wellness Hotel. Walk-ins welcome.",
+                "minSpend": 262.99,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "candidatesCount": 20,
+      "noMatchMessage": null,
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 33
+  },
+  {
+    "prompt": "Can I get a rooftop table this Saturday evening for about 2 hours?",
+    "result": {
+      "intent": {
+        "date": "2026-02-28T18:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 1,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "Can I get a rooftop table this Saturday evening for about 2 hours?",
+        "confidence": 0.9,
+        "inferredDescription": "NoOfGuests set to 1 as not specified. Location set from user's current position.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No rooftop dining options found in London for your Saturday evening.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, none of the available spaces match your request for a rooftop dining experience in London. Please try adjusting your search criteria or check back later for more options.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 34
+  },
+  {
+    "prompt": "I’m planning a birthday dinner for 10 people next weekend.",
+    "result": {
+      "intent": {
+        "date": "2026-03-07T19:00:00.000Z",
+        "duration": 2,
+        "noOfGuests": 10,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-dining-001"
+        ],
+        "rawQuery": "I’m planning a birthday dinner for 10 people next weekend.",
+        "confidence": 0.9,
+        "inferredDescription": "Duration ~2h for a typical dinner. Location set from user's current position.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "No suitable dining venues found in London for your birthday dinner next weekend.",
+      "recommendations": [],
+      "candidatesCount": 20,
+      "noMatchMessage": "Unfortunately, none of the available spaces match your request for a dining venue suitable for a birthday dinner for 10 people in London. Please try adjusting your search criteria or check back later for more options.",
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 35
+  },
+  {
+    "prompt": "Do you have any rooms left for tonight? It’s just for one person.",
+    "result": {
+      "intent": {
+        "date": "2026-02-27T18:00:00.000Z",
+        "duration": 24,
+        "noOfGuests": 1,
+        "location": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        },
+        "categoryIds": [
+          "cat-sleep-001"
+        ],
+        "rawQuery": "Do you have any rooms left for tonight? It’s just for one person.",
+        "confidence": 0.9,
+        "inferredDescription": "Duration 24h for an overnight stay. Location set from user's current position.",
+        "userLocation": {
+          "address": "14 Grange Road, London, N6 4DG, United Kingdom",
+          "lat": 51.576525,
+          "lng": -0.1537649
+        }
+      },
+      "summary": "5 accommodations in London for your overnight stay.",
+      "recommendations": [
+        {
+          "rank": 1,
+          "profileId": "7928bf99-7678-412c-8c0b-988e7c1e013c",
+          "profileName": "Luxe Retreat",
+          "score": 0.95,
+          "reasons": [
+            "Close proximity to user's location",
+            "Offers a Standard Room suitable for one person",
+            "High average rating of 5 with 1354 reviews",
+            "Facilities include Free Wi-Fi and Spa, enhancing comfort"
+          ],
+          "profile": {
+            "id": "7928bf99-7678-412c-8c0b-988e7c1e013c",
+            "name": "Luxe Retreat",
+            "description": "Luxe Retreat is a modern destination in London, United Kingdom. Guests love the fitness studio and the heated pool. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "730 Oxford St, London, UK",
+            "lat": 51.491489,
+            "lng": -0.183266,
+            "coverMedia": "https://images.example.com/profiles/7928bf99-7678-412c-8c0b-988e7c1e013c/cover.jpg",
+            "price": 261.67,
+            "averageRating": 5,
+            "totalReviews": 1354,
+            "facilities": [
+              {
+                "id": "c167ed74-85d6-472d-82bf-90b51058ca0d",
+                "name": "Concierge"
+              },
+              {
+                "id": "1293da8f-6131-4d59-8457-e2495f43ef3d",
+                "name": "Conference Rooms"
+              },
+              {
+                "id": "31b05025-611d-410c-9e69-64e8ddffaf49",
+                "name": "Family Friendly"
+              },
+              {
+                "id": "b8381f74-2c10-4c57-8b6d-22c6b5641af1",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "f0c1b142-c12f-4b9c-9314-44126cc601ef",
+                "name": "Garden"
+              },
+              {
+                "id": "a3abe32c-9e6a-4ae8-8f55-025a48bb42a6",
+                "name": "Hot Tub"
+              },
+              {
+                "id": "e7b98bcd-c1bc-4d2b-803d-7479fd10fff7",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "2e5eaa9f-1287-4538-b88e-072c52771638",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "eb616fa0-08fb-47a0-ab1e-da645aa66370",
+                "name": "Parking"
+              },
+              {
+                "id": "bb5b5d2f-0711-4e8d-a7fb-d2c7c7c68a7d",
+                "name": "Room Service"
+              },
+              {
+                "id": "14105f43-5b83-4ea7-b67a-dff04d7b7cf1",
+                "name": "Sauna"
+              },
+              {
+                "id": "0482aa05-c340-4c89-96c6-9ccdc72fdd0d",
+                "name": "Spa"
+              },
+              {
+                "id": "d5a115b1-2bdb-43d8-858d-4006b0197704",
+                "name": "Valet Parking"
+              },
+              {
+                "id": "0da3bb01-df74-44ff-afb9-8ca33eca9182",
+                "name": "Wheelchair Accessible"
+              }
+            ],
+            "services": [
+              {
+                "id": "b896cd15-944f-4831-b3a7-bc3805d18a4b",
+                "name": "Couples Massage",
+                "description": "Couples Massage at Luxe Retreat. Popular choice.",
+                "minSpend": 342.61,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "7e0db54a-f71d-4c9f-8bfb-d49cd39d33d2",
+                "name": "Sauna Session",
+                "description": "Sauna Session at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 53.13,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "7e211baf-4c36-4b6c-be2d-6f147fec41c2",
+                "name": "Aromatherapy Massage",
+                "description": "Aromatherapy Massage at Luxe Retreat. By appointment.",
+                "minSpend": 146.04,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "5eff164a-97bb-4c07-bcc5-75505939029a",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Luxe Retreat. Popular choice.",
+                "minSpend": 169.48,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "88ef3eeb-82a7-4384-969e-e817093297bf",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 61.93,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "8f01409a-9a2b-418c-84f6-d9b52cc3a6c8",
+                "name": "Dinner Tasting Menu",
+                "description": "Dinner Tasting Menu at Luxe Retreat. Walk-ins welcome.",
+                "minSpend": 115.36,
+                "category": {
+                  "id": "8f039c18-65af-4f8e-8ab0-9cbf1b560fe2",
+                  "title": "Dinner",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "943d91a5-a6bf-4e4a-9a1c-9598662b2262",
+                "name": "Standard Room",
+                "description": "Standard Room at Luxe Retreat. Popular choice.",
+                "minSpend": 132.35,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "1e098ccb-8853-44ea-849a-c5b6522fae88",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Luxe Retreat. By appointment.",
+                "minSpend": 871.63,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "0a12af3c-b92d-498f-a37f-c552817b7f56",
+                "name": "Coworking Desk (day)",
+                "description": "Coworking Desk (day) at Luxe Retreat. Popular choice.",
+                "minSpend": 22.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 2,
+          "profileId": "476a386d-d262-4e20-b3f8-358b2ae403ab",
+          "profileName": "Heritage Retreat",
+          "score": 0.92,
+          "reasons": [
+            "Offers a Standard Room suitable for one person",
+            "High average rating of 5 with 2094 reviews",
+            "Facilities include Free Wi-Fi and Spa, enhancing comfort",
+            "Located within a reasonable distance from user's location"
+          ],
+          "profile": {
+            "id": "476a386d-d262-4e20-b3f8-358b2ae403ab",
+            "name": "Heritage Retreat",
+            "description": "Heritage Retreat is a luxury destination in London, United Kingdom. Guests love the private treatment suites and the skyline views. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "433 Rue de Rivoli, London, UK",
+            "lat": 51.536395,
+            "lng": -0.073878,
+            "coverMedia": "https://images.example.com/profiles/476a386d-d262-4e20-b3f8-358b2ae403ab/cover.jpg",
+            "price": 387.32,
+            "averageRating": 5,
+            "totalReviews": 2094,
+            "facilities": [
+              {
+                "id": "4abfc0e0-6209-4ddc-a309-8c9a77f1db44",
+                "name": "Air Conditioning"
+              },
+              {
+                "id": "5a861360-656c-42de-aa28-8394fc677812",
+                "name": "Concierge"
+              },
+              {
+                "id": "b13c4c83-029d-48dc-8afa-c62dfaf89795",
+                "name": "EV Charging"
+              },
+              {
+                "id": "fa7dba16-44b3-4933-a8f0-cc1403cb35df",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "0e02e1e6-0f7e-49bc-80a1-c3bc17a2e33b",
+                "name": "Garden"
+              },
+              {
+                "id": "5194f4f8-1d0e-4ba9-9788-3a3eedbdffd7",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "a0552ce9-5f47-4ece-a27f-3149c083b54c",
+                "name": "Parking"
+              },
+              {
+                "id": "4b4445da-fc3e-4571-bd35-7805482bd9bb",
+                "name": "Restaurant"
+              },
+              {
+                "id": "350d39fb-da7f-44ca-9dc8-48e656b099be",
+                "name": "Spa"
+              },
+              {
+                "id": "4949ea93-bcee-460b-af27-3cb633381c83",
+                "name": "Valet Parking"
+              },
+              {
+                "id": "fde69483-e8ea-4adc-8d2c-ea73f511d57d",
+                "name": "Wheelchair Accessible"
+              }
+            ],
+            "services": [
+              {
+                "id": "299225b7-1419-4bd9-aeaa-55bcbb9f138f",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 115.83,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "41e9b715-4d00-4d14-a2ae-4019060da8de",
+                "name": "Gym Access",
+                "description": "Gym Access at Heritage Retreat. Limited availability.",
+                "minSpend": 31.85,
+                "category": {
+                  "id": "cf092c54-0789-47b3-a57b-84ea222afe73",
+                  "title": "Gym",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "6b646aa0-3961-4b5b-80b3-17b0d1d68029",
+                "name": "Breakfast Buffet",
+                "description": "Breakfast Buffet at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 45.87,
+                "category": {
+                  "id": "d9781afd-1ada-4391-84b2-ac0805c8d8a8",
+                  "title": "Breakfast",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "9fbe9a27-8e0c-4da8-bd7a-459f9be7cf64",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Heritage Retreat. By appointment.",
+                "minSpend": 66.35,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "3d9f2583-56a7-4435-8017-a971d1968893",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 38.03,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "03c05c11-87c8-4707-bd22-15687b8ffa3b",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Heritage Retreat. Popular choice.",
+                "minSpend": 911.88,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "d38b05b5-1c15-4553-9a7b-355f46ce7a1c",
+                "name": "Standard Room",
+                "description": "Standard Room at Heritage Retreat. Walk-ins welcome.",
+                "minSpend": 292.81,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 3,
+          "profileId": "8f732f9a-84e4-4671-abd5-aa8e9f99299f",
+          "profileName": "Grand Wellness Hotel",
+          "score": 0.9,
+          "reasons": [
+            "Offers a Standard Room suitable for one person",
+            "High average rating of 4.9 with 2365 reviews",
+            "Facilities include Free Wi-Fi and Spa, enhancing comfort",
+            "Located within a reasonable distance from user's location"
+          ],
+          "profile": {
+            "id": "8f732f9a-84e4-4671-abd5-aa8e9f99299f",
+            "name": "Grand Wellness Hotel",
+            "description": "Grand Wellness Hotel is a luxury destination in London, United Kingdom. Guests love the award-winning dining and the skyline views. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "701 Rue de Rivoli, London, UK",
+            "lat": 51.507401,
+            "lng": -0.065444,
+            "coverMedia": "https://images.example.com/profiles/8f732f9a-84e4-4671-abd5-aa8e9f99299f/cover.jpg",
+            "price": 110.87,
+            "averageRating": 4.9,
+            "totalReviews": 2365,
+            "facilities": [
+              {
+                "id": "aa47a3d2-9ef5-41ad-861c-d93d1a25a29f",
+                "name": "Airport Shuttle"
+              },
+              {
+                "id": "ddc42e48-b334-46a4-af03-09a39a07e808",
+                "name": "Bar"
+              },
+              {
+                "id": "c68375ab-4b9b-4ada-8f93-052d231245c0",
+                "name": "Concierge"
+              },
+              {
+                "id": "f87dd35f-6246-4eed-b894-02853db06076",
+                "name": "EV Charging"
+              },
+              {
+                "id": "42e05a60-cdf8-4934-9637-1f451c2dccf0",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "270bc173-4091-4a0a-a508-2b2b023b5f84",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "7a552e70-8532-4108-a80f-024e3728d015",
+                "name": "Laundry Service"
+              },
+              {
+                "id": "e89c9034-6a78-4aa6-9bbe-1d842f042ec1",
+                "name": "Sauna"
+              },
+              {
+                "id": "6df68dda-b20f-469a-9f1a-953039bfb13e",
+                "name": "Spa"
+              },
+              {
+                "id": "70ceab81-5d8f-48e0-935b-06bf80a18e5b",
+                "name": "Steam Room"
+              },
+              {
+                "id": "bc417fa3-9662-4d90-9a45-416e0226ac02",
+                "name": "Terrace"
+              }
+            ],
+            "services": [
+              {
+                "id": "59c7c6cf-d61b-4abf-b71b-4116bd306dc2",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Grand Wellness Hotel. Popular choice.",
+                "minSpend": 111.89,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "a04c15ae-4db5-42ac-8596-21e009ae8207",
+                "name": "Gym Access",
+                "description": "Gym Access at Grand Wellness Hotel. Walk-ins welcome.",
+                "minSpend": 36.1,
+                "category": {
+                  "id": "cf092c54-0789-47b3-a57b-84ea222afe73",
+                  "title": "Gym",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "8972e147-a553-41c0-860c-95117ff58c2a",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Grand Wellness Hotel. Popular choice.",
+                "minSpend": 913.89,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "74910528-266b-406c-a5a9-84bf30687349",
+                "name": "Standard Room",
+                "description": "Standard Room at Grand Wellness Hotel. Walk-ins welcome.",
+                "minSpend": 262.99,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 4,
+          "profileId": "88766c82-32ae-4ca2-9ba8-eecca6aa6cef",
+          "profileName": "Urban Wellness Retreat",
+          "score": 0.88,
+          "reasons": [
+            "Offers a variety of services including Gym Access",
+            "High average rating of 4.8 with 1367 reviews",
+            "Facilities include Free Wi-Fi and Spa, enhancing comfort",
+            "Located within a reasonable distance from user's location"
+          ],
+          "profile": {
+            "id": "88766c82-32ae-4ca2-9ba8-eecca6aa6cef",
+            "name": "Urban Wellness Retreat",
+            "description": "Urban Wellness Retreat is a romantic destination in London, United Kingdom. Guests love the fitness studio and the sauna & steam rooms. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "540 Via Nazionale, London, UK",
+            "lat": 51.502913,
+            "lng": -0.119195,
+            "coverMedia": "https://images.example.com/profiles/88766c82-32ae-4ca2-9ba8-eecca6aa6cef/cover.jpg",
+            "price": 282.8,
+            "averageRating": 4.8,
+            "totalReviews": 1367,
+            "facilities": [
+              {
+                "id": "cf979d21-7896-4622-893a-ea4ed0c1771d",
+                "name": "Air Conditioning"
+              },
+              {
+                "id": "14b1c542-8bda-4247-b9a3-15aebaf186d0",
+                "name": "Airport Shuttle"
+              },
+              {
+                "id": "a0b5c141-3e84-4eeb-91c1-5302fecada25",
+                "name": "Bar"
+              },
+              {
+                "id": "6d136149-7d6f-4599-81ef-d2ef4cd8b914",
+                "name": "Business Center"
+              },
+              {
+                "id": "514e9dc1-ffdd-4faf-832d-e3431ffeca7c",
+                "name": "Elevator"
+              },
+              {
+                "id": "45765fce-471e-4d04-a708-64a32bcbf1eb",
+                "name": "Family Friendly"
+              },
+              {
+                "id": "0ce957c3-1a9f-48f1-9df3-462a41ee8a28",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "ba35680e-e00f-4a8d-a1a6-1cb73001e568",
+                "name": "Gym / Fitness Center"
+              },
+              {
+                "id": "ab7ecfbc-a97f-4e85-8d2f-e69313635e45",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "02cb83eb-9e89-4c89-9bb7-5ba4724f4d17",
+                "name": "Laundry Service"
+              },
+              {
+                "id": "2989c1be-0289-47f1-a53f-bc8d29ebdadd",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "3b83943f-d7e8-4cc1-8370-a5579b04a7f9",
+                "name": "Parking"
+              },
+              {
+                "id": "62f0feda-ae73-4339-a494-ec8203cfe51e",
+                "name": "Room Service"
+              },
+              {
+                "id": "90b2a2da-2cfb-4e57-83d0-2566b03ae94e",
+                "name": "Sauna"
+              },
+              {
+                "id": "f57c2e91-135d-4ba2-9de4-1cf3106e97ff",
+                "name": "Spa"
+              },
+              {
+                "id": "e803a3c3-dbd6-4f57-b9aa-10247b5b9da7",
+                "name": "Wheelchair Accessible"
+              }
+            ],
+            "services": [
+              {
+                "id": "d7109b89-4de7-447e-9c4d-5cb652623072",
+                "name": "Steam Room Session",
+                "description": "Steam Room Session at Urban Wellness Retreat. Limited availability.",
+                "minSpend": 47.07,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "1362802f-65b1-4ff0-a12b-4ea78a100ab7",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Urban Wellness Retreat. By appointment.",
+                "minSpend": 135.68,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "4b0fee92-f1df-40be-a612-860d98362215",
+                "name": "Couples Massage",
+                "description": "Couples Massage at Urban Wellness Retreat. Popular choice.",
+                "minSpend": 371.23,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "1a6a7084-3c15-4b9d-b385-b4cf1046e4d3",
+                "name": "Gym Access",
+                "description": "Gym Access at Urban Wellness Retreat. By appointment.",
+                "minSpend": 10.76,
+                "category": {
+                  "id": "cf092c54-0789-47b3-a57b-84ea222afe73",
+                  "title": "Gym",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "fd5ef29d-d48c-4dd2-b8cb-753b55904018",
+                "name": "Afternoon Tea",
+                "description": "Afternoon Tea at Urban Wellness Retreat. Limited availability.",
+                "minSpend": 27.79,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "f44d549c-c6bc-43c2-8330-6e082eca2548",
+                "name": "Cocktails at the Bar",
+                "description": "Cocktails at the Bar at Urban Wellness Retreat. Walk-ins welcome.",
+                "minSpend": 23.02,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "9f1b9e8f-6bf2-48d2-abb8-80e27faab705",
+                "name": "Lunch Set Menu",
+                "description": "Lunch Set Menu at Urban Wellness Retreat. By appointment.",
+                "minSpend": 29.61,
+                "category": {
+                  "id": "c4fb0150-3388-4cb5-8eb8-74793fac7912",
+                  "title": "Lunch",
+                  "type": "DINING"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "rank": 5,
+          "profileId": "e89de009-9701-4424-91c7-77869813d606",
+          "profileName": "Tranquil Wellness Retreat",
+          "score": 0.87,
+          "reasons": [
+            "Offers an Executive Suite, suitable for an overnight stay",
+            "High average rating of 5 with 2361 reviews",
+            "Facilities include Free Wi-Fi and Spa, enhancing comfort",
+            "Located within a reasonable distance from user's location"
+          ],
+          "profile": {
+            "id": "e89de009-9701-4424-91c7-77869813d606",
+            "name": "Tranquil Wellness Retreat",
+            "description": "Tranquil Wellness Retreat is a business-ready destination in London, United Kingdom. Guests love the concierge service and the skyline views. Perfect for day spa visits, weekend stays, and small group bookings.",
+            "address": "520 Oxford St, London, UK",
+            "lat": 51.562712,
+            "lng": 0.004844,
+            "coverMedia": "https://images.example.com/profiles/e89de009-9701-4424-91c7-77869813d606/cover.jpg",
+            "price": 316.74,
+            "averageRating": 5,
+            "totalReviews": 2361,
+            "facilities": [
+              {
+                "id": "6a998e0c-66f9-42ec-a0c3-c04c792bd70c",
+                "name": "24‑hour Reception"
+              },
+              {
+                "id": "2ca6e7dd-f0a8-4831-a445-995325848cfd",
+                "name": "Air Conditioning"
+              },
+              {
+                "id": "8101bbf2-4099-42d3-b5fb-5bc862628d19",
+                "name": "EV Charging"
+              },
+              {
+                "id": "f6097ee3-9182-4437-8869-9c3ae60074b2",
+                "name": "Elevator"
+              },
+              {
+                "id": "6497082a-80ac-4b5c-9fee-035d13d367a1",
+                "name": "Free Wi‑Fi"
+              },
+              {
+                "id": "cf572394-35cb-4a3f-a800-3a3cf298d4a8",
+                "name": "Garden"
+              },
+              {
+                "id": "00b9508f-03aa-4994-97f5-6b5f0ac700b6",
+                "name": "Indoor Pool"
+              },
+              {
+                "id": "9b8eca57-1296-4f92-97f7-d7b84e256316",
+                "name": "Laundry Service"
+              },
+              {
+                "id": "0899990c-5ea5-48b6-8f76-650aa4b01771",
+                "name": "Massage Rooms"
+              },
+              {
+                "id": "be597f80-26ad-4bcb-b64d-4d051e327948",
+                "name": "Parking"
+              },
+              {
+                "id": "cb5d2c7f-0a1f-4b67-b65f-e1d174239781",
+                "name": "Room Service"
+              },
+              {
+                "id": "27413029-f66e-4830-ad62-e5d379074247",
+                "name": "Spa"
+              },
+              {
+                "id": "84d1c45e-1fdc-4437-b9e2-47e26263169a",
+                "name": "Steam Room"
+              },
+              {
+                "id": "8cabb875-3a57-4e7d-978b-dd11aefa3a3a",
+                "name": "Terrace"
+              }
+            ],
+            "services": [
+              {
+                "id": "d7f3463a-cc34-48b8-8b0d-2f847a5e3f6a",
+                "name": "Deep Tissue Massage",
+                "description": "Deep Tissue Massage at Tranquil Wellness Retreat. Popular choice.",
+                "minSpend": 214.49,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "cc301ac2-7b34-4219-b90d-98f269ffc36c",
+                "name": "Hydrating Facial",
+                "description": "Hydrating Facial at Tranquil Wellness Retreat. By appointment.",
+                "minSpend": 180.48,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "5b1be5ff-0abb-4994-a589-f04578db274d",
+                "name": "Spa Day Pass",
+                "description": "Spa Day Pass at Tranquil Wellness Retreat. Walk-ins welcome.",
+                "minSpend": 76.11,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              },
+              {
+                "id": "5ff91a0f-3f1d-44db-9b05-e91508eae663",
+                "name": "Aromatherapy Massage",
+                "description": "Aromatherapy Massage at Tranquil Wellness Retreat. Popular choice.",
+                "minSpend": 138.46,
+                "category": {
+                  "id": "5ead572a-5454-4ab6-95cc-155aed9161f8",
+                  "title": "Massage",
+                  "type": "RELAXATION"
+                }
+              },
+              {
+                "id": "05efbf7e-eb26-403d-b0c2-9da7c9b81e7b",
+                "name": "Dinner Tasting Menu",
+                "description": "Dinner Tasting Menu at Tranquil Wellness Retreat. Limited availability.",
+                "minSpend": 83.43,
+                "category": {
+                  "id": "8f039c18-65af-4f8e-8ab0-9cbf1b560fe2",
+                  "title": "Dinner",
+                  "type": "DINING"
+                }
+              },
+              {
+                "id": "ae6f3a00-bbef-4248-ac8d-5b3ad11f6ff7",
+                "name": "Executive Suite",
+                "description": "Executive Suite at Tranquil Wellness Retreat. By appointment.",
+                "minSpend": 860.75,
+                "category": {
+                  "id": "615f9e01-ec9e-472e-8d20-4e258bb59ba1",
+                  "title": "Workspace",
+                  "type": "WORKSPACE"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "candidatesCount": 20,
+      "noMatchMessage": null,
+      "repair": {
+        "applied": false,
+        "changes": []
+      }
+    },
+    "index": 36
+  }
+]

@@ -1,0 +1,1012 @@
+[
+  {
+    "id": "3bf438a4-c43d-4923-8a85-ecd19dbfb370",
+    "name": "Breakfast",
+    "description": "45 Park Lane - Dorchester Collection is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 37,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "2f11cd25-2e4b-43ed-b03e-ec6693e6c77b",
+    "name": "Lunch",
+    "description": "45 Park Lane - Dorchester Collection is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 44,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "165135c3-fe14-4994-bbbb-b4e1be61e05d",
+    "name": "Dinner",
+    "description": "45 Park Lane - Dorchester Collection is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 47,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "09407ce2-5fb3-4b5a-bf70-461def991f70",
+    "name": "Spa",
+    "description": "45 Park Lane - Dorchester Collection is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 129,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a322dead-52cd-41a5-8e53-881da5d98cdb",
+    "name": "Breakfast",
+    "description": "A To Z Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 43,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "cbb639e5-4b4d-4173-8b54-8309c529b301",
+    "name": "Lunch",
+    "description": "A To Z Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 48,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4125a873-a6b0-47b2-8e54-f68e3f7a8efc",
+    "name": "Dinner",
+    "description": "A To Z Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 67,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "87cca226-efc2-41d1-afd0-916584d327fe",
+    "name": "Spa",
+    "description": "A To Z Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 151,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "1629becd-cd42-4b4e-8fef-e370b2efd647",
+    "name": "Gym",
+    "description": "A To Z Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 22,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f7441c2c-621a-4c9b-b7e1-149206ac3949",
+    "name": "Breakfast",
+    "description": "Apex London Wall Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 48,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "b0ec7655-ada1-4803-8b73-b895100e5f5c",
+    "name": "Lunch",
+    "description": "Apex London Wall Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 32,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "55b00291-6351-418d-b9f2-fcdfb20b7b6b",
+    "name": "Dinner",
+    "description": "Apex London Wall Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 89,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ec2f257d-1204-43ab-95c4-9bd5b8f19602",
+    "name": "Spa",
+    "description": "Apex London Wall Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 144,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4f5e7dde-ca44-4667-9140-9de2ded9c570",
+    "name": "Breakfast",
+    "description": "Bulgari Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 35,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "235072da-fb4e-4e44-a1f3-69bb850b1525",
+    "name": "Lunch",
+    "description": "Bulgari Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 50,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "795fac21-8915-476a-9193-5ead8d6d7b60",
+    "name": "Dinner",
+    "description": "Bulgari Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 72,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "7d5526a3-1d73-45ae-9c7f-3ab1e320bfbe",
+    "name": "Spa",
+    "description": "Bulgari Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 173,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "81f294c9-fdc8-4066-a0e9-8b9eedcf866a",
+    "name": "Gym",
+    "description": "Bulgari Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 0,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "9522cf08-65d4-49d9-a6a8-5fe25c20cf1d",
+    "name": "Breakfast",
+    "description": "City View Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 32,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "c600f9b7-2a18-453f-a3e0-c09ca0ebe4fd",
+    "name": "Lunch",
+    "description": "City View Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 34,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f6a8209c-131f-4de5-b5a4-d646b325ecd8",
+    "name": "Dinner",
+    "description": "City View Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 61,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "714e0f0b-53b7-47b1-a25e-04425dd53f1a",
+    "name": "Spa",
+    "description": "City View Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 87,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "1a48ef80-b2b0-4462-bdea-4767d5ec7bf0",
+    "name": "Gym",
+    "description": "City View Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 7,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a4a5ff4a-ad85-4de4-aa09-d193c6529232",
+    "name": "Swimming",
+    "description": "City View Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 33,
+    "categoryId": "2929c05b-1a08-43d4-af90-34aa4246c8dd",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "e1745e59-a110-49ae-b291-e3b8f018c472",
+    "name": "Breakfast",
+    "description": "Corinthia Hotel London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 32,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "5eda5e54-3bf8-41fb-8f48-27060fa93d6c",
+    "name": "Lunch",
+    "description": "Corinthia Hotel London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 39,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "8995f93b-450b-4490-9e88-686e5ab81e22",
+    "name": "Dinner",
+    "description": "Corinthia Hotel London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 47,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a23eed93-0807-4126-bace-816b16ebea13",
+    "name": "Spa",
+    "description": "Corinthia Hotel London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 110,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "338a2626-f72b-4da1-ba56-d273749ee752",
+    "name": "Gym",
+    "description": "Corinthia Hotel London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 12,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f9fe2f79-c7d6-4513-8ea0-c4edc4cbf38a",
+    "name": "Swimming",
+    "description": "Corinthia Hotel London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 31,
+    "categoryId": "2929c05b-1a08-43d4-af90-34aa4246c8dd",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "6b3a2638-2b62-4404-a265-0fb8337f5af3",
+    "name": "Breakfast",
+    "description": "Hartley Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 44,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "a8c3f502-205a-4abc-acfc-c392a16f7599",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "65047652-c114-40ba-afe6-f80021e902d5",
+    "name": "Lunch",
+    "description": "Hartley Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 38,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "a8c3f502-205a-4abc-acfc-c392a16f7599",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "e6c2bd0e-37de-495a-a5f1-aa5ae7b900e1",
+    "name": "Dinner",
+    "description": "Hartley Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 51,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "a8c3f502-205a-4abc-acfc-c392a16f7599",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "323dc143-1ffd-4353-96cb-5304eee960d3",
+    "name": "Spa",
+    "description": "Hartley Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 119,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "a8c3f502-205a-4abc-acfc-c392a16f7599",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4058dafb-f369-4086-8ddf-b39653b0d088",
+    "name": "Breakfast",
+    "description": "Hotel Xenia, Autograph Collection is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 26,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "cb6d24ab-54ca-481c-89f2-974307f8e193",
+    "name": "Lunch",
+    "description": "Hotel Xenia, Autograph Collection is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 47,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "157b9f0e-c5f6-4d9d-8b41-8ecad644f1bd",
+    "name": "Dinner",
+    "description": "Hotel Xenia, Autograph Collection is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 68,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "446dac02-1cb3-44c6-a3c7-8bd30b0d605f",
+    "name": "Spa",
+    "description": "Hotel Xenia, Autograph Collection is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 177,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3895239b-d812-4ba2-aab2-7e10699c88a3",
+    "name": "Breakfast",
+    "description": "London Guest House is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 35,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "fad5caac-5b3b-4aae-a130-eb192d9bdc21",
+    "name": "Lunch",
+    "description": "London Guest House is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 50,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "fc9c18dd-73ff-459d-92a5-135b9cb25fbb",
+    "name": "Dinner",
+    "description": "London Guest House is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 43,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "0683b0f7-e062-4fe3-a787-3dd0fdf2e557",
+    "name": "Spa",
+    "description": "London Guest House is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 94,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4eb65d62-e5a2-4bf9-b071-bc9d7666b7d7",
+    "name": "Gym",
+    "description": "London Guest House is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 8,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "2f40cb3f-bfac-4200-ba49-196b0598ef40",
+    "name": "Swimming",
+    "description": "London Guest House is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 38,
+    "categoryId": "2929c05b-1a08-43d4-af90-34aa4246c8dd",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3cb98f75-064a-4472-aa47-eae2c21fbafa",
+    "name": "Breakfast",
+    "description": "Mandarin Oriental Hyde Park, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 33,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f53624eb-fac3-4c54-809b-43a20082c5d5",
+    "name": "Lunch",
+    "description": "Mandarin Oriental Hyde Park, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 38,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "17ea075a-0da1-4330-80ff-e46aaea01841",
+    "name": "Dinner",
+    "description": "Mandarin Oriental Hyde Park, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 46,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "8d24b55d-b21c-4f39-85ea-4ef4e2dd9a07",
+    "name": "Spa",
+    "description": "Mandarin Oriental Hyde Park, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 148,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "23c3a1ac-a54a-4f9d-8ee2-50198ef3e266",
+    "name": "Breakfast",
+    "description": "Marble Arch Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 43,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "23823194-da22-4c1a-b0a5-6682d0cfaa39",
+    "name": "Lunch",
+    "description": "Marble Arch Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 58,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "daae8bc8-2d13-4bc3-9534-c1f468fdf9f9",
+    "name": "Dinner",
+    "description": "Marble Arch Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 68,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "c4975aae-db4c-408b-ae8f-821f1945585f",
+    "name": "Spa",
+    "description": "Marble Arch Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 167,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "acfe4208-3cd5-4b01-8dc6-fcca0d69bb67",
+    "name": "Breakfast",
+    "description": "Mondrian London at Sea Containers is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 30,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "19be63f1-3c7b-4107-bb4d-15ffc02d08e0",
+    "name": "Lunch",
+    "description": "Mondrian London at Sea Containers is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 45,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "99b507af-36be-4fa0-9943-756d7e741b19",
+    "name": "Dinner",
+    "description": "Mondrian London at Sea Containers is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 46,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f89ccca9-14a1-482b-8c15-a3ca2847f752",
+    "name": "Spa",
+    "description": "Mondrian London at Sea Containers is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 157,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ee62388e-c54e-4f54-b97a-a77c8679b38c",
+    "name": "Gym",
+    "description": "Mondrian London at Sea Containers is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 23,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "77d2745e-150c-4290-ac05-4f14ff1d33bf",
+    "name": "Breakfast",
+    "description": "Newham Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 33,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "231799cd-4d46-450f-9f4b-f7eb1ae98fc0",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "d741c1c9-b1c6-4b68-9d54-10cb59560fcb",
+    "name": "Lunch",
+    "description": "Newham Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 35,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "231799cd-4d46-450f-9f4b-f7eb1ae98fc0",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "07ee9a2e-dc44-4b7d-bc75-8104d1a810fc",
+    "name": "Dinner",
+    "description": "Newham Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 77,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "231799cd-4d46-450f-9f4b-f7eb1ae98fc0",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "6b23c089-590d-4652-b094-08ad317f353e",
+    "name": "Spa",
+    "description": "Newham Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 172,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "231799cd-4d46-450f-9f4b-f7eb1ae98fc0",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "24bb2531-22fe-4491-b202-8b0ba37d2a2f",
+    "name": "Breakfast",
+    "description": "Rhodes Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 25,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4578cbce-57c3-4cb4-9dfd-f4db171e5135",
+    "name": "Lunch",
+    "description": "Rhodes Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 43,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "8789b9af-c512-4a18-934c-1c5ca38d8033",
+    "name": "Dinner",
+    "description": "Rhodes Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 80,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a5593f6c-a5aa-4e13-aa77-4d43f74b5b9e",
+    "name": "Spa",
+    "description": "Rhodes Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 129,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "b555a20a-84f6-44d4-bc69-a96fb445ed9c",
+    "name": "Gym",
+    "description": "Rhodes Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 16,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "38a45a1f-0a2d-43b5-925b-be6ffa6ee1df",
+    "name": "Swimming",
+    "description": "Rhodes Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 44,
+    "categoryId": "2929c05b-1a08-43d4-af90-34aa4246c8dd",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4fdf1665-62ca-4805-a808-e4ce88a4fde6",
+    "name": "Business Room",
+    "description": "Rhodes Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 130,
+    "categoryId": "24356fad-216b-489c-b7dd-4502d898cee4",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "630c1487-f92b-44f3-92e8-0066bb1dcd95",
+    "name": "Breakfast",
+    "description": "Ridgemount Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 30,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "9d379ef8-cafb-4f94-abea-75f8dc16d6ec",
+    "name": "Lunch",
+    "description": "Ridgemount Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 48,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "1e4c283c-45a4-41c2-af29-a44528b21f3c",
+    "name": "Dinner",
+    "description": "Ridgemount Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 72,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a1b8e946-45a7-4cd5-b23c-5e41255ec617",
+    "name": "Spa",
+    "description": "Ridgemount Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 108,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "e641c759-633e-443e-a32e-c6ff0fcfef55",
+    "name": "Gym",
+    "description": "Ridgemount Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 0,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4d50cf81-d1cc-4e5f-afd2-3c24310ef2fa",
+    "name": "Swimming",
+    "description": "Ridgemount Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 36,
+    "categoryId": "2929c05b-1a08-43d4-af90-34aa4246c8dd",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a91c4078-719d-4e76-b6c5-803e310f235e",
+    "name": "Business Room",
+    "description": "Ridgemount Hotel is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 63,
+    "categoryId": "24356fad-216b-489c-b7dd-4502d898cee4",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f3dfdf37-dfe8-4f79-b6b3-e98bb8da10b7",
+    "name": "Breakfast",
+    "description": "The Dorchester is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 44,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "2d8b79d5-78c5-4d78-a9e5-906493ad2fc8",
+    "name": "Lunch",
+    "description": "The Dorchester is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 51,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ed2af1e9-37d9-46f2-816d-aa5763b706f7",
+    "name": "Dinner",
+    "description": "The Dorchester is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 47,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ba87524b-6384-4a0d-ba82-8b52ae435047",
+    "name": "Spa",
+    "description": "The Dorchester is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 169,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4900c32f-9a7a-4b4c-9762-f5c2d742f232",
+    "name": "Breakfast",
+    "description": "The Lanesborough is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 46,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "5a12284e-5cd4-4295-b2e2-a416362b5794",
+    "name": "Lunch",
+    "description": "The Lanesborough is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 35,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "085091c9-1d6a-498e-a01b-eadd07d54be9",
+    "name": "Dinner",
+    "description": "The Lanesborough is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 68,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "199025d1-ee8b-4af1-bb9b-760d10657749",
+    "name": "Spa",
+    "description": "The Lanesborough is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 111,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "20b5ca85-3606-4120-8a1f-b6ce0dae9055",
+    "name": "Gym",
+    "description": "The Lanesborough is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 6,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "2c0b4627-0643-4c03-ab79-69b7820b3909",
+    "name": "Swimming",
+    "description": "The Lanesborough is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 47,
+    "categoryId": "2929c05b-1a08-43d4-af90-34aa4246c8dd",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "1f8dbfaa-f245-4a1b-8a37-907a96492279",
+    "name": "Business Room",
+    "description": "The Lanesborough is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 101,
+    "categoryId": "24356fad-216b-489c-b7dd-4502d898cee4",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "44e6f023-58e3-434c-8b83-d063fb5477c7",
+    "name": "Breakfast",
+    "description": "The Rembrandt is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 27,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "13c2a776-5e70-49b8-b03f-2cd1079521bc",
+    "name": "Lunch",
+    "description": "The Rembrandt is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 55,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4c41648e-888e-4dc3-a31c-3c44a50fb4ac",
+    "name": "Dinner",
+    "description": "The Rembrandt is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 59,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "54254335-9481-4b90-ab05-451c7ff546be",
+    "name": "Spa",
+    "description": "The Rembrandt is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 111,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3c3fda3d-6995-4b84-b060-3938957b77fb",
+    "name": "Gym",
+    "description": "The Rembrandt is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 9,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "245134b6-49b0-4935-98ea-3ece62aaeafd",
+    "name": "Breakfast",
+    "description": "The Savoy is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 44,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "12fda33d-13a9-4b9c-bb91-c3785a7e80e2",
+    "name": "Lunch",
+    "description": "The Savoy is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 56,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "d49e8c0e-70cf-404b-807b-af456913d6d6",
+    "name": "Dinner",
+    "description": "The Savoy is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 80,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "530930f7-8325-419f-8063-e9f6c0757578",
+    "name": "Spa",
+    "description": "The Savoy is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 174,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3dcef032-a73a-4654-b4ca-f8b0e712c79c",
+    "name": "Gym",
+    "description": "The Savoy is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 10,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "b38361ef-f888-433c-9ef7-98192723bad6",
+    "name": "Breakfast",
+    "description": "The Wellesley Knightsbridge, a Luxury Collection Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 50,
+    "categoryId": "1a5d5b09-0784-4e68-bec4-9e0b347b3651",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "349f93f5-6da8-4990-aedb-376ce1e31ff3",
+    "name": "Lunch",
+    "description": "The Wellesley Knightsbridge, a Luxury Collection Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 40,
+    "categoryId": "c64c3d2e-6339-4101-ab0e-7f003cbaf8e3",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "cf0bf1f8-b088-45b0-8b8e-f62a5685efae",
+    "name": "Dinner",
+    "description": "The Wellesley Knightsbridge, a Luxury Collection Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 89,
+    "categoryId": "c90a4559-226c-4e5f-b4b5-813c832e66e6",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "20164e26-6c23-4ff5-a843-3e5cb65c49a2",
+    "name": "Spa",
+    "description": "The Wellesley Knightsbridge, a Luxury Collection Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 130,
+    "categoryId": "42497e2d-d72a-405c-bf1b-ebdc55e532ba",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "50815c93-098c-4c99-8655-259ecd399307",
+    "name": "Gym",
+    "description": "The Wellesley Knightsbridge, a Luxury Collection Hotel, London is a well-loved destination in London. Guests appreciate the central location, comfortable rooms, and attentive service. Ideal for business stays, weekend breaks, and exploring the city.",
+    "minSpend": 10,
+    "categoryId": "2909878f-123c-41f4-b3b3-b0b5089060c5",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  }
+]

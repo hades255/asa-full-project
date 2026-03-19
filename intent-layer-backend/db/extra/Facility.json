@@ -1,0 +1,702 @@
+[
+  {
+    "id": "4d5a65b2-784e-4056-9481-598b438092e6",
+    "name": "Wifi",
+    "profileId": "1a2e5739-c0cf-4b14-832b-e691b143752f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "faf489f5-d447-4cf1-80d3-64aed421cd58",
+    "name": "Smoking",
+    "profileId": "43576798-7845-4218-b660-492f4d384ea7",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "648d98ba-dfbc-45de-b0f0-ec61fded8012",
+    "name": "Non-Smoking",
+    "profileId": "56bba1b1-debe-4fcd-a1d9-2570808895c4",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "4a9abb90-492b-46ef-be53-8de9e5b9a9a6",
+    "name": "Parking",
+    "profileId": "a807da03-6975-45ed-93d5-ff4c4da41878",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "376eebbb-c2c5-45bc-acbd-f8d4ada074fa",
+    "name": "Pool",
+    "profileId": "2a8bd0b1-4980-43a3-94b0-3f662612e10f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "90729517-bede-41df-b800-a2d1a70d5b78",
+    "name": "Gym",
+    "profileId": "0fe51907-d62b-466c-8f9a-d0702dbdbe79",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "1e2cc1c6-51c6-4198-b0a5-31d61dfd1574",
+    "name": "Spa",
+    "profileId": "fe203551-7eb8-41fd-8451-c730918755ba",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "615fde44-6c6d-4d4d-acec-abd8048d5269",
+    "name": "Restaurant",
+    "profileId": "9166ed07-7267-40a5-8749-fe652b139d4d",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "1c844161-daca-4cea-82ff-296915241890",
+    "name": "Bar",
+    "profileId": "cd32054b-deaa-40a3-93e5-94bcc3662116",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "165a75c7-9b2f-4a0b-a674-c5756d5d8198",
+    "name": "Room Service",
+    "profileId": "1b4a418e-43d3-405c-b57f-450cdf79e032",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "966843ed-10db-4569-9575-ecc606d9945a",
+    "name": "Concierge",
+    "profileId": "d732c1cf-318d-4cc4-99ef-7eaf997ab5b1",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "b9b455c4-be0d-4f53-bb8b-ea38b646d918",
+    "name": "Business Center",
+    "profileId": "6ea022a3-c481-4e24-a4b3-5308a7605178",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "4a9063b5-e457-4f11-b5e3-afe2e0cdc8f0",
+    "name": "Meeting Room",
+    "profileId": "8b7dc78e-9701-40f2-892e-ec2362591ac0",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "0236a5f5-1d4d-4d82-9be5-a933e037e3cf",
+    "name": "Fitness Center",
+    "profileId": "a1dc54a9-e9b1-4c07-8fef-b3106867d023",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "3fbf4ef4-5213-4c15-9d8f-20c868f2b54f",
+    "name": "Sauna",
+    "profileId": "d1540a66-5f34-4ead-b457-7393ab89eb2e",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "72967fc5-96cf-4519-8fa1-adb20f337cae",
+    "name": "Air Conditioning",
+    "profileId": "cd32054b-deaa-40a3-93e5-94bcc3662116",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "8da74bf1-2c6b-4a12-8367-411d1686743b",
+    "name": "Pet Friendly",
+    "profileId": "85084bf3-aece-4e8c-91d0-e6c084fabdb8",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "890304b0-8aa2-452f-b909-ab2aacffd477",
+    "name": "Child Friendly",
+    "profileId": "303cc6d8-0ab4-4ebc-ae0f-465daa61ad3d",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "5df521a8-7b50-40f9-8280-a914ba43244d",
+    "name": "Beach Access",
+    "profileId": "c737a007-ec3f-4c04-9a32-878c0032be9c",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "512d738b-2257-4200-9962-6128311b748d",
+    "name": "Tennis Court",
+    "profileId": "b94f3108-4f5e-471f-82e2-0a50825f42dd",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "b35413db-13dc-4175-92ea-91a32ee82889",
+    "name": "Wifi",
+    "profileId": "89ffd896-365d-44b9-9b79-29857f3f8ba5",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "182f5a6d-b215-4f7a-921d-4a2a707fffa4",
+    "name": "Smoking",
+    "profileId": "9bd4d95d-3005-40c4-b8de-1256b453134f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "3e911121-6b78-4754-8a2c-0b069b3ffd72",
+    "name": "Non-Smoking",
+    "profileId": "6369737e-2f9a-4344-a44e-9f0e27be13e0",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "37151a5e-f64a-465f-b6be-7f7c13e90959",
+    "name": "Parking",
+    "profileId": "88a7c6fa-2648-4605-aa85-492db769e8f7",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "bbddb23c-e283-475c-ba6e-46ace33af0ce",
+    "name": "Pool",
+    "profileId": "09b24f51-40ee-4947-a736-6707fb8f1152",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "e494397f-e682-42d5-aecf-1cba3bd4432b",
+    "name": "Gym",
+    "profileId": "5e31fecf-0259-41f8-998d-3eb567481cf9",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "6beb30e7-f9a0-4823-8b63-b8cc2a8fa1e9",
+    "name": "Spa",
+    "profileId": "30d9ad8b-d5a6-4a8d-9491-d22007114acc",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "699a0cad-b9c7-4ae4-a3d4-233a9f07845a",
+    "name": "Restaurant",
+    "profileId": "1a25001d-ac8b-458d-88e5-01bd6f3b7af1",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "4a7d251a-3604-4ae3-b003-2042cd6631b9",
+    "name": "Bar",
+    "profileId": "d488874f-c9d2-4f9e-92fc-ed726fbb4981",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "2bd8a282-8d67-479d-a47d-2cb037ded8fc",
+    "name": "Room Service",
+    "profileId": "e31213a0-316d-4e5a-abe3-4722ac03b627",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "98c1638f-297b-48a8-9c37-210904976b5c",
+    "name": "Concierge",
+    "profileId": "ce6ef19e-b24f-437a-bb1a-fa46c02791aa",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "d109041f-13bf-4fd8-af93-492372019f9a",
+    "name": "Business Center",
+    "profileId": "fef46567-e4bd-4da6-8806-b2420da5659f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "05836316-9901-4cad-9b19-0d770216ad2e",
+    "name": "Meeting Room",
+    "profileId": "46181161-2b51-405c-ac70-f3222bf95b63",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "78c8f7e8-6102-47e5-8b80-7232f8faf23d",
+    "name": "Fitness Center",
+    "profileId": "dcf2b3cb-5d08-428e-85b2-aab9a01dfce8",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "36a8de04-1853-427a-8a4e-bdf7599551b4",
+    "name": "Sauna",
+    "profileId": "124cc49a-90b4-43ab-ab8c-c99477a2c55c",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "dbef9779-a8fe-444e-afac-cc18a7d8ed0a",
+    "name": "Air Conditioning",
+    "profileId": "922649ff-3f11-4567-aa46-127525d79119",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "a750cb8f-3c3e-442c-89ba-bcba472d27da",
+    "name": "Pet Friendly",
+    "profileId": "31a9939c-40db-4351-b608-f981d6f83b78",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "fca6d716-a2bc-4fab-b2fa-f742d334ae45",
+    "name": "Child Friendly",
+    "profileId": "95f0050f-3493-44ad-b14d-74a4fb4056b6",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "45973f1e-0a04-4954-b45d-ca15c75eae4f",
+    "name": "Beach Access",
+    "profileId": "56f92e2c-5cff-4ac1-9144-4dc69ec69ec6",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "5cb1168c-c77d-4a69-b761-62981e19c17e",
+    "name": "Tennis Court",
+    "profileId": "bb619693-193b-48e4-8999-84bee810a59f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "75cdd017-a1cd-471d-8cf8-547aa36aa10a",
+    "name": "Wifi",
+    "profileId": "76ddb4ff-a3a3-49b1-9af3-8b8800453502",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "8ce2c177-b17b-4f73-abc4-a1b602a42947",
+    "name": "Smoking",
+    "profileId": "bbc5f493-0123-459f-80c4-3d1b0765300d",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "d28acc1a-260c-419d-8a2a-0ee44376d3fb",
+    "name": "Non-Smoking",
+    "profileId": "640b67ae-01df-47a1-ab87-9e8cafd0f9de",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "72b3113e-8329-428b-a755-f1dd87bacc1a",
+    "name": "Parking",
+    "profileId": "928fa891-0022-4618-8d53-f35c2f556b7c",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "f4812f26-8b40-4f95-999c-26d4fa08f40c",
+    "name": "Pool",
+    "profileId": "a463df26-d687-491d-8a2f-9e4a849e1346",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "b51e1dd5-8ff3-427c-819c-6300e3f8ae6b",
+    "name": "Gym",
+    "profileId": "07d66798-b5e5-42d7-a92c-1c73eaed007c",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "a52cef33-94ca-4753-a12c-768890886c97",
+    "name": "Spa",
+    "profileId": "7bffedc2-d58b-4846-ab77-02ec9b9db93c",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "0987dfa8-e4a0-4e77-b8d3-f1d269615c0b",
+    "name": "Restaurant",
+    "profileId": "a31f3706-e71a-4a28-9c45-1f772762b839",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "9bd5dbef-5139-4897-8293-43d64bdb4003",
+    "name": "Bar",
+    "profileId": "4883966c-e1eb-4fc4-9314-b767e3d30663",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "6317130c-0b59-466d-9676-f39f4e57ad6d",
+    "name": "Room Service",
+    "profileId": "64eb6703-29ea-4d0c-8f31-33b3eb7063a5",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "166c4fa9-3f9d-43e9-9290-2b6fd5a8da2f",
+    "name": "Concierge",
+    "profileId": "e21662b0-cbc5-4df7-a53c-60fb41083cac",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "ac095146-55e2-4d3b-baf5-a1f71a7ef859",
+    "name": "Business Center",
+    "profileId": "4bb755db-da2c-4675-bcf8-03686828150a",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "2c9ebfab-73da-4c3b-ae8c-14debfbec254",
+    "name": "Meeting Room",
+    "profileId": "e35047ed-b77b-4809-9afa-e01639b1bccc",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "5d90c5c4-d8c5-4af3-afcf-676c67f15256",
+    "name": "Fitness Center",
+    "profileId": "d7db1b2f-18df-453b-8e6b-a9e04543a940",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "fd34c87f-93ff-49dc-982e-5d75eebce5cc",
+    "name": "Sauna",
+    "profileId": "db484b28-d19a-4a1c-9bd4-bd9e57bcb892",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "37b03c85-6b89-4693-a8f1-13df8f6c471e",
+    "name": "Air Conditioning",
+    "profileId": "9e11b638-766b-4c48-93c6-49b62b351cfb",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "54fdf9d8-58c0-4b14-b1c9-9f7aef974570",
+    "name": "Pet Friendly",
+    "profileId": "831c6f93-f648-4686-af13-24919851cd6f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "a80a2ce4-75ef-4dca-a63e-54e1bde51f1a",
+    "name": "Child Friendly",
+    "profileId": "097d05ce-88a8-434d-9617-85c5ab1c53c5",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "88f00b3a-f712-4ea4-bf31-63cf9ed75820",
+    "name": "Beach Access",
+    "profileId": "31a9939c-40db-4351-b608-f981d6f83b78",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "b073bbb6-9edc-4ecb-987f-5cfa8992bee1",
+    "name": "Tennis Court",
+    "profileId": "a807da03-6975-45ed-93d5-ff4c4da41878",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "b15146b1-fc5a-4535-8bcf-80727e5cfffe",
+    "name": "Wifi",
+    "profileId": "3b299e01-7fcc-4bb3-b071-1a23d93ae9bb",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "e83bd988-2dbf-44d1-bd66-454cb6d9fb9c",
+    "name": "Smoking",
+    "profileId": "9e11b638-766b-4c48-93c6-49b62b351cfb",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "f69ce9d9-84c3-4e59-8263-b70a86c049fa",
+    "name": "Non-Smoking",
+    "profileId": "b55be9ec-168a-4e36-8e81-6ebe1421f0b2",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "1b369af0-932f-4691-89ad-d8352e9a3264",
+    "name": "Parking",
+    "profileId": "29525179-a416-4c63-94a8-e21112fdaf5f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "126a30fc-fbeb-40f7-9697-4901cc12901e",
+    "name": "Pool",
+    "profileId": "89be224e-046d-452f-8641-b1762cf19dec",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "07cf9854-42d9-43df-bb8f-6ee51047223d",
+    "name": "Gym",
+    "profileId": "89d2b7b0-7d35-4e19-9ba7-8a3fcd51b9cb",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "94fc6ac1-48ae-424a-92aa-4d23a4a4cc4a",
+    "name": "Spa",
+    "profileId": "a047ed76-bf10-4c97-919c-df82414ee5ad",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "3336623e-1e4f-4fbc-9ee7-02e41b4d4457",
+    "name": "Restaurant",
+    "profileId": "4d190180-34f7-4960-9003-a3ccbe297e59",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "0c7b2c3b-2d07-4cb7-a12a-92bbf06ba10f",
+    "name": "Bar",
+    "profileId": "9a772f7f-4558-4950-b400-245d73244410",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "cde082f2-8c14-4337-88c6-162f976e8c42",
+    "name": "Room Service",
+    "profileId": "88a7c6fa-2648-4605-aa85-492db769e8f7",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "874322ce-4b69-4071-90e7-403e3dcca3a3",
+    "name": "Concierge",
+    "profileId": "8495f302-956e-4aff-9537-13f292c16900",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "e43c3dc3-a150-4196-a51d-df855a6eca9c",
+    "name": "Business Center",
+    "profileId": "44652092-ccad-46b3-97a9-913f34cbbead",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "c133f8f0-7b98-4246-b16a-bc457210b9bf",
+    "name": "Meeting Room",
+    "profileId": "e5e178d9-1d52-4c30-98d0-0433bcb9fdb6",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "ab2284f6-07b3-4020-8544-a2464a4d915b",
+    "name": "Fitness Center",
+    "profileId": "cb928ceb-a263-4498-a39c-e98a31cece77",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "11fb5ff6-67de-43e5-87f4-572c72a93987",
+    "name": "Sauna",
+    "profileId": "0fa622c7-06f0-4586-81a9-3a984777573c",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "aed55daf-4d97-4efb-90c4-d721c8fe1526",
+    "name": "Air Conditioning",
+    "profileId": "8fc8ee53-4e3a-4fd2-b68d-92624b7a7c37",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "9082dfa2-b0ff-48df-b576-3db766afb473",
+    "name": "Pet Friendly",
+    "profileId": "1cd57275-1173-4f82-ad8e-51f345fc6be4",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "dd4d6496-7481-4d62-8168-267075b530de",
+    "name": "Child Friendly",
+    "profileId": "cf6c6e99-9b3e-472d-9e0d-a1513c05b73b",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "b9cda08f-510b-499a-92fd-51ad05935968",
+    "name": "Beach Access",
+    "profileId": "5f1db9f2-88c4-403b-bfec-6014f7fb4442",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "cff52911-730f-4566-996e-2e9f2eefb220",
+    "name": "Tennis Court",
+    "profileId": "d0fdc306-d9ba-46d7-b3ef-e63758845fdb",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "62b68d5d-ab4a-44d3-b9d0-31818a64bd95",
+    "name": "Wifi",
+    "profileId": "d9776e17-8bb7-45d1-89a9-05e8a35e6a9f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "4541453e-4595-432e-afb6-30824b79ac84",
+    "name": "Smoking",
+    "profileId": "df5a8d28-9be0-4cf1-a4bb-638201549e71",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "52a75a9d-3831-4087-af36-aa58fba28940",
+    "name": "Non-Smoking",
+    "profileId": "476a386d-d262-4e20-b3f8-358b2ae403ab",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "5ca4d02e-63b8-46bd-87c7-5b2e1fe3f0ef",
+    "name": "Parking",
+    "profileId": "09a8fd2b-8e79-47bb-82e0-81ab764a7235",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "058fa1a2-49b3-44e2-9ca9-d283ae2e4a35",
+    "name": "Pool",
+    "profileId": "bddb5e18-bde3-45a0-b58c-bd904984a1b1",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "4e7f9f5b-d961-41eb-8d44-7f5db0c22260",
+    "name": "Gym",
+    "profileId": "bb619693-193b-48e4-8999-84bee810a59f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "a36391f6-bc12-42cb-af91-af9b6e0d50e8",
+    "name": "Spa",
+    "profileId": "69354296-0a42-4ad8-bd4c-1dd7d3e7f1a8",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "b3737a63-4921-4fb9-a67b-54964351e492",
+    "name": "Restaurant",
+    "profileId": "3b299e01-7fcc-4bb3-b071-1a23d93ae9bb",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "7b794b1b-a460-4ac7-a462-a3ca55184178",
+    "name": "Bar",
+    "profileId": "640b67ae-01df-47a1-ab87-9e8cafd0f9de",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "54c47ad8-0bdf-497a-b139-948df4adb88e",
+    "name": "Room Service",
+    "profileId": "d3d6ac8d-a50c-4c4f-972b-4d00d0e4fbc9",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "880f7c4e-eaed-4478-a364-6d3db8912aae",
+    "name": "Concierge",
+    "profileId": "31d54dd8-a3e5-4753-92e8-16c352670355",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "c22a1103-8ff9-427a-a1c7-8da407403200",
+    "name": "Business Center",
+    "profileId": "6877ae65-77ea-4c82-9c87-4c512420a3a8",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "9a2f1d12-2be0-425a-8d73-9224f86b8e58",
+    "name": "Meeting Room",
+    "profileId": "c0781233-6748-4825-b9a3-b73e808e3653",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "0cb79bb2-f9b2-407d-b171-4c27d3a522c9",
+    "name": "Fitness Center",
+    "profileId": "8b44e948-50bb-4ac2-872e-da2e7a76026f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "49711c05-116b-4540-99e6-42fc9cec8ff0",
+    "name": "Sauna",
+    "profileId": "808ef51d-6f4f-45d0-b525-09d344ce6459",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "f83fcd93-b4fb-4e35-a434-ec9608ffa76b",
+    "name": "Air Conditioning",
+    "profileId": "61d8a9f5-4fc1-496f-9436-cdb6e51e3c77",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "8dcd8999-cf74-46a1-9876-552bd3a6f61a",
+    "name": "Pet Friendly",
+    "profileId": "8db10d92-d5d8-4177-bfc1-1f08b1c0821f",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "5557fd77-8de2-4b0e-8474-9e2d1e5ede94",
+    "name": "Child Friendly",
+    "profileId": "8a7c5949-d916-4d39-8aec-71a9b8bb1659",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "d9058b16-3739-4d73-bfd7-aacdd1bbb9dc",
+    "name": "Beach Access",
+    "profileId": "c31eb321-86b6-4d9b-953f-d5cc58870210",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  },
+  {
+    "id": "8573b010-d56b-47dd-8fcd-b1b63ef97da5",
+    "name": "Tennis Court",
+    "profileId": "f166a951-50c8-464f-884f-a197647495f9",
+    "createdAt": "13/03/2026 17:46:52",
+    "updatedAt": "13/03/2026 17:46:52"
+  }
+]

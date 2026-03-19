@@ -1,0 +1,912 @@
+[
+  {
+    "id": "7d75e5fd-2635-436d-9c55-5280dd9ef6e4",
+    "name": "Wifi",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "08577083-c053-4dee-981c-ee8e4085a8f4",
+    "name": "Pool",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "9ca8965c-7e7d-4805-8748-7add38d4a6cc",
+    "name": "Gym",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3a778345-bc25-4683-b8af-7cf0bba010a9",
+    "name": "Spa",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "197cf812-c957-4467-aae4-c755892ca663",
+    "name": "Restaurant",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3f16001f-8492-477a-9e18-43646b08ad00",
+    "name": "Bar",
+    "profileId": "c9f16d66-b2d2-4840-a067-cc7fc1aea253",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "e786cbb6-30f9-495a-b5d1-242d3b897f9c",
+    "name": "Wifi",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "1d1d89da-5db2-4575-8f9a-6b3a621cdf18",
+    "name": "Pool",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "647b6ca9-ccaf-456f-a8c7-7377160d5342",
+    "name": "Gym",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "12828333-6b46-42c9-81f6-722c92abe13d",
+    "name": "Spa",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "066f5317-fe97-4234-9139-b7f4c0decacb",
+    "name": "Restaurant",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "b7e4a9a4-aa72-4cda-8d90-3e4802c0a0b9",
+    "name": "Bar",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "e4d47eb2-f1e9-4160-bb9c-a50c90a7bf19",
+    "name": "Room Service",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f39e84c7-cda3-46ff-9b7d-edb9ab02f6f8",
+    "name": "Concierge",
+    "profileId": "ba250f47-9111-4812-9e7c-bebaa8ec1650",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "7abb0d4a-04d1-41c4-9156-d2ccbf437761",
+    "name": "Wifi",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "482e1fe8-b60c-479e-8f16-0e3ac2d7fa88",
+    "name": "Pool",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ad31d0e9-e033-46ad-bb5c-6938381b39ba",
+    "name": "Gym",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "b4f45ade-9e8b-424c-b182-235e8ea8e3b7",
+    "name": "Spa",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "d0497bb5-e8d5-4383-a938-00a5418de3c9",
+    "name": "Restaurant",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "6e1c16c8-b52b-4dd5-93bd-d562f43ef2a6",
+    "name": "Bar",
+    "profileId": "3fc1db55-f81c-4e24-9c79-e69772d3e47b",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "04a8f0ed-b803-4593-a27d-0cb4be3855fa",
+    "name": "Wifi",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "cdde66bd-ec7a-4264-b4e4-722c696276f7",
+    "name": "Pool",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "e9a57036-1498-4098-9a36-de5085f44b9d",
+    "name": "Gym",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "d9095760-01de-4a38-9c78-e24c2039e7f8",
+    "name": "Spa",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4523a96e-e3b3-4f92-b43d-dd7f4bf4a331",
+    "name": "Restaurant",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "63d82803-fa0a-4345-9e70-92d2bb4bb047",
+    "name": "Bar",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a0bd5ecc-284f-40ae-a0d3-5f2fe639683e",
+    "name": "Room Service",
+    "profileId": "e33b1d0e-be7c-4d65-90f6-13b74cf584bb",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "0194ebf1-b8cd-4071-b591-dbd45db07ced",
+    "name": "Wifi",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "96b6f323-8c37-4dd2-969c-bfa7a5aef6c5",
+    "name": "Pool",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "def9811d-21d2-4550-a470-07ae62c19e54",
+    "name": "Gym",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "327244f9-d1c6-41e0-9033-5b15193bc517",
+    "name": "Spa",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "2edf1731-f35b-4268-b73a-1bfd7b345f0b",
+    "name": "Restaurant",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "42d754a2-cb36-458d-9e07-93453fe4fe14",
+    "name": "Bar",
+    "profileId": "36a65d46-ef22-415e-8a77-b60cc3ddbe4e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "bb0702bc-74b8-4252-9e48-97f43c469f02",
+    "name": "Wifi",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "d832bf17-fade-446b-854e-3cec22327fd6",
+    "name": "Pool",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "8c88f750-a129-462b-8bc2-cabe4b03d832",
+    "name": "Gym",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "7111249d-5987-4a1c-b623-f0369cb9d4b0",
+    "name": "Spa",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "aca9267c-69e0-42e8-8ff0-cfa00b58e3d1",
+    "name": "Restaurant",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "cbf8da15-33c3-436c-9629-476998d62381",
+    "name": "Bar",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "6d9d9fa8-6c71-4fe1-aa08-e1851fe517b9",
+    "name": "Room Service",
+    "profileId": "1b708c26-3fcb-45be-9e6f-992cfae86dfe",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "c24ca92b-7a08-41ce-a1ea-18e1bb333320",
+    "name": "Wifi",
+    "profileId": "a8c3f502-205a-4abc-acfc-c392a16f7599",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ba462e05-d285-4609-8c7f-24fc3726d68b",
+    "name": "Pool",
+    "profileId": "a8c3f502-205a-4abc-acfc-c392a16f7599",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "7b51d67d-7838-4cf4-a568-02e3bc9cb862",
+    "name": "Gym",
+    "profileId": "a8c3f502-205a-4abc-acfc-c392a16f7599",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "1197a724-3b74-4fc9-9082-74057dc986e6",
+    "name": "Spa",
+    "profileId": "a8c3f502-205a-4abc-acfc-c392a16f7599",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "1f80ecf2-f10e-42b8-bc16-69c507b8c1b2",
+    "name": "Wifi",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "0d9743fe-2c24-49cc-8327-0148be93af5c",
+    "name": "Pool",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "9f72899f-db8e-45f7-91ae-d1c49079bd1b",
+    "name": "Gym",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "bc7896c2-119a-47f0-9f91-ee9554df0f98",
+    "name": "Spa",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "d785bca5-1636-481a-9194-aff4e472b040",
+    "name": "Restaurant",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3df7c314-1d17-42fa-af5b-c02c406ac4fd",
+    "name": "Bar",
+    "profileId": "e38dd992-b42b-4edc-bdd9-f35eb35b9db2",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "364514c4-bef9-4a37-864c-a9c25278bff6",
+    "name": "Wifi",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "d689d177-e66d-44c2-a64f-ab17d792c2c0",
+    "name": "Pool",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "77be7389-942b-4725-a6d0-2f231e55f913",
+    "name": "Gym",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "571a2177-9e5f-4b5c-bbd8-d0c6e36e9c94",
+    "name": "Spa",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ca0d10dc-6c38-4afb-a4b2-857505039a03",
+    "name": "Restaurant",
+    "profileId": "4be1e7c3-21a9-4427-b4ec-ce79da0c0f01",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "863950ec-8179-4cc1-9ab5-97fc5f21d669",
+    "name": "Wifi",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "75d085d8-daed-4f83-bbcf-e2e59eca2a2e",
+    "name": "Pool",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "b0c0a34e-8a63-44d7-a2b4-54c41fefdf31",
+    "name": "Gym",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "621d73f9-c718-4df6-ba88-bf85f49cd3ab",
+    "name": "Spa",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a060de6c-0369-4ae3-a4d5-5ba3cb6927f9",
+    "name": "Restaurant",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "58b895de-85fb-4a40-aacc-742d2348e49d",
+    "name": "Bar",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ad148445-bf33-48de-9a5a-13c8144f3286",
+    "name": "Room Service",
+    "profileId": "61c7dd35-8379-47d5-922f-4d174791b363",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "23230e62-fcdc-40cb-91a0-e367d5ac141d",
+    "name": "Wifi",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "252930f2-a75b-4c43-8c7d-d6b4e768a752",
+    "name": "Pool",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3fc59099-07b2-4cb0-b026-f66d78bda44c",
+    "name": "Gym",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4376427c-6cbe-4d41-9f36-eb6ec37ed111",
+    "name": "Spa",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ded6fe3f-2639-4b07-b7a3-39247bc3d10d",
+    "name": "Restaurant",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3c6ff7a1-680a-4394-89f2-d51853c0c0ce",
+    "name": "Bar",
+    "profileId": "a4ddb7f9-1296-45e7-9ce0-5cb41a1d593c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "fb459f62-b76b-46f8-80be-2e6c8bff562c",
+    "name": "Wifi",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "b1bc8100-3d65-4672-8767-15ad25eb83d8",
+    "name": "Pool",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "af3f1489-4f26-4ce6-8d30-36337a6b9b40",
+    "name": "Gym",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "935d7562-3662-4d94-b1b0-95ae5c195c4b",
+    "name": "Spa",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "6efff90b-0cad-4d90-893c-a367b63a4aa1",
+    "name": "Restaurant",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "705c5d67-fb10-417f-b21d-4fc21cd3c2a5",
+    "name": "Bar",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "5a22f883-f595-41c9-be68-74397e33eb50",
+    "name": "Room Service",
+    "profileId": "621de506-613f-4187-a6d2-845c2b460d6e",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "2473aa80-4bda-47d7-ba5d-81c73cb92ba4",
+    "name": "Wifi",
+    "profileId": "231799cd-4d46-450f-9f4b-f7eb1ae98fc0",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "31b30ceb-1fb4-486e-bd46-064353d11e2c",
+    "name": "Pool",
+    "profileId": "231799cd-4d46-450f-9f4b-f7eb1ae98fc0",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "af3b1c04-a492-4dd7-aad6-93059ec79554",
+    "name": "Gym",
+    "profileId": "231799cd-4d46-450f-9f4b-f7eb1ae98fc0",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "0747f281-ebe6-48f2-abb5-101c8d6692c7",
+    "name": "Spa",
+    "profileId": "231799cd-4d46-450f-9f4b-f7eb1ae98fc0",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "c05a5a6c-2f81-4768-a6e5-745cf39b1bc6",
+    "name": "Restaurant",
+    "profileId": "231799cd-4d46-450f-9f4b-f7eb1ae98fc0",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "7aac3d17-4a2d-400d-aed6-abbb0f3da05e",
+    "name": "Wifi",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "71b0f9bf-0635-4706-a2d9-24a028ba78ba",
+    "name": "Pool",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "9aa49b4e-f426-411b-9cbf-1a83a458860f",
+    "name": "Gym",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "b7df1f5e-e8c9-438a-890e-95dfd2fe7858",
+    "name": "Spa",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "dfcf8d9e-8405-44a7-bae7-26ea3391ea05",
+    "name": "Restaurant",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "79f1fc4a-7411-4da2-9f49-61a7b93ace5c",
+    "name": "Bar",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "fa88673b-67ae-4f21-9abd-492d3efd6fa0",
+    "name": "Room Service",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "673e4be5-fb08-4894-a44b-648b464aaafa",
+    "name": "Concierge",
+    "profileId": "65966ef5-9d93-46d9-81e2-bcb475911522",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "925ad451-6b59-4d07-9f69-a4fc3ef70074",
+    "name": "Wifi",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f64b6fa9-4b94-4c13-8be5-7f33b7276706",
+    "name": "Pool",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "674b5c9a-873d-494e-aa15-2e93f3325722",
+    "name": "Gym",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4305a3ca-fc0a-476a-bec6-55340a240632",
+    "name": "Spa",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "884e9e4a-f546-42ef-9e61-531dcff138c0",
+    "name": "Restaurant",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "92e487dd-f971-4c2e-b5e6-868beb3d2175",
+    "name": "Bar",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "087f80bc-3041-44cc-b45c-542a9064caa0",
+    "name": "Room Service",
+    "profileId": "5eaf4a44-faac-47bd-adaa-b42d516f8e11",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "19d025d8-bb84-4774-8699-da6efab6f4ca",
+    "name": "Wifi",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a6abc309-94ce-41ab-88c8-2da1f5eadf86",
+    "name": "Pool",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "6d0908ff-c7e0-4390-825d-8d445a33c867",
+    "name": "Gym",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "39081f24-08f2-4a13-b0f4-0a29ea48b65f",
+    "name": "Spa",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "2a789b30-7270-4814-8295-28e50d7703eb",
+    "name": "Restaurant",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f1ba180f-3f87-45d3-8432-ab7c05cf968e",
+    "name": "Bar",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a3ad7082-a92e-4bad-9645-4e734c10cfad",
+    "name": "Room Service",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "3aa5d357-7957-4f1f-8a53-fcfd8c5ae966",
+    "name": "Concierge",
+    "profileId": "d01ada47-76b8-47ac-b227-4802f8e2463c",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ce8528c0-21a6-4dda-8bc1-89cbc8689aa2",
+    "name": "Wifi",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "953f9ff6-ac5f-4c87-8976-286d20deed66",
+    "name": "Pool",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f18206c2-59fa-4ee4-b41d-a2e84c2f4e9d",
+    "name": "Gym",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "b1598522-f562-4743-9865-836eeaa27ee0",
+    "name": "Spa",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "223a6ea4-be6d-4ec8-914a-57cbf8a52fc3",
+    "name": "Restaurant",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "0c2cd8c9-df4f-40ea-8134-d5588f79d512",
+    "name": "Bar",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "976e55e4-7426-4d9a-8ad3-5c13e35e6a83",
+    "name": "Room Service",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "af680e1f-6574-4b41-8f7f-f54045a9ff95",
+    "name": "Concierge",
+    "profileId": "a30de1fa-4911-42b2-b8b4-28150b983b41",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "e63aa5df-1b5c-4d3c-b246-891deee12437",
+    "name": "Wifi",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "fd92c607-2970-4e8d-a34d-3f172add2745",
+    "name": "Pool",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "266828dc-d31c-4ccc-a4aa-a3f6bf5136b5",
+    "name": "Gym",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "809c5b91-e3f0-4fb6-baa4-5e086b5b8e2f",
+    "name": "Spa",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "fc428056-fdaf-4bb8-89f1-ff500aec1f70",
+    "name": "Restaurant",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "924c3abe-0681-4029-901f-05f070388059",
+    "name": "Bar",
+    "profileId": "56526448-fa3a-4166-9c2c-8ff5ac6c5669",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f2764142-bc75-44c1-b6fa-fb6a4cb51f53",
+    "name": "Wifi",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a52b38fc-5583-41b1-b36c-c97bd46b3cef",
+    "name": "Pool",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "ee8d5537-92ae-4e45-ba64-5ee6bdbe58b1",
+    "name": "Gym",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4bd4e556-8823-4a46-8a58-2d6e50ed2c23",
+    "name": "Spa",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "13510fa0-2f3e-47a6-86f0-451a127f92aa",
+    "name": "Restaurant",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "d478ec58-6d59-4525-ac25-851c345b7150",
+    "name": "Bar",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "2a412ac3-a9d0-4bbb-ba64-3e1befbc1b47",
+    "name": "Room Service",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "37a5f973-75a9-49d8-ae90-02ae885648d6",
+    "name": "Concierge",
+    "profileId": "6975b591-6e3f-4969-910e-9ca52cd72f3d",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "743ceb29-0163-4fe8-b009-c7947c7c58f7",
+    "name": "Wifi",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "f739658d-bcda-416b-af5f-be9aea3c16fd",
+    "name": "Pool",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "a6138511-9599-4bfd-9978-c1b07fa44fa7",
+    "name": "Gym",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "4c8804df-8db3-4e34-a0bc-9cf0dd66bffa",
+    "name": "Spa",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  },
+  {
+    "id": "9b1b2403-37e3-4a3c-bacc-c5b2a78865d2",
+    "name": "Restaurant",
+    "profileId": "4d983902-4042-47e9-8c85-7ff1cb25fbf9",
+    "createdAt": "17/03/2026 22:41:30",
+    "updatedAt": "17/03/2026 22:41:30"
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "2175f0be-aa78-4a27-8e24-bfee55fa2dff",
+    "first_name": "London",
+    "last_name": "User 1",
+    "email": "london-user-1@allspacesai.com",
+    "password": "placeholder-seed-password",
+    "status": "ACTIVE",
+    "created_at": "18/03/2026 05:36:38",
+    "updated_at": "18/03/2026 05:36:38"
+  },
+  {
+    "id": "8a458396-276e-4f2d-a0e3-74a71716dfe2",
+    "first_name": "London",
+    "last_name": "User 2",
+    "email": "london-user-2@allspacesai.com",
+    "password": "placeholder-seed-password",
+    "status": "ACTIVE",
+    "created_at": "18/03/2026 05:36:38",
+    "updated_at": "18/03/2026 05:36:38"
+  },
+  {
+    "id": "8d6c245d-e5e2-4884-a903-a8f6c7e0566c",
+    "first_name": "London",
+    "last_name": "User 3",
+    "email": "london-user-3@allspacesai.com",
+    "password": "placeholder-seed-password",
+    "status": "ACTIVE",
+    "created_at": "18/03/2026 05:36:38",
+    "updated_at": "18/03/2026 05:36:38"
+  },
+  {
+    "id": "ca76efed-9002-4657-ac74-08e75b1a6a57",
+    "first_name": "London",
+    "last_name": "User 4",
+    "email": "london-user-4@allspacesai.com",
+    "password": "placeholder-seed-password",
+    "status": "ACTIVE",
+    "created_at": "18/03/2026 05:36:38",
+    "updated_at": "18/03/2026 05:36:38"
+  },
+  {
+    "id": "128f847d-c22d-4bba-9b80-61260b1f733e",
+    "first_name": "London",
+    "last_name": "User 5",
+    "email": "london-user-5@allspacesai.com",
+    "password": "placeholder-seed-password",
+    "status": "ACTIVE",
+    "created_at": "18/03/2026 05:36:38",
+    "updated_at": "18/03/2026 05:36:38"
+  }
+]
