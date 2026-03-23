@@ -12,9 +12,8 @@ import {
   getUserCoordinates,
   requestLocationPermission,
 } from "@/utils/location";
-import { store } from "@/redux/store";
 import { actionSetAppLoading, actionSetUserLocation } from "@/redux/app.slice";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 
 const DeniedLocation: React.FC<T_DENIED_LOCATION_SCREEN> = ({
   navigation,
@@ -35,7 +34,7 @@ const DeniedLocation: React.FC<T_DENIED_LOCATION_SCREEN> = ({
       `${locObj.coords.latitude},${locObj.coords.longitude}`,
       true
     );
-    store.dispatch(actionSetUserLocation(geoResponse));
+    dispatch(actionSetUserLocation(geoResponse));
     dispatch(actionSetAppLoading(false));
   };
 

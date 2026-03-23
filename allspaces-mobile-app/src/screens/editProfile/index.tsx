@@ -16,7 +16,7 @@ import {
 } from "@/components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { styles } from "./styles";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@clerk/clerk-expo";
@@ -168,7 +168,7 @@ const EditProfile: React.FC<T_EDIT_PROFILE_SCREEN> = ({ navigation }) => {
                 />
               </View>
 
-              <View style={styles.itemContainer}>
+              {/* <View style={styles.itemContainer}>
                 <View style={styles.itemLeft}>
                   <FacebookIcon width={24} height={24} />
                   <AppText font="button1">{`Facebook`}</AppText>
@@ -224,7 +224,7 @@ const EditProfile: React.FC<T_EDIT_PROFILE_SCREEN> = ({ navigation }) => {
                       : "Connect"
                   }
                 />
-              </View>
+              </View> */}
             </View>
           </View>
         </KeyboardAwareScrollView>

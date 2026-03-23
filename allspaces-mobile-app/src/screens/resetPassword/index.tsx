@@ -14,7 +14,7 @@ import { styles } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Lock1 } from "iconsax-react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 import { useSignIn } from "@clerk/clerk-expo";
 import { actionSetAppLoading } from "@/redux/app.slice";
 import { showClerkError, showSnackbar } from "@/utils/essentials";
@@ -26,7 +26,7 @@ import {
 import { gotoLoginFromResetPassword } from "@/navigation/service";
 import { useUnistyles } from "react-native-unistyles";
 
-const INITIAL_COUNTDOWN = 30;
+const INITIAL_COUNTDOWN = 59;
 
 const ResetPassword: React.FC<T_RESET_PASSWORD_SCREEN> = ({
   navigation,
@@ -44,6 +44,8 @@ const ResetPassword: React.FC<T_RESET_PASSWORD_SCREEN> = ({
     control,
     handleSubmit,
     reset,
+    watch,
+    trigger,
     formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
@@ -54,6 +56,17 @@ const ResetPassword: React.FC<T_RESET_PASSWORD_SCREEN> = ({
       confirmPassword: __DEV__ ? "JustDoIt@321" : "",
     },
   });
+
+  const newPassword = watch("newPassword");
+  const confirmPassword = watch("confirmPassword");
+
+  // Re-validate confirm password when newPassword changes
+  useEffect(() => {
+    trigger("confirmPassword");
+  }, [newPassword, trigger]);
+
+  // Show error immediately when confirmPassword has value and doesn't match
+  const shouldShowConfirmPasswordError = confirmPassword && errors.confirmPassword?.message;
 
   // Hook for countdown
   useEffect(() => {
@@ -71,22 +84,28 @@ const ResetPassword: React.FC<T_RESET_PASSWORD_SCREEN> = ({
 
   const resendCode = async () => {
     try {
-      if (!isLoaded) return;
+      if (!isLoaded || !signIn) {
+        showSnackbar("Authentication service is not ready. Please try again.", "error");
+        return;
+      }
       await signIn.create({
         strategy: "reset_password_email_code",
         identifier: email,
       });
       setTimer(INITIAL_COUNTDOWN);
       setIsDisabled(true);
-      showSnackbar(`OTP has been re-sent to your email.`, "success");
-    } catch (error) {
+      showSnackbar("OTP has been re-sent to your email.", "success");
+    } catch (error: any) {
       showClerkError(error);
     }
   };
 
   const onContinueClick = async (formData: T_RESET_PASSWORD_FIELDS) => {
     try {
-      if (!isLoaded || !signIn) return;
+      if (!isLoaded || !signIn) {
+        showSnackbar("Authentication service is not ready. Please try again.", "error");
+        return;
+      }
       dispatch(actionSetAppLoading(true));
 
       const result = await signIn.attemptFirstFactor({
@@ -96,14 +115,13 @@ const ResetPassword: React.FC<T_RESET_PASSWORD_SCREEN> = ({
       });
 
       if (result.status === "complete") {
-        showSnackbar("Your password is reset successfully. Please log in");
+        showSnackbar("Your password has been reset. Please sign in.", "success");
         gotoLoginFromResetPassword(navigation);
       } else {
-        showSnackbar(`Something went wrong. Please try again`, "error");
+        showSnackbar("Something went wrong. Please try again.", "error");
       }
-
       dispatch(actionSetAppLoading(false));
-    } catch (error) {
+    } catch (error: any) {
       dispatch(actionSetAppLoading(false));
       showClerkError(error);
     }
@@ -178,7 +196,7 @@ const ResetPassword: React.FC<T_RESET_PASSWORD_SCREEN> = ({
             name="confirmPassword"
             label="Confirm New Password"
             placeholder="********"
-            error={errors.confirmPassword?.message}
+            error={shouldShowConfirmPasswordError ? errors.confirmPassword?.message : undefined}
           />
         </View>
         <AppButton

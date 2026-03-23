@@ -13,17 +13,17 @@ import { T_PAYMENT_SCREEN } from "./types";
 import moment from "moment";
 import { showClerkError, showSnackbar } from "@/utils/essentials";
 import { useUser } from "@clerk/clerk-expo";
-import { useSubmitPaymentMutation } from "@/apis/apiSlice";
-import { useDispatch } from "react-redux";
+import { useSubmitPaymentAPI } from "@/apis";
 import {
   initPaymentSheet,
   presentPaymentSheet,
 } from "@stripe/stripe-react-native";
+import { STRIPE_RETURN_URL } from "@/config/constants";
 
 const PaymentScreen: React.FC<T_PAYMENT_SCREEN> = ({ navigation, route }) => {
   const { profileId, noOfPersons, totalAmount, date, time, source } =
     route.params;
-  const [submitPayment] = useSubmitPaymentMutation();
+  const { mutateAsync: submitPayment } = useSubmitPaymentAPI();
   const [isLoading, setIsLoading] = useState(false);
   const { isLoaded, user } = useUser();
   const formattedDateTime =
@@ -48,7 +48,7 @@ const PaymentScreen: React.FC<T_PAYMENT_SCREEN> = ({ navigation, route }) => {
         source: source,
       });
 
-      const paymentData = response.data;
+      const paymentData = response;
 
       if (!paymentData) {
         showSnackbar(
@@ -61,6 +61,7 @@ const PaymentScreen: React.FC<T_PAYMENT_SCREEN> = ({ navigation, route }) => {
 
       const { error, paymentOption } = await initPaymentSheet({
         merchantDisplayName: "All Spaces",
+        returnURL: STRIPE_RETURN_URL,
         customerId: paymentData.user.stripe_customer_id,
         customerEphemeralKeySecret: paymentData.ephemeralKey,
         paymentIntentClientSecret: paymentData.paymentIntent.client_secret,
@@ -137,7 +138,7 @@ const PaymentScreen: React.FC<T_PAYMENT_SCREEN> = ({ navigation, route }) => {
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Rent</Text>
-              <Text style={styles.value}>$94/hr</Text>
+              <Text style={styles.value}>£94/hr</Text>
             </View>
           </View> */}
 

@@ -81,7 +81,7 @@ const BookingCardWithReviews = ({
           <Text style={styles.title}>{item.name}</Text>
           <View style={styles.priceContainer}>
             <Text style={styles.price}>
-              ${price ? price.toFixed(2) : (item.price || 0).toFixed(2)}
+              £{price ? price.toFixed(2) : (item.price || 0).toFixed(2)}
             </Text>
             <Text style={styles.perNight}>{"min. spend"}</Text>
           </View>
@@ -152,7 +152,7 @@ const BookingCardWithReviews = ({
                   )}
                   <View style={styles.amenityContent}>
                     <Text style={styles.amenityPrice}>
-                      ${service.minSpend} min. spend/hr
+                      £{service.minSpend} min. spend/hr
                     </Text>
                     <Text style={styles.amenityDescription}>
                       {service.name}

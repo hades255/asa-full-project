@@ -45,13 +45,29 @@ export const styles = StyleSheet.create((theme) => ({
   },
   rightAlignRow: {
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "center",
     columnGap: theme.units[1],
   },
   leftAlignRow: {
     flexDirection: "row",
     alignItems: "flex-start",
     columnGap: theme.units[1],
+  },
+  scoreBadgeContainer: {
+    position: "absolute",
+    top: theme.units[3],
+    left: theme.units[3],
+    zIndex: 2,
+  },
+  scoreBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: theme.units[2],
+    paddingHorizontal: theme.units[3],
+    paddingVertical: theme.units[2],
+    borderRadius: 100,
+    overflow: "hidden",
+    backgroundColor: "rgba(255,255,255,0.25)",
   },
   iconsContainer: {
     position: "absolute",

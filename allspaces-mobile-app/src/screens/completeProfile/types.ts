@@ -9,7 +9,4 @@ export type T_COMPLETE_PROFILE = NativeStackScreenProps<
 
 export type T_COMPLETE_PROFILE_ROUTE_PARAMS = undefined;
 
-export type T_COMPLETE_PROFILE_ITEM = {
-  key: string;
-  component: React.ReactNode;
-};
+export const STEP_COUNT = 6;

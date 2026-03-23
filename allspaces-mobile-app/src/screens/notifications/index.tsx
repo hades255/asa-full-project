@@ -1,12 +1,12 @@
-import { View, FlatList, RefreshControl } from "react-native";
-import React, { useState } from "react";
+import { View, RefreshControl } from "react-native";
+import React, { useCallback } from "react";
 import { T_NOTIFICATIONS_SCREEN } from "./types";
-import { Header1, ScreenWrapper } from "@/components";
+import { EmptyList, Header1, ScreenWrapper } from "@/components";
 import { styles } from "./styles";
 import NotificationItem from "@/components/notificationItem";
-import { useGetNotificationsQuery } from "@/apis/apiSlice";
 import { useUnistyles } from "react-native-unistyles";
 import { useGetNotificationsAPI } from "@/apis";
+import { FlashList } from "@shopify/flash-list";
 
 const Notifications: React.FC<T_NOTIFICATIONS_SCREEN> = ({ navigation }) => {
   const { theme } = useUnistyles();
@@ -18,30 +18,48 @@ const Notifications: React.FC<T_NOTIFICATIONS_SCREEN> = ({ navigation }) => {
     isRefetching,
   } = useGetNotificationsAPI();
 
+  const handleRefresh = useCallback(() => {
+    refetch();
+  }, [refetch]);
+
+  const keyExtractor = useCallback(
+    (item: any, index: number) => item.id ?? `notification-${index}`,
+    []
+  );
+
+  const renderItem = useCallback(({ item }: { item: any }) => {
+    return (
+      <NotificationItem
+        isRead={item.isRead}
+        description={item.message}
+        time={item.createdAt}
+      />
+    );
+  }, []);
+
   return (
     <ScreenWrapper withoutBottomPadding>
       <Header1 title="Notifications" />
       <View style={styles.mainContainer}>
-        <FlatList
+        <FlashList
+          estimatedItemSize={92}
           refreshControl={
             <RefreshControl
               refreshing={isRefetching}
-              onRefresh={refetch}
+              onRefresh={handleRefresh}
               colors={[theme.colors.semanticExtensions.content.contentAccent]}
               tintColor={theme.colors.semanticExtensions.content.contentAccent}
             />
           }
-          data={notifications}
+          data={[]}
           showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.scrollContainer}
-          renderItem={({ item }) => (
-            <NotificationItem
-              isRead={item.isRead}
-              description={item.message}
-              time={item.createdAt}
-            />
-          )}
+          keyExtractor={keyExtractor}
+          ListEmptyComponent={
+            <EmptyList message="No notifications yet. We'll notify you when something important happens!" />
+          }
+          renderItem={renderItem}
+          ItemSeparatorComponent={() => <View style={{ height: theme.units[3] }} />}
+          removeClippedSubviews
         />
       </View>
     </ScreenWrapper>

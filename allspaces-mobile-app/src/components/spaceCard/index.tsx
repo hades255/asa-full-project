@@ -1,18 +1,18 @@
-import { ActivityIndicator, View } from "react-native";
-import React from "react";
+import { View } from "react-native";
+import React, { memo } from "react";
 import { T_SPACE_CARD } from "./types";
 import { styles } from "./styles";
 import { Image } from "expo-image";
 import AppText from "../appText";
 import { StarIcon } from "assets/icons";
-import { Heart, Location, Scan } from "iconsax-react-native";
+import { Heart, Location, Ranking, Scan } from "iconsax-react-native";
 import { useUnistyles } from "react-native-unistyles";
 import BlurIconButton from "../blurIconButton";
+import { BlurView } from "expo-blur";
 import ButtonWrapper from "../buttonWrapper";
 import { LinearGradient } from "expo-linear-gradient";
 import { useUpdateWishlistAPI } from "@/apis";
 import { AntDesign } from "@expo/vector-icons";
-import QrModal from "../modals/qrModal";
 
 const SpaceCard: React.FC<T_SPACE_CARD> = ({
   isBooked,
@@ -22,9 +22,14 @@ const SpaceCard: React.FC<T_SPACE_CARD> = ({
   fullWidth,
 }) => {
   const { theme } = useUnistyles();
+  const { mutate: updateWishlist } = useUpdateWishlistAPI();
 
-  const { mutateAsync: updateWishlistAPI, isPending: updateWishlistLoading } =
-    useUpdateWishlistAPI();
+  const handleWishlistToggle = () => {
+    updateWishlist({
+      profileId: space.id,
+      isWishlisted: space.isInWishlist,
+    });
+  };
 
   return (
     <ButtonWrapper
@@ -33,7 +38,6 @@ const SpaceCard: React.FC<T_SPACE_CARD> = ({
         style: styles.mainContainer,
       }}
     >
-      <QrModal />
       <View style={fullWidth ? styles.fullWidth : styles.imgContainer}>
         <LinearGradient
           colors={["rgba(0,0,0,0.6)", "rgba(0,0,0,0)"]}
@@ -46,8 +50,26 @@ const SpaceCard: React.FC<T_SPACE_CARD> = ({
           contentFit="cover"
           style={fullWidth ? styles.fullWidthImageStyle : styles.imgStyle}
         />
+        {typeof space.matchScore === "number" && (
+          <View style={styles.scoreBadgeContainer}>
+            <BlurView tint="light" intensity={4} style={styles.scoreBadge}>
+              <Ranking
+                size={18}
+                color={theme.colors.semantic.content.contentInversePrimary}
+                variant="Bold"
+              />
+              <AppText
+                font="caption1"
+                color={theme.colors.semantic.content.contentInversePrimary}
+              >
+                {(space.matchScore * 100).toFixed(0)}%
+              </AppText>
+            </BlurView>
+          </View>
+        )}
         <View style={styles.iconsContainer}>
           <BlurIconButton
+            onPress={isBooked ? undefined : handleWishlistToggle}
             icon={
               isBooked ? (
                 <Scan
@@ -55,31 +77,14 @@ const SpaceCard: React.FC<T_SPACE_CARD> = ({
                   color={theme.colors.semantic.content.contentInversePrimary}
                   onPress={onScanPress}
                 />
-              ) : updateWishlistLoading ? (
-                <ActivityIndicator
-                  size={"small"}
-                  color={theme.colors.semanticExtensions.content.contentAccent}
-                />
               ) : space.isInWishlist ? (
                 <AntDesign
-                  onPress={async () => {
-                    await updateWishlistAPI({
-                      profileId: space.id,
-                      isWishlisted: space.isInWishlist,
-                    });
-                  }}
                   name="heart"
                   size={24}
                   color={theme.colors.core.negative}
                 />
               ) : (
                 <Heart
-                  onPress={async () => {
-                    await updateWishlistAPI({
-                      profileId: space.id,
-                      isWishlisted: space.isInWishlist,
-                    });
-                  }}
                   size={24}
                   color={theme.colors.semantic.content.contentInversePrimary}
                 />
@@ -126,7 +131,7 @@ const SpaceCard: React.FC<T_SPACE_CARD> = ({
             {space.address}
           </AppText>
         </View>
-        <AppText font="body1">{`$ ${space.services[0].minSpend.toFixed(
+        <AppText font="body1">{`£ ${space.services[0].minSpend.toFixed(
           2
         )} min.spend`}</AppText>
       </View>
@@ -134,4 +139,4 @@ const SpaceCard: React.FC<T_SPACE_CARD> = ({
   );
 };
 
-export default SpaceCard;
+export default memo(SpaceCard);

@@ -1,5 +1,5 @@
 import { View, ScrollView, FlatList, ActivityIndicator } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 
 import {
   AppButton,
@@ -60,7 +60,7 @@ const AccorDetailsScreen: React.FC<T_ACCOR_DETAILS_SCREEN> = ({
   //   } else setSelectedServices((prev) => [...prev, item]);
   // };
 
-  const onBookNowClick = () => {
+  const onBookNowClick = useCallback(() => {
     if (!isProfileCompleted) {
       showSnackbar(`You need to complete your profile first!`, "warning");
       return;
@@ -77,21 +77,30 @@ const AccorDetailsScreen: React.FC<T_ACCOR_DETAILS_SCREEN> = ({
     //   profile: profile,
     //   services: selectedServices,
     // });
-  };
+  }, [isProfileCompleted]);
 
   const firstKey: any = accorItem.hotel.rating
     ? Object.keys(accorItem.hotel.rating)[0]
     : null;
   const rating = firstKey ? accorItem.hotel.rating[firstKey] : null;
 
+  const sliderImages = useMemo(
+    () =>
+      accorItem.hotel.media.medias.map((obj) => Object.values(obj)[0] as string),
+    [accorItem.hotel.media.medias]
+  );
+
+  const amenities = useMemo(
+    () => accorItem.hotel.amenity.free ?? [],
+    [accorItem.hotel.amenity.free]
+  );
+
+  const stars = useMemo(() => Array(5).fill("1"), []);
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.sliderContainer}>
-        <ImageSlider
-          images={accorItem.hotel.media.medias.map(
-            (obj) => Object.values(obj)[0]
-          )}
-        />
+        <ImageSlider images={sliderImages} />
         <View style={[styles.overlayIconsHeader, { marginTop: insets.top }]}>
           <BackButton />
           <View style={styles.overlayRightIcons}>
@@ -187,7 +196,7 @@ const AccorDetailsScreen: React.FC<T_ACCOR_DETAILS_SCREEN> = ({
               {accorItem.hotel.localization.address.street}
             </AppText>
           </View>
-          <AppText font="body1">{`~ $ ${accorItem.price} min.spend`}</AppText>
+          <AppText font="body1">{`~ £ ${accorItem.price} min.spend`}</AppText>
         </View>
         <View style={styles.separator} />
 
@@ -202,7 +211,7 @@ const AccorDetailsScreen: React.FC<T_ACCOR_DETAILS_SCREEN> = ({
         <View style={[{ rowGap: theme.units[2] }, styles.sectionHPadding]}>
           <AppText font="heading4">{`Amenities`}</AppText>
           <View style={styles.wrappedView}>
-            {accorItem.hotel.amenity.free.map((item, index) => (
+            {amenities.map((item, index) => (
               <Chip key={index.toString()} text={item} />
             ))}
           </View>
@@ -234,9 +243,7 @@ const AccorDetailsScreen: React.FC<T_ACCOR_DETAILS_SCREEN> = ({
           <View style={{ columnGap: theme.units[1] }}>
             <AppText font="heading4">{`What people say`}</AppText>
             <View style={styles.leftAlignRow}>
-              {Array(5)
-                .fill("1")
-                .map((_, index) => (
+              {stars.map((_, index) => (
                   <StarIcon
                     key={index.toString()}
                     width={16}

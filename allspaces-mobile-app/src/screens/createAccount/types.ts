@@ -22,10 +22,12 @@ export const S_CREATE_ACCOUNT_FIELDS = yup
     password: yup
       .string()
       .required(ERRORS.password)
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        ERRORS.password
-      ),
+      .min(8, ERRORS.password)
+    // .matches(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+    //   ERRORS.password
+    // ),
+    ,
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password")], ERRORS.confirmPassword)

@@ -1,7 +1,6 @@
 import { Text, Modal, View } from "react-native";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import { styles } from "./styles";
 import { appColors, horizontalScale, moderateScale } from "@/theme";
 import {
@@ -12,14 +11,16 @@ import {
 } from "iconsax-react-native";
 import AppButton from "@/components/appButton";
 import { actionSetShowStatusModal } from "@/redux/app.slice";
+import { runStatusModalAction } from "@/utils/statusModalActions";
+import { selectStatusModalState } from "@/redux/selectors";
 
 const StatusModal = () => {
   const {
     showStatusModal,
     statusModal,
     statusModalMessage,
-    statusModalConfirmPress,
-  } = useSelector((state: RootState) => state.appSlice);
+    statusModalActionKey,
+  } = useSelector(selectStatusModalState);
   const dispatch = useDispatch();
 
   const closeModal = () => {
@@ -28,6 +29,7 @@ const StatusModal = () => {
         showStatusModal: false,
         statusModalMessage: "",
         type: "success",
+        actionKey: null,
       })
     );
   };
@@ -115,8 +117,8 @@ const StatusModal = () => {
               <AppButton
                 width={horizontalScale(138)}
                 title={`Confirm`}
-                onPress={(e) => {
-                  if (statusModalConfirmPress) statusModalConfirmPress(e);
+                onPress={async () => {
+                  await runStatusModalAction(statusModalActionKey);
                   closeModal();
                 }}
               />

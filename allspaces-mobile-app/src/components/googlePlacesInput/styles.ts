@@ -18,7 +18,7 @@ export const styles = StyleSheet.create((theme) => ({
   },
   textInput: {
     flex: 1,
-    height: 55,
+    height: "100%",
     ...theme.typography.body1,
     color: theme.colors.semantic.content.contentPrimary,
   },
@@ -44,7 +44,8 @@ export const styles = StyleSheet.create((theme) => ({
   },
   suggestionText: {
     flex: 1,
-    fontWeight: "500",
+    ...theme.typography.body2,
+    color: theme.colors.semantic.content.contentPrimary,
   },
   suggestionsScrollView: {
     maxHeight: 150,

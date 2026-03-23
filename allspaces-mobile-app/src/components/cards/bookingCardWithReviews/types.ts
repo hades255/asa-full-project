@@ -67,4 +67,5 @@ export type T_PROFILE_ITEM = {
   isInWishlist: boolean;
   status?: string;
   price?: number;
+  matchScore?: number;
 };

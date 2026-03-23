@@ -15,75 +15,43 @@ import { styles } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUser } from "@clerk/clerk-expo";
-import { useDispatch, useSelector } from "react-redux";
-import { actionSetAppLoading, actionSetSearchData } from "@/redux/app.slice";
+import { useDispatch, useSelector } from "@/redux/hooks";
+import {
+  actionSetAppLoading,
+  actionSetSearchData,
+  actionSetIntentSearchResult,
+} from "@/redux/app.slice";
 import { showClerkError } from "@/utils/essentials";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import AppDropdownPicker from "@/components/appDropDownPicker";
 import { Clock, Profile2User } from "iconsax-react-native";
 import { useUnistyles } from "react-native-unistyles";
-import { RootState } from "@/redux/store";
+import { selectGooglePlaceData } from "@/redux/selectors";
+
+const GUEST_OPTIONS = [
+  { label: "0", value: "0" },
+  { label: "1", value: "1" },
+  { label: "2", value: "2" },
+  { label: "3", value: "3" },
+  { label: "4", value: "4" },
+  { label: "5", value: "5" },
+];
+
+const DURATION_OPTIONS = [
+  { label: "0", value: "0" },
+  { label: "1", value: "1" },
+  { label: "2", value: "2" },
+  { label: "3", value: "3" },
+  { label: "4", value: "4" },
+  { label: "5", value: "5" },
+];
 
 const SearchScreen: React.FC<T_SEARCH_SCREEN> = ({ navigation }) => {
   const { user, isLoaded } = useUser();
   const dispatch = useDispatch();
   const { theme } = useUnistyles();
-  const { googlePlaceData } = useSelector((state: RootState) => state.appSlice);
-
+  const googlePlaceData = useSelector(selectGooglePlaceData);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-
-  const guestOptions = [
-    {
-      label: "0",
-      value: "0",
-    },
-    {
-      label: "1",
-      value: "1",
-    },
-    {
-      label: "2",
-      value: "2",
-    },
-    {
-      label: "3",
-      value: "3",
-    },
-    {
-      label: "4",
-      value: "4",
-    },
-    {
-      label: "5",
-      value: "5",
-    },
-  ];
-  const durationOptions = [
-    {
-      label: "0",
-      value: "0",
-    },
-    {
-      label: "1",
-      value: "1",
-    },
-    {
-      label: "2",
-      value: "2",
-    },
-    {
-      label: "3",
-      value: "3",
-    },
-    {
-      label: "4",
-      value: "4",
-    },
-    {
-      label: "5",
-      value: "5",
-    },
-  ];
 
   const {
     control,
@@ -98,11 +66,12 @@ const SearchScreen: React.FC<T_SEARCH_SCREEN> = ({ navigation }) => {
       guests: "0",
     },
   });
-  
+
   const onContinueClick = async (formData: T_SEARCH_FIELDS) => {
     try {
       if (!isLoaded || !user || !googlePlaceData) return;
 
+      dispatch(actionSetIntentSearchResult(null));
       dispatch(
         actionSetSearchData({
           date: new Date(formData.when).toISOString(),
@@ -127,6 +96,7 @@ const SearchScreen: React.FC<T_SEARCH_SCREEN> = ({ navigation }) => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.mainScrollContainer}
           nestedScrollEnabled
+          keyboardShouldPersistTaps={"handled"}
         >
           <View style={{ rowGap: theme.units[3] }}>
             <AppDatePicker
@@ -156,7 +126,7 @@ const SearchScreen: React.FC<T_SEARCH_SCREEN> = ({ navigation }) => {
                 />
               }
               label="For how long? (hours)"
-              options={durationOptions}
+              options={DURATION_OPTIONS}
               selectedValue=""
               onValueChange={() => {}}
             />
@@ -164,7 +134,9 @@ const SearchScreen: React.FC<T_SEARCH_SCREEN> = ({ navigation }) => {
               <View style={{ paddingLeft: theme.units[4] }}>
                 <AppText
                   font="caption1"
-                  color={theme.colors.semanticExtensions.content.contentNegative}
+                  color={
+                    theme.colors.semanticExtensions.content.contentNegative
+                  }
                 >
                   {errors.duration.message}
                 </AppText>
@@ -189,7 +161,7 @@ const SearchScreen: React.FC<T_SEARCH_SCREEN> = ({ navigation }) => {
                 />
               }
               label="How many guests?"
-              options={guestOptions}
+              options={GUEST_OPTIONS}
               selectedValue=""
               onValueChange={() => {}}
             />

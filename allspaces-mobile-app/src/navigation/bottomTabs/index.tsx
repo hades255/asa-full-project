@@ -4,11 +4,6 @@ import {
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
 import { BottomTabsParamList } from "./types";
-import HomeStack from "../homeStack";
-import BookingsStack from "../bookingsStack";
-import FavouritesStack from "../favouritesStack";
-import NotificationStack from "../notificationsStack";
-import SettingsStack from "../settingsStack";
 import { View } from "react-native";
 import { AppText, ButtonWrapper } from "@/components";
 import { styles } from "./styles";
@@ -98,7 +93,7 @@ const BottomTabs = () => {
     >
       <Tabs.Screen
         name="HomeStack"
-        component={HomeStack}
+        getComponent={() => require("../homeStack").default}
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => <Home2 size={size} color={color} />,
@@ -106,7 +101,7 @@ const BottomTabs = () => {
       />
       <Tabs.Screen
         name="BookingsStack"
-        component={BookingsStack}
+        getComponent={() => require("../bookingsStack").default}
         options={{
           tabBarLabel: "Bookings",
           tabBarIcon: ({ color, size }) => <Task size={size} color={color} />,
@@ -114,7 +109,7 @@ const BottomTabs = () => {
       />
       <Tabs.Screen
         name="FavouritesStack"
-        component={FavouritesStack}
+        getComponent={() => require("../favouritesStack").default}
         options={{
           tabBarLabel: "Wishlist",
           tabBarIcon: ({ color, size }) => <Heart size={size} color={color} />,
@@ -122,7 +117,7 @@ const BottomTabs = () => {
       />
       <Tabs.Screen
         name="NotificationStack"
-        component={NotificationStack}
+        getComponent={() => require("../notificationsStack").default}
         options={{
           tabBarLabel: "Notifications",
           tabBarIcon: ({ color, size }) => (
@@ -132,7 +127,7 @@ const BottomTabs = () => {
       />
       <Tabs.Screen
         name="SettingsStack"
-        component={SettingsStack}
+        getComponent={() => require("../settingsStack").default}
         options={{
           tabBarLabel: "Settings",
           tabBarIcon: ({ color, size }) => (

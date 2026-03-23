@@ -36,6 +36,6 @@ export const styles = StyleSheet.create((theme) => ({
   },
   btnText: {
     ...theme.typography.button1,
-    color: theme.colors.semantic.content.contentInversePrimary,
+    color: theme.colors.semantic.content.contentPrimary,
   },
 }));

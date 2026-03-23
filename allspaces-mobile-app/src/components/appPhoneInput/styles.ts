@@ -11,10 +11,12 @@ export const styles = StyleSheet.create((theme) => ({
     borderRadius: 100,
     backgroundColor: theme.colors.semantic.background.backgroundSecondary,
     height: 55,
+    width: "100%",
   },
   phoneInputStyle: {
     ...theme.typography.body1,
     color: theme.colors.semantic.content.contentPrimary,
+    height: "100%",
   },
   codeTextStyle: {
     ...theme.typography.body1,

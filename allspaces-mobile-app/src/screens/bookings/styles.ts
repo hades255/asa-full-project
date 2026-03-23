@@ -14,9 +14,4 @@ export const styles = StyleSheet.create((theme) => ({
     paddingHorizontal: theme.units[4],
     paddingTop: theme.units[6],
   },
-  bookingsListScroll: {
-    rowGap: theme.units[4],
-    paddingHorizontal: theme.units[4],
-    paddingVertical: theme.units[6],
-  },
 }));

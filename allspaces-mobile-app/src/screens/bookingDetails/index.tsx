@@ -1,5 +1,5 @@
 import { View, ScrollView, ActivityIndicator } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   AppButton,
@@ -26,11 +26,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import { T_PROFILE_SERVICE } from "@/components/cards/bookingCardWithReviews/types";
 import { useProfileProvider } from "@/hooks/useProfileProvider";
 
+const MemoReviewCard = memo(ReviewCard);
+
 const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
   navigation,
   route,
 }) => {
-  let { profile: vendorProfile } = route.params;
+  const { profile: vendorProfile, hideBookNow } = route.params;
+  console.log('hideBookNow', hideBookNow);
 
   const queryClient = useQueryClient();
   const { isProfileCompleted, checkProfileCompletion } = useProfileProvider();
@@ -50,18 +53,16 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
     checkProfileCompletion();
   }, []);
 
-  const onServiceClick = (item: T_PROFILE_SERVICE) => {
-    let alreadyAdded = selectedServices.find(
-      (service) => service.name === item.name
-    );
-    if (alreadyAdded) {
-      setSelectedServices((prev) =>
-        prev.filter((service, sIndex) => service.name != item.name)
-      );
-    } else setSelectedServices((prev) => [...prev, item]);
-  };
+  const onServiceClick = useCallback((item: T_PROFILE_SERVICE) => {
+    setSelectedServices((prev) => {
+      const found = prev.find((service) => service.name === item.name);
+      return found
+        ? prev.filter((service) => service.name !== item.name)
+        : [...prev, item];
+    });
+  }, []);
 
-  const onBookNowClick = () => {
+  const onBookNowClick = useCallback(() => {
     if (!isProfileCompleted) {
       showSnackbar(`You need to complete your profile first!`, "warning");
       return;
@@ -78,12 +79,39 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
       profile: profile,
       services: selectedServices,
     });
-  };
+  }, [isProfileCompleted, navigation, profile, selectedServices]);
+
+  const sliderImages = useMemo(
+    () => (profile ? profile.media.map((item) => item.url) : []),
+    [profile?.media]
+  );
+
+  const facilities = useMemo(
+    () => (profile ? profile.facilities : []),
+    [profile?.facilities]
+  );
+
+  const services = useMemo(
+    () => (profile ? profile.services : []),
+    [profile?.services]
+  );
+
+  const reviews = useMemo(
+    () => (profile ? profile.reviews : []),
+    [profile?.reviews]
+  );
+
+  const ratingKeys = useMemo(
+    () => (profile ? Object.keys(profile.rating) : []),
+    [profile?.rating]
+  );
+
+  const stars = useMemo(() => Array(5).fill("1"), []);
 
   return !isPending && profile ? (
     <View style={styles.mainContainer}>
       <View style={styles.sliderContainer}>
-        <ImageSlider images={profile.media.map((item) => item.url)} />
+        <ImageSlider images={sliderImages} />
         <View style={[styles.overlayIconsHeader, { marginTop: insets.top }]}>
           <BackButton />
           <View style={styles.overlayRightIcons}>
@@ -107,8 +135,8 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
                         queryKey: [
                           API_ROUTES.GET_PROFILES_BY_ID,
                           vendorProfile.id ||
-                            (vendorProfile as any).hotel?.id ||
-                            "",
+                          (vendorProfile as any).hotel?.id ||
+                          "",
                         ],
                       });
                     }}
@@ -127,8 +155,8 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
                         queryKey: [
                           API_ROUTES.GET_PROFILES_BY_ID,
                           vendorProfile.id ||
-                            (vendorProfile as any).hotel?.id ||
-                            "",
+                          (vendorProfile as any).hotel?.id ||
+                          "",
                         ],
                       });
                     }}
@@ -173,7 +201,7 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
             </AppText>
           </View>
           <AppText font="body1">
-            {`~ $ ${profile.services[0].minSpend.toFixed(2)} min.spend`}
+            {`~ £ ${profile.services[0].minSpend.toFixed(2)} min.spend`}
           </AppText>
         </View>
         <View style={styles.separator} />
@@ -189,7 +217,7 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
         <View style={[{ rowGap: theme.units[2] }, styles.sectionHPadding]}>
           <AppText font="heading4">{`Amenities`}</AppText>
           <View style={styles.wrappedView}>
-            {profile.facilities.map((item, index) => (
+            {facilities.map((item, index) => (
               <Chip key={index.toString()} text={item.name} />
             ))}
           </View>
@@ -200,7 +228,7 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
         <View style={[{ rowGap: theme.units[2] }, styles.sectionHPadding]}>
           <AppText font="heading4">{`Services`}</AppText>
           <View style={{ rowGap: theme.units[3] }}>
-            {profile.services.map((item, index) => (
+            {services.map((item, index) => (
               <ServiceCard
                 service={item}
                 key={index.toString()}
@@ -221,24 +249,22 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
           <View style={{ columnGap: theme.units[1] }}>
             <AppText font="heading4">{`What people say`}</AppText>
             <View style={styles.leftAlignRow}>
-              {Array(5)
-                .fill("1")
-                .map((_, index) => (
-                  <StarIcon
-                    key={index.toString()}
-                    width={16}
-                    height={16}
-                    color={
-                      theme.colors.semanticExtensions.content.contentAccent
-                    }
-                  />
-                ))}
+              {stars.map((_, index) => (
+                <StarIcon
+                  key={index.toString()}
+                  width={16}
+                  height={16}
+                  color={
+                    theme.colors.semanticExtensions.content.contentAccent
+                  }
+                />
+              ))}
               <AppText font="body2">{profile.averageRating.toFixed(1)}</AppText>
               <AppText font="body2">{` (${profile.totalReviews})`}</AppText>
             </View>
           </View>
           <View style={{ rowGap: theme.units[1] }}>
-            {Object.keys(profile.rating).map((key, keyIndex) => {
+            {ratingKeys.map((key, keyIndex) => {
               return (
                 <ReviewSlider
                   key={keyIndex.toString()}
@@ -248,7 +274,7 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
                   percentage={`${
                     // @ts-ignore
                     (profile.rating[key] / profile.totalReviews) * 100
-                  }%`}
+                    }%`}
                 />
               );
             })}
@@ -259,15 +285,17 @@ const BookingDetailsScreen: React.FC<T_BOOKING_DETAILS_SCREEN> = ({
             style={{ flexGrow: 0 }}
             contentContainerStyle={{ columnGap: theme.units[3] }}
           >
-            {profile.reviews.map((item, index) => (
-              <ReviewCard key={index.toString()} review={item} />
+            {reviews.map((item, index) => (
+              <MemoReviewCard key={index.toString()} review={item} />
             ))}
           </ScrollView>
         </View>
       </ScrollView>
-      <View style={styles.actionContainer}>
-        <AppButton title="Book Now" onPress={onBookNowClick} />
-      </View>
+      {!hideBookNow && (
+        <View style={styles.actionContainer}>
+          <AppButton title="Book Now" onPress={onBookNowClick} />
+        </View>
+      )}
     </View>
   ) : (
     <View style={styles.loaderContainer}>

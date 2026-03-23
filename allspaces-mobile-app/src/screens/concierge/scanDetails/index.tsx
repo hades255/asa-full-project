@@ -4,7 +4,7 @@ import {
   ScrollView,
   View,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   AppButton,
@@ -36,13 +36,19 @@ import {
   StarIcon,
 } from "assets/icons";
 import { useQueryClient } from "@tanstack/react-query";
+import { useSession } from "@clerk/clerk-expo";
 
 const ScanDetails: React.FC<T_SCAN_DETAILS_SCREEN> = ({
   navigation,
   route,
 }) => {
   const { scanResult } = route.params;
+
+  if (!scanResult) return;
+
   console.log("scanResult", scanResult);
+  const { session } = useSession();
+  console.log("session", session?.id);
 
   const {
     data: booking,
@@ -50,13 +56,17 @@ const ScanDetails: React.FC<T_SCAN_DETAILS_SCREEN> = ({
     isRefetching,
     refetch,
     isError,
-  } = useGetBookingById(scanResult.data);
+    error,
+  } = useGetBookingById(scanResult.data.toString());
   const { theme } = useUnistyles();
   const { mutateAsync: startBooking, isPending: startLoading } =
     useStartBookingByID();
   const queryClient = useQueryClient();
+
   if (isError) {
-    showSnackbar(`There is not booking available against this ID.`, "error");
+    console.log("isError", error);
+
+    showSnackbar(`There is no booking available against this ID.`, "error");
     navigation.goBack();
     return;
   }
@@ -95,18 +105,18 @@ const ScanDetails: React.FC<T_SCAN_DETAILS_SCREEN> = ({
                     backgroundColor:
                       booking.status == "PENDING"
                         ? theme.colors.semanticExtensions.background
-                            .backgroundWarning
+                          .backgroundWarning
                         : booking.status == "APPROVED"
-                        ? theme.colors.semanticExtensions.background
+                          ? theme.colors.semanticExtensions.background
                             .backgroundAccent
-                        : booking.status == "COMPLETED"
-                        ? theme.colors.semanticExtensions.background
-                            .backgroundPositive
-                        : booking.status == "IN_PROGRESS"
-                        ? theme.colors.semanticExtensions.background
-                            .backgroundAccent
-                        : theme.colors.semanticExtensions.background
-                            .backgroundNegative,
+                          : booking.status == "COMPLETED"
+                            ? theme.colors.semanticExtensions.background
+                              .backgroundPositive
+                            : booking.status == "IN_PROGRESS"
+                              ? theme.colors.semanticExtensions.background
+                                .backgroundAccent
+                              : theme.colors.semanticExtensions.background
+                                .backgroundNegative,
                   },
                 ]}
               >
@@ -127,7 +137,7 @@ const ScanDetails: React.FC<T_SCAN_DETAILS_SCREEN> = ({
                       <Rating
                         starSize={16}
                         rating={booking.reviews[0].rating}
-                        onChange={() => {}}
+                        onChange={() => { }}
                         emptyColor={
                           theme.colors.semantic.background.backgroundSecondary
                         }
@@ -243,9 +253,8 @@ const ScanDetails: React.FC<T_SCAN_DETAILS_SCREEN> = ({
                     <AppText
                       font="body2"
                       textAlign="right"
-                    >{`${booking.customer.averageRating.toFixed(1)} (${
-                      booking.customer.reviewsCount
-                    })`}</AppText>
+                    >{`${booking.customer.averageRating.toFixed(1)} (${booking.customer.reviewsCount
+                      })`}</AppText>
                   </View>
                 </View>
               </View>
@@ -286,12 +295,6 @@ const ScanDetails: React.FC<T_SCAN_DETAILS_SCREEN> = ({
               <VendorCard
                 profile={booking.profile}
                 disabled={true}
-                onPress={() => {
-                  navigation.getParent()?.navigate("HomeStack", {
-                    screen: "BookingDetailScreen",
-                    params: { profile: booking.profile },
-                  });
-                }}
               />
               <View style={styles.seperator} />
               <AppText font="button1">{`Services`}</AppText>
@@ -307,7 +310,7 @@ const ScanDetails: React.FC<T_SCAN_DETAILS_SCREEN> = ({
                 <AppText
                   font="heading4"
                   color={theme.colors.semanticExtensions.content.contentAccent}
-                >{`$ ${booking.amount.toFixed(2)}`}</AppText>
+                >{`£ ${booking.amount.toFixed(2)}`}</AppText>
               </View>
 
               {booking.status === "APPROVED" && (
@@ -317,13 +320,13 @@ const ScanDetails: React.FC<T_SCAN_DETAILS_SCREEN> = ({
                   onPress={async () => {
                     try {
                       await startBooking({ id: booking.id });
-                      queryClient.invalidateQueries({
+                      await queryClient.invalidateQueries({
                         queryKey: [API_ROUTES.GET_BOOKINGS_BY_ID],
                       });
 
                       showSnackbar("Booking started successfully", "success");
                     } catch (error) {
-                      console.log("error", error);
+                      console.log("error", JSON.stringify(error));
                       showSnackbar(JSON.stringify(error), "error");
                     }
                   }}

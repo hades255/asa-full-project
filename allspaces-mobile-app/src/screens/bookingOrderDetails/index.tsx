@@ -15,13 +15,14 @@ import { styles } from "./styles";
 import { useUnistyles } from "react-native-unistyles";
 import moment from "moment";
 import { showClerkError, showSnackbar } from "@/utils/essentials";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import {
   API_ROUTES,
   useCreateBookingAPI,
   useCreatePaymentIntent,
 } from "@/apis";
+import { STRIPE_RETURN_URL } from "@/config/constants";
 import {
   initPaymentSheet,
   presentPaymentSheet,
@@ -87,6 +88,7 @@ const BookingOrderDetails: React.FC<T_BOOKING_ORDER_DETAILS_SCREEN> = ({
       setTimeout(async () => {
         const { error, paymentOption } = await initPaymentSheet({
           merchantDisplayName: "All Spaces",
+          returnURL: STRIPE_RETURN_URL,
           customerId: intentResponse.customerId,
           customerEphemeralKeySecret: intentResponse.customerEphemeralKeySecret,
           paymentIntentClientSecret: intentResponse.paymentIntentClientSecret,
@@ -175,7 +177,7 @@ const BookingOrderDetails: React.FC<T_BOOKING_ORDER_DETAILS_SCREEN> = ({
                 font="heading4"
                 textAlign="right"
                 color={theme.colors.semanticExtensions.content.contentAccent}
-              >{`$ ${total.toFixed(2)}`}</AppText>
+              >{`£ ${total.toFixed(2)}`}</AppText>
             </View>
           </View>
         </ScrollView>

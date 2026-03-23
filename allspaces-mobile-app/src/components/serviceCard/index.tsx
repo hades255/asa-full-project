@@ -38,7 +38,7 @@ const ServiceCard: React.FC<T_SERVICE_CARD> = ({
           >
             {service.description}
           </AppText>
-          <AppText font="body2">{`$ ${service.minSpend.toFixed(
+          <AppText font="body2">{`£ ${service.minSpend.toFixed(
             2
           )} min.spend`}</AppText>
         </View>

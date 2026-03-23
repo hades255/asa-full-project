@@ -23,10 +23,14 @@ export const showSnackbar = (
 };
 
 export const showClerkError = (error: any) => {
+  let message = "Something went wrong. Please try again.";
+  if (error?.clerkError && Array.isArray(error?.errors) && error.errors.length > 0) {
+    message = error.errors[0].message ?? message;
+  } else if (typeof error?.message === "string") {
+    message = error.message;
+  }
   Snackbar.show({
-    text: error.clerkError
-      ? error.errors[0].message
-      : "Something went wrong. Please try again.",
+    text: message,
     textColor: appColors.semantic.content.contentInversePrimary,
     backgroundColor: appColors.semanticExtensions.content.contentNegative,
     fontFamily: "Poppins-Medium",

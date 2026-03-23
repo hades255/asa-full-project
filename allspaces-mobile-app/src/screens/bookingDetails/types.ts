@@ -10,6 +10,7 @@ export type T_BOOKING_DETAILS_SCREEN = NativeStackScreenProps<
 >;
 export type T_BOOKING_DETAILS_SCREEN_ROUTE_PARAMS = {
   profile: T_PROFILE_ITEM | T_ACCOR_ITEM;
+  hideBookNow?: boolean;
 };
 
 export type Options = {

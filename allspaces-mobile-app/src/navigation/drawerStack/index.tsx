@@ -11,7 +11,6 @@ import { View } from "react-native";
 import { styles } from "./styles";
 import { Logo } from "assets/images";
 import {
-  ArrowCircleRight,
   ClipboardText,
   CloseCircle,
   Headphone,
@@ -25,8 +24,8 @@ import {
   Task,
 } from "iconsax-react-native";
 import { AppText, Avatar, ButtonWrapper } from "@/components";
-import { useUser } from "@clerk/clerk-expo";
-import { LeafIcon, StarIcon } from "assets/icons";
+import { useSession, useUser } from "@clerk/clerk-expo";
+import { StarIcon } from "assets/icons";
 import { showSnackbar } from "@/utils/essentials";
 import { useGetCurrentUserAPI } from "@/apis";
 
@@ -36,6 +35,7 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
   const { theme } = useUnistyles();
   const { user, isLoaded } = useUser();
   const [activeMenu, setActiveMenu] = useState(0);
+  const { session } = useSession();
   const { data: userData } = useGetCurrentUserAPI();
 
   const DrawerMenu = [
@@ -131,15 +131,21 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
       key: "9",
       title: "Rate & Reviews",
       icon: (color: string) => <Star size={24} color={color} />,
+      onPress: () => {
+        showSnackbar(`COMING SOON`, "warning");
+      },
     },
     {
       key: "10",
       title: "Share with Friend",
       icon: (color: string) => <Share size={24} color={color} />,
+      onPress: () => {
+        showSnackbar(`COMING SOON`, "warning");
+      },
     },
   ];
 
-  if (!isLoaded || !user || !userData) {
+  if (!isLoaded || !user) {
     return;
   }
 
@@ -177,16 +183,16 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
                 height={16}
                 color={theme.colors.semanticExtensions.content.contentAccent}
               />
-              <AppText font="body2">{` ${userData.averageRating.toFixed(1)} (${
-                userData.totalReviews
-              })`}</AppText>
+              {userData ? (
+                <AppText font="body2">{` ${userData.averageRating.toFixed(1)} (${
+                  userData.totalReviews
+                })`}</AppText>
+              ) : (
+                <AppText font="body2">{` 0.0 (0)`}</AppText>
+              )}
             </View>
           </View>
         </View>
-        <ArrowCircleRight
-          size={24}
-          color={theme.colors.semantic.content.contentInverseTertionary}
-        />
       </View>
       <View style={styles.separator} />
       <View style={styles.listContainer}>

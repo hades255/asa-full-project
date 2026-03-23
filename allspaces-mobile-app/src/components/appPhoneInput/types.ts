@@ -16,4 +16,6 @@ export type T_APP_PHONE_INPUT = {
   placeholder?: string;
   width?: DimensionValue;
   onChangeText: (isValid: boolean) => void;
+  /** Called once when initial country (locale/GPS) resolution has finished */
+  onCountryResolved?: () => void;
 };

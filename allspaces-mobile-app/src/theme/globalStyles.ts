@@ -18,8 +18,20 @@ export const globalStyles = StyleSheet.create((theme) => ({
   rowGap20: {
     rowGap: verticalScale(appSpacings[5]),
   },
+  rowGap16: {
+    rowGap: verticalScale(appSpacings[4]),
+  },
+  rowGap4: {
+    rowGap: verticalScale(appSpacings[1]),
+  },
   rowGap32: {
     rowGap: verticalScale(appSpacings[8]),
+  },
+  flex1: {
+    flex: 1,
+  },
+  flexGrow0: {
+    flexGrow: 0,
   },
   h16Padding: {
     paddingHorizontal: horizontalScale(appSpacings[4]),

@@ -10,11 +10,17 @@ import { useNavigation } from "@react-navigation/native";
 
 const VendorCard: React.FC<T_VENDOR_CARD> = ({
   profile,
-  onPress,
   disabled,
 }) => {
   const { theme } = useUnistyles();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
+
+  const handleViewSpace = () => {
+    navigation.getParent()?.navigate("HomeStack", {
+      screen: "BookingDetailScreen",
+      params: { profile, hideBookNow: true },
+    });
+  };
   return (
     <View style={styles.mainContainer}>
       <View style={styles.leftContainer}>
@@ -41,7 +47,7 @@ const VendorCard: React.FC<T_VENDOR_CARD> = ({
           {!disabled && (
             <AppText
               textProps={{
-                onPress: onPress,
+                onPress: handleViewSpace,
               }}
               font="caption1"
               color={theme.colors.semanticExtensions.content.contentAccent}

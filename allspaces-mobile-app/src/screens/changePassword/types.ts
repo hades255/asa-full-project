@@ -20,17 +20,19 @@ export const S_CHANGE_PASSWORD_FIELDS = yup
     currentPassword: yup
       .string()
       .required(ERRORS.password)
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        ERRORS.password
-      ),
+      .min(8, ERRORS.password),
+      // .matches(
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      //   ERRORS.password
+      // ),
     newPassword: yup
       .string()
       .required(ERRORS.password)
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        ERRORS.password
-      ),
+      .min(8, ERRORS.password),
+    // .matches(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+    //   ERRORS.password
+    // ),
     confirmNewPassword: yup
       .string()
       .oneOf([yup.ref("newPassword")], ERRORS.confirmPassword)

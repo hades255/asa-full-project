@@ -31,4 +31,26 @@ export const styles = StyleSheet.create((theme) => ({
     flexDirection: "row",
     alignItems: "center",
   },
+  filterLink: {
+    alignSelf: "flex-end",
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: theme.units[2],
+    paddingVertical: theme.units[2],
+    paddingHorizontal: theme.units[2],
+  },
+  errorBar: {
+    alignSelf: "stretch",
+    padding: theme.units[3],
+    borderRadius: theme.units[2],
+    borderLeftWidth: 4,
+    rowGap: theme.units[2],
+  },
+  errorBarTitle: {
+    fontWeight: "600",
+  },
+  errorBarDetail: {
+    fontFamily: "monospace",
+    fontSize: 11,
+  },
 }));

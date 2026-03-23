@@ -1,5 +1,5 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
+import { Keyboard, View } from "react-native";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   S_ADD_PHONE_NUMBER_FIELDS,
   T_ADD_PHONE_NUMBER,
@@ -11,19 +11,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { useUser } from "@clerk/clerk-expo";
 import { showClerkError, showSnackbar } from "@/utils/essentials";
-import { styles } from "./styles";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 import {
   actionSetAppLoading,
   actionSetVerificationNumber,
 } from "@/redux/app.slice";
 import { PhoneNumberResource } from "@clerk/types";
 import { useUnistyles } from "react-native-unistyles";
+import StepLayout from "../stepLayout";
+import { styles } from "./styles";
 
 const AddPhoneNumber: React.FC<T_ADD_PHONE_NUMBER> = ({
-  flatlistIndex,
-  flatlistRef,
   setPhoneObj,
+  onNext,
+  onGoToStep,
 }) => {
   const { theme } = useUnistyles();
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const AddPhoneNumber: React.FC<T_ADD_PHONE_NUMBER> = ({
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(S_ADD_PHONE_NUMBER_FIELDS),
@@ -47,7 +48,7 @@ const AddPhoneNumber: React.FC<T_ADD_PHONE_NUMBER> = ({
 
   useEffect(() => {
     if (isLoaded && user) {
-      let number = user.phoneNumbers.find(
+      const number = user.phoneNumbers.find(
         (item) => item.verification.status === "verified"
       );
       if (number) {
@@ -58,102 +59,133 @@ const AddPhoneNumber: React.FC<T_ADD_PHONE_NUMBER> = ({
   }, [user, isLoaded]);
 
   const [isNumberValid, setNumberValid] = useState<boolean>(false);
-  const onContinueClick = async (formData: T_ADD_PHONE_NUMBER_FIELDS) => {
-    try {
-      if (!isLoaded || !user) return;
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [isCountryResolved, setIsCountryResolved] = useState(false);
+  const isMountedRef = useRef(true);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const onCountryResolved = useCallback(() => {
+    if (isMountedRef.current) {
+      setIsCountryResolved(true);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    // Fallback timeout to ensure loader doesn't block forever
+    timeoutRef.current = setTimeout(() => {
+      if (isMountedRef.current && !isCountryResolved) {
+        setIsCountryResolved(true);
+      }
+    }, 2000); // 2 second timeout
+    
+    return () => {
+      isMountedRef.current = false;
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+  }, [isCountryResolved]);
+
+  const onContinueClick = async (formData: T_ADD_PHONE_NUMBER_FIELDS) => {
+    if (isSubmitting || !isLoaded || !user) return;
+    try {
+      setSubmitting(true);
       dispatch(actionSetAppLoading(true));
 
-      let phoneNumber = null;
-
-      // Already exits
-      phoneNumber = user.phoneNumbers.find(
-        (item) => item.phoneNumber === formData.mobileNumber
+      const sanitizedNumber = formData.mobileNumber.replace(/[^\d+]/g, "");
+      let phoneNumber = user.phoneNumbers.find(
+        (item) => item.phoneNumber === sanitizedNumber
       );
 
-      // New Number
       if (!phoneNumber) {
-        // Creating new number
         const response = await user.createPhoneNumber({
-          phoneNumber: formData.mobileNumber.split("--")[0],
+          phoneNumber: sanitizedNumber,
         });
-        // Updating local user
         await user.reload();
         phoneNumber = user.phoneNumbers.find((a) => a.id === response.id);
       }
 
       setPhoneObj(phoneNumber);
-      dispatch(actionSetVerificationNumber(formData.mobileNumber));
+      dispatch(actionSetVerificationNumber(sanitizedNumber));
       await phoneNumber?.prepareVerification();
 
-      flatlistRef.current?.scrollToIndex({
-        index: flatlistIndex.value + 1,
-        animated: true,
-      });
+      if (!isMountedRef.current) return;
 
+      Keyboard.dismiss();
       showSnackbar(`OTP is sent successfully to your mobile number`, "success");
-      dispatch(actionSetAppLoading(false));
+      onNext();
     } catch (error) {
-      console.log('error',error);
-      
       showClerkError(error);
-      dispatch(actionSetAppLoading(false));
+    } finally {
+      if (isMountedRef.current) {
+        setSubmitting(false);
+        dispatch(actionSetAppLoading(false));
+      }
     }
   };
 
   const onAlreadyVerified = () => {
-    flatlistRef.current?.scrollToIndex({
-      index: flatlistIndex.value + 2,
-      animated: true,
-    });
+    if (!isMountedRef.current) return;
+    Keyboard.dismiss();
+    onGoToStep(4);
   };
 
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.bodyContainer}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={styles.topContainer}>
-        <View style={{ rowGap: theme.units[1] }}>
-          <AppText font="heading2">
-            {alreadyVerified ? `Already Verified` : `Add Phone Number`}
-          </AppText>
-          {alreadyVerified ? (
-            <AppText font="button1">
-              {`${verifiedNumber?.phoneNumber} `}
+    <StepLayout>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.bodyContainer}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.topContainer}>
+          <View style={{ rowGap: theme.units[1] }}>
+            <AppText font="heading2">
+              {alreadyVerified ? `Already Verified` : `Add Phone Number`}
+            </AppText>
+            {alreadyVerified ? (
+              <AppText font="button1">
+                {`${verifiedNumber?.phoneNumber} `}
+                <AppText
+                  font="body1"
+                  color={theme.colors.semantic.content.contentInverseTertionary}
+                >{`is already verified`}</AppText>
+              </AppText>
+            ) : (
               <AppText
                 font="body1"
                 color={theme.colors.semantic.content.contentInverseTertionary}
-              >{`is already verified`}</AppText>
-            </AppText>
-          ) : (
-            <AppText
-              font="body1"
-              color={theme.colors.semantic.content.contentInverseTertionary}
-            >{`Enter your phone number to continue`}</AppText>
+              >{`Enter your phone number to continue`}</AppText>
+            )}
+          </View>
+          {!alreadyVerified && (
+            <AppPhoneInput
+              control={control}
+              name="mobileNumber"
+              error={errors.mobileNumber?.message}
+              placeholder="Mobile Number"
+              onChangeText={setNumberValid}
+              label="Mobile Number"
+              onCountryResolved={onCountryResolved}
+            />
           )}
         </View>
-        {!alreadyVerified && (
-          <AppPhoneInput
-            control={control}
-            name="mobileNumber"
-            error={errors.mobileNumber?.message}
-            placeholder="Mobile Number"
-            onChangeText={setNumberValid}
-            label="Mobile Number"
+        {alreadyVerified ? (
+          <AppButton title="Continue" onPress={onAlreadyVerified} />
+        ) : (
+          <AppButton
+            disabled={!isNumberValid || isSubmitting}
+            title="Continue"
+            onPress={handleSubmit(onContinueClick)}
           />
         )}
-      </View>
-      {alreadyVerified ? (
-        <AppButton title="Continue" onPress={onAlreadyVerified} />
-      ) : (
-        <AppButton
-          disabled={!isNumberValid}
-          title="Continue"
-          onPress={handleSubmit(onContinueClick)}
-        />
-      )}
-    </KeyboardAwareScrollView>
+      </KeyboardAwareScrollView>
+    </StepLayout>
   );
 };
 

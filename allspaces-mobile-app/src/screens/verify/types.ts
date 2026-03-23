@@ -9,6 +9,7 @@ export type T_VERIFY_SCREEN = NativeStackScreenProps<
 export type T_VERIFY_SCREEN_ROUTE_PARAMS = {
   type: "email" | "phone";
   credential: string;
+  isConcierge?: boolean;
 };
 
 export type T_VERIFY_FIELDS = {

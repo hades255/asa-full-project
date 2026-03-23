@@ -4,7 +4,7 @@ import { T_ALL_SET_SCREEN } from "./types";
 import { styles } from "./styles";
 import { AppButton, AppText, ScreenWrapper } from "@/components";
 import { TickCircle } from "iconsax-react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 import { actionSetCompleteProfile } from "@/redux/app.slice";
 import { useUnistyles } from "react-native-unistyles";
 

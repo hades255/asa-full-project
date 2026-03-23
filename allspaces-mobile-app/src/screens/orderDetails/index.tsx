@@ -167,15 +167,7 @@ const OrderDetails: React.FC<T_ORDER_DETAILS_SCREEN> = ({
               </View>
               <View style={styles.seperator} />
               <AppText font="button1">{`Space`}</AppText>
-              <VendorCard
-                profile={booking.profile}
-                onPress={() => {
-                  navigation.getParent()?.navigate("HomeStack", {
-                    screen: "BookingDetailScreen",
-                    params: { profile: booking.profile },
-                  });
-                }}
-              />
+              <VendorCard profile={booking.profile} />
               <View style={styles.seperator} />
               <AppText font="button1">{`Services`}</AppText>
               <View style={{ rowGap: theme.units[2] }}>
@@ -190,7 +182,7 @@ const OrderDetails: React.FC<T_ORDER_DETAILS_SCREEN> = ({
                 <AppText
                   font="heading4"
                   color={theme.colors.semanticExtensions.content.contentAccent}
-                >{`$ ${booking.amount.toFixed(2)}`}</AppText>
+                >{`£ ${booking.amount.toFixed(2)}`}</AppText>
               </View>
             </View>
 

@@ -1,7 +1,10 @@
+/** Used by Stripe Payment Sheet for redirect-based payment methods (e.g. 3D Secure) on iOS */
+export const STRIPE_RETURN_URL = "allspaces://stripe-redirect";
+
 export const ERRORS = {
   email: "Please enter a valid email.",
   password:
-    "Please enter a valid password contains at least 8 character with 1 uppercase, 1 lowercase, 1 digit and 1 special character.",
+    "Please enter a valid password contains at least 8 character",
   confirmPassword: "Password and Confirm Password must be same",
   firstName: "Please enter a valid first name.",
   lastName: "Please enter a valid last name.",

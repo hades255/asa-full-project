@@ -15,11 +15,11 @@ import { styles } from "./styles";
 import { formatDate, showSnackbar } from "@/utils/essentials";
 import QRCode from "react-native-qrcode-svg";
 import * as Calendar from "expo-calendar";
-import { useGetBookingByIdQuery } from "@/apis/apiSlice";
+import { useGetBookingById } from "@/apis";
 import { horizontalScale } from "@/theme";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import { actionSetCalendarEventId } from "@/redux/app.slice";
+import { selectCalendarEventIds } from "@/redux/selectors";
 
 const OrderSummary: React.FC<T_ORDER_SUMMARY_SCREEN> = ({
   navigation,
@@ -28,15 +28,11 @@ const OrderSummary: React.FC<T_ORDER_SUMMARY_SCREEN> = ({
   const { noOfPersons, totalPrice, bookingId, profileName, checkInDate } =
     route.params;
 
-  const { data: bookingDetails, isLoading } = useGetBookingByIdQuery(
-    bookingId || ""
-  );
+  const { data: bookingDetails, isLoading } = useGetBookingById(bookingId || "");
 
   const [hasCalendarPermission, setHasCalendarPermission] = useState(false);
   const dispatch = useDispatch();
-  const calendarEventIds = useSelector(
-    (state: RootState) => state.appSlice.calendarEventIds
-  );
+  const calendarEventIds = useSelector(selectCalendarEventIds);
   const isEventAddedToCalendar = bookingId
     ? !!calendarEventIds[bookingId]
     : false;
@@ -44,6 +40,16 @@ const OrderSummary: React.FC<T_ORDER_SUMMARY_SCREEN> = ({
   useEffect(() => {
     checkCalendarPermission();
   }, []);
+
+  const openAppSettings = async () => {
+    try {
+      await Linking.openSettings();
+    } catch {
+      if (Platform.OS === "ios") {
+        await Linking.openURL("app-settings:");
+      }
+    }
+  };
 
   const checkCalendarPermission = async () => {
     try {
@@ -80,13 +86,7 @@ const OrderSummary: React.FC<T_ORDER_SUMMARY_SCREEN> = ({
             },
             {
               text: "Open Settings",
-              onPress: () => {
-                if (Platform.OS === "ios") {
-                  Linking.openURL("app-settings:");
-                } else {
-                  Linking.openSettings();
-                }
-              },
+              onPress: openAppSettings,
             },
           ]
         );
@@ -98,7 +98,10 @@ const OrderSummary: React.FC<T_ORDER_SUMMARY_SCREEN> = ({
       Calendar.EntityTypes.EVENT
     );
 
-    const defaultCalendar = calendars.find((cal) => cal.isPrimary);
+    const defaultCalendar =
+      calendars.find((cal) => cal.isPrimary) ||
+      calendars.find((cal) => cal.allowsModifications) ||
+      calendars[0];
     return defaultCalendar;
   };
 
@@ -172,7 +175,7 @@ const OrderSummary: React.FC<T_ORDER_SUMMARY_SCREEN> = ({
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Rent</Text>
-              <Text style={styles.value}>${totalPrice}/night</Text>
+              <Text style={styles.value}>£{totalPrice}/night</Text>
             </View>
           </View>
           {/* <View style={styles.divider} /> */}
@@ -194,7 +197,7 @@ const OrderSummary: React.FC<T_ORDER_SUMMARY_SCREEN> = ({
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Rent</Text>
-              <Text style={styles.value}>$94/hr</Text>
+              <Text style={styles.value}>£94/hr</Text>
             </View>
           </View> */}
 
@@ -203,7 +206,7 @@ const OrderSummary: React.FC<T_ORDER_SUMMARY_SCREEN> = ({
           {/* Total Section */}
           <View style={styles.totalContainer}>
             <Text style={styles.totalLabel}>Total</Text>
-            <Text style={styles.totalValue}>${totalPrice}</Text>
+            <Text style={styles.totalValue}>£{totalPrice}</Text>
           </View>
 
           <AppButton

@@ -36,5 +36,7 @@ export const styles = StyleSheet.create((theme) => ({
     borderRadius: 100,
     paddingHorizontal: theme.units[4],
     backgroundColor: theme.colors.semantic.background.backgroundSecondary,
+    ...theme.typography.body1,
+    color: theme.colors.semantic.content.contentPrimary,
   },
 }));

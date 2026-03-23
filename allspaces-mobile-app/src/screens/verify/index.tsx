@@ -13,30 +13,43 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { gotoAccountSuccessFromVerify } from "@/navigation/service";
-import { useAuth, useSignUp, useUser } from "@clerk/clerk-expo";
+import {
+  getClerkInstance,
+  useAuth,
+  useClerk,
+  useSignUp,
+  useUser,
+} from "@clerk/clerk-expo";
 import { showClerkError, showSnackbar } from "@/utils/essentials";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 import {
   actionSetAppLoading,
   actionSetCreatedSessionId,
+  actionSetIsConcierge,
 } from "@/redux/app.slice";
 import { SecureStoreService } from "@/config/secureStore";
 import { useUnistyles } from "react-native-unistyles";
 import { useRegisterUserAPI } from "@/apis";
+import { envConfig } from "@/utils/envConfig";
 
-const INITIAL_COUNTDOWN = 30;
+const INITIAL_COUNTDOWN = 59;
 
 const Verify: React.FC<T_VERIFY_SCREEN> = ({ navigation, route }) => {
   const dispatch = useDispatch();
   const { theme } = useUnistyles();
-  const { credential, type } = route.params;
+  const { credential, type, isConcierge } = route.params;
   const { signUp, isLoaded } = useSignUp();
+  const { client, setActive } = useClerk();
+  const { user } = useUser();
   const { signOut } = useAuth();
 
   const [timer, setTimer] = useState(INITIAL_COUNTDOWN); // Initial countdown time
   const [isDisabled, setIsDisabled] = useState(true);
   const { mutateAsync: registerClerkUser, error } = useRegisterUserAPI();
 
+  let Clerk = getClerkInstance({
+    publishableKey: envConfig.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY,
+  });
   const {
     control,
     handleSubmit,
@@ -65,19 +78,25 @@ const Verify: React.FC<T_VERIFY_SCREEN> = ({ navigation, route }) => {
 
   const resendCode = async () => {
     try {
-      if (!isLoaded) return;
+      if (!isLoaded) {
+        showSnackbar("Authentication service is not ready. Please try again.", "error");
+        return;
+      }
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
       setTimer(INITIAL_COUNTDOWN);
       setIsDisabled(true);
       showSnackbar(`OTP has been re-sent to your ${type}.`, "success");
-    } catch (error) {
+    } catch (error: any) {
       showClerkError(error);
     }
   };
 
   const onContinueClick = async (formData: T_VERIFY_FIELDS) => {
     try {
-      if (!isLoaded) return;
+      if (!isLoaded) {
+        showSnackbar("Authentication service is not ready. Please try again.", "error");
+        return;
+      }
 
       dispatch(actionSetAppLoading(true));
 
@@ -86,29 +105,43 @@ const Verify: React.FC<T_VERIFY_SCREEN> = ({ navigation, route }) => {
       });
 
       if (signUpAttempt.status === "complete" && signUpAttempt.createdUserId) {
+        try {
+          await registerClerkUser({
+            clerk_user_id: signUpAttempt.createdUserId,
+          });
+        } catch (regError: any) {
+          dispatch(actionSetAppLoading(false));
+          showClerkError(regError);
+          return;
+        }
+
         dispatch(actionSetCreatedSessionId(signUpAttempt.createdSessionId));
-        await registerClerkUser({
-          clerk_user_id: signUpAttempt.createdUserId,
-        });
-        if (signUpAttempt.createdSessionId)
+        if (signUpAttempt.createdSessionId) {
           await SecureStoreService.saveValue(
             "SESSION_ID",
             signUpAttempt.createdSessionId
           );
+        }
+
         gotoAccountSuccessFromVerify(navigation);
-        showSnackbar(`Email has been verified successfully.`, "success");
+        showSnackbar("Email has been verified successfully.", "success");
+        dispatch(actionSetAppLoading(false));
       } else {
-        showSnackbar(JSON.stringify(signUpAttempt, null, 2), "error");
-        console.error();
+        const msg =
+          signUpAttempt.status === "missing_requirements"
+            ? "Verification is incomplete. Please check the code and try again."
+            : "Verification could not be completed. Please try again.";
+        showSnackbar(msg, "error");
+        dispatch(actionSetAppLoading(false));
       }
-
-      dispatch(actionSetAppLoading(false));
-    } catch (error) {
-      await signOut();
-      console.log("error", JSON.stringify(error));
-
+    } catch (error: any) {
       showClerkError(error);
       dispatch(actionSetAppLoading(false));
+      try {
+        await signOut();
+      } catch {
+        // Ignore signOut errors
+      }
     }
   };
 

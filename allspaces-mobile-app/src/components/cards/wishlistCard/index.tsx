@@ -56,7 +56,7 @@ const WishlistCard: React.FC<T_WISHLIST_CARD> = ({
         <View style={styles.overlayHeading}>
           <Text style={styles.title}>{bookingItem.name}</Text>
           <Text style={styles.price}>
-            {"$ 99 "}
+            {"£ 99 "}
             <Text style={styles.duration}>min spend. /hr</Text>
           </Text>
         </View>

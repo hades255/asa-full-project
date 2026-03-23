@@ -3,30 +3,33 @@ import React, { useEffect } from "react";
 import { T_PAYMENT_METHOD_SCREEN } from "./types";
 import { Header2, ScreenWrapper } from "@/components";
 import { useUser } from "@clerk/clerk-expo";
-import { useUpdatePaymentMethodMutation } from "@/apis/apiSlice";
+import { useUpdatePaymentMethodAPI } from "@/apis";
 import { actionSetAppLoading } from "@/redux/app.slice";
-import { useDispatch } from "react-redux";
-import { isCompletedProfile, showSnackbar } from "@/utils/essentials";
+import { useDispatch } from "@/redux/hooks";
+import { showSnackbar } from "@/utils/essentials";
 import {
   initPaymentSheet,
   presentPaymentSheet,
 } from "@stripe/stripe-react-native";
 import { useUnistyles } from "react-native-unistyles";
 import { styles } from "./styles";
+import { useProfileProvider } from "@/hooks/useProfileProvider";
+import { STRIPE_RETURN_URL } from "@/config/constants";
 
 const PaymentMethod: React.FC<T_PAYMENT_METHOD_SCREEN> = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { theme } = useUnistyles();
-  const [updatePaymentMethod] = useUpdatePaymentMethodMutation();
+  const { mutateAsync: updatePaymentMethod } = useUpdatePaymentMethodAPI();
+  const { isProfileCompleted } = useProfileProvider();
+
   const { user, isLoaded } = useUser();
 
   const UpdatePaymentMethod = async () => {
     try {
       if (!isLoaded || !user) return;
 
-      if (!isCompletedProfile(user)) {
+      if (!isProfileCompleted) {
         showSnackbar(
-          "You have to complete your profile to book this service",
+          "You have to complete your profile to update your payment method",
           "error"
         );
         return;
@@ -37,7 +40,7 @@ const PaymentMethod: React.FC<T_PAYMENT_METHOD_SCREEN> = ({ navigation }) => {
       const intentData = await updatePaymentMethod({
         user_id: user.id,
       });
-      if (!intentData.data?.setupIntent) {
+      if (!intentData?.setupIntent) {
         dispatch(actionSetAppLoading(false));
         showSnackbar(
           `Something went wrong while updating payment method`,
@@ -47,9 +50,10 @@ const PaymentMethod: React.FC<T_PAYMENT_METHOD_SCREEN> = ({ navigation }) => {
       }
       const { error, paymentOption } = await initPaymentSheet({
         merchantDisplayName: "All Spaces",
-        customerId: intentData.data.user.stripe_customer_id,
-        customerEphemeralKeySecret: intentData.data?.ephemeralKey,
-        setupIntentClientSecret: intentData.data?.setupIntent.client_secret,
+        returnURL: STRIPE_RETURN_URL,
+        customerId: intentData.user.stripe_customer_id,
+        customerEphemeralKeySecret: intentData.ephemeralKey,
+        setupIntentClientSecret: intentData.setupIntent.client_secret,
         defaultBillingDetails: {
           email: user.emailAddresses[0].emailAddress,
           phone: user.phoneNumbers[0].phoneNumber,

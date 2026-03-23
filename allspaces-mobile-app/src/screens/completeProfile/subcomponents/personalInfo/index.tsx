@@ -1,5 +1,5 @@
-import { View, Text } from "react-native";
-import React, { useEffect } from "react";
+import { View, Keyboard } from "react-native";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   S_PERSONAL_INFO_FIELDS,
   T_PERSONAL_INFO,
@@ -18,29 +18,45 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { useUser } from "@clerk/clerk-expo";
 import { showClerkError, showSnackbar } from "@/utils/essentials";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 import { actionSetAppLoading } from "@/redux/app.slice";
 import { useUnistyles } from "react-native-unistyles";
+import StepLayout from "../stepLayout";
 
-const PersonalInfo: React.FC<T_PERSONAL_INFO> = ({
-  flatlistIndex,
-  flatlistRef,
-}) => {
+/** Default date of birth: same day and month, 15 years ago (e.g. 2026 → 2011). */
+const getDefaultDateOfBirth = () => {
+  const d = new Date();
+  d.setFullYear(d.getFullYear() - 15);
+  return d;
+};
+
+const PersonalInfo: React.FC<T_PERSONAL_INFO> = ({ onNext }) => {
   const { theme } = useUnistyles();
   const dispatch = useDispatch();
   const { user, isLoaded } = useUser();
+  const defaultDateOfBirth = useMemo(getDefaultDateOfBirth, []);
+  const [isSubmitting, setSubmitting] = useState(false);
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
   const {
     control,
     handleSubmit,
     formState: { errors, isValid },
     reset,
-  } = useForm({
+  } = useForm<T_PERSONAL_INFO_FIELDS>({
     mode: "onChange",
     resolver: yupResolver(S_PERSONAL_INFO_FIELDS),
     defaultValues: {
       firstName: "",
       lastName: "",
-      dateOfBirth: "",
+      dateOfBirth: defaultDateOfBirth.toISOString(),
     },
   });
 
@@ -53,90 +69,104 @@ const PersonalInfo: React.FC<T_PERSONAL_INFO> = ({
         dateOfBirth: user.unsafeMetadata.dob
           ? // @ts-ignore
             new Date(user.unsafeMetadata.dob)
-          : new Date(),
+          : defaultDateOfBirth.toISOString(),
       });
     }
-  }, [user]);
+  }, [user, defaultDateOfBirth]);
 
   const onContinueClick = async (formData: T_PERSONAL_INFO_FIELDS) => {
+    if (!isLoaded || !user || isSubmitting) return;
     try {
-      if (!isLoaded || !user) return;
-
+      setSubmitting(true);
       dispatch(actionSetAppLoading(true));
 
       await user.update({
-        firstName: formData.firstName.trim(),
-        lastName: formData.lastName.trim(),
+        firstName: (formData.firstName ?? "").trim(),
+        lastName: (formData.lastName ?? "").trim(),
         unsafeMetadata: {
           ...user.unsafeMetadata,
           dob: formData.dateOfBirth,
         },
       });
 
-      // Updating Local user
       await user.reload();
 
-      flatlistRef.current?.scrollToIndex({
-        index: flatlistIndex.value + 1,
-        animated: true,
-      });
-
-      showSnackbar(`Personal Info is updated successfully.`, "success");
-      dispatch(actionSetAppLoading(false));
+      if (isMountedRef.current) {
+        Keyboard.dismiss();
+        showSnackbar(`Personal Info is updated successfully.`, "success");
+        onNext();
+      }
     } catch (error) {
-      dispatch(actionSetAppLoading(false));
       showClerkError(error);
+    } finally {
+      if (isMountedRef.current) {
+        setSubmitting(false);
+        dispatch(actionSetAppLoading(false));
+      }
     }
   };
 
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.bodyContainer}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={styles.topContainer}>
-        <View style={{ rowGap: theme.units[1] }}>
-          <AppText font="heading2">{`Personal Information`}</AppText>
-          <AppText
-            font="body1"
-            color={theme.colors.semantic.content.contentInverseTertionary}
-          >{`Enter your personal information to continue`}</AppText>
-        </View>
-        <View style={{ rowGap: theme.units[4] }}>
-          <Avatar editable type="add" />
-          <View style={styles.row}>
-            <AppInput
-              width={"46%"}
-              name="firstName"
+    <StepLayout>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.bodyContainer}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.topContainer}>
+          <View style={{ rowGap: theme.units[1] }}>
+            <AppText font="heading2">{`Personal Information`}</AppText>
+            <AppText
+              font="body1"
+              color={theme.colors.semantic.content.contentInverseTertionary}
+            >{`Enter your personal information to continue`}</AppText>
+          </View>
+          <View style={{ rowGap: theme.units[4] }}>
+            <Avatar editable type="add" />
+            <View style={styles.row}>
+              <AppInput
+                width={"46%"}
+                name="firstName"
+                control={control}
+                error={errors.firstName?.message}
+                label={`First Name`}
+                placeholder={`John`}
+                KeyboardType="default"
+                textInputProps={{
+                  textContentType: "givenName",
+                  autoComplete: "given-name",
+                }}
+              />
+              <AppInput
+                width={"46%"}
+                name="lastName"
+                control={control}
+                error={errors.lastName?.message}
+                label={`Last Name`}
+                placeholder={`Doe`}
+                KeyboardType="default"
+                textInputProps={{
+                  textContentType: "familyName",
+                  autoComplete: "family-name",
+                }}
+              />
+            </View>
+            <AppDatePicker
               control={control}
-              error={errors.firstName?.message}
-              label={`First Name`}
-              placeholder={`John`}
-            />
-            <AppInput
-              width={"46%"}
-              name="lastName"
-              control={control}
-              error={errors.lastName?.message}
-              label={`Last Name`}
-              placeholder={`Doe`}
+              name="dateOfBirth"
+              error={errors.dateOfBirth?.message}
+              label="Date of Birth"
+              placeholder="MM/DD/YYYY"
             />
           </View>
-          <AppDatePicker
-            control={control}
-            name="dateOfBirth"
-            error={errors.dateOfBirth?.message}
-            label="Date of Birth"
-            placeholder="MM/DD/YYYY"
-          />
         </View>
-      </View>
-      <AppButton
-        disabled={!isValid}
-        title="Continue"
-        onPress={handleSubmit(onContinueClick)}
-      />
-    </KeyboardAwareScrollView>
+        <AppButton
+          disabled={!isValid || isSubmitting}
+          title="Continue"
+          onPress={handleSubmit(onContinueClick)}
+        />
+      </KeyboardAwareScrollView>
+    </StepLayout>
   );
 };
 

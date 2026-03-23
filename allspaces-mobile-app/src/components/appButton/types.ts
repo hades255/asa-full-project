@@ -9,4 +9,5 @@ export type T_APP_BUTTON = {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
   disabled?: boolean;
   size?: "default" | "small";
+  isLoading?: boolean;
 };

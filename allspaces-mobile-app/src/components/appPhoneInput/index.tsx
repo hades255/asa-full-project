@@ -5,10 +5,24 @@ import { styles } from "./styles";
 import { Controller } from "react-hook-form";
 import { useUnistyles } from "react-native-unistyles";
 import AppText from "../appText";
-import * as Cellular from "expo-cellular";
-import { CountryCode } from "libphonenumber-js";
+import {
+  CountryCode,
+  getCountryCallingCode,
+  parsePhoneNumberFromString,
+} from "libphonenumber-js";
+import { useLocales } from "expo-localization";
+import * as ExpoLocation from "expo-location";
 
-import { PhoneInput, PhoneInputRef } from "rn-phone-input-field";
+const DEFAULT_COUNTRY_CODE: CountryCode = "GB";
+const DEFAULT_CALLING_CODE = "44";
+/** Clerk test phone numbers: +1555555XXX where XXX is 101–199 */
+const CLERK_TEST_NUMBER_REGEX = /^\+1555555(1(0[1-9]|[1-9][0-9]))$/;
+
+// import { PhoneInput, PhoneInputRef } from "rn-phone-input-field";
+import PhoneInput, {
+  Country,
+  PhoneInputRefType,
+} from "@linhnguyen96114/react-native-phone-input";
 
 const AppPhoneInput: React.FC<T_APP_PHONE_INPUT> = ({
   control,
@@ -18,28 +32,101 @@ const AppPhoneInput: React.FC<T_APP_PHONE_INPUT> = ({
   width,
   error,
   onChangeText,
+  onCountryResolved,
 }) => {
   // NEW PHONE INPUT
-  const phoneInputRef = useRef<PhoneInputRef>(null);
-  const [callingCode, setCallingCode] = useState<string>("44");
-  const [countryCode, setCountryCode] = useState<CountryCode>("GB");
+  const phoneInputRef = useRef<PhoneInputRefType>(null);
+  const hasResolvedCountry = useRef(false);
+  const hasUserSelectedCountry = useRef(false);
+  const hasCalledCountryResolved = useRef(false);
+  const onCountryResolvedRef = useRef(onCountryResolved);
+  // const phoneInputRef = useRef<PhoneInputRef>(null);
+  const [callingCode, setCallingCode] = useState<string>(DEFAULT_CALLING_CODE);
+  const [countryCode, setCountryCode] = useState<CountryCode>(DEFAULT_COUNTRY_CODE);
   const { theme } = useUnistyles();
+  const locales = useLocales();
+
+  // Update ref when callback changes
+  useEffect(() => {
+    onCountryResolvedRef.current = onCountryResolved;
+  }, [onCountryResolved]);
+
+  const applyCountry = (region: CountryCode) => {
+    let callCode = DEFAULT_CALLING_CODE;
+    try {
+      callCode = getCountryCallingCode(region);
+    } catch {
+      callCode = DEFAULT_CALLING_CODE;
+    }
+    setCallingCode(callCode);
+    setCountryCode(region);
+  };
+
+  const callCountryResolved = () => {
+    if (!hasCalledCountryResolved.current) {
+      hasCalledCountryResolved.current = true;
+      onCountryResolvedRef.current?.();
+    }
+  };
 
   useEffect(() => {
-    Cellular.getIsoCountryCodeAsync().then((isoCode) => {
-      if (isoCode) {
-        setCountryCode(isoCode.toUpperCase() as CountryCode);
-        Cellular.getMobileCountryCodeAsync().then((code) => {
-          if (code) {
-            setCallingCode(code);
-          } else {
-            setCountryCode("GB");
-            setCallingCode("44");
-          }
+    if (hasResolvedCountry.current) return;
+    const detectedRegion =
+      (locales?.[0]?.regionCode as CountryCode | undefined) ||
+      DEFAULT_COUNTRY_CODE;
+    applyCountry(detectedRegion);
+    hasResolvedCountry.current = true;
+    // Call resolved callback immediately after locale detection
+    callCountryResolved();
+  }, [locales]);
+
+  useEffect(() => {
+    let isMounted = true;
+    const detectFromGPS = async () => {
+      try {
+        const permission = await ExpoLocation.getForegroundPermissionsAsync();
+        let status = permission.status;
+        if (status !== "granted") {
+          const request = await ExpoLocation.requestForegroundPermissionsAsync();
+          status = request.status;
+        }
+        if (status !== "granted") {
+          callCountryResolved();
+          return;
+        }
+
+        const position = await ExpoLocation.getCurrentPositionAsync({
+          accuracy: ExpoLocation.Accuracy.Balanced,
         });
+        const reverse = await ExpoLocation.reverseGeocodeAsync({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+        const iso = reverse?.[0]?.isoCountryCode as CountryCode | undefined;
+        if (!iso) {
+          callCountryResolved();
+          return;
+        }
+
+        if (isMounted && !hasUserSelectedCountry.current) {
+          applyCountry(iso);
+          hasResolvedCountry.current = true;
+        }
+      } catch {
+        // Ignore GPS errors; fallback to locale/default
+      } finally {
+        callCountryResolved();
       }
-    });
-  }, []);
+    };
+
+    // Only run GPS detection if country hasn't been resolved yet
+    if (!hasCalledCountryResolved.current) {
+      detectFromGPS();
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []); // Empty dependency array - only run once
 
   return (
     <View style={[styles.mainContainer, { width: width ?? "100%" }]}>
@@ -53,22 +140,47 @@ const AppPhoneInput: React.FC<T_APP_PHONE_INPUT> = ({
         control={control}
         render={({ field: { onChange, value, onBlur } }) => (
           <PhoneInput
+            key={countryCode} // Force re-render when country code changes
             ref={phoneInputRef}
             placeholder={placeholder}
-            placeholderColor={
-              theme.colors.semantic.content.contentInverseTertionary
-            }
             defaultValue={value}
-            defaultCountry={countryCode.toUpperCase()}
-            onChangeText={(phoneNumber: string) => {
-              let formattedNumber = `+${callingCode}${phoneNumber}`;
+            defaultCode={countryCode.toUpperCase()}
+            onChangeText={(text) => {
+              const digits = text.replace(/\D/g, "");
+              if (!digits) {
+                onChange("");
+                onChangeText(false);
+                return;
+              }
+              const normalizedDigits = digits.startsWith(callingCode)
+                ? digits
+                : `${callingCode}${digits}`;
+              const formattedNumber = `+${normalizedDigits}`;
               onChange(formattedNumber);
-              const isValid = phoneInputRef.current?.isValidNumber(phoneNumber);
-              onChangeText(isValid);
+              const parsed = parsePhoneNumberFromString(formattedNumber);
+              const isValid =
+                CLERK_TEST_NUMBER_REGEX.test(formattedNumber) ||
+                parsed?.isValid() ||
+                phoneInputRef.current?.isValidNumber(text) ||
+                false;
+
+              onChangeText(!!isValid);
             }}
-            onSelectCountryCode={(country: any) => {
-              setCallingCode(country.callingCode);
+            onChangeCountry={(country: Country) => {
+              // Update calling code when country changes
+              const newCallingCode = Array.isArray(country.callingCode)
+                ? country.callingCode[0]
+                : country.callingCode;
+              setCallingCode(newCallingCode);
+              hasUserSelectedCountry.current = true;
+              const nextCountryCode =
+                ((country as any).code ||
+                  (country as any).cca2 ||
+                  (country as any).countryCode ||
+                  DEFAULT_COUNTRY_CODE) as CountryCode;
+              setCountryCode(nextCountryCode);
             }}
+            withMask
             containerStyle={styles.phoneInputContainer}
             textInputStyle={styles.phoneInputStyle}
             codeTextStyle={styles.codeTextStyle}
@@ -76,72 +188,7 @@ const AppPhoneInput: React.FC<T_APP_PHONE_INPUT> = ({
         )}
       />
 
-      {/* <CountryPickerModal
-        visible={showCountryPicker}
-        onCountrySelect={(countryItem) => {
-          setCountry(countryItem);
-          setShowCountryPicker(!showCountryPicker);
-        }}
-        selectedCountry={country}
-        onRequestClose={() => {
-          setShowCountryPicker(!showCountryPicker);
-        }}
-      />
-      <Animated.View style={[styles.inputContainer, inputBorderAnimation]}>
-        <ButtonWrapper
-          onPress={() => {
-            setShowCountryPicker(!showCountryPicker);
-          }}
-          otherProps={{
-            // disabled: true,
-            style: styles.countryPickerButton,
-          }}
-        >
-          <SvgUri uri={country.image} width={24} height={24} />
-          <ArrowDown2
-            size={24}
-            color={theme.colors.semantic.content.contentPrimary}
-          />
-        </ButtonWrapper>
-        <Controller
-          name={name}
-          control={control}
-          render={({ field: { onChange, value, onBlur } }) => (
-            <TextInput
-              placeholder={placeholder}
-              placeholderTextColor={
-                theme.colors.semantic.content.contentInverseTertionary
-              }
-              autoCapitalize="none"
-              keyboardType="phone-pad"
-              value={value.split(","[0])}
-              onFocus={() => {
-                borderColor.value = withTiming(
-                  value.length == 0 ? 1 : error ? 2 : 3,
-                  { duration: 300 }
-                );
-              }}
-              onBlur={() => {
-                borderColor.value = withTiming(
-                  value.length == 0 ? 0 : error ? 2 : 3,
-                  { duration: 300 }
-                );
-                onBlur();
-              }}
-              onChangeText={(textValue) => {
-                onChange(`${textValue}--${JSON.stringify(country)}`);
-                borderColor.value = withTiming(
-                  textValue.length == 0 ? 1 : error ? 2 : 3,
-                  {
-                    duration: 300,
-                  }
-                );
-              }}
-              style={[styles.input]}
-            />
-          )}
-        />
-      </Animated.View> */}
+
       {error && (
         <View style={styles.errorContainer}>
           <AppText

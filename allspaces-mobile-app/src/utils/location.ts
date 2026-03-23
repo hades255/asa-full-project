@@ -4,22 +4,34 @@ import * as ExpoLocation from "expo-location";
 import { envConfig } from "./envConfig";
 
 export const getLocationPermissionStatus = async () => {
-  return await ExpoLocation.getForegroundPermissionsAsync();
+  try {
+    return await ExpoLocation.getForegroundPermissionsAsync();
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const requestLocationPermission = async () => {
-  return await ExpoLocation.requestForegroundPermissionsAsync();
+  try {
+    return await ExpoLocation.requestForegroundPermissionsAsync();
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getUserCoordinates = async () => {
-  return await ExpoLocation.getCurrentPositionAsync({
-    accuracy: ExpoLocation.Accuracy.Balanced,
-  });
+  try {
+    return await ExpoLocation.getCurrentPositionAsync({
+      accuracy: ExpoLocation.Accuracy.Balanced,
+    });
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const geoCodeAPI = async (
   data: string,
-  isReverse?: boolean
+  isReverse?: boolean,
 ): Promise<T_GEOCODING_RESPONSE | null> => {
   try {
     const response = await axios({
@@ -30,6 +42,6 @@ export const geoCodeAPI = async (
     });
     return response.data;
   } catch (error) {
-    return null;
+    throw error;
   }
 };

@@ -1,5 +1,5 @@
 import { View, Text, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 import { T_SEARCH_FILTERS_SCREEN } from "./types";
 import { styles } from "./styles";
 import {
@@ -12,18 +12,18 @@ import {
 import { useUnistyles } from "react-native-unistyles";
 import { CloseCircle } from "iconsax-react-native";
 import { useGetPreferencesAPI } from "@/apis";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import { actionSetSelectedFilters } from "@/redux/app.slice";
 import { useQueryClient } from "@tanstack/react-query";
+import { selectSelectedFilters } from "@/redux/selectors";
 
 const SearchFilters: React.FC<T_SEARCH_FILTERS_SCREEN> = ({ navigation }) => {
   const { theme } = useUnistyles();
   const { data: filters, isLoading } = useGetPreferencesAPI();
   const dispatch = useDispatch();
-  const { selectedFilters } = useSelector((state: RootState) => state.appSlice);
+  const selectedFilters = useSelector(selectSelectedFilters);
 
-  const onFilterClick = (filterItemId: any) => {
+  const onFilterClick = useCallback((filterItemId: any) => {
     const itemFound = selectedFilters.find((item) => item === filterItemId);
     if (itemFound) {
       dispatch(
@@ -34,7 +34,20 @@ const SearchFilters: React.FC<T_SEARCH_FILTERS_SCREEN> = ({ navigation }) => {
     } else {
       dispatch(actionSetSelectedFilters([...selectedFilters, filterItemId]));
     }
-  };
+  }, [dispatch, selectedFilters]);
+
+  const keyExtractor = useCallback((item: any) => item.id, []);
+
+  const renderItem = useCallback(
+    ({ item }: { item: any }) => (
+      <PrefCard
+        prefItem={item}
+        selectedPrefItems={selectedFilters}
+        onPrefCardPress={onFilterClick}
+      />
+    ),
+    [onFilterClick, selectedFilters]
+  );
 
   return (
     <View style={styles.mainContainer}>
@@ -63,15 +76,9 @@ const SearchFilters: React.FC<T_SEARCH_FILTERS_SCREEN> = ({ navigation }) => {
             <FlatList
               showsVerticalScrollIndicator={false}
               data={filters.data}
-              keyExtractor={(item) => item.id}
+              keyExtractor={keyExtractor}
               contentContainerStyle={{ rowGap: theme.units[4] }}
-              renderItem={({ item }) => (
-                <PrefCard
-                  prefItem={item}
-                  selectedPrefItems={selectedFilters}
-                  onPrefCardPress={onFilterClick}
-                />
-              )}
+              renderItem={renderItem}
             />
           </View>
         )}

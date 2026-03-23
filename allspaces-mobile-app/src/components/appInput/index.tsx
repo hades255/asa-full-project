@@ -1,4 +1,4 @@
-import { View, TextInput } from "react-native";
+import { View, TextInput, type TextInputProps as RNTextInputProps } from "react-native";
 import React, { useEffect, useState } from "react";
 import { T_APP_INPUT } from "./types";
 import { styles } from "./styles";
@@ -13,6 +13,98 @@ import Animated, {
 import { useUnistyles } from "react-native-unistyles";
 import AppText from "../appText";
 import ButtonWrapper from "../buttonWrapper";
+import type { SharedValue } from "react-native-reanimated";
+
+type InputFieldProps = {
+  value: string;
+  error?: string;
+  onBlur: () => void;
+  onChange: (text: string) => void;
+  borderColor: SharedValue<number>;
+  theme: ReturnType<typeof useUnistyles>["theme"];
+  placeholder?: string;
+  textContentType?: string;
+  autoComplete?: string;
+  isPassword?: boolean;
+  name: string;
+  isTextbox?: boolean;
+  secureTextEntry: boolean;
+  KeyboardType?: T_APP_INPUT["KeyboardType"];
+  textInputProps?: T_APP_INPUT["textInputProps"];
+};
+
+const InputField = React.memo(function InputField({
+  value,
+  error,
+  onBlur,
+  onChange,
+  borderColor,
+  theme,
+  placeholder,
+  textContentType,
+  autoComplete,
+  isPassword,
+  name,
+  isTextbox,
+  secureTextEntry,
+  KeyboardType,
+  textInputProps,
+}: InputFieldProps) {
+  useEffect(() => {
+    const len = (value ?? "").length;
+    const state = len === 0 ? 0 : error ? 2 : 3;
+    borderColor.value = withTiming(state, { duration: 300 });
+  }, [error, value, borderColor]);
+
+  return (
+    <TextInput
+      key={isPassword ? `password-${name}` : name}
+      {...textInputProps}
+      placeholder={placeholder}
+      placeholderTextColor={
+        theme.colors.semantic.content.contentInverseTertionary
+      }
+      autoCapitalize="none"
+      value={value ?? ""}
+      textContentType={(textContentType ?? textInputProps?.textContentType) as RNTextInputProps["textContentType"]}
+      autoComplete={(autoComplete ?? textInputProps?.autoComplete) as RNTextInputProps["autoComplete"]}
+      importantForAutofill={isPassword ? "yes" : undefined}
+      onFocus={() => {
+        const len = (value ?? "").length;
+        borderColor.value = withTiming(
+          len === 0 ? 1 : error ? 2 : 3,
+          { duration: 300 }
+        );
+      }}
+      onBlur={() => {
+        const len = (value ?? "").length;
+        borderColor.value = withTiming(
+          len === 0 ? 0 : error ? 2 : 3,
+          { duration: 300 }
+        );
+        onBlur();
+      }}
+      onChangeText={(textValue) => {
+        onChange(textValue);
+        borderColor.value = withTiming(
+          textValue.length === 0 ? 1 : error ? 2 : 3,
+          { duration: 300 }
+        );
+      }}
+      multiline={isTextbox}
+      textAlignVertical={isTextbox ? "top" : "center"}
+      secureTextEntry={secureTextEntry}
+      keyboardType={KeyboardType}
+      style={[
+        styles.input,
+        isTextbox && {
+          height: "100%",
+          textAlignVertical: "top",
+        },
+      ]}
+    />
+  );
+});
 
 const AppInput: React.FC<T_APP_INPUT> = ({
   width,
@@ -25,13 +117,21 @@ const AppInput: React.FC<T_APP_INPUT> = ({
   name,
   error,
   isTextbox = false,
+  textContentType: textContentTypeProp,
+  autoComplete: autoCompleteProp,
+  textInputProps,
 }) => {
+  const textContentType = textContentTypeProp ?? (isPassword ? "password" : undefined);
+  const autoComplete = autoCompleteProp ?? (isPassword ? "password" : undefined);
   const { theme } = useUnistyles();
   const [secureTextEntry, setSecureTextEntry] = useState(false);
   const borderColor = useSharedValue(0);
+  const borderSelectedColor = theme.colors.semantic.border.borderSelected;
+  const borderNegativeColor = theme.colors.semanticExtensions.border.borderNegative;
+  const borderPositiveColor = theme.colors.semanticExtensions.border.borderPositive;
 
   useEffect(() => {
-    setSecureTextEntry(isPassword ? true : false);
+    setSecureTextEntry(isPassword ?? false);
   }, [isPassword]);
 
   const inputBorderAnimation = useAnimatedStyle(() => {
@@ -40,9 +140,9 @@ const AppInput: React.FC<T_APP_INPUT> = ({
       [0, 1, 2, 3],
       [
         "transparent",
-        theme.colors.semantic.border.borderSelected,
-        theme.colors.semanticExtensions.border.borderNegative,
-        theme.colors.semanticExtensions.border.borderPositive,
+        borderSelectedColor,
+        borderNegativeColor,
+        borderPositiveColor,
       ]
     );
     return {
@@ -69,46 +169,22 @@ const AppInput: React.FC<T_APP_INPUT> = ({
           name={name}
           control={control}
           render={({ field: { onChange, value, onBlur } }) => (
-            <TextInput
+            <InputField
+              value={value ?? ""}
+              error={error}
+              onBlur={onBlur}
+              onChange={onChange}
+              borderColor={borderColor}
+              theme={theme}
               placeholder={placeholder}
-              placeholderTextColor={
-                theme.colors.semantic.content.contentInverseTertionary
-              }
-              autoCapitalize="none"
-              value={value}
-              onFocus={() => {
-                borderColor.value = withTiming(
-                  value.length == 0 ? 1 : error ? 2 : 3,
-                  { duration: 300 }
-                );
-              }}
-              onBlur={() => {
-                borderColor.value = withTiming(
-                  value.length == 0 ? 0 : error ? 2 : 3,
-                  { duration: 300 }
-                );
-                onBlur();
-              }}
-              onChangeText={(textValue) => {
-                onChange(textValue);
-                borderColor.value = withTiming(
-                  textValue.length == 0 ? 1 : error ? 2 : 3,
-                  {
-                    duration: 300,
-                  }
-                );
-              }}
-              multiline={isTextbox}
-              textAlignVertical={isTextbox ? "top" : "center"}
+              textContentType={textContentType}
+              autoComplete={autoComplete}
+              isPassword={isPassword}
+              name={name}
+              isTextbox={isTextbox}
               secureTextEntry={secureTextEntry}
-              keyboardType={KeyboardType}
-              style={[
-                styles.input,
-                isTextbox && {
-                  height: "100%",
-                  textAlignVertical: "top",
-                },
-              ]}
+              KeyboardType={KeyboardType}
+              textInputProps={textInputProps}
             />
           )}
         />

@@ -1,9 +1,12 @@
 import { T_GEO_RESULT, T_GEOCODING_RESPONSE, T_USER } from "@/apis/types";
 import { T_SEARCH_FIELDS } from "@/screens/search/types";
-import { GestureResponderEvent } from "react-native";
-import * as ExpoLocation from "expo-location";
 
 export type T_STATUS_MODAL_TYPES = "success" | "error" | "warning" | "confirm";
+export type T_LOCATION_PERMISSION = {
+  granted: boolean;
+  canAskAgain: boolean;
+};
+
 export type T_SEARCH_DATA = {
   date: string;
   duration: number;
@@ -11,14 +14,28 @@ export type T_SEARCH_DATA = {
   location: string;
   filters: string[];
 };
+
+export type T_INTENT_SEARCH_RESULT = {
+  prompt?: string;
+  recommendations?: Array<{
+    profile: Record<string, unknown>;
+    score?: number;
+    reasons?: string[];
+  }>;
+  summary?: string;
+  intent?: unknown;
+  noMatchMessage?: string;
+  candidatesCount?: number;
+  error?: string;
+};
+
 export type T_APP_SLICE = {
   initialLaunch: boolean | null;
   appLoading: boolean;
   showStatusModal: boolean;
   statusModal: T_STATUS_MODAL_TYPES;
   statusModalMessage: string;
-  statusModalOkayPress: ((event: GestureResponderEvent) => void) | undefined;
-  statusModalConfirmPress: ((event: GestureResponderEvent) => void) | undefined;
+  statusModalActionKey: string | null;
   showBiometricModal: boolean;
   createdSessionId: string | null;
   completeProfile: boolean;
@@ -27,18 +44,19 @@ export type T_APP_SLICE = {
   calendarEventIds: Record<string, string>;
   googlePlaceData: T_GEO_RESULT | null;
   userLocation: T_GEOCODING_RESPONSE | null;
-  permissionStatus: ExpoLocation.PermissionResponse | null;
+  permissionStatus: T_LOCATION_PERMISSION | null;
   searchData: T_SEARCH_DATA | null;
+  intentSearchResult: T_INTENT_SEARCH_RESULT | null;
   selectedFilters: string[];
   currentUser: T_USER | null;
   showQrModal: boolean;
   bookingId: string | null;
+  isConcierge: boolean;
 };
 
 export type SHOW_STATUS_MODAL_PROPS = {
   showStatusModal: boolean;
   type: T_STATUS_MODAL_TYPES;
   statusModalMessage: string;
-  onConfirmClick?: ((event: GestureResponderEvent) => void) | undefined;
-  onOkayClick?: ((event: GestureResponderEvent) => void) | undefined;
+  actionKey?: string | null;
 };

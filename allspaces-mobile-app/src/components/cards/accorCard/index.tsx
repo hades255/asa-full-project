@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React from "react";
+import React, { memo } from "react";
 import { T_ACCOR_CARD } from "./types";
 import { styles } from "./styles";
 import { Image } from "expo-image";
@@ -10,13 +10,9 @@ import { useUnistyles } from "react-native-unistyles";
 import { BlurView } from "expo-blur";
 import ButtonWrapper from "../../buttonWrapper";
 import { LinearGradient } from "expo-linear-gradient";
-import { useUpdateWishlistAPI } from "@/apis";
 
 const AccorCard: React.FC<T_ACCOR_CARD> = ({ item, onPress }) => {
   const { theme } = useUnistyles();
-
-  const { mutateAsync: updateWishlistAPI, isPending: updateWishlistLoading } =
-    useUpdateWishlistAPI();
 
   // get first element of array
   const firstMediaObj = item.hotel.media.medias[0];
@@ -140,10 +136,10 @@ const AccorCard: React.FC<T_ACCOR_CARD> = ({ item, onPress }) => {
             {item.hotel.localization.address.street}
           </AppText>
         </View>
-        <AppText font="body1">{`$ ${item.price} min.spend`}</AppText>
+        <AppText font="body1">{`£ ${item.price} min.spend`}</AppText>
       </View>
     </ButtonWrapper>
   );
 };
 
-export default AccorCard;
+export default memo(AccorCard);

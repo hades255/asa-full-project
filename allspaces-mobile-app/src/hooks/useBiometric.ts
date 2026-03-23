@@ -4,25 +4,31 @@ import * as LocalAuthentication from "expo-local-authentication";
 import { useLocalCredentials } from "@clerk/clerk-expo/local-credentials";
 import { showSnackbar } from "@/utils/essentials";
 import { useFocusEffect } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 import { actionSetShowBiometricModal } from "@/redux/app.slice";
+import { Platform } from "react-native";
 
 const useBiometric = () => {
   const { biometricType } = useLocalCredentials();
-  const [isBiometricEnabled, setBiometricEnabled] = useState<boolean>(false);
+  const [isBiometricEnabled, setBiometricEnabled] = useState<
+    boolean | undefined
+  >(undefined);
   const dispatch = useDispatch();
-  const [biometricAsked, setBiometricAsked] = useState<boolean>(false);
+  const [biometricAsked, setBiometricAsked] = useState<boolean | undefined>(
+    undefined
+  );
 
-  const type = biometricType === "face-recognition" ? "Face ID" : "Touch ID";
+  const type =
+    biometricType || (Platform.OS === "ios" ? "Face ID" : "Biometric");
 
   const checkBiometricEnabled = async () => {
     const isEnabled = await SecureStoreService.getValue("BIOMETRIC_ENABLED");
     const isAsked = await SecureStoreService.getValue("BIOMETRIC_ASKED");
 
     // Update biometricAsked state based on stored value
-    setBiometricAsked(isAsked === "true");
+    setBiometricAsked(isAsked == null ? false : true);
     // Always set a boolean value, never null
-    setBiometricEnabled(isEnabled === "true");
+    setBiometricEnabled(isEnabled == null ? false : true);
   };
 
   useFocusEffect(

@@ -5,6 +5,8 @@ export const styles = StyleSheet.create((theme) => ({
     flex: 1,
     paddingHorizontal: theme.units[4],
     paddingVertical: theme.units[6],
+    alignItems: "center",
+    justifyContent: "center",
   },
   scrollContainer: {
     rowGap: theme.units[3],

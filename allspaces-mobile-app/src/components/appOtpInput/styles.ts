@@ -13,17 +13,21 @@ export const styles = StyleSheet.create((theme) => ({
     borderRadius: theme.units[3],
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: theme.colors.semantic.background.backgroundSecondary,
+    borderWidth: 1,
+    borderColor: theme.colors.semantic.border.borderSelected,
   },
   pinCodeText: {
     ...theme.typography.heading3,
-    color: theme.colors.semantic.content.contentInversePrimary,
+    color: theme.colors.semantic.content.contentPrimary,
   },
   focusStick: {
     height: 24,
     width: 1,
   },
   filledPinCodeContainer: {
-    backgroundColor: theme.colors.semantic.background.backgroundInversePrimary,
-    borderWidth: 0,
+    backgroundColor: theme.colors.semantic.background.backgroundSecondary,
+    borderWidth: 1,
+    borderColor: theme.colors.semantic.border.borderSelected,
   },
 }));

@@ -4,6 +4,7 @@ import ButtonWrapper from "../buttonWrapper";
 import { styles } from "./styles";
 import AppText from "../appText";
 import { useUnistyles } from "react-native-unistyles";
+import { ActivityIndicator } from "react-native";
 
 const AppButton: React.FC<T_APP_BUTTON> = ({
   title,
@@ -13,6 +14,7 @@ const AppButton: React.FC<T_APP_BUTTON> = ({
   disabled,
   size,
   icon,
+  isLoading
 }) => {
   const { theme } = useUnistyles();
   return (
@@ -26,32 +28,50 @@ const AppButton: React.FC<T_APP_BUTTON> = ({
             width: width ?? "100%",
             backgroundColor: disabled
               ? theme.colors.semanticExtensions.background
-                  .backgroundStateDisabled
+                .backgroundStateDisabled
               : variant === "text-btn"
-              ? "transparent"
-              : variant === "secondary"
-              ? theme.colors.semantic.background.backgroundSecondary
-              : theme.colors.semanticExtensions.background.backgroundAccent,
+                ? "transparent"
+                : variant === "secondary"
+                  ? theme.colors.semantic.background.backgroundSecondary
+                  : theme.colors.semanticExtensions.background.backgroundAccent,
           },
         ],
       }}
     >
-      {icon}
-      <AppText
-        font={size === "small" ? "button2" : "button1"}
-        textAlign="center"
-        color={
-          disabled
-            ? theme.colors.semanticExtensions.content.contentStateDisabled
-            : variant === "text-btn"
-            ? theme.colors.semantic.content.contentPrimary
-            : variant === "secondary"
-            ? theme.colors.semantic.content.contentPrimary
-            : theme.colors.semantic.content.contentPrimary
-        }
-      >
-        {title}
-      </AppText>
+      {
+        isLoading ? (
+          <ActivityIndicator
+            size={"small"}
+            color={disabled
+              ? theme.colors.semanticExtensions.content.contentStateDisabled
+              : variant === "text-btn"
+                ? theme.colors.semantic.content.contentPrimary
+                : variant === "secondary"
+                  ? theme.colors.semantic.content.contentPrimary
+                  : theme.colors.semantic.content.contentPrimary}
+          />
+        ) : (
+          <>
+            {icon}
+            <AppText
+              font={size === "small" ? "button2" : "button1"}
+              textAlign="center"
+              color={
+                disabled
+                  ? theme.colors.semanticExtensions.content.contentStateDisabled
+                  : variant === "text-btn"
+                    ? theme.colors.semantic.content.contentPrimary
+                    : variant === "secondary"
+                      ? theme.colors.semantic.content.contentPrimary
+                      : theme.colors.semantic.content.contentPrimary
+              }
+            >
+              {title}
+            </AppText>
+          </>
+        )
+      }
+
     </ButtonWrapper>
   );
 };

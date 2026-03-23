@@ -5,15 +5,15 @@ import {
   GooglePlacesInput,
   Header2,
   ScreenWrapper,
+  Spacer,
 } from "@/components";
 import { View } from "react-native";
 import { styles } from "./styles";
-import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useSelector } from "@/redux/hooks";
+import { selectGooglePlaceData } from "@/redux/selectors";
 
 const ChooseLocation = ({}) => {
-  const { googlePlaceData } = useSelector((state: RootState) => state.appSlice);
+  const googlePlaceData = useSelector(selectGooglePlaceData);
 
   return (
     <ScreenWrapper>
@@ -23,7 +23,7 @@ const ChooseLocation = ({}) => {
         style={styles.mainContainer}
       >
         <GooglePlacesInput label="Where" placeholder={`Search location...`} />
-        <View style={{ flex: 1 }} />
+        <Spacer flex />
         <AppButton
           disabled={!googlePlaceData}
           title="Confirm Location"

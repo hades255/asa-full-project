@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { View, TextInput, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
-import GooglePlacesSDK from 'react-native-google-places-sdk';
-import { envConfig } from '@/utils/envConfig';
-import { T_GOOGLE_PLACES_INPUT } from './types';
-import { styles } from './styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { actionSetGooglePlaceData } from '@/redux/app.slice';
-import { RootState } from '@/redux/store';
-import { useUnistyles } from 'react-native-unistyles';
-import { Location, CloseCircle } from 'iconsax-react-native';
-import AppText from '../appText';
-import { T_GEO_RESULT } from '@/apis/types';
-import { useGetGeocode } from '@/apis/google/google.api';
+import React, { useState, useEffect, useRef } from "react";
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+  ScrollView,
+} from "react-native";
+import GooglePlacesSDK from "react-native-google-places-sdk";
+import { envConfig } from "@/utils/envConfig";
+import { T_GOOGLE_PLACES_INPUT } from "./types";
+import { styles } from "./styles";
+import { useDispatch, useSelector } from "@/redux/hooks";
+import { actionSetGooglePlaceData } from "@/redux/app.slice";
+import { useUnistyles } from "react-native-unistyles";
+import { Location, CloseCircle } from "iconsax-react-native";
+import AppText from "../appText";
+import { T_GEO_RESULT } from "@/apis/types";
+import { useGetGeocode } from "@/apis/google/google.api";
+import { selectGooglePlaceData } from "@/redux/selectors";
 
 interface PlacePrediction {
   placeID: string;
@@ -26,15 +32,29 @@ const GooglePlacesInput: React.FC<T_GOOGLE_PLACES_INPUT> = ({
 }) => {
   const { theme } = useUnistyles();
   const dispatch = useDispatch();
-  const { googlePlaceData } = useSelector((state: RootState) => state.appSlice);
-  const [query, setQuery] = useState('');
+  const googlePlaceData = useSelector(selectGooglePlaceData);
+  const [query, setQuery] = useState("");
   const [predictions, setPredictions] = useState<PlacePrediction[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const { mutateAsync: geocodingAPI, isPending } = useGetGeocode();
+  const predictionsRequestIdRef = useRef(0);
+  const pendingPlaceRef = useRef<string | null>(null);
+  const blurTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    // Initialize the Google Places SDK
-    GooglePlacesSDK.initialize(envConfig.EXPO_PUBLIC_GOOGLE_KEY);
+    return () => {
+      if (blurTimeoutRef.current) {
+        clearTimeout(blurTimeoutRef.current);
+        blurTimeoutRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const apiKey = envConfig.EXPO_PUBLIC_GOOGLE_KEY;
+    if (apiKey) {
+      GooglePlacesSDK.initialize(apiKey);
+    }
   }, []);
 
   useEffect(() => {
@@ -46,14 +66,20 @@ const GooglePlacesInput: React.FC<T_GOOGLE_PLACES_INPUT> = ({
 
   const fetchPredictions = async (input: string) => {
     if (input.length >= minSearchLength) {
+      const requestId = ++predictionsRequestIdRef.current;
       try {
         const results = await GooglePlacesSDK.fetchPredictions(input);
-        setPredictions(results.slice(0, maxSuggestions));
-        setShowSuggestions(true);
+        if (requestId === predictionsRequestIdRef.current) {
+          setPredictions(results.slice(0, maxSuggestions));
+          setShowSuggestions(true);
+        }
       } catch (error) {
-        setPredictions([]);
+        if (requestId === predictionsRequestIdRef.current) {
+          setPredictions([]);
+        }
       }
     } else {
+      predictionsRequestIdRef.current += 1;
       setPredictions([]);
       setShowSuggestions(false);
     }
@@ -63,31 +89,39 @@ const GooglePlacesInput: React.FC<T_GOOGLE_PLACES_INPUT> = ({
     setQuery(place.description);
     setPredictions([]);
     setShowSuggestions(false);
+    const selectedPlaceId = place.placeID;
+    pendingPlaceRef.current = selectedPlaceId;
 
-    // Fetch full place details using geocoding API to get lat/lng
     try {
       const geocodeResult = await geocodingAPI(place.description);
+      if (pendingPlaceRef.current !== selectedPlaceId) return;
+
       if (geocodeResult?.results && geocodeResult.results.length > 0) {
         const result = geocodeResult.results[0];
-        
-        // Transform to match T_GEO_RESULT structure
         const transformedData: T_GEO_RESULT = {
           ...result,
           structured_formatting: {
-            main_text: place.description.split(',')[0].trim(),
-            secondary_text: place.description.split(',').slice(1).join(',').trim()
-          }
+            main_text: place.description.split(",")[0].trim(),
+            secondary_text: place.description
+              .split(",")
+              .slice(1)
+              .join(",")
+              .trim(),
+          },
         };
-        
         dispatch(actionSetGooglePlaceData(transformedData));
       }
     } catch (error) {
       // Silently handle error
+    } finally {
+      if (pendingPlaceRef.current === selectedPlaceId) {
+        pendingPlaceRef.current = null;
+      }
     }
   };
 
   const handleClear = () => {
-    setQuery('');
+    setQuery("");
     setPredictions([]);
     setShowSuggestions(false);
     dispatch(actionSetGooglePlaceData(null));
@@ -100,16 +134,18 @@ const GooglePlacesInput: React.FC<T_GOOGLE_PLACES_INPUT> = ({
           <AppText font="button1">{label}</AppText>
         </View>
       )}
-      
+
       <View style={styles.inputContainer}>
         <Location
           size={24}
           color={theme.colors.semantic.content.contentPrimary}
         />
-        
+
         <TextInput
           placeholder={placeholder ?? "Search Location"}
-          placeholderTextColor={theme.colors.semantic.content.contentInverseTertionary}
+          placeholderTextColor={
+            theme.colors.semantic.content.contentInverseTertionary
+          }
           value={query}
           onChangeText={(text) => {
             setQuery(text);
@@ -118,7 +154,11 @@ const GooglePlacesInput: React.FC<T_GOOGLE_PLACES_INPUT> = ({
           autoCapitalize="none"
           style={styles.textInput}
           onBlur={() => {
-            setTimeout(() => setShowSuggestions(false), 150);
+            if (blurTimeoutRef.current) clearTimeout(blurTimeoutRef.current);
+            blurTimeoutRef.current = setTimeout(() => {
+              blurTimeoutRef.current = null;
+              setShowSuggestions(false);
+            }, 150);
           }}
           onFocus={() => {
             if (query.length >= minSearchLength && predictions.length > 0) {
@@ -126,7 +166,7 @@ const GooglePlacesInput: React.FC<T_GOOGLE_PLACES_INPUT> = ({
             }
           }}
         />
-        
+
         {isPending ? (
           <ActivityIndicator
             size="small"
@@ -144,10 +184,11 @@ const GooglePlacesInput: React.FC<T_GOOGLE_PLACES_INPUT> = ({
 
       {showSuggestions && predictions.length > 0 && (
         <View style={styles.suggestionsContainer}>
-          <ScrollView 
+          <ScrollView
             showsVerticalScrollIndicator={false}
             nestedScrollEnabled={true}
             style={styles.suggestionsScrollView}
+            keyboardShouldPersistTaps="handled"
           >
             {predictions.map((item, index) => (
               <TouchableOpacity
@@ -156,15 +197,15 @@ const GooglePlacesInput: React.FC<T_GOOGLE_PLACES_INPUT> = ({
                 activeOpacity={0.7}
                 style={[
                   styles.suggestionItem,
-                  index === predictions.length - 1 && styles.lastSuggestionItem
+                  index === predictions.length - 1 && styles.lastSuggestionItem,
                 ]}
               >
                 <Location
                   size={20}
                   color={theme.colors.semantic.content.contentInverseTertionary}
                 />
-                <AppText 
-                  font="body2" 
+                <AppText
+                  font="body2"
                   style={styles.suggestionText}
                   textProps={{ numberOfLines: 1 }}
                 >

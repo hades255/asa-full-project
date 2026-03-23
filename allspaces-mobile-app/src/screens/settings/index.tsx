@@ -31,12 +31,15 @@ import { useAuth, useUser } from "@clerk/clerk-expo";
 import { getVersion } from "react-native-device-info";
 import { useUnistyles } from "react-native-unistyles";
 import { LeafIcon, StarIcon } from "assets/icons";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useSelector, useDispatch } from "@/redux/hooks";
+import { actionSetCompleteProfile } from "@/redux/app.slice";
+import { showSnackbar } from "@/utils/essentials";
+import { selectCurrentUser } from "@/redux/selectors";
 
 const Settings: React.FC<T_SETTINGS_SCREEN> = ({ navigation }) => {
   const { isLoaded, signOut } = useAuth();
-  const { currentUser } = useSelector((state: RootState) => state.appSlice);
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
   const { theme } = useUnistyles();
   const { user } = useUser();
   const [version, setVersion] = useState<string>("");
@@ -185,6 +188,9 @@ const Settings: React.FC<T_SETTINGS_SCREEN> = ({ navigation }) => {
         {
           key: "25",
           title: "Rate & Reviews",
+          onPress: () => {
+            showSnackbar(`COMING SOON`, 'warning');
+          },
           icon: (
             <Star
               size={24}
@@ -201,6 +207,9 @@ const Settings: React.FC<T_SETTINGS_SCREEN> = ({ navigation }) => {
               color={theme.colors.semantic.content.contentPrimary}
             />
           ),
+          onPress: () => {
+            showSnackbar(`COMING SOON`, 'warning');
+          },
         },
       ],
     },
@@ -212,6 +221,8 @@ const Settings: React.FC<T_SETTINGS_SCREEN> = ({ navigation }) => {
 
   const onSignoutClick = async () => {
     if (!isLoaded) return;
+    // Reset completeProfile state on logout
+    dispatch(actionSetCompleteProfile(false));
     await signOut();
   };
 
@@ -241,11 +252,10 @@ const Settings: React.FC<T_SETTINGS_SCREEN> = ({ navigation }) => {
             <View style={styles.userDetailsLeft}>
               <Avatar size={64} editable={false} />
               <View style={styles.userDetailsContent}>
-                <AppText font="button1">{`${
-                  user && user.firstName
-                    ? `${user.firstName} ${user.lastName}`
-                    : user?.emailAddresses[0].emailAddress
-                }`}</AppText>
+                <AppText font="button1">{`${user && user.firstName
+                  ? `${user.firstName} ${user.lastName}`
+                  : user?.emailAddresses[0].emailAddress
+                  }`}</AppText>
                 <View style={styles.userDetailsContentRow}>
                   <StarIcon
                     width={16}

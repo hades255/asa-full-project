@@ -1,5 +1,5 @@
 import { Linking, View, AppState } from "react-native";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { T_ENABLE_LOCATION_SCREEN } from "./types";
 import { AppButton, AppText, ScreenWrapper } from "@/components";
 import { styles } from "./styles";
@@ -17,32 +17,51 @@ import {
   actionSetPermissionStatus,
   actionSetUserLocation,
 } from "@/redux/app.slice";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "@/redux/hooks";
+import { selectPermissionStatus } from "@/redux/selectors";
 
 const EnableLocation: React.FC<T_ENABLE_LOCATION_SCREEN> = ({ navigation }) => {
-  const { permissionStatus } = useSelector(
-    (state: RootState) => state.appSlice
-  );
+  const permissionStatus = useSelector(selectPermissionStatus);
   const appState = useRef(AppState.currentState);
 
   const { theme } = useUnistyles();
   const dispatch = useDispatch();
+  const isMountedRef = useRef(true);
 
   const canAsk = permissionStatus?.canAskAgain;
 
-  const getAndSaveUserLocation = async () => {
-    dispatch(actionSetAppLoading(true));
-    const locObj = await getUserCoordinates();
-    const geoResponse = await geoCodeAPI(
-      `${locObj.coords.latitude},${locObj.coords.longitude}`,
-      true
-    );
-    const status = await getLocationPermissionStatus();
-    dispatch(actionSetPermissionStatus(status));
-    dispatch(actionSetUserLocation(geoResponse));
-    dispatch(actionSetAppLoading(false));
-  };
+  const getAndSaveUserLocation = useCallback(async () => {
+    // dispatch(actionSetAppLoading(true));
+    try {
+      const locObj = await getUserCoordinates();
+      if (!isMountedRef.current) return;
+      const geoResponse = await geoCodeAPI(
+        `${locObj.coords.latitude},${locObj.coords.longitude}`,
+        true
+      );
+      if (!isMountedRef.current) return;
+      const status = await getLocationPermissionStatus();
+      if (!isMountedRef.current) return;
+      dispatch(
+        actionSetPermissionStatus({
+          granted: status.granted,
+          canAskAgain: status.canAskAgain,
+        })
+      );
+      dispatch(actionSetUserLocation(geoResponse));
+    } finally {
+      if (isMountedRef.current) {
+        // dispatch(actionSetAppLoading(false));
+      }
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     const subscription = AppState.addEventListener(
@@ -62,7 +81,7 @@ const EnableLocation: React.FC<T_ENABLE_LOCATION_SCREEN> = ({ navigation }) => {
     return () => {
       subscription.remove();
     };
-  }, []);
+  }, [getAndSaveUserLocation]);
 
   return (
     <ScreenWrapper>
@@ -97,7 +116,12 @@ const EnableLocation: React.FC<T_ENABLE_LOCATION_SCREEN> = ({ navigation }) => {
                 let requestStatus = await requestLocationPermission();
                 dispatch(actionSetPermissionStatus(null));
                 if (requestStatus.granted) await getAndSaveUserLocation();
-                dispatch(actionSetPermissionStatus(requestStatus));
+                dispatch(
+                  actionSetPermissionStatus({
+                    granted: requestStatus.granted,
+                    canAskAgain: requestStatus.canAskAgain,
+                  })
+                );
               } else Linking.openSettings();
             }}
           />

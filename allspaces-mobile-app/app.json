@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "All Spaces",
-    "slug": "all-spaces",
+    "slug": "allspacesai-test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,27 +10,34 @@
     "newArchEnabled": true,
     "scheme": "allspaces",
     "deepLinking": true,
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#fff"
     },
     "ios": {
-      "bundleIdentifier": "com.attaincapitallimited.app",
-      "googleServicesFile": "./assets/firebase/GoogleService-Info.plist",
+      "bundleIdentifier": "com.allspacesai.app",
       "supportsTablet": true,
       "infoPlist": {
         "CFBundleAllowMixedLocalizations": true,
-        "CFBundleLocalizations": ["en"]
+        "CFBundleLocalizations": [
+          "en"
+        ],
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": false
+        }
       },
       "config": {
         "usesNonExemptEncryption": false
       }
     },
     "android": {
-      "package": "com.attaincapitallimited.app",
-      "googleServicesFile": "./assets/firebase/google-services.json",
+      "package": "com.allspacesai.app",
+      "usesCleartextTraffic": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#fff"
@@ -38,6 +45,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ba344487-afac-4777-85ca-121cc4a69eec"
+      }
     },
     "plugins": [
       [
@@ -54,7 +66,6 @@
       [
         "@stripe/stripe-react-native",
         {
-          "merchantIdentifier": "sk_test_51PvOpuBOdsKh96U7aOND6gCyeMW7zG62LlLrtUkD7DUEW9vcuJpEZc7J14WrY0iTM8qDMcQ7ONWIJV9hiOHBmXIM002pYaXZAq",
           "enableGooglePay": true
         }
       ],
@@ -102,6 +113,13 @@
         }
       ],
       [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to use your microphone for voice search.",
+          "speechRecognitionPermission": "Allow $(PRODUCT_NAME) to use speech recognition for voice search."
+        }
+      ],
+      [
         "expo-location",
         {
           "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location so that we can show nearby spaces to you",
@@ -122,7 +140,10 @@
           "experimentalLauncherActivity": true
         }
       ],
-      "react-native-edge-to-edge"
+      "react-native-edge-to-edge",
+      [
+        "expo-localization"
+      ]
     ]
   }
 }

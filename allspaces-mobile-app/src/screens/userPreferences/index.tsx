@@ -1,5 +1,5 @@
 import { View, ActivityIndicator, FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { T_USER_PREFERENCES } from "./types";
 import {
   AppButton,
@@ -34,20 +34,18 @@ const UserPreferences: React.FC<T_USER_PREFERENCES> = ({ navigation }) => {
   const { mutateAsync: updatePreferencesAPI, isPending: updateLoading } =
     useUpdatePreferencesAPI();
 
-  const onPrefCardPress = (subPrefItem: T_SUB_PREFERENCE_ITEM) => {
-    const itemFound = selectedPrefs.find((item) => item === subPrefItem.id);
-    if (itemFound) {
-      setSelectedPrefs((prev) => prev.filter((item) => item != subPrefItem.id));
-    } else {
-      setSelectedPrefs((prev) => [...prev, subPrefItem.id]);
-    }
-  };
+  const onPrefCardPress = useCallback((subPrefItem: T_SUB_PREFERENCE_ITEM) => {
+    setSelectedPrefs((prev) => {
+      const found = prev.includes(subPrefItem.id);
+      return found ? prev.filter((id) => id !== subPrefItem.id) : [...prev, subPrefItem.id];
+    });
+  }, []);
 
   useEffect(() => {
     if (myPreferences) setSelectedPrefs(myPreferences);
   }, [myPreferences]);
 
-  const onUpdatePrefs = async () => {
+  const onUpdatePrefs = useCallback(async () => {
     try {
       if (!user || !isLoaded) {
         return;
@@ -67,7 +65,34 @@ const UserPreferences: React.FC<T_USER_PREFERENCES> = ({ navigation }) => {
     } catch (error) {
       showClerkError(error);
     }
-  };
+  }, [isLoaded, navigation, selectedPrefs, updatePreferencesAPI, user]);
+
+  const keyExtractor = useCallback((item: any) => item.id, []);
+
+  const renderSeparator = useCallback(() => {
+    return (
+      <View
+        style={{
+          width: "100%",
+          height: 1,
+          backgroundColor: theme.colors.core.accent,
+          opacity: 0.3,
+          marginTop: theme.units[6],
+        }}
+      />
+    );
+  }, [theme.colors.core.accent, theme.units]);
+
+  const renderItem = useCallback(
+    ({ item }: { item: any }) => (
+      <PrefCard
+        prefItem={item}
+        selectedPrefItems={selectedPrefs}
+        onPrefCardPress={onPrefCardPress}
+      />
+    ),
+    [onPrefCardPress, selectedPrefs]
+  );
 
   return (
     <ScreenWrapper withoutBottomPadding>
@@ -96,29 +121,13 @@ const UserPreferences: React.FC<T_USER_PREFERENCES> = ({ navigation }) => {
             <FlatList
               showsVerticalScrollIndicator={false}
               data={preferences}
-              keyExtractor={(item) => item.id}
+              keyExtractor={keyExtractor}
               contentContainerStyle={{
                 rowGap: theme.units[4],
                 paddingBottom: theme.units[6],
               }}
-              ItemSeparatorComponent={() => (
-                <View
-                  style={{
-                    width: "100%",
-                    height: 1,
-                    backgroundColor: theme.colors.core.accent,
-                    opacity: 0.3,
-                    marginTop: theme.units[6],
-                  }}
-                />
-              )}
-              renderItem={({ item }) => (
-                <PrefCard
-                  prefItem={item}
-                  selectedPrefItems={selectedPrefs}
-                  onPrefCardPress={onPrefCardPress}
-                />
-              )}
+              ItemSeparatorComponent={renderSeparator}
+              renderItem={renderItem}
             />
             <AppButton
               title="Continue"

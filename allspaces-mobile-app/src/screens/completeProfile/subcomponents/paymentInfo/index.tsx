@@ -1,43 +1,28 @@
-import { View, Linking } from "react-native";
-import React, { useCallback, useEffect } from "react";
+import { View, Linking, Keyboard } from "react-native";
+import React, { useCallback, useEffect, useState } from "react";
 import { T_PAYMENT_INFO } from "./types";
 import { styles } from "./styles";
 import { AppButton, AppText } from "@/components";
-import {  useUser } from "@clerk/clerk-expo";
-import { useDispatch } from "react-redux";
-import { actionSetAppLoading } from "@/redux/app.slice";
+import { useUser } from "@clerk/clerk-expo";
 import { showSnackbar } from "@/utils/essentials";
 import { useStripe } from "@stripe/stripe-react-native";
 import { useUnistyles } from "react-native-unistyles";
 import { useCreateStripeCustomerAPI, useCreateStripeIntentAPI } from "@/apis";
+import { STRIPE_RETURN_URL } from "@/config/constants";
+import StepLayout from "../stepLayout";
 
-const PaymentInfo: React.FC<T_PAYMENT_INFO> = ({
-  flatlistIndex,
-  flatlistRef,
-}) => {
+const PaymentInfo: React.FC<T_PAYMENT_INFO> = ({ onNext }) => {
   const { theme } = useUnistyles();
-  const dispatch = useDispatch();
   const { isLoaded, user } = useUser();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  // Stripe
-  const { initPaymentSheet, presentPaymentSheet, handleURLCallback } =
-    useStripe();
-
-  // APIs
+  const { initPaymentSheet, presentPaymentSheet, handleURLCallback } = useStripe();
   const { mutateAsync: createStripeCustomerAPI } = useCreateStripeCustomerAPI();
   const { mutateAsync: createStripeIntentAPI } = useCreateStripeIntentAPI();
 
-  // FOR DEEP LINK
   const handleDeepLink = useCallback(
     async (url: string | null) => {
-      if (url) {
-        const stripeHandled = await handleURLCallback(url);
-        if (stripeHandled) {
-          // This was a Stripe URL - you can return or add extra handling here as you see fit
-        } else {
-          // This was NOT a Stripe URL – handle as you normally would
-        }
-      }
+      if (url) await handleURLCallback(url);
     },
     [handleURLCallback]
   );
@@ -47,17 +32,11 @@ const PaymentInfo: React.FC<T_PAYMENT_INFO> = ({
       const initialUrl = await Linking.getInitialURL();
       handleDeepLink(initialUrl);
     };
-
     getUrlAsync();
-
-    const deepLinkListener = Linking.addEventListener(
-      "url",
-      (event: { url: string }) => {
-        handleDeepLink(event.url);
-      }
+    const listener = Linking.addEventListener("url", (event: { url: string }) =>
+      handleDeepLink(event.url)
     );
-
-    return () => deepLinkListener.remove();
+    return () => listener.remove();
   }, [handleDeepLink]);
 
   const initStripePayment = async () => {
@@ -65,35 +44,30 @@ const PaymentInfo: React.FC<T_PAYMENT_INFO> = ({
       if (
         !isLoaded ||
         !user ||
-        !user.primaryEmailAddress ||
-        !user.primaryEmailAddress.emailAddress
+        !user.primaryEmailAddress?.emailAddress
       )
         return;
 
-      dispatch(actionSetAppLoading(true));
+      setLoading(true);
 
-      // Creating Customer
       const response = await createStripeCustomerAPI({
         email: user.primaryEmailAddress.emailAddress,
         user_id: user.id,
       });
 
-      console.log('res', response);
-      
-
-      // Creating Intent
       const intentData = await createStripeIntentAPI({
         stripe_customer_id: response.stripe_customer_id,
         user_id: response.clerk_user_id,
       });
 
       if (!response.stripe_customer_id || !intentData?.setupIntent) {
-        dispatch(actionSetAppLoading(false));
+        setLoading(false);
         return;
       }
 
-      const { error, paymentOption } = await initPaymentSheet({
+      const { error } = await initPaymentSheet({
         merchantDisplayName: "All Spaces",
+        returnURL: STRIPE_RETURN_URL,
         customerId: response.stripe_customer_id,
         customerEphemeralKeySecret: intentData?.ephemeralKey,
         setupIntentClientSecret: intentData?.setupIntent.client_secret,
@@ -103,8 +77,9 @@ const PaymentInfo: React.FC<T_PAYMENT_INFO> = ({
           name: `${user.firstName} ${user.lastName}`,
         },
       });
+
       if (error) {
-        dispatch(actionSetAppLoading(false));
+        setLoading(false);
         showSnackbar(
           `Something went wrong while setting up payment intent`,
           "error"
@@ -115,28 +90,23 @@ const PaymentInfo: React.FC<T_PAYMENT_INFO> = ({
       const { error: presentError } = await presentPaymentSheet();
 
       if (presentError) {
-        dispatch(actionSetAppLoading(false));
+        setLoading(false);
         showSnackbar(`Something went wrong while presenting intent`, "error");
         return;
-      } else {
-        dispatch(actionSetAppLoading(false));
-        dispatch(actionSetAppLoading(false));
-
-        flatlistRef.current?.scrollToIndex({
-          index: flatlistIndex.value + 1,
-          animated: true,
-        });
-
-        await user.update({
-          unsafeMetadata: {
-            ...user.unsafeMetadata,
-            hasPaymentMethod: true,
-          },
-        });
-        showSnackbar(`Your payment method is setup correctly.`);
       }
+
+      setLoading(false);
+      Keyboard.dismiss();
+      await user.update({
+        unsafeMetadata: {
+          ...user.unsafeMetadata,
+          hasPaymentMethod: true,
+        },
+      });
+      showSnackbar(`Your payment method is setup correctly.`);
+      onNext();
     } catch (error) {
-      dispatch(actionSetAppLoading(false));
+      setLoading(false);
       showSnackbar(
         `Something went wrong while initiating Stripe intent`,
         "error"
@@ -145,17 +115,24 @@ const PaymentInfo: React.FC<T_PAYMENT_INFO> = ({
   };
 
   return (
-    <View style={styles.bodyContainer}>
-      <View style={{ rowGap: theme.units[1] }}>
-        <AppText font="heading2">{`Payment Details`}</AppText>
-        <AppText
-          font="body1"
-          color={theme.colors.semantic.content.contentInverseTertionary}
-        >{`Setup your payment method`}</AppText>
+    <StepLayout>
+      <View style={styles.bodyContainer}>
+        <View style={{ rowGap: theme.units[1] }}>
+          <AppText font="heading2">{`Payment Details`}</AppText>
+          <AppText
+            font="body1"
+            color={theme.colors.semantic.content.contentInverseTertionary}
+          >{`Setup your payment method`}</AppText>
+        </View>
+        <View style={styles.middleContainer} />
+        <AppButton
+          title="Add Payment Method"
+          onPress={initStripePayment}
+          isLoading={loading}
+          disabled={loading}
+        />
       </View>
-      <View style={styles.middleContainer} />
-      <AppButton title="Add Payment Method" onPress={initStripePayment} />
-    </View>
+    </StepLayout>
   );
 };
 

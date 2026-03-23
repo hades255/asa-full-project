@@ -1,13 +1,8 @@
 import { ERRORS } from "@/config/constants";
 import * as yup from "yup";
-import { isValidPhoneNumber } from "libphonenumber-js";
-import { AnimatedRef, SharedValue } from "react-native-reanimated";
-import { FlatList } from "react-native";
-import { T_COMPLETE_PROFILE_ITEM } from "../../types";
 
 export type T_PERSONAL_INFO = {
-  flatlistRef: AnimatedRef<FlatList<T_COMPLETE_PROFILE_ITEM[]>>;
-  flatlistIndex: SharedValue<number>;
+  onNext: () => void;
 };
 
 export type T_LOGIN_FIELDS = {

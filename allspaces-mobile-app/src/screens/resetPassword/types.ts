@@ -23,10 +23,11 @@ export const S_RESET_PASSWORD_FIELDS = yup
     newPassword: yup
       .string()
       .required(ERRORS.password)
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        ERRORS.password
-      ),
+      .min(8, ERRORS.password),
+      // .matches(
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      //   ERRORS.password
+      // ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("newPassword")], ERRORS.confirmPassword)

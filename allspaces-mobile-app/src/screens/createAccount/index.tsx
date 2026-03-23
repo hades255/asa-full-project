@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   S_CREATE_ACCOUNT_FIELDS,
   T_CREATE_ACCOUNT_FIELDS,
@@ -24,11 +24,13 @@ import {
   gotoVerifyFromCreateAccount,
 } from "@/navigation/service";
 import { useSignUp } from "@clerk/clerk-expo";
-import { useDispatch } from "react-redux";
-import { actionSetAppLoading } from "@/redux/app.slice";
-import { showClerkError } from "@/utils/essentials";
+import { useDispatch } from "@/redux/hooks";
+import { actionSetAppLoading, actionSetIsConcierge } from "@/redux/app.slice";
+import { showClerkError, showSnackbar } from "@/utils/essentials";
 import { useUnistyles } from "react-native-unistyles";
 import { useLocalCredentials } from "@clerk/clerk-expo/local-credentials";
+import { globalStyles } from "@/theme";
+import { SecureStoreService } from "@/config/secureStore";
 
 const CreateAccount: React.FC<T_CREATE_ACCOUNT_SCREEN> = ({ navigation }) => {
   const { theme } = useUnistyles();
@@ -39,20 +41,36 @@ const CreateAccount: React.FC<T_CREATE_ACCOUNT_SCREEN> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    watch,
+    trigger,
+    formState: { errors, isValid, touchedFields },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(S_CREATE_ACCOUNT_FIELDS),
     defaultValues: {
-      email: __DEV__ ? "u001+clerk_test@allspaces.com" : "",
-      password: __DEV__ ? "JustDoIt@321" : "",
-      confirmPassword: __DEV__ ? "JustDoIt@321" : "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
   });
 
+  const password = watch("password");
+  const confirmPassword = watch("confirmPassword");
+
+  // Re-validate confirm password when password changes so mismatch/empty password shows error
+  useEffect(() => {
+    trigger("confirmPassword");
+  }, [password, trigger]);
+
+  // Show error immediately when confirmPassword has value and doesn't match
+  const shouldShowConfirmPasswordError = confirmPassword && errors.confirmPassword?.message;
+
   const onCreateAccountClick = async (formData: T_CREATE_ACCOUNT_FIELDS) => {
     try {
-      if (!isLoaded) return;
+      if (!isLoaded) {
+        showSnackbar("Authentication service is not ready. Please try again.", "error");
+        return;
+      }
 
       dispatch(actionSetAppLoading(true));
 
@@ -63,19 +81,70 @@ const CreateAccount: React.FC<T_CREATE_ACCOUNT_SCREEN> = ({ navigation }) => {
 
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
+      // Force biometric prompt for every fresh USER signup.
+      await SecureStoreService.deleteValue("BIOMETRIC_ENABLED");
+      await SecureStoreService.deleteValue("BIOMETRIC_ASKED");
+
       gotoVerifyFromCreateAccount(navigation, {
         type: "email",
         credential: formData.email.trim().toLowerCase(),
       });
 
-      // For biometric login
-      await setCredentials({
-        identifier: formData.email.trim().toLowerCase(),
-        password: formData.password,
-      });
+      try {
+        await setCredentials({
+          identifier: formData.email.trim().toLowerCase(),
+          password: formData.password,
+        });
+      } catch {
+        // Non-critical; continue with signup flow
+      }
 
       dispatch(actionSetAppLoading(false));
-    } catch (error) {
+    } catch (error: any) {
+      dispatch(actionSetAppLoading(false));
+      showClerkError(error);
+    }
+  };
+
+  const onCreateConciergeAccountClick = async (
+    formData: T_CREATE_ACCOUNT_FIELDS
+  ) => {
+    try {
+      if (!isLoaded) {
+        showSnackbar("Authentication service is not ready. Please try again.", "error");
+        return;
+      }
+
+      dispatch(actionSetAppLoading(true));
+
+      await signUp.create({
+        emailAddress: formData.email.trim().toLowerCase(),
+        password: formData.password,
+        unsafeMetadata: {
+          type: "concierge",
+        },
+      });
+
+      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+
+      gotoVerifyFromCreateAccount(navigation, {
+        type: "email",
+        credential: formData.email.trim().toLowerCase(),
+        isConcierge: true,
+      });
+
+      dispatch(actionSetIsConcierge(true));
+
+      // Don't set credentials for Partner/Concierge accounts - biometric is only for User accounts
+      // Clear any existing biometric credentials when creating Partner account
+      try {
+        await SecureStoreService.deleteValue("BIOMETRIC_ENABLED");
+      } catch {
+        // Non-critical; continue with signup flow
+      }
+
+      dispatch(actionSetAppLoading(false));
+    } catch (error: any) {
       dispatch(actionSetAppLoading(false));
       showClerkError(error);
     }
@@ -86,6 +155,7 @@ const CreateAccount: React.FC<T_CREATE_ACCOUNT_SCREEN> = ({ navigation }) => {
       <KeyboardAwareScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.mainContainer}
+        keyboardShouldPersistTaps="handled"
       >
         <BackButton />
         <View style={{ rowGap: theme.units[1] }}>
@@ -100,9 +170,17 @@ const CreateAccount: React.FC<T_CREATE_ACCOUNT_SCREEN> = ({ navigation }) => {
           <AppInput
             name="email"
             control={control}
-            error={errors.email?.message}
+            error={touchedFields.email ? errors.email?.message : undefined}
             label={`Email`}
             placeholder={`Johndoe@gmail.com`}
+            KeyboardType="email-address"
+            textContentType="emailAddress"
+            autoComplete="email"
+            textInputProps={{
+              textContentType: "emailAddress",
+              autoComplete: "email",
+              keyboardType: "email-address",
+            }}
             icon={
               <Sms
                 variant="Linear"
@@ -114,10 +192,16 @@ const CreateAccount: React.FC<T_CREATE_ACCOUNT_SCREEN> = ({ navigation }) => {
           <AppInput
             name="password"
             control={control}
-            error={errors.password?.message}
+            error={touchedFields.password ? errors.password?.message : undefined}
             label={`Password`}
             placeholder={`*********`}
             isPassword
+            textContentType="newPassword"
+            autoComplete="new-password"
+            textInputProps={{
+              textContentType: "newPassword",
+              autoComplete: "new-password",
+            }}
             icon={
               <Lock1
                 variant="Linear"
@@ -129,10 +213,16 @@ const CreateAccount: React.FC<T_CREATE_ACCOUNT_SCREEN> = ({ navigation }) => {
           <AppInput
             name="confirmPassword"
             control={control}
-            error={errors.confirmPassword?.message}
+            error={shouldShowConfirmPasswordError ? errors.confirmPassword?.message : undefined}
             label={`Confirm Password`}
             placeholder={`*********`}
             isPassword
+            textContentType="newPassword"
+            autoComplete="new-password"
+            textInputProps={{
+              textContentType: "newPassword",
+              autoComplete: "new-password",
+            }}
             icon={
               <Lock1
                 variant="Linear"
@@ -149,7 +239,7 @@ const CreateAccount: React.FC<T_CREATE_ACCOUNT_SCREEN> = ({ navigation }) => {
                 font="body1"
                 color={theme.colors.semantic.content.contentInverseTertionary}
               >
-                {`By continuing, you are agree to our\n`}
+                {`By continuing, you agree to our\n`}
                 <AppText
                   font="button1"
                   color={theme.colors.semanticExtensions.content.contentAccent}
@@ -169,11 +259,27 @@ const CreateAccount: React.FC<T_CREATE_ACCOUNT_SCREEN> = ({ navigation }) => {
           />
         </View>
 
-        <AppButton
-          disabled={!isValid}
-          title="Continue"
-          onPress={handleSubmit(onCreateAccountClick)}
-        />
+        <View style={globalStyles.rowGap12}>
+          <AppButton
+            disabled={!isValid}
+            title="Signup as user"
+            onPress={handleSubmit(onCreateAccountClick)}
+          />
+          <View style={styles.orSeparator}>
+            <View style={styles.line} />
+            <AppText
+              font="caption1"
+              textAlign="center"
+              color={theme.colors.semantic.content.contentInverseTertionary}
+            >{`or`}</AppText>
+            <View style={styles.line} />
+          </View>
+          <AppButton
+            disabled={!isValid}
+            title="Signup as partner"
+            onPress={handleSubmit(onCreateConciergeAccountClick)}
+          />
+        </View>
         <ButtonWrapper
           onPress={() => {
             gotoLoginFromCreateAccount(navigation);

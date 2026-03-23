@@ -53,11 +53,13 @@ const useCalendar = () => {
             },
             {
               text: "Open Settings",
-              onPress: () => {
-                if (Platform.OS === "ios") {
-                  Linking.openURL("app-settings:");
-                } else {
-                  Linking.openSettings();
+              onPress: async () => {
+                try {
+                  await Linking.openSettings();
+                } catch {
+                  if (Platform.OS === "ios") {
+                    await Linking.openURL("app-settings:");
+                  }
                 }
               },
             },
@@ -71,7 +73,10 @@ const useCalendar = () => {
       Calendar.EntityTypes.EVENT
     );    
 
-    const defaultCalendar = calendars[0];
+    const defaultCalendar =
+      calendars.find((cal) => cal.isPrimary) ||
+      calendars.find((cal) => cal.allowsModifications) ||
+      calendars[0];
     console.log(defaultCalendar);
     
     return defaultCalendar;

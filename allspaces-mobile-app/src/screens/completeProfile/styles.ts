@@ -12,9 +12,7 @@ export const styles = StyleSheet.create((theme) => ({
     justifyContent: "space-between",
     paddingHorizontal: theme.units[4],
   },
-  stepMainContainer: {
+  stepContainer: {
     flex: 1,
-    width: theme.mobileWidth,
-    paddingHorizontal: theme.units[4],
   },
 }));

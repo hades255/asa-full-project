@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   S_CHANGE_PASSWORD_FIELDS,
   T_CHANGE_PASSWORD_FIELDS,
@@ -11,7 +11,7 @@ import { styles } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Lock1 } from "iconsax-react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 import { useUser } from "@clerk/clerk-expo";
 import { actionSetAppLoading } from "@/redux/app.slice";
 import { showClerkError, showSnackbar } from "@/utils/essentials";
@@ -25,6 +25,8 @@ const ChangePassword: React.FC<T_CHANGE_PASSWORD_SCREEN> = ({ navigation }) => {
     control,
     handleSubmit,
     reset,
+    watch,
+    trigger,
     formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
@@ -35,6 +37,17 @@ const ChangePassword: React.FC<T_CHANGE_PASSWORD_SCREEN> = ({ navigation }) => {
       confirmNewPassword: "",
     },
   });
+
+  const newPassword = watch("newPassword");
+  const confirmNewPassword = watch("confirmNewPassword");
+
+  // Re-validate confirm password when newPassword changes
+  useEffect(() => {
+    trigger("confirmNewPassword");
+  }, [newPassword, trigger]);
+
+  // Show error immediately when confirmNewPassword has value and doesn't match
+  const shouldShowConfirmPasswordError = confirmNewPassword && errors.confirmNewPassword?.message;
 
   const onUpdateClick = async (formData: T_CHANGE_PASSWORD_FIELDS) => {
     try {
@@ -110,7 +123,7 @@ const ChangePassword: React.FC<T_CHANGE_PASSWORD_SCREEN> = ({ navigation }) => {
             name="confirmNewPassword"
             label="Confirm New Password"
             placeholder="********"
-            error={errors.confirmNewPassword?.message}
+            error={shouldShowConfirmPasswordError ? errors.confirmNewPassword?.message : undefined}
           />
         </View>
         <AppButton

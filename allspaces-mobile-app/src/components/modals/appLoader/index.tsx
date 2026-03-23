@@ -1,12 +1,12 @@
 import { Text, Modal, View, ActivityIndicator } from "react-native";
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useSelector } from "@/redux/hooks";
 import { styles } from "./styles";
 import { appColors, moderateScale } from "@/theme";
+import { selectAppLoading } from "@/redux/selectors";
 
 const AppLoader = ({ visible = false }: { visible?: boolean }) => {
-  const { appLoading } = useSelector((state: RootState) => state.appSlice);
+  const appLoading = useSelector(selectAppLoading);
   return (
     <Modal visible={appLoading || visible} transparent animationType="fade">
       <View style={styles.mainContainer}>

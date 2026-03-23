@@ -1,34 +1,28 @@
 import { useUser } from "@clerk/clerk-expo";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 export const useProfileProvider = () => {
   const { isLoaded, user } = useUser();
-  const [isProfileCompleted, setProfileCompleted] = useState<
-    boolean | undefined
-  >(undefined);
-
   const checkProfileCompletion = () => {
     try {
-      if (!isLoaded || !user) return;
-
-      if (
+      if (!isLoaded || !user) return undefined;
+      return Boolean(
         user.firstName &&
-        user.phoneNumbers.length > 0 &&
-        user.phoneNumbers[0].verification.status === "verified" &&
-        user.verifiedExternalAccounts.length > 0 &&
-        user.unsafeMetadata.hasPaymentMethod &&
-        user.unsafeMetadata.hasPreferences
-      )
-        setProfileCompleted(true);
-      else setProfileCompleted(false);
+          user.phoneNumbers.length > 0 &&
+          user.phoneNumbers[0].verification.status === "verified" &&
+          user.verifiedExternalAccounts.length > 0 &&
+          user.unsafeMetadata.hasPaymentMethod &&
+          user.unsafeMetadata.hasPreferences
+      );
     } catch (error) {
-      setProfileCompleted(false);
+      return false;
     }
   };
 
-  useEffect(() => {
-    checkProfileCompletion();
-  }, [user, isLoaded]);
+  const isProfileCompleted = useMemo(
+    () => checkProfileCompletion(),
+    [isLoaded, user]
+  );
 
-  return { checkProfileCompletion, isProfileCompleted };
+  return { isProfileCompleted, checkProfileCompletion };
 };

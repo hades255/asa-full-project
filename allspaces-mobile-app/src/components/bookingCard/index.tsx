@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React from "react";
+import React, { memo } from "react";
 import { T_BOOKING_CARD } from "./types";
 import { styles } from "./styles";
 import { Image } from "expo-image";
@@ -106,7 +106,7 @@ const BookingCard: React.FC<T_BOOKING_CARD> = ({
             {booking.address}
           </AppText>
         </View>
-        <AppText font="body1">{`$ ${booking.amount.toFixed(
+        <AppText font="body1">{`£ ${booking.amount.toFixed(
           2
         )} min.spend`}</AppText>
       </View>
@@ -114,4 +114,4 @@ const BookingCard: React.FC<T_BOOKING_CARD> = ({
   );
 };
 
-export default BookingCard;
+export default memo(BookingCard);

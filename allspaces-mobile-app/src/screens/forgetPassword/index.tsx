@@ -18,7 +18,7 @@ import { Sms } from "iconsax-react-native";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { showClerkError, showSnackbar } from "@/utils/essentials";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "@/redux/hooks";
 import { useSignIn } from "@clerk/clerk-expo";
 import { actionSetAppLoading } from "@/redux/app.slice";
 import { gotoResetPasswordFromForget } from "@/navigation/service";
@@ -42,7 +42,10 @@ const ForgetPassword: React.FC<T_FORGET_PASSWORD> = ({ navigation, route }) => {
 
   const onContinueClick = async (formData: T_FORGET_PASSWORD_FIELDS) => {
     try {
-      if (!isLoaded || !signIn) return;
+      if (!isLoaded || !signIn) {
+        showSnackbar("Authentication service is not ready. Please try again.", "error");
+        return;
+      }
 
       dispatch(actionSetAppLoading(true));
 
@@ -51,14 +54,12 @@ const ForgetPassword: React.FC<T_FORGET_PASSWORD> = ({ navigation, route }) => {
         identifier: formData.email.trim().toLowerCase(),
       });
 
-      showSnackbar(`OTP is sent to your email.`, "success");
-
+      showSnackbar("OTP has been sent to your email.", "success");
       gotoResetPasswordFromForget(navigation, {
         email: formData.email.trim().toLowerCase(),
       });
-
       dispatch(actionSetAppLoading(false));
-    } catch (error) {
+    } catch (error: any) {
       dispatch(actionSetAppLoading(false));
       showClerkError(error);
     }

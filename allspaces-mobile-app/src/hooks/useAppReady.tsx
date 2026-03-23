@@ -31,6 +31,7 @@ const useAppReady = () => {
 
         const token = await getToken();
         setClerkToken(token ? token : "");
+
       } catch (e) {
         console.warn(e);
       } finally {

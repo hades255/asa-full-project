@@ -84,7 +84,7 @@ const BookingOrderOwnDetails: React.FC<T_BOOKING_ORDER_OWN_DETAILS_SCREEN> = ({
         <View style={styles.container}>
           <View style={[styles.row, { marginBottom: verticalScale(32) }]}>
             <Text style={styles.totalLabel}>Total</Text>
-            <Text style={styles.totalAmount}>${total.toFixed(2)}</Text>
+            <Text style={styles.totalAmount}>£{total.toFixed(2)}</Text>
           </View>
         </View>
 
