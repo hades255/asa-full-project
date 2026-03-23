@@ -41,7 +41,8 @@ docs/*
 
 .vscode
 android
-ios
+android/
+ios/
 patches
 dist-export
 eas.json
