@@ -19,17 +19,23 @@ export async function parseIntent(req, res) {
     const trimmed = prompt.trim();
 
     if (!config.intent.extractionEnabled || !config.intent.openaiApiKey) {
-      // Fallback: return minimal intent with defaults (no LLM)
-      const raw = {
-        date: new Date().toISOString(),
-        duration: 1,
-        noOfGuests: 1,
-        location: { address: trimmed, lat: null, lng: null },
-        categoryIds: [],
-        rawQuery: trimmed,
-        confidence: 0,
-      };
-      let { intent, repair } = validateAndRepair(raw);
+      let { intent, repair } = validateAndRepair({
+        intent: {
+          rawQuery: trimmed,
+          normalizedQuery: trimmed.toLowerCase().replace(/\s+/g, " ").trim(),
+          location: {
+            queryText: null,
+            address: trimmed.length >= 2 ? trimmed : null,
+            lat: null,
+            lng: null,
+            radiusKm: null,
+            nearUser: false,
+          },
+          guests: { noOfGuests: 1 },
+          date: { checkIn: new Date().toISOString(), duration: 1 },
+          confidence: 0,
+        },
+      });
       const loc = context?.lastLocation;
       const addr = String(loc?.address || "").trim().toLowerCase();
       intent.userLocation =
@@ -70,14 +76,16 @@ export async function parseIntent(req, res) {
         }
       : null;
 
-    // When target is vague or "Not specified", enrich location with userLocation for search
+    // When target is vague, nearUser, or missing coords, enrich location from device location
     if (lastLocValid && intent.location) {
       const addr = String(intent.location.address || "").trim();
       const needsEnrich =
-        addr === "Not specified" ||
+        intent.location.nearUser === true ||
         addr.length < 2 ||
         placeholders.includes(addr.toLowerCase()) ||
-        (addr.length < 25 && !addr.includes(",") && lastLoc.address.toLowerCase().includes(addr.toLowerCase()));
+        (addr.length < 25 &&
+          !addr.includes(",") &&
+          lastLoc.address.toLowerCase().includes(addr.toLowerCase()));
       if (needsEnrich) {
         intent.location = {
           address: lastLoc.address,

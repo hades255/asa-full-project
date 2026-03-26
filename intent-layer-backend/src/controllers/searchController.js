@@ -81,16 +81,23 @@ async function parsePromptToIntent(prompt, context = {}) {
   }
 
   if (!config.intent.extractionEnabled || !config.intent.openaiApiKey) {
-    const raw = {
-      date: new Date().toISOString(),
-      duration: 1,
-      noOfGuests: 1,
-      location: { address: trimmed, lat: null, lng: null },
-      categoryIds: [],
-      rawQuery: trimmed,
-      confidence: 0,
-    };
-    return validateAndRepair(raw);
+    return validateAndRepair({
+      intent: {
+        rawQuery: trimmed,
+        normalizedQuery: trimmed.toLowerCase().replace(/\s+/g, " ").trim(),
+        location: {
+          queryText: null,
+          address: trimmed.length >= 2 ? trimmed : null,
+          lat: null,
+          lng: null,
+          radiusKm: null,
+          nearUser: false,
+        },
+        guests: { noOfGuests: 1 },
+        date: { checkIn: new Date().toISOString(), duration: 1 },
+        confidence: 0,
+      },
+    });
   }
 
   const raw = await extractIntentWithLLM(trimmed, context);
@@ -112,7 +119,7 @@ async function parsePromptToIntent(prompt, context = {}) {
   if (lastLocValid && intent.location) {
     const addr = String(intent.location.address || "").trim();
     const needsEnrich =
-      addr === "Not specified" ||
+      intent.location.nearUser === true ||
       addr.length < 2 ||
       placeholders.includes(addr.toLowerCase());
     if (needsEnrich) {
@@ -138,18 +145,20 @@ async function parsePromptToIntent(prompt, context = {}) {
  */
 export async function searchByIntent(req, res) {
   try {
-    const { intent, sessionId, categoryIds } = req.body || {};
+    const { intent: bodyIntent, sessionId, categoryIds } = req.body || {};
 
-    if (!intent || typeof intent !== "object") {
+    if (!bodyIntent || typeof bodyIntent !== "object") {
       return res.status(400).json({ message: "intent is required (object)" });
     }
+
+    const { intent, repair } = validateAndRepair(bodyIntent);
 
     const result = await runSearchFlow(intent, {
       sessionId: sessionId || req.headers["session-id"],
       categoryIds,
     });
 
-    return res.status(200).json(result);
+    return res.status(200).json({ ...result, repair });
   } catch (err) {
     console.error("Search by intent error:", err);
     return res.status(500).json({
@@ -160,28 +169,51 @@ export async function searchByIntent(req, res) {
 }
 
 /**
- * Build SearchIntent from manual filters.
- * @param {object} filters - { date?, duration?, noOfGuests?, location?, categoryIds? }
+ * Build search-ready intent from manual filters.
+ * @param {object} filters - { date?, duration?, noOfGuests?, location?, categoryIds?, categoryType?, radiusKm?, rawQuery? }
  * @param {object} lastLocation - { address, lat?, lng? }
  */
 function intentFromFilters(filters, lastLocation) {
   const loc = filters?.location || lastLocation;
-  return {
-    date: filters?.date ? String(new Date(filters.date).toISOString()).slice(0, 24) : new Date().toISOString().slice(0, 24),
-    duration: Math.max(1, parseInt(filters?.duration, 10) || 1),
-    noOfGuests: Math.max(0, parseInt(filters?.noOfGuests, 10) || 0),
-    location: {
-      address: loc?.address || "Unknown",
-      ...(loc?.lat != null && { lat: Number(loc.lat) }),
-      ...(loc?.lng != null && { lng: Number(loc.lng) }),
+  const address = loc?.address != null && String(loc.address).trim() ? String(loc.address).trim() : null;
+  const partial = {
+    rawQuery: filters?.rawQuery != null ? String(filters.rawQuery) : "",
+    date: {
+      checkIn: filters?.date ? new Date(filters.date).toISOString() : new Date().toISOString(),
+      checkOut: null,
+      duration: filters?.duration != null ? Math.max(1, parseInt(filters.duration, 10) || 1) : null,
+      timeText: null,
+      serviceTime: null,
+      timeOfDay: null,
+      isFlexible: false,
     },
-    userLocation: lastLocation?.address
-      ? { address: lastLocation.address, ...(lastLocation.lat != null && { lat: Number(lastLocation.lat) }), ...(lastLocation.lng != null && { lng: Number(lastLocation.lng) }) }
-      : null,
+    guests: {
+      noOfGuests: Math.max(0, parseInt(filters?.noOfGuests, 10) || 0),
+      rooms: null,
+      adults: null,
+      children: null,
+    },
+    location: {
+      queryText: null,
+      address,
+      lat: loc?.lat != null ? Number(loc.lat) : null,
+      lng: loc?.lng != null ? Number(loc.lng) : null,
+      radiusKm: filters?.radiusKm != null ? Number(filters.radiusKm) : null,
+      nearUser: false,
+    },
     categoryIds: Array.isArray(filters?.categoryIds) ? filters.categoryIds : [],
-    rawQuery: "",
+    ...(filters?.categoryType && { categoryType: String(filters.categoryType).toUpperCase() }),
     confidence: 1,
   };
+  const { intent, repair } = validateAndRepair({ intent: partial });
+  intent.userLocation = lastLocation?.address
+    ? {
+        address: lastLocation.address,
+        ...(lastLocation.lat != null && lastLocation.lat !== 0 && { lat: Number(lastLocation.lat) }),
+        ...(lastLocation.lng != null && lastLocation.lng !== 0 && { lng: Number(lastLocation.lng) }),
+      }
+    : null;
+  return { intent, repair };
 }
 
 /**
@@ -194,7 +226,7 @@ export async function searchWithFilters(req, res) {
     const { filters = {}, lastLocation, sessionId } = req.body || {};
     const session = sessionId || req.headers["session-id"];
 
-    const intent = intentFromFilters(filters, lastLocation);
+    const { intent, repair } = intentFromFilters(filters, lastLocation);
     const result = await runSearchFlow(intent, {
       sessionId: session,
       categoryIds: intent.categoryIds?.length ? intent.categoryIds : undefined,
@@ -202,7 +234,7 @@ export async function searchWithFilters(req, res) {
 
     return res.status(200).json({
       ...result,
-      repair: { applied: false, changes: [] },
+      repair,
     });
   } catch (err) {
     console.error("Search with filters error:", err);

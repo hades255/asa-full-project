@@ -16,6 +16,8 @@ servers:
     description: Development server
   - url: http://144.172.91.222:20001
     description: Test server
+  - url: https://driverpacks.space
+    description: Online server
 
 paths:
   /api/intent/parse:
@@ -219,6 +221,16 @@ components:
       properties:
         intent:
           $ref: '#/components/schemas/SearchIntent'
+        repair:
+          type: object
+          description: Present when intent was normalized server-side (e.g. legacy body).
+          properties:
+            applied:
+              type: boolean
+            changes:
+              type: array
+              items:
+                type: string
         summary:
           type: string
           example: "3 Italian restaurants in Manhattan for your Friday dinner."
@@ -247,15 +259,19 @@ components:
           properties:
             timezone:
               type: string
+              example: "Europe/London"
             lastLocation:
               type: object
               properties:
                 lat:
                   type: number
+                  example: 51.576525
                 lng:
                   type: number
+                  example: -0.153765
                 address:
                   type: string
+                  example: "14 Grange Road, London N6 4DG"
         sessionId:
           type: string
 
@@ -287,61 +303,255 @@ components:
 
     SearchIntent:
       type: object
-      required:
-        - date
-        - duration
-        - noOfGuests
-        - location
+      description: |
+        Search-ready intent from `/parse` or manual construction. Supports legacy flat shape
+        (`date` as ISO string, top-level `duration`, `noOfGuests`) — the server normalizes to this model.
       properties:
-        date:
+        searchType:
           type: string
-          format: date-time
-          description: When the user wants the space
-        duration:
-          type: integer
-          minimum: 1
-          description: Duration in hours
-        noOfGuests:
-          type: integer
-          minimum: 0
-          description: Number of guests
-        location:
-          type: object
-          required:
-            - address
-          properties:
-            address:
-              type: string
-              description: Target location
-            lat:
-              type: number
-            lng:
-              type: number
-        userLocation:
-          type: object
-          description: User's current/last known location
-          properties:
-            address:
-              type: string
-            lat:
-              type: number
-            lng:
-              type: number
+          enum: [DISCOVERY, BOOKING]
+        entityTypes:
+          type: array
+          items:
+            type: string
+            enum: [PROFILE, SERVICE]
+        categoryType:
+          type: string
+          nullable: true
+          description: Prisma CategoryType
+          enum:
+            - WORKSPACE
+            - RELAXATION
+            - DINING
+            - SLEEP
+            - TRAVEL
+            - POLICIES
+            - SPECIAL_OFFERS
+            - BEACH_CLUB
         categoryIds:
           type: array
           items:
             type: string
-          description: Semantic IDs e.g. cat-dining-001
+          description: Category UUIDs or semantic IDs (e.g. cat-dining-001)
+        serviceCategoryIds:
+          type: array
+          items:
+            type: string
         rawQuery:
           type: string
-          description: Original user message
+        normalizedQuery:
+          type: string
+        inferredDescription:
+          type: string
+        date:
+          type: object
+          properties:
+            checkIn:
+              type: string
+              format: date-time
+              nullable: true
+            checkOut:
+              type: string
+              format: date-time
+              nullable: true
+            duration:
+              type: integer
+              nullable: true
+            timeText:
+              type: string
+              nullable: true
+            serviceTime:
+              type: string
+              format: date-time
+              nullable: true
+            timeOfDay:
+              type: string
+              nullable: true
+            isFlexible:
+              type: boolean
+        guests:
+          type: object
+          properties:
+            noOfGuests:
+              type: integer
+            rooms:
+              type: integer
+              nullable: true
+            adults:
+              type: integer
+              nullable: true
+            children:
+              type: integer
+              nullable: true
+        location:
+          type: object
+          properties:
+            queryText:
+              type: string
+              nullable: true
+            address:
+              type: string
+              nullable: true
+            lat:
+              type: number
+              nullable: true
+            lng:
+              type: number
+              nullable: true
+            radiusKm:
+              type: number
+              nullable: true
+            nearUser:
+              type: boolean
+        userLocation:
+          type: object
+          nullable: true
+          properties:
+            address:
+              type: string
+            lat:
+              type: number
+            lng:
+              type: number
+        price:
+          type: object
+          properties:
+            min:
+              type: number
+              nullable: true
+            max:
+              type: number
+              nullable: true
+            currency:
+              type: string
+              nullable: true
+            isBudgetIntent:
+              type: boolean
+            isLuxuryIntent:
+              type: boolean
+        rating:
+          type: object
+          properties:
+            minAverageRating:
+              type: number
+              nullable: true
+            minReviewCount:
+              type: integer
+              nullable: true
+        facilities:
+          type: object
+          properties:
+            required:
+              type: array
+              items:
+                type: string
+            preferred:
+              type: array
+              items:
+                type: string
+            excluded:
+              type: array
+              items:
+                type: string
+        serviceFilters:
+          type: object
+          properties:
+            minSpend:
+              type: number
+              nullable: true
+            durationLabel:
+              type: string
+              nullable: true
+            timeOfDay:
+              type: string
+              nullable: true
+        profileFilters:
+          type: object
+          properties:
+            source:
+              type: array
+              items:
+                type: string
+            status:
+              type: array
+              items:
+                type: string
+        semantic:
+          type: object
+          properties:
+            mustTerms:
+              type: array
+              items:
+                type: string
+            shouldTerms:
+              type: array
+              items:
+                type: string
+            excludeTerms:
+              type: array
+              items:
+                type: string
+        serviceLabels:
+          type: array
+          description: Customer catalog labels (exact strings). Used with category inference and ranking.
+          items:
+            $ref: '#/components/schemas/CustomerServiceLabel'
+        sort:
+          type: object
+          properties:
+            by:
+              type: string
+              enum: [RELEVANCE, DISTANCE_THEN_RELEVANCE, RATING, PRICE]
+            direction:
+              type: string
+              enum: [ASC, DESC]
         confidence:
           type: number
           minimum: 0
           maximum: 1
-        inferredDescription:
-          type: string
-          description: What was inferred when not explicitly stated
+
+    CustomerServiceLabel:
+      type: string
+      enum:
+        - Workspace
+        - Dining Services
+        - Relax & Leisure
+        - Beach Club
+        - Sleep Facilities
+        - Travel
+        - Policies
+        - Special Offers
+        - Lobby Workspace
+        - Business Room
+        - Conference Room
+        - Board Room
+        - IT Facilities
+        - Breakfast
+        - Lunch
+        - Dinner
+        - Coffee / Tea
+        - Spa
+        - Massage
+        - Gym
+        - Swimming
+        - Yoga
+        - Pilates
+        - Classes
+        - Beach Bed
+        - Dining Options
+        - Champagne
+        - Room (Full Day)
+        - Half Day
+        - Hourly (min. 4 hrs)
+        - Uber
+        - Taxi
+        - Bike
+        - Flight
+        - Non-Smoking
+        - Smoking
+        - Free Coffee
+        - Complimentary Champagne
+        - Service Discounts
 
     Recommendation:
       type: object

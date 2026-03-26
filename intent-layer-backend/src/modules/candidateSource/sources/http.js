@@ -69,13 +69,18 @@ export function createHttpSource(baseConfig) {
       ...(baseConfig?.apiKey && { key: baseConfig.apiKey }),
       ...(sessionId && { "session-id": sessionId }),
     };
+    const resolvedCategoryIds =
+      Array.isArray(categoryIds) && categoryIds.length > 0
+        ? categoryIds
+        : Array.isArray(intent?.categoryIds) && intent.categoryIds.length > 0
+          ? intent.categoryIds
+          : [];
+
     const body = {
       page: 1,
       limit: SEARCH_LIMIT,
       location: loc,
-      ...(!skipCategories &&
-        Array.isArray(categoryIds) &&
-        categoryIds.length > 0 && { categoryIds }),
+      ...(!skipCategories && resolvedCategoryIds.length > 0 && { categoryIds: resolvedCategoryIds }),
     };
 
     try {
@@ -83,7 +88,7 @@ export function createHttpSource(baseConfig) {
       let data = res.data?.data || [];
       let total = res.data?.pagination?.total ?? data.length;
 
-      if (data.length === 0 && Array.isArray(categoryIds) && categoryIds.length > 0) {
+      if (data.length === 0 && resolvedCategoryIds.length > 0) {
         const retryBody = { ...body };
         delete retryBody.categoryIds;
         res = await axios.post(searchUrl, retryBody, { headers, timeout: 15000 });
