@@ -29,6 +29,19 @@ async function enrichRecommendations(recommendations, fullCandidatesById) {
   }));
 }
 
+function defaultFallbackRecommendation(message = "Fallback recommendation") {
+  return [
+    {
+      rank: 1,
+      profileId: null,
+      profileName: "No direct match yet",
+      score: 0.1,
+      reasons: [message, "Please try a broader location or fewer filters"],
+      profile: null,
+    },
+  ];
+}
+
 /**
  * Run search flow: intent → fetch candidates → LLM rank.
  * Reusable for both /search (intent input) and /search-by-prompt (raw prompt).
@@ -50,8 +63,9 @@ export async function runSearchFlow(intent, options = {}) {
     return {
       intent,
       summary: "Search could not fetch candidates.",
-      recommendations: [],
+      recommendations: defaultFallbackRecommendation(error),
       candidatesCount: 0,
+      returnedCount: 1,
       noMatchMessage: error,
     };
   }
@@ -64,13 +78,17 @@ export async function runSearchFlow(intent, options = {}) {
     ranked.recommendations,
     fullById
   );
+  const ensuredRecommendations =
+    enriched.length > 0
+      ? enriched
+      : defaultFallbackRecommendation("No ranked results were produced");
 
   return {
     intent,
     summary: ranked.summary,
-    recommendations: enriched,
+    recommendations: ensuredRecommendations,
     candidatesCount: total,
-    returnedCount: enriched.length,
+    returnedCount: ensuredRecommendations.length,
     noMatchMessage: ranked.noMatchMessage,
     ...((_mock || _source === "mock") && { _mock: true }),
   };

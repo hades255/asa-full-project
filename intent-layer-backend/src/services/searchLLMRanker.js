@@ -105,6 +105,19 @@ function combineScores(llm, heuristic) {
   return Math.max(0, Math.min(1, llmScore * 0.75 + heuristic * 0.25));
 }
 
+function buildFallbackRecommendation(candidate, intent) {
+  return {
+    rank: 1,
+    profileId: candidate.id,
+    profileName: candidate.name || "Recommended option",
+    score: Math.max(0.2, heuristicScore(intent, candidate)),
+    reasons: [
+      "Closest available option based on your request",
+      "Suggested so you always have at least one choice",
+    ],
+  };
+}
+
 /**
  * Rank candidates using LLM.
  * @param {object} intent - SearchIntent
@@ -114,10 +127,21 @@ function combineScores(llm, heuristic) {
 export async function rankCandidates(intent, candidates, options = {}) {
   if (!candidates || candidates.length === 0) {
     return {
-      summary: "No spaces found matching your criteria.",
-      recommendations: [],
+      summary: "No exact matches were found, showing a fallback option.",
+      recommendations: [
+        {
+          rank: 1,
+          profileId: null,
+          profileName: "No direct match yet",
+          score: 0.1,
+          reasons: [
+            "No candidates were returned from the current search filters",
+            "Try broader location or fewer constraints",
+          ],
+        },
+      ],
       noMatchMessage:
-        "Try broadening your search or choosing a different location.",
+        "No exact matches found; fallback recommendation returned.",
     };
   }
 
@@ -166,6 +190,15 @@ export async function rankCandidates(intent, candidates, options = {}) {
   const recommendations = merged
     .slice(0, resultLimit)
     .map((r, idx) => ({ ...r, rank: idx + 1 }));
+
+  if (recommendations.length === 0) {
+    const bestFallback = limitedCandidates
+      .map((c) => ({ candidate: c, score: heuristicScore(intent, c) }))
+      .sort((a, b) => b.score - a.score)[0]?.candidate;
+    if (bestFallback) {
+      recommendations.push(buildFallbackRecommendation(bestFallback, intent));
+    }
+  }
 
   return {
     summary: parsed.summary ?? "Search results",
