@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { config } from "../config/env.js";
+import { logError, logEvent } from "../lib/eventLogger.js";
 
 /**
  * Single OpenAI/LLM access layer for JSON responses.
@@ -28,12 +29,29 @@ export async function runOpenAiJson(params = {}) {
         ];
 
   const openai = new OpenAI({ apiKey });
-  const response = await openai.chat.completions.create({
-    model: params.model || config.intent.openaiModel || "gpt-4o",
-    messages,
-    response_format: { type: "json_object" },
+  const model = params.model || config.intent.openaiModel || "gpt-4o";
+  logEvent("llm.openai.request_start", {
+    model,
     temperature:
       typeof params.temperature === "number" ? params.temperature : 0.2,
+    messagesCount: messages.length,
+  });
+  let response;
+  try {
+    response = await openai.chat.completions.create({
+      model,
+      messages,
+      response_format: { type: "json_object" },
+      temperature:
+        typeof params.temperature === "number" ? params.temperature : 0.2,
+    });
+  } catch (err) {
+    logError("llm.openai.request_failed", err, { model });
+    throw err;
+  }
+  logEvent("llm.openai.request_done", {
+    model,
+    finishReason: response.choices?.[0]?.finish_reason || null,
   });
 
   const content = response.choices?.[0]?.message?.content;
@@ -43,7 +61,8 @@ export async function runOpenAiJson(params = {}) {
 
   try {
     return JSON.parse(content);
-  } catch {
+  } catch (err) {
+    logError("llm.openai.invalid_json", err, { model });
     throw new Error("LLM returned invalid JSON");
   }
 }

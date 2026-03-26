@@ -1,6 +1,7 @@
 import { extractIntentWithLLM } from "../services/llmExtractor.js";
 import { validateAndRepair } from "../services/intentValidator.js";
 import { config } from "../config/env.js";
+import { logError, logEvent } from "../lib/eventLogger.js";
 
 /**
  * POST /api/intent/parse
@@ -9,16 +10,25 @@ import { config } from "../config/env.js";
 export async function parseIntent(req, res) {
   try {
     const { prompt, context } = req.body || {};
-    console.log("prompt", prompt);
-    console.log("context", context);
+    const requestId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    logEvent("intent.parse.request_received", {
+      requestId,
+      hasPrompt: !!prompt,
+      hasContext: !!context,
+    });
 
     if (!prompt || typeof prompt !== "string" || prompt.trim().length === 0) {
+      logEvent("intent.parse.validation_failed", {
+        requestId,
+        reason: "missing_prompt",
+      });
       return res.status(400).json({ message: "prompt is required" });
     }
 
     const trimmed = prompt.trim();
 
     if (!config.intent.extractionEnabled || !config.intent.openaiApiKey) {
+      logEvent("intent.parse.llm_disabled_fallback", { requestId });
       let { intent, repair } = validateAndRepair({
         intent: {
           rawQuery: trimmed,
@@ -50,14 +60,24 @@ export async function parseIntent(req, res) {
               ...(loc.lng != null && loc.lng !== 0 && { lng: Number(loc.lng) }),
             }
           : null;
+      logEvent("intent.parse.response_sent", {
+        requestId,
+        mode: "fallback",
+        repairApplied: !!repair?.applied,
+      });
       return res.status(200).json({ intent, repair });
     }
 
     let raw;
     try {
+      logEvent("intent.parse.llm_extract_start", {
+        requestId,
+        model: config.intent.openaiModel,
+      });
       raw = await extractIntentWithLLM(trimmed, context);
+      logEvent("intent.parse.llm_extract_done", { requestId });
     } catch (err) {
-      console.error("Intent extraction error:", err);
+      logError("intent.parse.llm_extract_failed", err, { requestId });
       return res.status(422).json({
         message: "Could not extract intent",
         details: err.message || "LLM extraction failed",
@@ -115,9 +135,14 @@ export async function parseIntent(req, res) {
       }
     }
 
+    logEvent("intent.parse.response_sent", {
+      requestId,
+      repairApplied: !!repair?.applied,
+      repairChanges: repair?.changes?.length || 0,
+    });
     return res.status(200).json({ intent, repair });
   } catch (err) {
-    console.error("Parse intent error:", err);
+    logError("intent.parse.unhandled_error", err);
     return res.status(500).json({ message: "Server error" });
   }
 }

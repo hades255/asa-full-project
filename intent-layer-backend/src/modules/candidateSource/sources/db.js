@@ -6,6 +6,7 @@
 import { getPrisma } from "../../../lib/db.js";
 import { config } from "../../../config/env.js";
 import { searchCandidates, DEFAULT_RADIUS_DEG } from "../../search/index.js";
+import { logError, logEvent } from "../../../lib/eventLogger.js";
 
 const SEARCH_LIMIT = config.search.candidateFetchLimit;
 
@@ -27,6 +28,12 @@ export async function fetchDbCandidates(intent, options = {}) {
     parseInt(options?.fetchLimit, 10) || SEARCH_LIMIT
   );
   const prisma = getPrisma();
+  logEvent("search.candidates.db.start", {
+    fetchLimit,
+    hasCategoryType: !!intent?.categoryType,
+    hasCategoryIds:
+      Array.isArray(intent?.categoryIds) && intent.categoryIds.length > 0,
+  });
   if (!prisma) {
     return {
       candidates: [],
@@ -39,6 +46,7 @@ export async function fetchDbCandidates(intent, options = {}) {
   try {
     let lastResult = { candidates: [], total: 0, fullProfilesById: new Map() };
     for (const { radiusDeg, ignoreCategories } of EXPAND_RETRY_OPTIONS) {
+      logEvent("search.candidates.db.retry", { radiusDeg, ignoreCategories });
       const result = await searchCandidates(intent, {
         prisma,
         limit: fetchLimit,
@@ -47,9 +55,12 @@ export async function fetchDbCandidates(intent, options = {}) {
       });
       lastResult = result;
       if (result.candidates.length > 0) {
-        console.log(
-          `[DB] Search: fetched ${result.candidates.length} profiles from PostgreSQL`
-        );
+        logEvent("search.candidates.db.success", {
+          fetched: result.candidates.length,
+          total: result.total,
+          radiusDeg,
+          ignoreCategories,
+        });
         return {
           candidates: result.candidates,
           total: result.total,
@@ -58,9 +69,9 @@ export async function fetchDbCandidates(intent, options = {}) {
         };
       }
     }
-    console.log(
-      "[DB] Search: 0 profiles from PostgreSQL (after expand retries)"
-    );
+    logEvent("search.candidates.db.empty_after_retries", {
+      retries: EXPAND_RETRY_OPTIONS.length,
+    });
     return {
       candidates: lastResult.candidates,
       total: lastResult.total,
@@ -68,7 +79,7 @@ export async function fetchDbCandidates(intent, options = {}) {
       _source: "db",
     };
   } catch (err) {
-    console.error("DB candidate fetch error:", err);
+    logError("search.candidates.db.error", err);
     return {
       candidates: [],
       total: 0,

@@ -5,6 +5,7 @@ import { extractIntentWithLLM } from "../services/llmExtractor.js";
 import { config } from "../config/env.js";
 import { getPrisma } from "../lib/db.js";
 import { getFullProfilesByIds } from "../modules/search/index.js";
+import { logError, logEvent } from "../lib/eventLogger.js";
 
 /**
  * Enrich recommendations with full profile data.
@@ -52,6 +53,13 @@ function defaultFallbackRecommendation(message = "Fallback recommendation") {
  * @returns {Promise<{ intent, summary, recommendations, candidatesCount, noMatchMessage, _mock? }>}
  */
 export async function runSearchFlow(intent, options = {}) {
+  logEvent("search.flow.started", {
+    hasCategoryType: !!intent?.categoryType,
+    hasCategoryIds:
+      Array.isArray(intent?.categoryIds) && intent.categoryIds.length > 0,
+    fetchLimit: options.fetchLimit ?? null,
+    resultLimit: options.resultLimit ?? null,
+  });
   const { candidates, total, error, _mock, _source, fullCandidatesById } =
     await fetchCandidates(intent, {
       sessionId: options.sessionId,
@@ -60,6 +68,9 @@ export async function runSearchFlow(intent, options = {}) {
     });
 
   if (error) {
+    logError("search.flow.candidate_fetch_failed", new Error(error), {
+      source: _source || "unknown",
+    });
     return {
       intent,
       summary: "Search could not fetch candidates.",
@@ -72,6 +83,11 @@ export async function runSearchFlow(intent, options = {}) {
 
   const ranked = await rankCandidates(intent, candidates, {
     resultLimit: options.resultLimit,
+  });
+  logEvent("search.flow.ranking_done", {
+    source: _source || "unknown",
+    candidatesFetched: total,
+    rankedCount: ranked.recommendations?.length || 0,
   });
   const fullById = fullCandidatesById ?? new Map();
   const enriched = await enrichRecommendations(
@@ -192,8 +208,18 @@ export async function searchByIntent(req, res) {
       resultLimit,
     } = req.body || {};
     const incomingIntent = bodyIntent || parsedIntent;
+    const requestId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    logEvent("search.intent.request_received", {
+      requestId,
+      hasIntent: !!incomingIntent,
+      hasParsedIntent: !!parsedIntent,
+    });
 
     if (!incomingIntent || typeof incomingIntent !== "object") {
+      logEvent("search.intent.validation_failed", {
+        requestId,
+        reason: "missing_intent",
+      });
       return res.status(400).json({ message: "intent is required (object)" });
     }
 
@@ -206,9 +232,15 @@ export async function searchByIntent(req, res) {
       resultLimit,
     });
 
+    logEvent("search.intent.response_sent", {
+      requestId,
+      candidatesCount: result.candidatesCount,
+      returnedCount: result.returnedCount,
+      repairApplied: !!repair?.applied,
+    });
     return res.status(200).json({ ...result, repair });
   } catch (err) {
-    console.error("Search by intent error:", err);
+    logError("search.intent.unhandled_error", err);
     return res.status(500).json({
       message: "Search failed",
       details: err.message || "Server error",
@@ -291,6 +323,12 @@ export async function searchWithFilters(req, res) {
       resultLimit,
     } = req.body || {};
     const session = sessionId || req.headers["session-id"];
+    const requestId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    logEvent("search.filters.request_received", {
+      requestId,
+      hasFilters: !!filters,
+      hasLastLocation: !!lastLocation,
+    });
 
     const { intent, repair } = intentFromFilters(filters, lastLocation);
     const result = await runSearchFlow(intent, {
@@ -300,12 +338,18 @@ export async function searchWithFilters(req, res) {
       resultLimit,
     });
 
+    logEvent("search.filters.response_sent", {
+      requestId,
+      candidatesCount: result.candidatesCount,
+      returnedCount: result.returnedCount,
+      repairApplied: !!repair?.applied,
+    });
     return res.status(200).json({
       ...result,
       repair,
     });
   } catch (err) {
-    console.error("Search with filters error:", err);
+    logError("search.filters.unhandled_error", err);
     return res.status(500).json({
       message: "Search failed",
       details: err.message || "Server error",
@@ -324,8 +368,18 @@ export async function searchByPrompt(req, res) {
     const { prompt, context, sessionId, categoryIds, fetchLimit, resultLimit } =
       req.body || {};
     const session = sessionId || req.headers["session-id"];
+    const requestId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    logEvent("search.prompt.request_received", {
+      requestId,
+      hasPrompt: !!prompt,
+      hasContext: !!context,
+    });
 
     if (!prompt || typeof prompt !== "string" || prompt.trim().length === 0) {
+      logEvent("search.prompt.validation_failed", {
+        requestId,
+        reason: "missing_prompt",
+      });
       return res.status(400).json({ message: "prompt is required" });
     }
 
@@ -333,6 +387,11 @@ export async function searchByPrompt(req, res) {
       prompt.trim(),
       context || {}
     );
+    logEvent("search.prompt.intent_parsed", {
+      requestId,
+      repairApplied: !!repair?.applied,
+      repairChanges: repair?.changes?.length || 0,
+    });
 
     const result = await runSearchFlow(intent, {
       sessionId: session,
@@ -341,12 +400,17 @@ export async function searchByPrompt(req, res) {
       resultLimit,
     });
 
+    logEvent("search.prompt.response_sent", {
+      requestId,
+      candidatesCount: result.candidatesCount,
+      returnedCount: result.returnedCount,
+    });
     return res.status(200).json({
       ...result,
       repair,
     });
   } catch (err) {
-    console.error("Search by prompt error:", err);
+    logError("search.prompt.unhandled_error", err);
     const isExtraction =
       err.message?.includes("extract") || err.message?.includes("LLM");
     return res.status(isExtraction ? 422 : 500).json({

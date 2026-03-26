@@ -12,6 +12,10 @@ const CANDIDATE_SOURCE = ["mock", "db", "http", "auto"].includes(
 
 export const config = {
   port: parseInt(process.env.PORT || "3001", 10),
+  logging: {
+    eventLogFile:
+      process.env.EVENT_LOG_FILE || "intent-layer-backend/logs/events.log",
+  },
   candidateSource: CANDIDATE_SOURCE,
   search: {
     candidateFetchLimit: parseInt(

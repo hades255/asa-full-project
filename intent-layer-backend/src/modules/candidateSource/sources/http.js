@@ -6,6 +6,7 @@
 import axios from "axios";
 import { toFullProfile } from "../../search/index.js";
 import { config } from "../../../config/env.js";
+import { logError, logEvent } from "../../../lib/eventLogger.js";
 
 const SEARCH_LIMIT = config.search.candidateFetchLimit;
 
@@ -53,6 +54,13 @@ export function createHttpSource(baseConfig) {
       parseInt(options?.fetchLimit, 10) || SEARCH_LIMIT
     );
     const baseUrl = baseConfig?.apiBaseUrl?.trim();
+    logEvent("search.candidates.http.start", {
+      fetchLimit,
+      hasCategoryIds:
+        (Array.isArray(categoryIds) && categoryIds.length > 0) ||
+        (Array.isArray(intent?.categoryIds) && intent.categoryIds.length > 0),
+      hasSessionId: !!sessionId,
+    });
     if (!baseUrl) {
       return {
         candidates: [],
@@ -97,6 +105,9 @@ export function createHttpSource(baseConfig) {
       let total = res.data?.pagination?.total ?? data.length;
 
       if (data.length === 0 && resolvedCategoryIds.length > 0) {
+        logEvent("search.candidates.http.retry_without_categories", {
+          categoryCount: resolvedCategoryIds.length,
+        });
         const retryBody = { ...body };
         delete retryBody.categoryIds;
         res = await axios.post(searchUrl, retryBody, {
@@ -109,6 +120,10 @@ export function createHttpSource(baseConfig) {
 
       const candidates = data.map(condenseHttpProfile);
       const fullCandidatesById = buildFullMap(data);
+      logEvent("search.candidates.http.success", {
+        fetched: candidates.length,
+        total,
+      });
       return {
         candidates,
         total,
@@ -116,11 +131,9 @@ export function createHttpSource(baseConfig) {
         _source: "http",
       };
     } catch (err) {
-      console.error(
-        "HTTP candidate fetch error:",
-        err.response?.status,
-        err.message
-      );
+      logError("search.candidates.http.error", err, {
+        status: err?.response?.status || null,
+      });
       return {
         candidates: [],
         total: 0,
