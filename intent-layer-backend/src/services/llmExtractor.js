@@ -1,5 +1,5 @@
-import OpenAI from "openai";
 import { config } from "../config/env.js";
+import { runOpenAiJson } from "./llmManager.js";
 import {
   CUSTOMER_SERVICE_LABELS,
   SERVICE_LABEL_TO_CATEGORY_TYPE,
@@ -139,33 +139,12 @@ function buildUserPrompt(prompt, context) {
 }
 
 export async function extractIntentWithLLM(prompt, context = {}) {
-  const apiKey = config.intent.openaiApiKey;
-  if (!apiKey) {
-    throw new Error("OPENAI_API_KEY is not set");
-  }
-
-  const openai = new OpenAI({ apiKey });
-  const response = await openai.chat.completions.create({
+  return runOpenAiJson({
     model: config.intent.openaiModel,
+    temperature: 0.15,
     messages: [
       { role: "system", content: getSystemPrompt() },
       { role: "user", content: buildUserPrompt(prompt, context) },
     ],
-    response_format: { type: "json_object" },
-    temperature: 0.15,
   });
-
-  const content = response.choices?.[0]?.message?.content;
-  if (!content) {
-    throw new Error("No response from LLM");
-  }
-
-  let parsed;
-  try {
-    parsed = JSON.parse(content);
-  } catch {
-    throw new Error("LLM returned invalid JSON");
-  }
-
-  return parsed;
 }

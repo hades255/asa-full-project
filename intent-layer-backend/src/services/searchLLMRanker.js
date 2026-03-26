@@ -3,8 +3,8 @@
  * Input: intent JSON + candidates; Output: ranked recommendations with scores and reasons.
  */
 
-import OpenAI from "openai";
 import { config } from "../config/env.js";
+import { runOpenAiJson } from "./llmManager.js";
 
 const SYSTEM_PROMPT = `You are a search assistant for a space/venue booking app. Given a user's search intent and a list of candidate spaces, rank the spaces by relevance and explain why.
 
@@ -112,11 +112,6 @@ function combineScores(llm, heuristic) {
  * @returns {Promise<{ summary: string, recommendations: object[], noMatchMessage: string|null }>}
  */
 export async function rankCandidates(intent, candidates, options = {}) {
-  const apiKey = config.intent?.openaiApiKey;
-  if (!apiKey) {
-    throw new Error("OPENAI_API_KEY is not set");
-  }
-
   if (!candidates || candidates.length === 0) {
     return {
       summary: "No spaces found matching your criteria.",
@@ -139,28 +134,14 @@ export async function rankCandidates(intent, candidates, options = {}) {
     2
   )}\n\ncandidates:\n${JSON.stringify(limitedCandidates, null, 2)}`;
 
-  const openai = new OpenAI({ apiKey });
-  const response = await openai.chat.completions.create({
+  const parsed = await runOpenAiJson({
     model: config.intent.openaiModel || "gpt-4o",
+    temperature: 0.2,
     messages: [
       { role: "system", content: SYSTEM_PROMPT },
       { role: "user", content: userContent },
     ],
-    response_format: { type: "json_object" },
-    temperature: 0.2,
   });
-
-  const content = response.choices?.[0]?.message?.content;
-  if (!content) {
-    throw new Error("No response from LLM");
-  }
-
-  let parsed;
-  try {
-    parsed = JSON.parse(content);
-  } catch {
-    throw new Error("LLM returned invalid JSON");
-  }
 
   const byId = new Map(limitedCandidates.map((c) => [c.id, c]));
   const rawRecommendations = Array.isArray(parsed.recommendations)
