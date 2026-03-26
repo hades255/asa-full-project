@@ -36,13 +36,13 @@ async function writeLogLine(level, payload) {
 
 export function logEvent(event, meta) {
   const payload = { ts: nowIso(), event, ...(safeMeta(meta) || {}) };
-  console.log("[EVENT]", JSON.stringify(payload));
+  console.log("[INFO]", JSON.stringify(payload));
   void writeLogLine("info", payload);
 }
 
 export function logWarn(event, meta) {
   const payload = { ts: nowIso(), event, ...(safeMeta(meta) || {}) };
-  console.warn("[EVENT]", JSON.stringify(payload));
+  console.warn("[WARNING]", JSON.stringify(payload));
   void writeLogLine("warn", payload);
 }
 
@@ -53,6 +53,6 @@ export function logError(event, err, meta) {
     ...(safeMeta(meta) || {}),
     error: err?.message || String(err),
   };
-  console.error("[EVENT]", JSON.stringify(payload));
+  console.error("[ERROR]", JSON.stringify(payload));
   void writeLogLine("error", payload);
 }
