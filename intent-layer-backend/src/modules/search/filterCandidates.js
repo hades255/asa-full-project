@@ -52,6 +52,58 @@ function getSearchLocation(intent) {
   return DEFAULT_LOCATION;
 }
 
+function getLocationStrategy(intent) {
+  const loc = intent?.location || {};
+  const addressText =
+    typeof loc.address === "string" && loc.address.trim().length >= 2
+      ? loc.address.trim()
+      : null;
+  const queryText =
+    typeof loc.queryText === "string" && loc.queryText.trim().length >= 2
+      ? loc.queryText.trim()
+      : null;
+
+  if (
+    loc?.lat != null &&
+    loc?.lng != null &&
+    (Number(loc.lat) !== 0 || Number(loc.lng) !== 0)
+  ) {
+    return {
+      mode: "geo",
+      lat: Number(loc.lat),
+      lng: Number(loc.lng),
+    };
+  }
+
+  // Explicit location value from prompt should be used on its own and should
+  // not fall back to userLocation coordinates.
+  if (addressText || queryText) {
+    return {
+      mode: "text",
+      text: addressText || queryText,
+    };
+  }
+
+  if (
+    userLoc?.lat != null &&
+    userLoc?.lng != null &&
+    (Number(userLoc.lat) !== 0 || Number(userLoc.lng) !== 0)
+  ) {
+    return {
+      mode: "geo",
+      lat: Number(userLoc.lat),
+      lng: Number(userLoc.lng),
+    };
+  }
+
+  const fallback = getSearchLocation(intent);
+  return {
+    mode: "geo",
+    lat: fallback.lat,
+    lng: fallback.lng,
+  };
+}
+
 /**
  * Resolve category UUIDs: explicit categoryIds, semantic strings, or categoryType enum.
  */
@@ -165,25 +217,26 @@ export async function filterCandidates(prisma, intent, opts = {}) {
     radiusDeg: radiusDegOverride,
     ignoreCategories = false,
   } = opts;
-  const location = getSearchLocation(intent);
+  const locationStrategy = getLocationStrategy(intent);
   const radiusDeg = radiusDegOverride ?? getRadiusDeg(intent);
 
   const categoryIds = ignoreCategories
     ? []
     : await resolveCategoryIds(prisma, intent, categoryIdMap);
 
-  const lat = location.lat;
-  const lng = location.lng;
-  const latMin = lat - radiusDeg;
-  const latMax = lat + radiusDeg;
-  const lngMin = lng - radiusDeg;
-  const lngMax = lng + radiusDeg;
-
-  const andParts = [
-    { status: profileStatusWhere(intent) },
-    { lat: { not: null, gte: latMin, lte: latMax } },
-    { lng: { not: null, gte: lngMin, lte: lngMax } },
-  ];
+  const andParts = [{ status: profileStatusWhere(intent) }];
+  if (locationStrategy.mode === "geo") {
+    const latMin = locationStrategy.lat - radiusDeg;
+    const latMax = locationStrategy.lat + radiusDeg;
+    const lngMin = locationStrategy.lng - radiusDeg;
+    const lngMax = locationStrategy.lng + radiusDeg;
+    andParts.push({ lat: { not: null, gte: latMin, lte: latMax } });
+    andParts.push({ lng: { not: null, gte: lngMin, lte: lngMax } });
+  } else if (locationStrategy.mode === "text") {
+    andParts.push({
+      address: { contains: locationStrategy.text, mode: "insensitive" },
+    });
+  }
 
   const priceWhere = buildPriceWhere(intent);
   if (priceWhere) andParts.push({ price: priceWhere });

@@ -189,6 +189,8 @@ async function parsePromptToIntent(prompt, context = {}) {
     }
   }
 
+  console.log("intent.userLocation", intent.userLocation);
+  console.log("intent.location", intent.location);
   return { intent, repair };
 }
 
@@ -224,6 +226,8 @@ export async function searchByIntent(req, res) {
     }
 
     const { intent, repair } = validateAndRepair(incomingIntent);
+    console.log("intent.userLocation", intent.userLocation);
+    console.log("intent.location", intent.location);
 
     const result = await runSearchFlow(intent, {
       sessionId: sessionId || req.headers["session-id"],
@@ -331,6 +335,8 @@ export async function searchWithFilters(req, res) {
     });
 
     const { intent, repair } = intentFromFilters(filters, lastLocation);
+    console.log("intent.userLocation", intent.userLocation);
+    console.log("intent.location", intent.location);
     const result = await runSearchFlow(intent, {
       sessionId: session,
       categoryIds: intent.categoryIds?.length ? intent.categoryIds : undefined,

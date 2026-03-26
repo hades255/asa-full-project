@@ -60,6 +60,8 @@ export async function parseIntent(req, res) {
               ...(loc.lng != null && loc.lng !== 0 && { lng: Number(loc.lng) }),
             }
           : null;
+      console.log("intent.userLocation", intent.userLocation);
+      console.log("intent.location", intent.location);
       logEvent("intent.parse.response_sent", {
         requestId,
         mode: "fallback",
@@ -135,6 +137,8 @@ export async function parseIntent(req, res) {
       }
     }
 
+    console.log("intent.userLocation", intent.userLocation);
+    console.log("intent.location", intent.location);
     logEvent("intent.parse.response_sent", {
       requestId,
       repairApplied: !!repair?.applied,
