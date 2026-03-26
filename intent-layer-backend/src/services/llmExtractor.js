@@ -120,8 +120,13 @@ function getSystemPrompt() {
 
 function buildUserPrompt(prompt, context) {
   const tz = context?.timezone || config.intent.defaultTimezone;
-  let text = `Extract intent from user message:\n"""${prompt.replace(/"""/g, '"')}"""`;
-  text += `\n\nUser timezone: ${tz}. Today (UTC calendar date): ${new Date().toISOString().slice(0, 10)}.`;
+  let text = `Extract intent from user message:\n"""${prompt.replace(
+    /"""/g,
+    '"'
+  )}"""`;
+  text += `\n\nUser timezone: ${tz}. Today (UTC calendar date): ${new Date()
+    .toISOString()
+    .slice(0, 10)}.`;
   text += `\nResolve relative dates (next Tuesday, tomorrow, this weekend) in the user's timezone (${tz}). Set date.checkIn and date.serviceTime consistently for that zone.`;
   if (context?.lastLocation?.address) {
     const loc = context.lastLocation;

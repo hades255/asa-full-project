@@ -5,8 +5,9 @@
 
 import axios from "axios";
 import { toFullProfile } from "../../search/index.js";
+import { config } from "../../../config/env.js";
 
-const SEARCH_LIMIT = 20;
+const SEARCH_LIMIT = config.search.candidateFetchLimit;
 
 function condenseHttpProfile(p) {
   const services = (p.services || []).map((s) => ({
@@ -15,7 +16,9 @@ function condenseHttpProfile(p) {
     minSpend: s.minSpend ?? 0,
     category: s.category?.title || s.category?.type || "",
   }));
-  const facilities = (p.facilities || []).map((f) => (typeof f === "string" ? f : f.name || "")).filter(Boolean);
+  const facilities = (p.facilities || [])
+    .map((f) => (typeof f === "string" ? f : f.name || ""))
+    .filter(Boolean);
   return {
     id: p.id || "",
     name: p.name || "",
@@ -45,6 +48,10 @@ function buildFullMap(profiles) {
 export function createHttpSource(baseConfig) {
   return async function fetchHttpCandidates(intent, options = {}) {
     const { sessionId, categoryIds, skipCategories = false } = options;
+    const fetchLimit = Math.max(
+      20,
+      parseInt(options?.fetchLimit, 10) || SEARCH_LIMIT
+    );
     const baseUrl = baseConfig?.apiBaseUrl?.trim();
     if (!baseUrl) {
       return {
@@ -60,8 +67,8 @@ export function createHttpSource(baseConfig) {
       intent?.location?.lat != null
         ? { lat: intent.location.lat, lng: intent.location.lng }
         : intent?.userLocation?.lat != null
-          ? { lat: intent.userLocation.lat, lng: intent.userLocation.lng }
-          : { lat: 51.5074, lng: -0.1278 };
+        ? { lat: intent.userLocation.lat, lng: intent.userLocation.lng }
+        : { lat: 51.5074, lng: -0.1278 };
 
     const searchUrl = baseUrl.replace(/\/?$/, "") + "/mobile/profiles/search";
     const headers = {
@@ -73,14 +80,15 @@ export function createHttpSource(baseConfig) {
       Array.isArray(categoryIds) && categoryIds.length > 0
         ? categoryIds
         : Array.isArray(intent?.categoryIds) && intent.categoryIds.length > 0
-          ? intent.categoryIds
-          : [];
+        ? intent.categoryIds
+        : [];
 
     const body = {
       page: 1,
-      limit: SEARCH_LIMIT,
+      limit: fetchLimit,
       location: loc,
-      ...(!skipCategories && resolvedCategoryIds.length > 0 && { categoryIds: resolvedCategoryIds }),
+      ...(!skipCategories &&
+        resolvedCategoryIds.length > 0 && { categoryIds: resolvedCategoryIds }),
     };
 
     try {
@@ -91,7 +99,10 @@ export function createHttpSource(baseConfig) {
       if (data.length === 0 && resolvedCategoryIds.length > 0) {
         const retryBody = { ...body };
         delete retryBody.categoryIds;
-        res = await axios.post(searchUrl, retryBody, { headers, timeout: 15000 });
+        res = await axios.post(searchUrl, retryBody, {
+          headers,
+          timeout: 15000,
+        });
         data = res.data?.data || [];
         total = res.data?.pagination?.total ?? data.length;
       }
@@ -105,7 +116,11 @@ export function createHttpSource(baseConfig) {
         _source: "http",
       };
     } catch (err) {
-      console.error("HTTP candidate fetch error:", err.response?.status, err.message);
+      console.error(
+        "HTTP candidate fetch error:",
+        err.response?.status,
+        err.message
+      );
       return {
         candidates: [],
         total: 0,

@@ -1,6 +1,10 @@
 import express from "express";
 import { parseIntent } from "../controllers/intentController.js";
-import { searchByIntent, searchByPrompt, searchWithFilters } from "../controllers/searchController.js";
+import {
+  searchByIntent,
+  searchByPrompt,
+  searchWithFilters,
+} from "../controllers/searchController.js";
 import { getCategories } from "../controllers/categoriesController.js";
 
 const router = express.Router();
@@ -20,17 +24,17 @@ router.post("/parse", parseIntent);
 
 /**
  * POST /api/intent/search
- * Input: { intent } — JSON from intent layer.
- * Optional: { sessionId, categoryIds }.
- * Output: ranked recommendations with scores and reasons.
+ * Input: { intent } or { parsedIntent } — normalized JSON from intent layer parser.
+ * Optional: { sessionId, categoryIds, fetchLimit, resultLimit }.
+ * Output: ranked recommendations with hybrid precision scoring and larger result set.
  */
 router.post("/search", searchByIntent);
 
 /**
  * POST /api/intent/search-by-prompt
- * Input: { prompt, context?, sessionId? }
+ * Input: { prompt, context?, sessionId?, fetchLimit?, resultLimit? }
  * Does: parse → fetch candidates → LLM rank.
- * Output: intent + repair + ranked recommendations.
+ * Output: normalized intent + repair + ranked recommendations.
  */
 router.post("/search-by-prompt", searchByPrompt);
 

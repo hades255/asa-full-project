@@ -12,11 +12,18 @@ import { getPrisma, logDbConnectionStatus } from "./lib/db.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 let spec;
 try {
-  const yamlContent = readFileSync(join(__dirname, "..", "openapi.yaml"), "utf8");
+  const yamlContent = readFileSync(
+    join(__dirname, "..", "openapi.yaml"),
+    "utf8"
+  );
   spec = parseYaml(yamlContent);
 } catch (err) {
   console.warn("OpenAPI spec load failed:", err.message);
-  spec = { openapi: "3.0.3", info: { title: "Intent Layer API", version: "0.1.0" }, paths: {} };
+  spec = {
+    openapi: "3.0.3",
+    info: { title: "Intent Layer API", version: "0.1.0" },
+    paths: {},
+  };
 }
 
 const app = express();
@@ -33,12 +40,22 @@ app.get("/health", (_req, res) => {
 });
 
 app.listen(config.port, async () => {
-  console.log(`Intent Layer backend running on http://localhost:${config.port}`);
+  console.log(
+    `Intent Layer backend running on http://localhost:${config.port}`
+  );
   console.log(`  GET  /api/intent/categories       — categories for filter UI`);
-  console.log(`  POST /api/intent/parse            — parse prompt → SearchIntent`);
-  console.log(`  POST /api/intent/search           — intent JSON → ranked results`);
-  console.log(`  POST /api/intent/search-by-prompt — prompt → intent + ranked results`);
-  console.log(`  POST /api/intent/search-with-filters — manual filters → ranked results`);
+  console.log(
+    `  POST /api/intent/parse            — parse prompt → SearchIntent`
+  );
+  console.log(
+    `  POST /api/intent/search           — intent JSON → ranked results`
+  );
+  console.log(
+    `  POST /api/intent/search-by-prompt — prompt → intent + ranked results`
+  );
+  console.log(
+    `  POST /api/intent/search-with-filters — manual filters → ranked results`
+  );
   console.log(`  GET  /api-docs — OpenAPI Swagger UI`);
   if (getPrisma()) {
     await logDbConnectionStatus();

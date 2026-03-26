@@ -16,7 +16,8 @@ const SEMANTIC_TO_TYPE = {
   "cat-relaxation-001": "RELAXATION",
 };
 
-const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const UUID_REGEX =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 /** ~km per degree latitude (approximation). */
 function kmToDegLat(km) {
@@ -34,10 +35,18 @@ function getRadiusDeg(intent) {
 function getSearchLocation(intent) {
   const loc = intent?.location;
   const userLoc = intent?.userLocation;
-  if (loc?.lat != null && loc?.lng != null && (loc.lat !== 0 || loc.lng !== 0)) {
+  if (
+    loc?.lat != null &&
+    loc?.lng != null &&
+    (loc.lat !== 0 || loc.lng !== 0)
+  ) {
     return { lat: Number(loc.lat), lng: Number(loc.lng) };
   }
-  if (userLoc?.lat != null && userLoc?.lng != null && (userLoc.lat !== 0 || userLoc.lng !== 0)) {
+  if (
+    userLoc?.lat != null &&
+    userLoc?.lng != null &&
+    (userLoc.lat !== 0 || userLoc.lng !== 0)
+  ) {
     return { lat: Number(userLoc.lat), lng: Number(userLoc.lng) };
   }
   return DEFAULT_LOCATION;
@@ -47,9 +56,17 @@ function getSearchLocation(intent) {
  * Resolve category UUIDs: explicit categoryIds, semantic strings, or categoryType enum.
  */
 async function resolveCategoryIds(prisma, intent, categoryIdMap) {
-  const fromIntent = Array.isArray(intent?.categoryIds) ? intent.categoryIds : [];
-  let effectiveType = intent?.categoryType ? String(intent.categoryType).toUpperCase() : null;
-  if (!effectiveType && fromIntent.length === 0 && intent?.serviceLabels?.length) {
+  const fromIntent = Array.isArray(intent?.categoryIds)
+    ? intent.categoryIds
+    : [];
+  let effectiveType = intent?.categoryType
+    ? String(intent.categoryType).toUpperCase()
+    : null;
+  if (
+    !effectiveType &&
+    fromIntent.length === 0 &&
+    intent?.serviceLabels?.length
+  ) {
     effectiveType = inferCategoryTypeFromServiceLabels(intent.serviceLabels);
   }
 
@@ -142,7 +159,12 @@ function getOrderBy(intent) {
  * @param {object} opts - { limit, categoryIdMap, radiusDeg?, ignoreCategories? }
  */
 export async function filterCandidates(prisma, intent, opts = {}) {
-  const { limit = 20, categoryIdMap, radiusDeg: radiusDegOverride, ignoreCategories = false } = opts;
+  const {
+    limit = 20,
+    categoryIdMap,
+    radiusDeg: radiusDegOverride,
+    ignoreCategories = false,
+  } = opts;
   const location = getSearchLocation(intent);
   const radiusDeg = radiusDegOverride ?? getRadiusDeg(intent);
 
@@ -167,8 +189,10 @@ export async function filterCandidates(prisma, intent, opts = {}) {
   if (priceWhere) andParts.push({ price: priceWhere });
 
   const ratingWhere = buildRatingWhere(intent);
-  if (ratingWhere.averageRating) andParts.push({ averageRating: ratingWhere.averageRating });
-  if (ratingWhere.totalReviews) andParts.push({ totalReviews: ratingWhere.totalReviews });
+  if (ratingWhere.averageRating)
+    andParts.push({ averageRating: ratingWhere.averageRating });
+  if (ratingWhere.totalReviews)
+    andParts.push({ totalReviews: ratingWhere.totalReviews });
 
   andParts.push(...facilityAndClauses(intent?.facilities?.required));
 

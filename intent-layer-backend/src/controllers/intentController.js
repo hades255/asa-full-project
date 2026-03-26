@@ -37,9 +37,13 @@ export async function parseIntent(req, res) {
         },
       });
       const loc = context?.lastLocation;
-      const addr = String(loc?.address || "").trim().toLowerCase();
+      const addr = String(loc?.address || "")
+        .trim()
+        .toLowerCase();
       intent.userLocation =
-        loc?.address && addr.length >= 2 && !["string", "number", "null", "undefined"].includes(addr)
+        loc?.address &&
+        addr.length >= 2 &&
+        !["string", "number", "null", "undefined"].includes(addr)
           ? {
               address: loc.address,
               ...(loc.lat != null && loc.lat !== 0 && { lat: Number(loc.lat) }),
@@ -65,14 +69,21 @@ export async function parseIntent(req, res) {
     // Add userLocation from context only when it looks valid (not placeholder)
     const placeholders = ["string", "number", "null", "undefined"];
     const lastLoc = context?.lastLocation;
-    const lastAddr = String(lastLoc?.address || "").trim().toLowerCase();
-    const lastLocValid = lastLoc?.address && lastAddr.length >= 2 && !placeholders.includes(lastAddr);
+    const lastAddr = String(lastLoc?.address || "")
+      .trim()
+      .toLowerCase();
+    const lastLocValid =
+      lastLoc?.address &&
+      lastAddr.length >= 2 &&
+      !placeholders.includes(lastAddr);
 
     intent.userLocation = lastLocValid
       ? {
           address: lastLoc.address,
-          ...(lastLoc.lat != null && lastLoc.lat !== 0 && { lat: Number(lastLoc.lat) }),
-          ...(lastLoc.lng != null && lastLoc.lng !== 0 && { lng: Number(lastLoc.lng) }),
+          ...(lastLoc.lat != null &&
+            lastLoc.lat !== 0 && { lat: Number(lastLoc.lat) }),
+          ...(lastLoc.lng != null &&
+            lastLoc.lng !== 0 && { lng: Number(lastLoc.lng) }),
         }
       : null;
 
@@ -89,12 +100,17 @@ export async function parseIntent(req, res) {
       if (needsEnrich) {
         intent.location = {
           address: lastLoc.address,
-          ...(lastLoc.lat != null && lastLoc.lat !== 0 && { lat: Number(lastLoc.lat) }),
-          ...(lastLoc.lng != null && lastLoc.lng !== 0 && { lng: Number(lastLoc.lng) }),
+          ...(lastLoc.lat != null &&
+            lastLoc.lat !== 0 && { lat: Number(lastLoc.lat) }),
+          ...(lastLoc.lng != null &&
+            lastLoc.lng !== 0 && { lng: Number(lastLoc.lng) }),
         };
         repair = {
           applied: true,
-          changes: [...(repair.changes || []), "location enriched from user location (target was vague or missing)"],
+          changes: [
+            ...(repair.changes || []),
+            "location enriched from user location (target was vague or missing)",
+          ],
         };
       }
     }

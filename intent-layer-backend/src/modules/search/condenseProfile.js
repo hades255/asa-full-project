@@ -12,9 +12,14 @@ export function condenseProfile(profile) {
     name: s.name || "",
     description: (s.description || "").slice(0, 80),
     minSpend: s.minSpend ?? 0,
-    category: typeof s.category === "string" ? s.category : (s.category?.title || s.category?.type || ""),
+    category:
+      typeof s.category === "string"
+        ? s.category
+        : s.category?.title || s.category?.type || "",
   }));
-  const facilities = (profile.facilities || []).map((f) => f.name || "").filter(Boolean);
+  const facilities = (profile.facilities || [])
+    .map((f) => f.name || "")
+    .filter(Boolean);
 
   return {
     id: profile.id || "",
@@ -43,10 +48,14 @@ export function toFullProfile(profile) {
     const cat = s.category;
     const categoryObj =
       cat && typeof cat === "object"
-        ? { id: cat.id ?? null, title: cat.title || cat.type || "", type: cat.type || "" }
+        ? {
+            id: cat.id ?? null,
+            title: cat.title || cat.type || "",
+            type: cat.type || "",
+          }
         : cat
-          ? { id: null, title: String(cat), type: "" }
-          : null;
+        ? { id: null, title: String(cat), type: "" }
+        : null;
     return {
       id: s.id,
       name: s.name || "",
@@ -57,7 +66,7 @@ export function toFullProfile(profile) {
   });
   const facilities = (profile.facilities || []).map((f) => ({
     id: f.id ?? null,
-    name: typeof f === "string" ? f : (f.name || ""),
+    name: typeof f === "string" ? f : f.name || "",
   }));
   return {
     id: profile.id,

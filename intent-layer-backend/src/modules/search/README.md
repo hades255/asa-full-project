@@ -9,7 +9,10 @@ import { searchCandidates } from "./modules/search/index.js";
 import { getPrisma } from "./lib/db.js";
 
 const prisma = getPrisma();
-const { candidates, total } = await searchCandidates(intent, { prisma, limit: 20 });
+const { candidates, total } = await searchCandidates(intent, {
+  prisma,
+  limit: 20,
+});
 ```
 
 ## Usage in allspaces-backend
@@ -18,7 +21,10 @@ const { candidates, total } = await searchCandidates(intent, { prisma, limit: 20
 import { prisma } from "./lib/prisma.js"; // or your Prisma instance
 import { searchCandidates } from "../intent-layer-backend/src/modules/search/index.js";
 
-const { candidates, total } = await searchCandidates(intent, { prisma, limit: 20 });
+const { candidates, total } = await searchCandidates(intent, {
+  prisma,
+  limit: 20,
+});
 ```
 
 Or copy the `modules/search` folder into allspaces-backend and import locally.

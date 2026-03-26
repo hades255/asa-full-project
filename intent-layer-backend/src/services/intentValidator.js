@@ -19,7 +19,12 @@ const VALID_CATEGORY_TYPES = new Set([
 ]);
 
 const VALID_SEARCH_TYPES = new Set(["DISCOVERY", "BOOKING"]);
-const VALID_SORT_BY = new Set(["RELEVANCE", "DISTANCE_THEN_RELEVANCE", "RATING", "PRICE"]);
+const VALID_SORT_BY = new Set([
+  "RELEVANCE",
+  "DISTANCE_THEN_RELEVANCE",
+  "RATING",
+  "PRICE",
+]);
 const VALID_SORT_DIR = new Set(["ASC", "DESC"]);
 
 function strArray(v) {
@@ -138,48 +143,68 @@ function legacyToRich(src) {
   base.date.duration = numOrNull(src.duration);
   base.guests.noOfGuests = Math.max(0, parseInt(src.noOfGuests, 10) || 0);
   if (src.location) {
-    base.location.address = src.location.address != null ? String(src.location.address) : null;
+    base.location.address =
+      src.location.address != null ? String(src.location.address) : null;
     base.location.lat = numOrNull(src.location.lat);
     base.location.lng = numOrNull(src.location.lng);
   }
-  base.categoryIds = Array.isArray(src.categoryIds) ? src.categoryIds.map(String) : [];
+  base.categoryIds = Array.isArray(src.categoryIds)
+    ? src.categoryIds.map(String)
+    : [];
   base.confidence = clamp01(src.confidence);
-  if (src.inferredDescription) base.inferredDescription = String(src.inferredDescription);
+  if (src.inferredDescription)
+    base.inferredDescription = String(src.inferredDescription);
   return base;
 }
 
 function mergeIntentPartial(base, partial) {
   if (!partial || typeof partial !== "object") return base;
 
-  if (partial.searchType && VALID_SEARCH_TYPES.has(String(partial.searchType).toUpperCase())) {
+  if (
+    partial.searchType &&
+    VALID_SEARCH_TYPES.has(String(partial.searchType).toUpperCase())
+  ) {
     base.searchType = String(partial.searchType).toUpperCase();
   }
   if (Array.isArray(partial.entityTypes) && partial.entityTypes.length) {
-    base.entityTypes = partial.entityTypes.map((e) => String(e).toUpperCase()).filter(Boolean);
+    base.entityTypes = partial.entityTypes
+      .map((e) => String(e).toUpperCase())
+      .filter(Boolean);
   }
   if (partial.categoryType != null && partial.categoryType !== "") {
     const ct = String(partial.categoryType).toUpperCase();
     base.categoryType = VALID_CATEGORY_TYPES.has(ct) ? ct : null;
   }
-  if (Array.isArray(partial.categoryIds)) base.categoryIds = partial.categoryIds.map(String).filter(Boolean);
+  if (Array.isArray(partial.categoryIds))
+    base.categoryIds = partial.categoryIds.map(String).filter(Boolean);
   if (Array.isArray(partial.serviceCategoryIds)) {
-    base.serviceCategoryIds = partial.serviceCategoryIds.map(String).filter(Boolean);
+    base.serviceCategoryIds = partial.serviceCategoryIds
+      .map(String)
+      .filter(Boolean);
   }
 
   if (typeof partial.rawQuery === "string") base.rawQuery = partial.rawQuery;
-  if (typeof partial.normalizedQuery === "string") base.normalizedQuery = partial.normalizedQuery.trim();
+  if (typeof partial.normalizedQuery === "string")
+    base.normalizedQuery = partial.normalizedQuery.trim();
   if (typeof partial.inferredDescription === "string") {
     base.inferredDescription = partial.inferredDescription.trim();
   }
 
   if (partial.date && typeof partial.date === "object") {
     const dt = partial.date;
-    base.date.checkIn = typeof dt.checkIn === "string" ? dt.checkIn : base.date.checkIn;
-    base.date.checkOut = typeof dt.checkOut === "string" ? dt.checkOut : base.date.checkOut;
+    base.date.checkIn =
+      typeof dt.checkIn === "string" ? dt.checkIn : base.date.checkIn;
+    base.date.checkOut =
+      typeof dt.checkOut === "string" ? dt.checkOut : base.date.checkOut;
     base.date.duration = numOrNull(dt.duration) ?? base.date.duration;
-    base.date.timeText = dt.timeText != null ? String(dt.timeText) : base.date.timeText;
-    base.date.serviceTime = typeof dt.serviceTime === "string" ? dt.serviceTime : base.date.serviceTime;
-    if (dt.timeOfDay != null) base.date.timeOfDay = String(dt.timeOfDay).toUpperCase();
+    base.date.timeText =
+      dt.timeText != null ? String(dt.timeText) : base.date.timeText;
+    base.date.serviceTime =
+      typeof dt.serviceTime === "string"
+        ? dt.serviceTime
+        : base.date.serviceTime;
+    if (dt.timeOfDay != null)
+      base.date.timeOfDay = String(dt.timeOfDay).toUpperCase();
     base.date.isFlexible = bool(dt.isFlexible, base.date.isFlexible);
   }
 
@@ -192,14 +217,19 @@ function mergeIntentPartial(base, partial) {
     base.guests.children = numOrNull(g.children);
   }
 
-  if (partial.userLocation != null && typeof partial.userLocation === "object") {
+  if (
+    partial.userLocation != null &&
+    typeof partial.userLocation === "object"
+  ) {
     base.userLocation = partial.userLocation;
   }
 
   if (partial.location && typeof partial.location === "object") {
     const L = partial.location;
-    base.location.queryText = L.queryText != null ? String(L.queryText) : base.location.queryText;
-    base.location.address = L.address != null ? String(L.address) : base.location.address;
+    base.location.queryText =
+      L.queryText != null ? String(L.queryText) : base.location.queryText;
+    base.location.address =
+      L.address != null ? String(L.address) : base.location.address;
     base.location.lat = numOrNull(L.lat);
     base.location.lng = numOrNull(L.lng);
     base.location.radiusKm = numOrNull(L.radiusKm);
@@ -210,9 +240,16 @@ function mergeIntentPartial(base, partial) {
     const p = partial.price;
     base.price.min = numOrNull(p.min);
     base.price.max = numOrNull(p.max);
-    base.price.currency = p.currency != null ? String(p.currency) : base.price.currency;
-    base.price.isBudgetIntent = bool(p.isBudgetIntent, base.price.isBudgetIntent);
-    base.price.isLuxuryIntent = bool(p.isLuxuryIntent, base.price.isLuxuryIntent);
+    base.price.currency =
+      p.currency != null ? String(p.currency) : base.price.currency;
+    base.price.isBudgetIntent = bool(
+      p.isBudgetIntent,
+      base.price.isBudgetIntent
+    );
+    base.price.isLuxuryIntent = bool(
+      p.isLuxuryIntent,
+      base.price.isLuxuryIntent
+    );
   }
 
   if (partial.rating && typeof partial.rating === "object") {
@@ -232,8 +269,10 @@ function mergeIntentPartial(base, partial) {
   if (partial.serviceFilters && typeof partial.serviceFilters === "object") {
     const sf = partial.serviceFilters;
     base.serviceFilters.minSpend = numOrNull(sf.minSpend);
-    base.serviceFilters.durationLabel = sf.durationLabel != null ? String(sf.durationLabel) : null;
-    base.serviceFilters.timeOfDay = sf.timeOfDay != null ? String(sf.timeOfDay).toUpperCase() : null;
+    base.serviceFilters.durationLabel =
+      sf.durationLabel != null ? String(sf.durationLabel) : null;
+    base.serviceFilters.timeOfDay =
+      sf.timeOfDay != null ? String(sf.timeOfDay).toUpperCase() : null;
   }
 
   if (partial.profileFilters && typeof partial.profileFilters === "object") {
@@ -261,20 +300,28 @@ function mergeIntentPartial(base, partial) {
     if (VALID_SORT_DIR.has(dir)) base.sort.direction = dir;
   }
 
-  if (partial.confidence != null) base.confidence = clamp01(Number(partial.confidence));
+  if (partial.confidence != null)
+    base.confidence = clamp01(Number(partial.confidence));
 
   return base;
 }
 
 function repairLocationPlaceholders(intent, changes) {
-  const addr = String(intent.location?.address || "").trim().toLowerCase();
+  const addr = String(intent.location?.address || "")
+    .trim()
+    .toLowerCase();
   if (PLACEHOLDER_WORDS.includes(addr) || addr.length < 2) {
     intent.location.address = null;
     intent.location.lat = null;
     intent.location.lng = null;
     changes.push("location address was placeholder or empty");
   }
-  if (intent.location.lat != null && intent.location.lng != null && intent.location.lat === 0 && intent.location.lng === 0) {
+  if (
+    intent.location.lat != null &&
+    intent.location.lng != null &&
+    intent.location.lat === 0 &&
+    intent.location.lng === 0
+  ) {
     intent.location.lat = null;
     intent.location.lng = null;
     changes.push("cleared invalid 0,0 coordinates");
@@ -328,7 +375,8 @@ function repairBreakfastDiningConsistency(intent, changes) {
   if (!looksLikeBreakfastDiningSearch(intent)) return;
 
   const q = combinedQuery(intent);
-  const onlyDiningOrUnset = !intent.categoryType || intent.categoryType === "DINING";
+  const onlyDiningOrUnset =
+    !intent.categoryType || intent.categoryType === "DINING";
   if (!onlyDiningOrUnset) return;
 
   if (intent.categoryType !== "DINING") {
@@ -338,8 +386,13 @@ function repairBreakfastDiningConsistency(intent, changes) {
 
   const hadBreakfast = (intent.serviceLabels || []).includes("Breakfast");
   if (!hadBreakfast) {
-    intent.serviceLabels = normalizeServiceLabels([...(intent.serviceLabels || []), "Breakfast"]);
-    changes.push("added catalog serviceLabels Breakfast for breakfast/brunch intent");
+    intent.serviceLabels = normalizeServiceLabels([
+      ...(intent.serviceLabels || []),
+      "Breakfast",
+    ]);
+    changes.push(
+      "added catalog serviceLabels Breakfast for breakfast/brunch intent"
+    );
   }
 
   if (intent.guests?.noOfGuests === 0 && PARTY_SIZE_TWO_RE.test(q)) {
@@ -360,7 +413,9 @@ function repairBreakfastDiningConsistency(intent, changes) {
   if (!intent.serviceFilters?.durationLabel && TWO_HOUR_DURATION_RE.test(q)) {
     intent.serviceFilters.durationLabel = "2 hours";
     if (intent.date.duration == null) intent.date.duration = 2;
-    changes.push('normalized duration to serviceFilters.durationLabel "2 hours"');
+    changes.push(
+      'normalized duration to serviceFilters.durationLabel "2 hours"'
+    );
   }
 }
 
@@ -375,7 +430,9 @@ export function validateAndRepair(raw) {
     raw?.repair && typeof raw.repair === "object"
       ? {
           applied: !!raw.repair.applied,
-          changes: Array.isArray(raw.repair.changes) ? raw.repair.changes.map(String) : [],
+          changes: Array.isArray(raw.repair.changes)
+            ? raw.repair.changes.map(String)
+            : [],
         }
       : { applied: false, changes: [] };
 
@@ -390,7 +447,10 @@ export function validateAndRepair(raw) {
   }
 
   if (!intent.normalizedQuery && intent.rawQuery) {
-    intent.normalizedQuery = intent.rawQuery.trim().toLowerCase().replace(/\s+/g, " ");
+    intent.normalizedQuery = intent.rawQuery
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, " ");
   }
 
   repairLocationPlaceholders(intent, changes);

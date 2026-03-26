@@ -96,7 +96,8 @@ async function seed() {
       update: {},
     });
     profileIds.add(p.id);
-    if ((i + 1) % 50 === 0) console.log(`  Profiles: ${i + 1}/${profiles.length}`);
+    if ((i + 1) % 50 === 0)
+      console.log(`  Profiles: ${i + 1}/${profiles.length}`);
   }
   console.log(`Seeded ${profileIds.size} profiles.`);
 

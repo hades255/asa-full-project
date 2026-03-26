@@ -55,7 +55,13 @@ export async function getFullProfilesByIds(prisma, ids) {
  * @returns {Promise<{ candidates: object[], total: number, fullProfilesById: Map<string,object> }>}
  */
 export async function searchCandidates(intent, options = {}) {
-  const { prisma, limit = 20, categoryIdMap, radiusDeg, ignoreCategories } = options;
+  const {
+    prisma,
+    limit = 20,
+    categoryIdMap,
+    radiusDeg,
+    ignoreCategories,
+  } = options;
 
   if (!prisma) {
     throw new Error("searchCandidates requires prisma client in options");

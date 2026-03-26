@@ -32,10 +32,10 @@ cp .env.example .env
 
 Edit `.env` — at minimum set:
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `OPENAI_API_KEY` | Yes (for LLM) | OpenAI API key for intent extraction and ranking |
-| `CANDIDATE_SOURCE` | No | `mock` \| `db` \| `http` \| `auto` (default) — see [Data sources](#data-sources) |
+| Variable           | Required      | Description                                                                      |
+| ------------------ | ------------- | -------------------------------------------------------------------------------- |
+| `OPENAI_API_KEY`   | Yes (for LLM) | OpenAI API key for intent extraction and ranking                                 |
+| `CANDIDATE_SOURCE` | No            | `mock` \| `db` \| `http` \| `auto` (default) — see [Data sources](#data-sources) |
 
 ### 3. Start the server
 
@@ -47,13 +47,13 @@ npm start      # production
 
 ### Endpoints
 
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | `/api/intent/parse` | Parse prompt → SearchIntent JSON |
-| POST | `/api/intent/search` | Intent JSON → ranked recommendations |
-| POST | `/api/intent/search-by-prompt` | Prompt → intent + ranked recommendations |
-| GET | `/api-docs` | OpenAPI Swagger UI |
-| GET | `/health` | Health check |
+| Method | Path                           | Description                              |
+| ------ | ------------------------------ | ---------------------------------------- |
+| POST   | `/api/intent/parse`            | Parse prompt → SearchIntent JSON         |
+| POST   | `/api/intent/search`           | Intent JSON → ranked recommendations     |
+| POST   | `/api/intent/search-by-prompt` | Prompt → intent + ranked recommendations |
+| GET    | `/api-docs`                    | OpenAPI Swagger UI                       |
+| GET    | `/health`                      | Health check                             |
 
 ---
 
@@ -105,12 +105,12 @@ npm run db:seed   # Run seed only (skips if profiles already exist)
 
 Choose how candidate spaces are fetched via the `CANDIDATE_SOURCE` env variable.
 
-| Value | Description | Required env |
-|-------|-------------|--------------|
-| `mock` | Static mock data (3 Italian restaurants) | None |
-| `db` | PostgreSQL via Prisma | `DATABASE_URL` |
-| `http` | AllSpaces backend API | `ALLSPACES_API_BASE_URL` |
-| `auto` | Fallback: db → http → mock | — |
+| Value  | Description                              | Required env             |
+| ------ | ---------------------------------------- | ------------------------ |
+| `mock` | Static mock data (3 Italian restaurants) | None                     |
+| `db`   | PostgreSQL via Prisma                    | `DATABASE_URL`           |
+| `http` | AllSpaces backend API                    | `ALLSPACES_API_BASE_URL` |
+| `auto` | Fallback: db → http → mock               | —                        |
 
 ### Mock (`CANDIDATE_SOURCE=mock`)
 
@@ -164,7 +164,7 @@ const parseRes = await fetch("http://your-intent-layer/api/intent/parse", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    prompt: "Italian dinner for 4 in Manhattan Friday at 7pm",
+    prompt: "Italian dinner for 4 in LondonFriday at 7pm",
     context: {
       timezone: "America/New_York",
       lastLocation: { address: "Manhattan, NY", lat: 40.73, lng: -73.99 },
@@ -185,14 +185,19 @@ const searchRes = await fetch("http://your-intent-layer/api/intent/search", {
 const { recommendations, summary } = await searchRes.json();
 
 // Or one-shot: prompt → recommendations
-const oneShotRes = await fetch("http://your-intent-layer/api/intent/search-by-prompt", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    prompt: "Italian dinner for 4 in Manhattan Friday at 7pm",
-    context: { lastLocation: { lat: 40.73, lng: -73.99, address: "Manhattan, NY" } },
-  }),
-});
+const oneShotRes = await fetch(
+  "http://your-intent-layer/api/intent/search-by-prompt",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      prompt: "Italian dinner for 4 in LondonFriday at 7pm",
+      context: {
+        lastLocation: { lat: 40.73, lng: -73.99, address: "Manhattan, NY" },
+      },
+    }),
+  }
+);
 ```
 
 ### As a module (import search/candidate logic)
@@ -201,13 +206,19 @@ The candidate source and search modules can be imported:
 
 ```javascript
 import { fetchCandidates } from "./modules/candidateSource/index.js";
-import { searchCandidates, getFullProfilesByIds } from "./modules/search/index.js";
+import {
+  searchCandidates,
+  getFullProfilesByIds,
+} from "./modules/search/index.js";
 
 // Fetch candidates (uses CANDIDATE_SOURCE env)
-const { candidates, total, fullCandidatesById } = await fetchCandidates(intent, {
-  sessionId: "optional",
-  categoryIds: ["cat-dining-001"],
-});
+const { candidates, total, fullCandidatesById } = await fetchCandidates(
+  intent,
+  {
+    sessionId: "optional",
+    categoryIds: ["cat-dining-001"],
+  }
+);
 ```
 
 ### Module structure
@@ -243,17 +254,17 @@ Use the same `DATABASE_URL` and Prisma schema. The intent-layer schema (Profile,
 
 ## Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `PORT` | 3001 | Server port |
-| `CANDIDATE_SOURCE` | auto | `mock` \| `db` \| `http` \| `auto` |
-| `DATABASE_URL` | — | PostgreSQL URL (for `db` / `auto`) |
-| `ALLSPACES_API_BASE_URL` | — | AllSpaces API base URL (for `http`) |
-| `ALLSPACES_API_KEY` | — | Optional API key |
-| `OPENAI_API_KEY` | — | Required for LLM |
-| `OPENAI_MODEL` | gpt-4o | OpenAI model |
-| `INTENT_EXTRACTION_ENABLED` | false | Enable LLM intent extraction |
-| `DEFAULT_TIMEZONE` | Europe/London | Default timezone |
+| Variable                    | Default       | Description                         |
+| --------------------------- | ------------- | ----------------------------------- |
+| `PORT`                      | 3001          | Server port                         |
+| `CANDIDATE_SOURCE`          | auto          | `mock` \| `db` \| `http` \| `auto`  |
+| `DATABASE_URL`              | —             | PostgreSQL URL (for `db` / `auto`)  |
+| `ALLSPACES_API_BASE_URL`    | —             | AllSpaces API base URL (for `http`) |
+| `ALLSPACES_API_KEY`         | —             | Optional API key                    |
+| `OPENAI_API_KEY`            | —             | Required for LLM                    |
+| `OPENAI_MODEL`              | gpt-4o        | OpenAI model                        |
+| `INTENT_EXTRACTION_ENABLED` | false         | Enable LLM intent extraction        |
+| `DEFAULT_TIMEZONE`          | Europe/London | Default timezone                    |
 
 ---
 
@@ -278,7 +289,7 @@ curl -X POST http://localhost:3001/api/intent/parse \
 ```bash
 curl -X POST http://localhost:3001/api/intent/search-by-prompt \
   -H "Content-Type: application/json" \
-  -d '{"prompt": "Italian restaurant in Manhattan for 4 people Friday 7pm"}'
+  -d '{"prompt": "Italian restaurant in Londonfor 4 people Friday 7pm"}'
 ```
 
 ### Search by intent

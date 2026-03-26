@@ -35,14 +35,16 @@ async function enrichRecommendations(recommendations, fullCandidatesById) {
  * Each recommendation includes full profile with facilities, services (with category).
  *
  * @param {object} intent - SearchIntent
- * @param {object} options - { sessionId?, categoryIds? }
+ * @param {object} options - { sessionId?, categoryIds?, fetchLimit?, resultLimit? }
  * @returns {Promise<{ intent, summary, recommendations, candidatesCount, noMatchMessage, _mock? }>}
  */
 export async function runSearchFlow(intent, options = {}) {
-  const { candidates, total, error, _mock, _source, fullCandidatesById } = await fetchCandidates(intent, {
-    sessionId: options.sessionId,
-    categoryIds: options.categoryIds,
-  });
+  const { candidates, total, error, _mock, _source, fullCandidatesById } =
+    await fetchCandidates(intent, {
+      sessionId: options.sessionId,
+      categoryIds: options.categoryIds,
+      fetchLimit: options.fetchLimit,
+    });
 
   if (error) {
     return {
@@ -54,15 +56,21 @@ export async function runSearchFlow(intent, options = {}) {
     };
   }
 
-  const ranked = await rankCandidates(intent, candidates);
+  const ranked = await rankCandidates(intent, candidates, {
+    resultLimit: options.resultLimit,
+  });
   const fullById = fullCandidatesById ?? new Map();
-  const enriched = await enrichRecommendations(ranked.recommendations, fullById);
+  const enriched = await enrichRecommendations(
+    ranked.recommendations,
+    fullById
+  );
 
   return {
     intent,
     summary: ranked.summary,
     recommendations: enriched,
     candidatesCount: total,
+    returnedCount: enriched.length,
     noMatchMessage: ranked.noMatchMessage,
     ...((_mock || _source === "mock") && { _mock: true }),
   };
@@ -105,14 +113,21 @@ async function parsePromptToIntent(prompt, context = {}) {
 
   const placeholders = ["string", "number", "null", "undefined"];
   const lastLoc = context?.lastLocation;
-  const lastAddr = String(lastLoc?.address || "").trim().toLowerCase();
-  const lastLocValid = lastLoc?.address && lastAddr.length >= 2 && !placeholders.includes(lastAddr);
+  const lastAddr = String(lastLoc?.address || "")
+    .trim()
+    .toLowerCase();
+  const lastLocValid =
+    lastLoc?.address &&
+    lastAddr.length >= 2 &&
+    !placeholders.includes(lastAddr);
 
   intent.userLocation = lastLocValid
     ? {
         address: lastLoc.address,
-        ...(lastLoc.lat != null && lastLoc.lat !== 0 && { lat: Number(lastLoc.lat) }),
-        ...(lastLoc.lng != null && lastLoc.lng !== 0 && { lng: Number(lastLoc.lng) }),
+        ...(lastLoc.lat != null &&
+          lastLoc.lat !== 0 && { lat: Number(lastLoc.lat) }),
+        ...(lastLoc.lng != null &&
+          lastLoc.lng !== 0 && { lng: Number(lastLoc.lng) }),
       }
     : null;
 
@@ -125,12 +140,17 @@ async function parsePromptToIntent(prompt, context = {}) {
     if (needsEnrich) {
       intent.location = {
         address: lastLoc.address,
-        ...(lastLoc.lat != null && lastLoc.lat !== 0 && { lat: Number(lastLoc.lat) }),
-        ...(lastLoc.lng != null && lastLoc.lng !== 0 && { lng: Number(lastLoc.lng) }),
+        ...(lastLoc.lat != null &&
+          lastLoc.lat !== 0 && { lat: Number(lastLoc.lat) }),
+        ...(lastLoc.lng != null &&
+          lastLoc.lng !== 0 && { lng: Number(lastLoc.lng) }),
       };
       repair = {
         applied: true,
-        changes: [...(repair.changes || []), "location enriched from user location"],
+        changes: [
+          ...(repair.changes || []),
+          "location enriched from user location",
+        ],
       };
     }
   }
@@ -145,17 +165,27 @@ async function parsePromptToIntent(prompt, context = {}) {
  */
 export async function searchByIntent(req, res) {
   try {
-    const { intent: bodyIntent, sessionId, categoryIds } = req.body || {};
+    const {
+      intent: bodyIntent,
+      parsedIntent,
+      sessionId,
+      categoryIds,
+      fetchLimit,
+      resultLimit,
+    } = req.body || {};
+    const incomingIntent = bodyIntent || parsedIntent;
 
-    if (!bodyIntent || typeof bodyIntent !== "object") {
+    if (!incomingIntent || typeof incomingIntent !== "object") {
       return res.status(400).json({ message: "intent is required (object)" });
     }
 
-    const { intent, repair } = validateAndRepair(bodyIntent);
+    const { intent, repair } = validateAndRepair(incomingIntent);
 
     const result = await runSearchFlow(intent, {
       sessionId: sessionId || req.headers["session-id"],
       categoryIds,
+      fetchLimit,
+      resultLimit,
     });
 
     return res.status(200).json({ ...result, repair });
@@ -175,13 +205,21 @@ export async function searchByIntent(req, res) {
  */
 function intentFromFilters(filters, lastLocation) {
   const loc = filters?.location || lastLocation;
-  const address = loc?.address != null && String(loc.address).trim() ? String(loc.address).trim() : null;
+  const address =
+    loc?.address != null && String(loc.address).trim()
+      ? String(loc.address).trim()
+      : null;
   const partial = {
     rawQuery: filters?.rawQuery != null ? String(filters.rawQuery) : "",
     date: {
-      checkIn: filters?.date ? new Date(filters.date).toISOString() : new Date().toISOString(),
+      checkIn: filters?.date
+        ? new Date(filters.date).toISOString()
+        : new Date().toISOString(),
       checkOut: null,
-      duration: filters?.duration != null ? Math.max(1, parseInt(filters.duration, 10) || 1) : null,
+      duration:
+        filters?.duration != null
+          ? Math.max(1, parseInt(filters.duration, 10) || 1)
+          : null,
       timeText: null,
       serviceTime: null,
       timeOfDay: null,
@@ -202,15 +240,19 @@ function intentFromFilters(filters, lastLocation) {
       nearUser: false,
     },
     categoryIds: Array.isArray(filters?.categoryIds) ? filters.categoryIds : [],
-    ...(filters?.categoryType && { categoryType: String(filters.categoryType).toUpperCase() }),
+    ...(filters?.categoryType && {
+      categoryType: String(filters.categoryType).toUpperCase(),
+    }),
     confidence: 1,
   };
   const { intent, repair } = validateAndRepair({ intent: partial });
   intent.userLocation = lastLocation?.address
     ? {
         address: lastLocation.address,
-        ...(lastLocation.lat != null && lastLocation.lat !== 0 && { lat: Number(lastLocation.lat) }),
-        ...(lastLocation.lng != null && lastLocation.lng !== 0 && { lng: Number(lastLocation.lng) }),
+        ...(lastLocation.lat != null &&
+          lastLocation.lat !== 0 && { lat: Number(lastLocation.lat) }),
+        ...(lastLocation.lng != null &&
+          lastLocation.lng !== 0 && { lng: Number(lastLocation.lng) }),
       }
     : null;
   return { intent, repair };
@@ -223,13 +265,21 @@ function intentFromFilters(filters, lastLocation) {
  */
 export async function searchWithFilters(req, res) {
   try {
-    const { filters = {}, lastLocation, sessionId } = req.body || {};
+    const {
+      filters = {},
+      lastLocation,
+      sessionId,
+      fetchLimit,
+      resultLimit,
+    } = req.body || {};
     const session = sessionId || req.headers["session-id"];
 
     const { intent, repair } = intentFromFilters(filters, lastLocation);
     const result = await runSearchFlow(intent, {
       sessionId: session,
       categoryIds: intent.categoryIds?.length ? intent.categoryIds : undefined,
+      fetchLimit,
+      resultLimit,
     });
 
     return res.status(200).json({
@@ -253,18 +303,24 @@ export async function searchWithFilters(req, res) {
  */
 export async function searchByPrompt(req, res) {
   try {
-    const { prompt, context, sessionId, categoryIds } = req.body || {};
+    const { prompt, context, sessionId, categoryIds, fetchLimit, resultLimit } =
+      req.body || {};
     const session = sessionId || req.headers["session-id"];
 
     if (!prompt || typeof prompt !== "string" || prompt.trim().length === 0) {
       return res.status(400).json({ message: "prompt is required" });
     }
 
-    const { intent, repair } = await parsePromptToIntent(prompt.trim(), context || {});
+    const { intent, repair } = await parsePromptToIntent(
+      prompt.trim(),
+      context || {}
+    );
 
     const result = await runSearchFlow(intent, {
       sessionId: session,
       categoryIds,
+      fetchLimit,
+      resultLimit,
     });
 
     return res.status(200).json({
@@ -273,7 +329,8 @@ export async function searchByPrompt(req, res) {
     });
   } catch (err) {
     console.error("Search by prompt error:", err);
-    const isExtraction = err.message?.includes("extract") || err.message?.includes("LLM");
+    const isExtraction =
+      err.message?.includes("extract") || err.message?.includes("LLM");
     return res.status(isExtraction ? 422 : 500).json({
       message: isExtraction ? "Could not extract intent" : "Search failed",
       details: err.message || "Server error",

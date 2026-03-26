@@ -47,7 +47,7 @@ export const CUSTOMER_SERVICE_LABELS = [
 
 /** @type {Map<string, string>} lowercase label → canonical */
 const CANONICAL_BY_LOWER = new Map(
-  CUSTOMER_SERVICE_LABELS.map((label) => [label.toLowerCase(), label]),
+  CUSTOMER_SERVICE_LABELS.map((label) => [label.toLowerCase(), label])
 );
 
 /**

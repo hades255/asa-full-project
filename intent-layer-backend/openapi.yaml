@@ -32,32 +32,32 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ParseRequest'
+              $ref: "#/components/schemas/ParseRequest"
       responses:
-        '200':
+        "200":
           description: Structured intent
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ParseResponse'
-        '400':
+                $ref: "#/components/schemas/ParseResponse"
+        "400":
           description: Bad request (e.g. missing prompt)
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '422':
+                $ref: "#/components/schemas/Error"
+        "422":
           description: Intent extraction failed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorWithDetails'
-        '500':
+                $ref: "#/components/schemas/ErrorWithDetails"
+        "500":
           description: Server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /api/intent/search:
     post:
@@ -71,26 +71,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SearchRequest'
+              $ref: "#/components/schemas/SearchRequest"
       responses:
-        '200':
+        "200":
           description: Ranked recommendations
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SearchResponse'
-        '400':
+                $ref: "#/components/schemas/SearchResponse"
+        "400":
           description: Missing intent
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '500':
+                $ref: "#/components/schemas/Error"
+        "500":
           description: Search failed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /api/intent/search-by-prompt:
     post:
@@ -104,32 +104,32 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SearchByPromptRequest'
+              $ref: "#/components/schemas/SearchByPromptRequest"
       responses:
-        '200':
+        "200":
           description: Intent + ranked recommendations
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SearchByPromptResponse'
-        '400':
+                $ref: "#/components/schemas/SearchByPromptResponse"
+        "400":
           description: Missing prompt
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-        '422':
+                $ref: "#/components/schemas/Error"
+        "422":
           description: Intent extraction failed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorWithDetails'
-        '500':
+                $ref: "#/components/schemas/ErrorWithDetails"
+        "500":
           description: Search failed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /health:
     get:
@@ -139,7 +139,7 @@ paths:
       description: Returns service status.
       operationId: health
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -189,7 +189,7 @@ components:
         - intent
       properties:
         intent:
-          $ref: '#/components/schemas/SearchIntent'
+          $ref: "#/components/schemas/SearchIntent"
         repair:
           type: object
           properties:
@@ -206,7 +206,7 @@ components:
         - intent
       properties:
         intent:
-          $ref: '#/components/schemas/SearchIntent'
+          $ref: "#/components/schemas/SearchIntent"
         sessionId:
           type: string
           description: Clerk session ID (forwarded when using allspaces HTTP fallback)
@@ -220,7 +220,7 @@ components:
       type: object
       properties:
         intent:
-          $ref: '#/components/schemas/SearchIntent'
+          $ref: "#/components/schemas/SearchIntent"
         repair:
           type: object
           description: Present when intent was normalized server-side (e.g. legacy body).
@@ -233,11 +233,11 @@ components:
                 type: string
         summary:
           type: string
-          example: "3 Italian restaurants in Manhattan for your Friday dinner."
+          example: "3 Italian restaurants in London for your Friday dinner."
         recommendations:
           type: array
           items:
-            $ref: '#/components/schemas/Recommendation'
+            $ref: "#/components/schemas/Recommendation"
         candidatesCount:
           type: integer
           description: Total candidates found before ranking
@@ -253,7 +253,7 @@ components:
       properties:
         prompt:
           type: string
-          example: "Italian restaurant in Manhattan for 4 people this Friday at 7pm"
+          example: "Italian restaurant in London for 4 people this Friday at 7pm"
         context:
           type: object
           properties:
@@ -279,7 +279,7 @@ components:
       type: object
       properties:
         intent:
-          $ref: '#/components/schemas/SearchIntent'
+          $ref: "#/components/schemas/SearchIntent"
         repair:
           type: object
           properties:
@@ -294,7 +294,7 @@ components:
         recommendations:
           type: array
           items:
-            $ref: '#/components/schemas/Recommendation'
+            $ref: "#/components/schemas/Recommendation"
         candidatesCount:
           type: integer
         noMatchMessage:
@@ -495,7 +495,7 @@ components:
           type: array
           description: Customer catalog labels (exact strings). Used with category inference and ranking.
           items:
-            $ref: '#/components/schemas/CustomerServiceLabel'
+            $ref: "#/components/schemas/CustomerServiceLabel"
         sort:
           type: object
           properties:
