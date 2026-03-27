@@ -1,5 +1,6 @@
 import { extractIntentWithLLM } from "../services/llmExtractor.js";
 import { validateAndRepair } from "../services/intentValidator.js";
+import { resolveIntentLocation } from "../services/locationResolver.js";
 import { config } from "../config/env.js";
 import { logError, logEvent } from "../lib/eventLogger.js";
 
@@ -62,6 +63,11 @@ export async function parseIntent(req, res) {
           : null;
       console.log("intent.userLocation", intent.userLocation);
       console.log("intent.location", intent.location);
+      ({ intent, repair } = await resolveIntentLocation(
+        intent,
+        repair,
+        context
+      ));
       logEvent("intent.parse.response_sent", {
         requestId,
         mode: "fallback",
@@ -137,6 +143,7 @@ export async function parseIntent(req, res) {
       }
     }
 
+    ({ intent, repair } = await resolveIntentLocation(intent, repair, context));
     console.log("intent.userLocation", intent.userLocation);
     console.log("intent.location", intent.location);
     logEvent("intent.parse.response_sent", {

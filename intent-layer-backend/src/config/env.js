@@ -34,4 +34,17 @@ export const config = {
     extractionEnabled: process.env.INTENT_EXTRACTION_ENABLED === "true",
     defaultTimezone: process.env.DEFAULT_TIMEZONE || "Europe/London",
   },
+  geocoding: {
+    enabled: process.env.LOCATION_GEOCODING_ENABLED !== "false",
+    endpoint:
+      process.env.LOCATION_GEOCODING_ENDPOINT ||
+      "https://nominatim.openstreetmap.org",
+    timeoutMs: parseInt(
+      process.env.LOCATION_GEOCODING_TIMEOUT_MS || "6000",
+      10
+    ),
+    userAgent:
+      process.env.LOCATION_GEOCODING_USER_AGENT ||
+      "intent-layer-backend/0.1 (location-resolution)",
+  },
 };

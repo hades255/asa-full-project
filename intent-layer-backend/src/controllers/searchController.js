@@ -2,6 +2,7 @@ import { fetchCandidates } from "../services/candidateFetcher.js";
 import { rankCandidates } from "../services/searchLLMRanker.js";
 import { validateAndRepair } from "../services/intentValidator.js";
 import { extractIntentWithLLM } from "../services/llmExtractor.js";
+import { resolveIntentLocation } from "../services/locationResolver.js";
 import { config } from "../config/env.js";
 import { getPrisma } from "../lib/db.js";
 import { getFullProfilesByIds } from "../modules/search/index.js";
@@ -123,7 +124,7 @@ async function parsePromptToIntent(prompt, context = {}) {
   }
 
   if (!config.intent.extractionEnabled || !config.intent.openaiApiKey) {
-    return validateAndRepair({
+    let { intent, repair } = validateAndRepair({
       intent: {
         rawQuery: trimmed,
         normalizedQuery: trimmed.toLowerCase().replace(/\s+/g, " ").trim(),
@@ -140,6 +141,8 @@ async function parsePromptToIntent(prompt, context = {}) {
         confidence: 0,
       },
     });
+    ({ intent, repair } = await resolveIntentLocation(intent, repair, context));
+    return { intent, repair };
   }
 
   const raw = await extractIntentWithLLM(trimmed, context);
@@ -189,6 +192,7 @@ async function parsePromptToIntent(prompt, context = {}) {
     }
   }
 
+  ({ intent, repair } = await resolveIntentLocation(intent, repair, context));
   console.log("intent.userLocation", intent.userLocation);
   console.log("intent.location", intent.location);
   return { intent, repair };
@@ -208,6 +212,7 @@ export async function searchByIntent(req, res) {
       categoryIds,
       fetchLimit,
       resultLimit,
+      context,
     } = req.body || {};
     const incomingIntent = bodyIntent || parsedIntent;
     const requestId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -225,7 +230,8 @@ export async function searchByIntent(req, res) {
       return res.status(400).json({ message: "intent is required (object)" });
     }
 
-    const { intent, repair } = validateAndRepair(incomingIntent);
+    let { intent, repair } = validateAndRepair(incomingIntent);
+    ({ intent, repair } = await resolveIntentLocation(intent, repair, context));
     console.log("intent.userLocation", intent.userLocation);
     console.log("intent.location", intent.location);
 
@@ -334,7 +340,10 @@ export async function searchWithFilters(req, res) {
       hasLastLocation: !!lastLocation,
     });
 
-    const { intent, repair } = intentFromFilters(filters, lastLocation);
+    let { intent, repair } = intentFromFilters(filters, lastLocation);
+    ({ intent, repair } = await resolveIntentLocation(intent, repair, {
+      lastLocation,
+    }));
     console.log("intent.userLocation", intent.userLocation);
     console.log("intent.location", intent.location);
     const result = await runSearchFlow(intent, {
