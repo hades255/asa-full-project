@@ -81,7 +81,9 @@ Return a single JSON object with exactly two keys: "intent" and "repair". No mar
   CATALOG=${catalogJson}
   Each label maps to a CategoryType for search; reference map (use for categoryType when helpful): ${labelToTypeJson}
 
-- profileNameHints: string[] — venue/chain/hotel brand or profile names the user asked for by name (e.g. "Hilton", "Marriott", "The Ritz"). **Do not** put city or area names here (those go in location.address / queryText). **Do not** put generic words like "hotel", "bed", "room" alone. If the user names a brand, add it here and also put the same token in semantic.mustTerms or shouldTerms for retrieval. [] if none.
+- profileNamePhrase: string or null — when the user names a **full property / listing title** as it appears on the profile (e.g. **"Hilton London Canary Wharf"**, **"Marriott Marquis Manhattan"**), put the **entire contiguous phrase** here (cities/areas inside the title are fine). Use null if they only mention a brand ("Hilton") without a full listing-style name.
+
+- profileNameHints: string[] — short brand or venue tokens when **profileNamePhrase** is null (e.g. "Hilton", "Marriott"). **Do not** put generic words like "hotel", "bed", "room" alone. If the user names a brand only, add it here and mirror in semantic.mustTerms/shouldTerms. [] if none.
 
 - sort: { by: "RELEVANCE" | "DISTANCE_THEN_RELEVANCE" | "RATING" | "PRICE", direction: "ASC" | "DESC" }
 
@@ -94,7 +96,7 @@ Return a single JSON object with exactly two keys: "intent" and "repair". No mar
 - For "N nights", duration = N; checkOut = checkIn + N days when you can compute.
 - When the user gives no location and says "near me" or similar, set nearUser true and leave address/lat/lng null (client sends user location separately).
 - For ultra-short prompts ("hotel", "dinner", "stay"), still fill semantic.mustTerms and categoryType best-effort; lower confidence.
-- **Named venue / brand**: "Hilton hotel in London", "bed in Hilton this weekend" → **profileNameHints: ["Hilton"]**, **location.address** or **queryText** for London, **categoryType** SLEEP for "bed"/stay, **date** for weekend; never put "London" in profileNameHints.
+- **Named venue**: (1) Full listing title in the query → **profileNamePhrase** = that full string (e.g. "book **Hilton London Canary Wharf**" → profileNamePhrase **"Hilton London Canary Wharf"**; profileNameHints []). (2) Brand + city only ("Hilton in London") → **profileNameHints: ["Hilton"]**, **location** for London; **profileNamePhrase** null. "bed in Hilton this weekend" → hints **["Hilton"]**, **categoryType** SLEEP, **date** for weekend.
 - repair.applied = true when you inferred or normalized anything; list short human-readable strings in repair.changes (e.g. "Mapped hotel to SLEEP", "Set guests to 2").
 - Never use placeholder words like "string" or "number" as values. Use null or sensible literals.
 - If user mentions explicit DB category ids, put them in categoryIds; otherwise rely on categoryType.

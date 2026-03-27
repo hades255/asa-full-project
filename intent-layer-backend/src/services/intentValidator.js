@@ -55,6 +55,13 @@ function strArray(v) {
   return v.map((x) => String(x).trim()).filter(Boolean);
 }
 
+function normalizeProfileNamePhrase(v) {
+  if (v == null || typeof v !== "string") return null;
+  const t = v.trim().replace(/\s+/g, " ").slice(0, 120);
+  if (t.length < 3) return null;
+  return t;
+}
+
 /** Dedupe, cap length, drop generic lodging words. */
 function normalizeProfileNameHints(arr) {
   const seen = new Set();
@@ -155,6 +162,8 @@ function emptyIntentShell(rawQuery = "") {
     serviceLabels: [],
     /** Venue / chain / profile name tokens for direct name search (e.g. "Hilton", "Marriott"). */
     profileNameHints: [],
+    /** Full listing title as the user typed it (e.g. "Hilton London Canary Wharf"); use when the query names a specific property title. */
+    profileNamePhrase: null,
     sort: {
       by: "RELEVANCE",
       direction: "DESC",
@@ -338,6 +347,11 @@ function mergeIntentPartial(base, partial) {
     base.profileNameHints = strArray(partial.profileNameHints);
   }
 
+  if (typeof partial.profileNamePhrase === "string") {
+    const p = partial.profileNamePhrase.trim();
+    base.profileNamePhrase = p.length ? p : null;
+  }
+
   if (partial.sort && typeof partial.sort === "object") {
     const by = String(partial.sort.by || "").toUpperCase();
     const dir = String(partial.sort.direction || "").toUpperCase();
@@ -516,6 +530,12 @@ export function validateAndRepair(raw) {
   intent.profileNameHints = normalizeProfileNameHints(intent.profileNameHints || []);
   if (hintsBefore > intent.profileNameHints.length) {
     changes.push("normalized profileNameHints (deduped or dropped generic stopwords)");
+  }
+
+  const phraseBefore = intent.profileNamePhrase;
+  intent.profileNamePhrase = normalizeProfileNamePhrase(intent.profileNamePhrase);
+  if (phraseBefore !== intent.profileNamePhrase) {
+    changes.push("normalized profileNamePhrase");
   }
 
   const mergedChanges = [...llmRepair.changes, ...changes];

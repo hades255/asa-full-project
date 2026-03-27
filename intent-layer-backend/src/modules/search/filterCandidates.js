@@ -191,12 +191,17 @@ function facilityAndClauses(required) {
   }));
 }
 
+function trimProfilePhrase(s) {
+  if (typeof s !== "string") return "";
+  return s.trim().replace(/\s+/g, " ").slice(0, 120);
+}
+
 /** Match venue / chain names on profile (e.g. "Hilton"). */
 function profileNameWhere(hints) {
   if (!Array.isArray(hints) || !hints.length) return null;
   const cleaned = hints
     .map((h) => String(h).trim())
-    .filter((h) => h.length >= 2 && h.length <= 80)
+    .filter((h) => h.length >= 2 && h.length <= 120)
     .slice(0, 5);
   if (!cleaned.length) return null;
   const ors = cleaned.flatMap((h) => [
@@ -204,6 +209,22 @@ function profileNameWhere(hints) {
     { description: { contains: h, mode: "insensitive" } },
   ]);
   return { OR: ors };
+}
+
+/**
+ * Full listing title (profileNamePhrase) wins over token hints — avoids OR-matching "London" alone.
+ */
+function profileNameFromIntent(intent) {
+  const phrase = trimProfilePhrase(intent?.profileNamePhrase);
+  if (phrase.length >= 3) {
+    return {
+      OR: [
+        { name: { contains: phrase, mode: "insensitive" } },
+        { description: { contains: phrase, mode: "insensitive" } },
+      ],
+    };
+  }
+  return profileNameWhere(intent?.profileNameHints);
 }
 
 function getOrderBy(intent) {
@@ -248,9 +269,13 @@ export async function filterCandidates(prisma, intent, opts = {}) {
     andParts.push({ lat: { not: null, gte: latMin, lte: latMax } });
     andParts.push({ lng: { not: null, gte: lngMin, lte: lngMax } });
   } else if (locationStrategy.mode === "text") {
-    andParts.push({
-      address: { contains: locationStrategy.text, mode: "insensitive" },
-    });
+    const phrase = trimProfilePhrase(intent?.profileNamePhrase);
+    // Listing-title search: address often omits city words that appear in profile.name.
+    if (phrase.length < 3) {
+      andParts.push({
+        address: { contains: locationStrategy.text, mode: "insensitive" },
+      });
+    }
   }
 
   const priceWhere = buildPriceWhere(intent);
@@ -264,7 +289,7 @@ export async function filterCandidates(prisma, intent, opts = {}) {
 
   andParts.push(...facilityAndClauses(intent?.facilities?.required));
 
-  const nameWhere = profileNameWhere(intent?.profileNameHints);
+  const nameWhere = profileNameFromIntent(intent);
   if (nameWhere) andParts.push(nameWhere);
 
   if (categoryIds.length > 0) {

@@ -498,9 +498,13 @@ components:
             $ref: "#/components/schemas/CustomerServiceLabel"
         profileNameHints:
           type: array
-          description: Venue or brand name tokens for direct name match (e.g. Hilton). Cities belong in location, not here.
+          description: Short brand tokens when the user does not name a full listing title (e.g. Hilton). Prefer profileNamePhrase for full titles.
           items:
             type: string
+        profileNamePhrase:
+          type: string
+          nullable: true
+          description: Full property listing title as searched (e.g. Hilton London Canary Wharf). Embeds location words that appear in profile.name, not only address.
         sort:
           type: object
           properties:
