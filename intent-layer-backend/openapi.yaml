@@ -496,6 +496,11 @@ components:
           description: Customer catalog labels (exact strings). Used with category inference and ranking.
           items:
             $ref: "#/components/schemas/CustomerServiceLabel"
+        profileNameHints:
+          type: array
+          description: Venue or brand name tokens for direct name match (e.g. Hilton). Cities belong in location, not here.
+          items:
+            type: string
         sort:
           type: object
           properties:

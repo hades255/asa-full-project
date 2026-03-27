@@ -9,7 +9,7 @@ import { runOpenAiJson } from "./llmManager.js";
 const SYSTEM_PROMPT = `You are a search assistant for a space/venue booking app. Given a user's search intent and a list of candidate spaces, rank the spaces by relevance and explain why.
 
 Input:
-1. intent: search-ready object (rawQuery, normalizedQuery, categoryType, serviceLabels, semantic.mustTerms/shouldTerms, date, guests, location, price, rating, facilities, serviceFilters, sort, etc.)
+1. intent: search-ready object (rawQuery, normalizedQuery, categoryType, serviceLabels, profileNameHints, semantic.mustTerms/shouldTerms, date, guests, location, price, rating, facilities, serviceFilters, sort, etc.)
 2. candidates: list of spaces with id, name, description, address, averageRating, totalReviews, services, facilities
 
 Output JSON only, no markdown:
@@ -28,7 +28,7 @@ Output JSON only, no markdown:
 }
 
 Rules:
-- Rank by: location match, categoryType vs services, serviceLabels (customer catalog) vs service names/descriptions, semantic.mustTerms/shouldTerms, guests fit, rating, price, facilities, rawQuery.
+- Rank by: location match, categoryType vs services, **profileNameHints** (brand/venue name) vs profile name/description, serviceLabels (customer catalog) vs service names/descriptions, semantic.mustTerms/shouldTerms, guests fit, rating, price, facilities, rawQuery.
 - Score: 0.0–1.0, higher = better match. Use decimals.
 - Give 2–4 reasons per recommendation. Be specific.
 - If no candidates match or list is empty, set noMatchMessage to a helpful message and recommendations: [].
@@ -63,6 +63,17 @@ function heuristicScore(intent, candidate) {
   const shouldTerms = intent?.semantic?.shouldTerms || [];
   const requiredFacilities = intent?.facilities?.required || [];
   const serviceLabels = intent?.serviceLabels || [];
+  const profileNameHints = intent?.profileNameHints || [];
+
+  if (profileNameHints.length) {
+    const blob = `${candidate.name || ""} ${candidate.description || ""}`;
+    const nameHit = profileNameHints.some((h) =>
+      includesAny(candidate.name || "", [h])
+    );
+    const softHit = profileNameHints.some((t) => includesAny(blob, [t]));
+    if (nameHit) score += 0.28;
+    else if (softHit) score += 0.14;
+  }
 
   if (mustTerms.length) {
     const matched = mustTerms.filter((t) =>

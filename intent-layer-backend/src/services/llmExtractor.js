@@ -81,6 +81,8 @@ Return a single JSON object with exactly two keys: "intent" and "repair". No mar
   CATALOG=${catalogJson}
   Each label maps to a CategoryType for search; reference map (use for categoryType when helpful): ${labelToTypeJson}
 
+- profileNameHints: string[] — venue/chain/hotel brand or profile names the user asked for by name (e.g. "Hilton", "Marriott", "The Ritz"). **Do not** put city or area names here (those go in location.address / queryText). **Do not** put generic words like "hotel", "bed", "room" alone. If the user names a brand, add it here and also put the same token in semantic.mustTerms or shouldTerms for retrieval. [] if none.
+
 - sort: { by: "RELEVANCE" | "DISTANCE_THEN_RELEVANCE" | "RATING" | "PRICE", direction: "ASC" | "DESC" }
 
 - confidence: number 0–1
@@ -92,6 +94,7 @@ Return a single JSON object with exactly two keys: "intent" and "repair". No mar
 - For "N nights", duration = N; checkOut = checkIn + N days when you can compute.
 - When the user gives no location and says "near me" or similar, set nearUser true and leave address/lat/lng null (client sends user location separately).
 - For ultra-short prompts ("hotel", "dinner", "stay"), still fill semantic.mustTerms and categoryType best-effort; lower confidence.
+- **Named venue / brand**: "Hilton hotel in London", "bed in Hilton this weekend" → **profileNameHints: ["Hilton"]**, **location.address** or **queryText** for London, **categoryType** SLEEP for "bed"/stay, **date** for weekend; never put "London" in profileNameHints.
 - repair.applied = true when you inferred or normalized anything; list short human-readable strings in repair.changes (e.g. "Mapped hotel to SLEEP", "Set guests to 2").
 - Never use placeholder words like "string" or "number" as values. Use null or sensible literals.
 - If user mentions explicit DB category ids, put them in categoryIds; otherwise rely on categoryType.

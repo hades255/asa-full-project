@@ -191,6 +191,21 @@ function facilityAndClauses(required) {
   }));
 }
 
+/** Match venue / chain names on profile (e.g. "Hilton"). */
+function profileNameWhere(hints) {
+  if (!Array.isArray(hints) || !hints.length) return null;
+  const cleaned = hints
+    .map((h) => String(h).trim())
+    .filter((h) => h.length >= 2 && h.length <= 80)
+    .slice(0, 5);
+  if (!cleaned.length) return null;
+  const ors = cleaned.flatMap((h) => [
+    { name: { contains: h, mode: "insensitive" } },
+    { description: { contains: h, mode: "insensitive" } },
+  ]);
+  return { OR: ors };
+}
+
 function getOrderBy(intent) {
   const dir = intent?.sort?.direction === "ASC" ? "asc" : "desc";
   const by = intent?.sort?.by;
@@ -248,6 +263,9 @@ export async function filterCandidates(prisma, intent, opts = {}) {
     andParts.push({ totalReviews: ratingWhere.totalReviews });
 
   andParts.push(...facilityAndClauses(intent?.facilities?.required));
+
+  const nameWhere = profileNameWhere(intent?.profileNameHints);
+  if (nameWhere) andParts.push(nameWhere);
 
   if (categoryIds.length > 0) {
     andParts.push({

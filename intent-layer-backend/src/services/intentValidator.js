@@ -7,6 +7,29 @@ import { normalizeServiceLabels } from "../constants/customerServiceCatalog.js";
 
 const PLACEHOLDER_WORDS = ["string", "number", "null", "undefined", "unknown"];
 
+/** Lodging/generic words — not venue brands; strip from profileNameHints to avoid useless matches. */
+const PROFILE_HINT_STOPWORDS = new Set([
+  "hotel",
+  "hotels",
+  "motel",
+  "motels",
+  "hostel",
+  "hostels",
+  "resort",
+  "resorts",
+  "inn",
+  "inns",
+  "lodging",
+  "bed",
+  "room",
+  "rooms",
+  "suite",
+  "suites",
+  "stay",
+  "apartment",
+  "apartments",
+]);
+
 const VALID_CATEGORY_TYPES = new Set([
   "WORKSPACE",
   "RELAXATION",
@@ -30,6 +53,22 @@ const VALID_SORT_DIR = new Set(["ASC", "DESC"]);
 function strArray(v) {
   if (!Array.isArray(v)) return [];
   return v.map((x) => String(x).trim()).filter(Boolean);
+}
+
+/** Dedupe, cap length, drop generic lodging words. */
+function normalizeProfileNameHints(arr) {
+  const seen = new Set();
+  const out = [];
+  for (const x of strArray(arr)) {
+    const lower = x.toLowerCase();
+    if (lower.length < 2 || lower.length > 64) continue;
+    if (PROFILE_HINT_STOPWORDS.has(lower)) continue;
+    if (seen.has(lower)) continue;
+    seen.add(lower);
+    out.push(x);
+    if (out.length >= 5) break;
+  }
+  return out;
 }
 
 function numOrNull(v) {
@@ -114,6 +153,8 @@ function emptyIntentShell(rawQuery = "") {
     },
     /** Exact strings from CUSTOMER_SERVICE_LABELS (customer catalog). */
     serviceLabels: [],
+    /** Venue / chain / profile name tokens for direct name search (e.g. "Hilton", "Marriott"). */
+    profileNameHints: [],
     sort: {
       by: "RELEVANCE",
       direction: "DESC",
@@ -293,6 +334,10 @@ function mergeIntentPartial(base, partial) {
     base.serviceLabels = strArray(partial.serviceLabels);
   }
 
+  if (Array.isArray(partial.profileNameHints)) {
+    base.profileNameHints = strArray(partial.profileNameHints);
+  }
+
   if (partial.sort && typeof partial.sort === "object") {
     const by = String(partial.sort.by || "").toUpperCase();
     const dir = String(partial.sort.direction || "").toUpperCase();
@@ -465,6 +510,12 @@ export function validateAndRepair(raw) {
   intent.serviceLabels = normalizeServiceLabels(intent.serviceLabels || []);
   if (labelCountBefore > intent.serviceLabels.length) {
     changes.push("dropped serviceLabels not in customer service catalog");
+  }
+
+  const hintsBefore = (intent.profileNameHints || []).length;
+  intent.profileNameHints = normalizeProfileNameHints(intent.profileNameHints || []);
+  if (hintsBefore > intent.profileNameHints.length) {
+    changes.push("normalized profileNameHints (deduped or dropped generic stopwords)");
   }
 
   const mergedChanges = [...llmRepair.changes, ...changes];
