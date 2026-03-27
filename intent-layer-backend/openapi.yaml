@@ -505,6 +505,11 @@ components:
           type: string
           nullable: true
           description: Full property listing title as searched (e.g. Hilton London Canary Wharf). Embeds location words that appear in profile.name, not only address.
+        profileKeywordTokens:
+          type: array
+          description: Non-location tokens from the venue name; AND-matched on profile name/description. Pair with location for the city (e.g. London). Omit city words here.
+          items:
+            type: string
         sort:
           type: object
           properties:

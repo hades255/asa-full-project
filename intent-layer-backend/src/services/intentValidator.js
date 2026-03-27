@@ -62,6 +62,42 @@ function normalizeProfileNamePhrase(v) {
   return t;
 }
 
+/**
+ * Words from location.address only — strip from profileKeywordTokens when the same word
+ * is already the city (e.g. London). We do not use queryText here: phrases like "Canary Wharf"
+ * would incorrectly remove venue tokens.
+ */
+function locationWordsForIntent(intent) {
+  const addr = intent?.location?.address;
+  if (addr == null || String(addr).trim() === "") return new Set();
+  const c = String(addr).toLowerCase().trim();
+  const words = new Set();
+  for (const w of c.split(/\s+/)) {
+    if (w.length >= 2) words.add(w);
+  }
+  return words;
+}
+
+/**
+ * Venue name tokens matched with AND (e.g. hilton + Canary + wharf). Strips words duplicated in location.
+ */
+function normalizeProfileKeywordTokens(arr, intent) {
+  const locWords = locationWordsForIntent(intent);
+  const seen = new Set();
+  const out = [];
+  for (const x of strArray(arr)) {
+    const lower = x.toLowerCase();
+    if (lower.length < 2 || lower.length > 40) continue;
+    if (PROFILE_HINT_STOPWORDS.has(lower)) continue;
+    if (locWords.has(lower)) continue;
+    if (seen.has(lower)) continue;
+    seen.add(lower);
+    out.push(x);
+    if (out.length >= 8) break;
+  }
+  return out;
+}
+
 /** Dedupe, cap length, drop generic lodging words. */
 function normalizeProfileNameHints(arr) {
   const seen = new Set();
@@ -164,6 +200,11 @@ function emptyIntentShell(rawQuery = "") {
     profileNameHints: [],
     /** Full listing title as the user typed it (e.g. "Hilton London Canary Wharf"); use when the query names a specific property title. */
     profileNamePhrase: null,
+    /**
+     * Non-location tokens from the venue title, AND-matched on profile name/description (e.g. ["hilton","Canary","wharf"]).
+     * Put city/area in location only — do not repeat here.
+     */
+    profileKeywordTokens: [],
     sort: {
       by: "RELEVANCE",
       direction: "DESC",
@@ -352,6 +393,10 @@ function mergeIntentPartial(base, partial) {
     base.profileNamePhrase = p.length ? p : null;
   }
 
+  if (Array.isArray(partial.profileKeywordTokens)) {
+    base.profileKeywordTokens = strArray(partial.profileKeywordTokens);
+  }
+
   if (partial.sort && typeof partial.sort === "object") {
     const by = String(partial.sort.by || "").toUpperCase();
     const dir = String(partial.sort.direction || "").toUpperCase();
@@ -527,15 +572,30 @@ export function validateAndRepair(raw) {
   }
 
   const hintsBefore = (intent.profileNameHints || []).length;
-  intent.profileNameHints = normalizeProfileNameHints(intent.profileNameHints || []);
+  intent.profileNameHints = normalizeProfileNameHints(
+    intent.profileNameHints || []
+  );
   if (hintsBefore > intent.profileNameHints.length) {
-    changes.push("normalized profileNameHints (deduped or dropped generic stopwords)");
+    changes.push(
+      "normalized profileNameHints (deduped or dropped generic stopwords)"
+    );
   }
 
   const phraseBefore = intent.profileNamePhrase;
-  intent.profileNamePhrase = normalizeProfileNamePhrase(intent.profileNamePhrase);
+  intent.profileNamePhrase = normalizeProfileNamePhrase(
+    intent.profileNamePhrase
+  );
   if (phraseBefore !== intent.profileNamePhrase) {
     changes.push("normalized profileNamePhrase");
+  }
+
+  const kwSnapshot = JSON.stringify(intent.profileKeywordTokens || []);
+  intent.profileKeywordTokens = normalizeProfileKeywordTokens(
+    intent.profileKeywordTokens || [],
+    intent
+  );
+  if (kwSnapshot !== JSON.stringify(intent.profileKeywordTokens)) {
+    changes.push("normalized profileKeywordTokens");
   }
 
   const mergedChanges = [...llmRepair.changes, ...changes];

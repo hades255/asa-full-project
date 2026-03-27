@@ -9,7 +9,7 @@ import { runOpenAiJson } from "./llmManager.js";
 const SYSTEM_PROMPT = `You are a search assistant for a space/venue booking app. Given a user's search intent and a list of candidate spaces, rank the spaces by relevance and explain why.
 
 Input:
-1. intent: search-ready object (rawQuery, normalizedQuery, categoryType, serviceLabels, profileNamePhrase, profileNameHints, semantic.mustTerms/shouldTerms, date, guests, location, price, rating, facilities, serviceFilters, sort, etc.)
+1. intent: search-ready object (rawQuery, normalizedQuery, categoryType, serviceLabels, profileNamePhrase, profileKeywordTokens, profileNameHints, semantic.mustTerms/shouldTerms, date, guests, location, price, rating, facilities, serviceFilters, sort, etc.)
 2. candidates: list of spaces with id, name, description, address, averageRating, totalReviews, services, facilities
 
 Output JSON only, no markdown:
@@ -28,7 +28,7 @@ Output JSON only, no markdown:
 }
 
 Rules:
-- Rank by: location match, categoryType vs services, **profileNamePhrase** (full listing title) or **profileNameHints** vs profile name/description, serviceLabels (customer catalog) vs service names/descriptions, semantic.mustTerms/shouldTerms, guests fit, rating, price, facilities, rawQuery.
+- Rank by: location match, categoryType vs services, **profileNamePhrase**, **profileKeywordTokens** (all tokens should match the venue), or **profileNameHints** vs profile name/description, serviceLabels (customer catalog) vs service names/descriptions, semantic.mustTerms/shouldTerms, guests fit, rating, price, facilities, rawQuery.
 - Score: 0.0–1.0, higher = better match. Use decimals.
 - Give 2–4 reasons per recommendation. Be specific.
 - If no candidates match or list is empty, set noMatchMessage to a helpful message and recommendations: [].
@@ -64,6 +64,7 @@ function heuristicScore(intent, candidate) {
   const requiredFacilities = intent?.facilities?.required || [];
   const serviceLabels = intent?.serviceLabels || [];
   const profileNameHints = intent?.profileNameHints || [];
+  const profileKeywordTokens = intent?.profileKeywordTokens || [];
   const profilePhrase =
     typeof intent?.profileNamePhrase === "string"
       ? intent.profileNamePhrase.trim()
@@ -73,6 +74,12 @@ function heuristicScore(intent, candidate) {
     const blob = `${candidate.name || ""} ${candidate.description || ""}`;
     if (includesAny(candidate.name || "", [profilePhrase])) score += 0.38;
     else if (includesAny(blob, [profilePhrase])) score += 0.22;
+  } else if (profileKeywordTokens.length) {
+    const blob = `${candidate.name || ""} ${candidate.description || ""}`;
+    const matched = profileKeywordTokens.filter((t) =>
+      includesAny(blob, [t])
+    ).length;
+    if (matched > 0) score += 0.32 * (matched / profileKeywordTokens.length);
   } else if (profileNameHints.length) {
     const blob = `${candidate.name || ""} ${candidate.description || ""}`;
     const nameHit = profileNameHints.some((h) =>

@@ -212,7 +212,27 @@ function profileNameWhere(hints) {
 }
 
 /**
- * Full listing title (profileNamePhrase) wins over token hints — avoids OR-matching "London" alone.
+ * AND each token on name or description — use with location.* for city (e.g. London in address).
+ */
+function profileKeywordTokenWhere(tokens) {
+  if (!Array.isArray(tokens) || !tokens.length) return null;
+  const cleaned = tokens
+    .map((t) => String(t).trim())
+    .filter((t) => t.length >= 2 && t.length <= 40)
+    .slice(0, 8);
+  if (!cleaned.length) return null;
+  return {
+    AND: cleaned.map((t) => ({
+      OR: [
+        { name: { contains: t, mode: "insensitive" } },
+        { description: { contains: t, mode: "insensitive" } },
+      ],
+    })),
+  };
+}
+
+/**
+ * Priority: full phrase → AND keyword tokens → OR brand hints.
  */
 function profileNameFromIntent(intent) {
   const phrase = trimProfilePhrase(intent?.profileNamePhrase);
@@ -224,6 +244,8 @@ function profileNameFromIntent(intent) {
       ],
     };
   }
+  const kw = profileKeywordTokenWhere(intent?.profileKeywordTokens);
+  if (kw) return kw;
   return profileNameWhere(intent?.profileNameHints);
 }
 
@@ -270,11 +292,26 @@ export async function filterCandidates(prisma, intent, opts = {}) {
     andParts.push({ lng: { not: null, gte: lngMin, lte: lngMax } });
   } else if (locationStrategy.mode === "text") {
     const phrase = trimProfilePhrase(intent?.profileNamePhrase);
-    // Listing-title search: address often omits city words that appear in profile.name.
-    if (phrase.length < 3) {
-      andParts.push({
-        address: { contains: locationStrategy.text, mode: "insensitive" },
-      });
+    const hasKeywordTokens =
+      Array.isArray(intent?.profileKeywordTokens) &&
+      intent.profileKeywordTokens.length > 0;
+    const locText = locationStrategy.text;
+    // Full-phrase-only search: address often omits city words that appear in profile.name.
+    if (phrase.length < 3 || hasKeywordTokens) {
+      if (hasKeywordTokens) {
+        // City/area may appear in profile.name (e.g. "Hilton London …") but not in address.
+        andParts.push({
+          OR: [
+            { address: { contains: locText, mode: "insensitive" } },
+            { name: { contains: locText, mode: "insensitive" } },
+            { description: { contains: locText, mode: "insensitive" } },
+          ],
+        });
+      } else {
+        andParts.push({
+          address: { contains: locText, mode: "insensitive" },
+        });
+      }
     }
   }
 
