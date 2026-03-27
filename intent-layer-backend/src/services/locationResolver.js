@@ -29,7 +29,6 @@ function hasValidCoords(location) {
 async function geocodeLocation(query) {
   const endpoint = config.geocoding.endpoint.replace(/\/+$/, "");
   const url = `${endpoint}/search`;
-  console.log(query);
   const { data } = await axios.get(url, {
     params: {
       q: query,
@@ -43,8 +42,6 @@ async function geocodeLocation(query) {
       Accept: "application/json",
     },
   });
-
-  console.log(data);
 
   const first = Array.isArray(data) ? data[0] : null;
   if (!first) return null;
@@ -103,6 +100,15 @@ function composeContextQuery(query, context = {}) {
   return pieces.join(", ");
 }
 
+function stripProximityPrefix(text) {
+  const t = cleanText(text);
+  if (!t) return "";
+  return t
+    .replace(/^(near|around|close to|close by|nearby|by|in|at)\s+/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 async function aiDisambiguateQuery(query, context = {}) {
   if (!config.intent.extractionEnabled || !config.intent.openaiApiKey) {
     return composeContextQuery(query, context) || query;
@@ -143,12 +149,63 @@ async function aiDisambiguateQuery(query, context = {}) {
   }
 }
 
+async function aiResolveLocation(query, context = {}) {
+  if (!config.intent.extractionEnabled || !config.intent.openaiApiKey) {
+    return null;
+  }
+  const timezone =
+    cleanText(context?.timezone) || config.intent.defaultTimezone;
+  const lastAddress = cleanText(context?.lastLocation?.address);
+  const lastLat =
+    context?.lastLocation?.lat != null
+      ? Number(context.lastLocation.lat)
+      : null;
+  const lastLng =
+    context?.lastLocation?.lng != null
+      ? Number(context.lastLocation.lng)
+      : null;
+  const contextual = composeContextQuery(query, context) || query;
+  try {
+    const out = await runOpenAiJson({
+      model: config.intent.openaiModel,
+      temperature: 0,
+      messages: [
+        {
+          role: "system",
+          content:
+            "Return only JSON with keys: query,address,lat,lng,confidence. Prefer context when place text is ambiguous. If unsure about coordinates, return lat/lng as null.",
+        },
+        {
+          role: "user",
+          content: `Resolve this place for search.\nPlace text: "${query}"\nContextual query: "${contextual}"\nTimezone: "${timezone}"\nLast known address: "${lastAddress}"\nLast known coordinates: lat=${lastLat}, lng=${lastLng}`,
+        },
+      ],
+    });
+    const lat = out?.lat != null ? Number(out.lat) : null;
+    const lng = out?.lng != null ? Number(out.lng) : null;
+    const hasCoords = Number.isFinite(lat) && Number.isFinite(lng);
+    return {
+      query: cleanText(out?.query) || contextual,
+      address: cleanText(out?.address),
+      lat: hasCoords ? lat : null,
+      lng: hasCoords ? lng : null,
+      confidence:
+        out?.confidence != null && Number.isFinite(Number(out.confidence))
+          ? Number(out.confidence)
+          : null,
+    };
+  } catch (err) {
+    logError("intent.location.ai_resolve.error", err, { query });
+    return null;
+  }
+}
+
 /**
  * Fill intent.location coordinates using queryText/address when missing.
  * Keeps nearUser behavior intact and never overwrites existing coordinates.
  */
 export async function resolveIntentLocation(intent, repair, context = {}) {
-  if (!config.geocoding.enabled || !intent?.location) return { intent, repair };
+  if (!intent?.location) return { intent, repair };
   if (intent.location.nearUser === true) return { intent, repair };
   if (hasValidCoords(intent.location)) return { intent, repair };
 
@@ -157,14 +214,104 @@ export async function resolveIntentLocation(intent, repair, context = {}) {
   const rawQuery = queryText || address;
   if (!rawQuery) return { intent, repair };
 
+  let attemptedQueries = [];
   try {
-    const query = await aiDisambiguateQuery(rawQuery, context);
-    logEvent("intent.location.geocode.start", { query, rawQuery });
-    let resolved = await geocodeLocation(query);
-    if (!resolved && query !== rawQuery) {
-      resolved = await geocodeLocation(rawQuery);
+    const base = stripProximityPrefix(rawQuery);
+    const aiResolved = await aiResolveLocation(base || rawQuery, context);
+    if (aiResolved?.lat != null && aiResolved?.lng != null) {
+      intent.location = {
+        ...intent.location,
+        address: aiResolved.address || aiResolved.query || rawQuery,
+        lat: aiResolved.lat,
+        lng: aiResolved.lng,
+        radiusKm:
+          intent.location.radiusKm != null &&
+          Number.isFinite(Number(intent.location.radiusKm))
+            ? Number(intent.location.radiusKm)
+            : 5,
+        nearUser: false,
+      };
+      const changes = [
+        ...(repair?.changes || []),
+        `resolved location "${rawQuery}" using OpenAI coordinates`,
+      ];
+      return {
+        intent,
+        repair: {
+          applied: true,
+          changes,
+        },
+      };
     }
-    if (!resolved) return { intent, repair };
+
+    if (!config.geocoding.enabled) return { intent, repair };
+
+    const aiQuery =
+      aiResolved?.query ||
+      (await aiDisambiguateQuery(base || rawQuery, context));
+    const baseWithContext = composeContextQuery(base || rawQuery, context);
+    const rawWithContext = composeContextQuery(rawQuery, context);
+
+    const candidates = [
+      aiQuery,
+      baseWithContext,
+      rawWithContext,
+      base,
+      rawQuery,
+      address,
+    ]
+      .map((q) => cleanText(q))
+      .filter(Boolean)
+      .filter((q, i, arr) => arr.indexOf(q) === i);
+
+    let resolved = null;
+    for (const query of candidates) {
+      attemptedQueries.push(query);
+      logEvent("intent.location.geocode.try", { query });
+      resolved = await geocodeLocation(query);
+      if (resolved) break;
+    }
+    if (!resolved) {
+      const fallbackLat =
+        context?.lastLocation?.lat != null
+          ? Number(context.lastLocation.lat)
+          : null;
+      const fallbackLng =
+        context?.lastLocation?.lng != null
+          ? Number(context.lastLocation.lng)
+          : null;
+      if (Number.isFinite(fallbackLat) && Number.isFinite(fallbackLng)) {
+        const fallbackAddress =
+          cleanText(context?.lastLocation?.address) ||
+          cleanText(intent.userLocation?.address) ||
+          address ||
+          rawQuery;
+        intent.location = {
+          ...intent.location,
+          address: fallbackAddress || null,
+          lat: fallbackLat,
+          lng: fallbackLng,
+          radiusKm:
+            intent.location.radiusKm != null &&
+            Number.isFinite(Number(intent.location.radiusKm))
+              ? Number(intent.location.radiusKm)
+              : 5,
+          nearUser: false,
+        };
+        const changes = [
+          ...(repair?.changes || []),
+          `fallback to user location after unresolved "${rawQuery}"`,
+        ];
+        return {
+          intent,
+          repair: {
+            applied: true,
+            changes,
+          },
+        };
+      }
+      return { intent, repair };
+    }
 
     intent.location = {
       ...intent.location,
@@ -181,9 +328,10 @@ export async function resolveIntentLocation(intent, repair, context = {}) {
 
     const changes = [
       ...(repair?.changes || []),
-      query !== rawQuery
-        ? `resolved location "${rawQuery}" as "${query}" to coordinates`
-        : `resolved location "${rawQuery}" to coordinates`,
+      `resolved location "${rawQuery}" to coordinates`,
+      ...(attemptedQueries[0] && attemptedQueries[0] !== rawQuery
+        ? [`geocoded using contextual query "${attemptedQueries[0]}"`]
+        : []),
     ];
     return {
       intent,
@@ -193,7 +341,10 @@ export async function resolveIntentLocation(intent, repair, context = {}) {
       },
     };
   } catch (err) {
-    logError("intent.location.geocode.error", err, { query });
+    logError("intent.location.geocode.error", err, {
+      rawQuery,
+      attemptedQueries,
+    });
     return { intent, repair };
   }
 }

@@ -5,7 +5,7 @@
  * - "mock" — static data (no dependencies)
  * - "db"   — PostgreSQL via Prisma (DATABASE_URL)
  * - "http" — AllSpaces backend API (ALLSPACES_API_BASE_URL)
- * - "auto" — db → http → mock fallback
+ * - "auto" — db → http (no mock fallback)
  *
  * Usage:
  *   import { fetchCandidates } from "./modules/candidateSource/index.js";
@@ -42,15 +42,20 @@ export async function fetchCandidates(intent, options = {}) {
     return httpSource(intent, options);
   }
 
-  // auto: db → http → mock
+  // auto: db → http (no mock fallback)
+  let lastError = null;
   const prisma = getPrisma();
   if (prisma) {
     const result = await fetchDbCandidates(intent, options);
     if (!result.error && result.candidates.length > 0) {
       return result;
     }
+    if (!result.error && result.candidates.length === 0) {
+      // No DB matches: try HTTP source before returning empty.
+    }
     if (result.error) {
       console.warn("DB source failed, trying HTTP:", result.error);
+      lastError = result.error;
     }
   }
 
@@ -59,10 +64,17 @@ export async function fetchCandidates(intent, options = {}) {
     if (!result.error) {
       return result;
     }
-    console.warn("HTTP source failed, falling back to mock:", result.error);
+    console.warn("HTTP source failed:", result.error);
+    lastError = result.error;
   }
 
-  return fetchMockCandidates(intent, options);
+  return {
+    candidates: [],
+    total: 0,
+    fullCandidatesById: new Map(),
+    ...(lastError && { error: lastError }),
+    _source: "none",
+  };
 }
 
 export { fetchMockCandidates } from "./sources/mock.js";
